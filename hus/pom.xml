@@ -7,7 +7,7 @@
 	<name>Hearring Unlimited Software</name>
 	<modules>
 		<module>h-tool</module>
-		<module>h-style</module>
+		<module>h-style-b</module>
 		<module>h-style-g</module>
 		<module>h-model</module>
 		<module>h-khall</module>
