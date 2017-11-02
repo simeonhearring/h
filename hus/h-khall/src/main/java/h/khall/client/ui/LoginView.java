@@ -9,6 +9,8 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.user.client.ui.HasWidgets;
+import com.google.gwt.user.client.ui.UIObject;
 import com.google.gwt.user.client.ui.Widget;
 
 import h.khall.client.model.LoginDisplay;
@@ -40,10 +42,18 @@ public class LoginView extends AbstractView implements LoginDisplay
     mPresenter = new LoginPresenter(this);
   }
 
+  public LoginView(HasWidgets inPanel)
+  {
+    this();
+    inPanel.clear();
+    inPanel.add(this);
+    ((UIObject) inPanel).addStyleName("gray-bg");
+  }
+
   @UiHandler(
-      {
-        "mLogin", "mForgot", "mCreate"
-      })
+  {
+      "mLogin", "mForgot", "mCreate"
+  })
   public void onClick(ClickEvent inEvent)
   {
     Object source = inEvent.getSource();

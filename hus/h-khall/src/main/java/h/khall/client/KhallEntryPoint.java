@@ -10,7 +10,6 @@ public class KhallEntryPoint implements EntryPoint
   @Override
   public void onModuleLoad()
   {
-    RootPanel.get().add(new LoginView());
-    RootPanel.get().addStyleName("gray-bg");
+    new LoginView(RootPanel.get());
   }
 }
