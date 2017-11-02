@@ -4,7 +4,7 @@ import h.style.g.client.model.AbstractPresenter;
 
 public class LoginPresenter extends AbstractPresenter<LoginPresenter.Display>
 {
-  public interface Display extends h.style.g.client.model.Display
+  public interface Display extends Attach
   {
   }
 

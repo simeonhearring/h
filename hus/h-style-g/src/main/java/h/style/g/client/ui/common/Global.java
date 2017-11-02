@@ -75,7 +75,7 @@ public class Global implements HasFire
     for (Event<?> value : inEvent)
     {
       debugFire(value);
-      INSTANCE.mEventBus.fireEvent(value);
+      INSTANCE.mEventBus.fire(value);
     }
   }
 

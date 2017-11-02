@@ -50,6 +50,7 @@ import com.google.gwt.user.client.Random;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlowPanel;
+import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PopupPanel;
@@ -91,6 +92,12 @@ public abstract class AbstractView extends Composite
   protected UIObject mUiObject;
 
   protected String mAnimateKey;
+
+  public void attach(HasWidgets inPanel)
+  {
+    inPanel.clear();
+    inPanel.add(this);
+  }
 
   public void setAnimateObject(UIObject inUiObject)
   {

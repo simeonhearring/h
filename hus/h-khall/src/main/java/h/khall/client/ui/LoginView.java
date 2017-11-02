@@ -41,9 +41,9 @@ public class LoginView extends AbstractView implements LoginPresenter.Display
     mPresenter = new LoginPresenter(this);
   }
 
-  public LoginView(HasWidgets inPanel)
+  @Override
+  public void attach(HasWidgets inPanel)
   {
-    this();
     inPanel.clear();
     inPanel.add(this);
     ((UIObject) inPanel).addStyleName("gray-bg");
