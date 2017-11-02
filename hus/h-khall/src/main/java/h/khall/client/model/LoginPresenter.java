@@ -1,16 +1,16 @@
 package h.khall.client.model;
 
-public class LoginPresenter
+import h.style.g.client.model.AbstractPresenter;
+
+public class LoginPresenter extends AbstractPresenter<LoginPresenter.Display>
 {
   public interface Display extends h.style.g.client.model.Display
   {
   }
 
-  private Display mDisplay;
-
   public LoginPresenter(Display inDisplay)
   {
-    mDisplay = inDisplay;
+    initDisplay(inDisplay);
   }
 
   public void login(String inUserName, String inPassword, String inCongNum, String inEncrypt)
