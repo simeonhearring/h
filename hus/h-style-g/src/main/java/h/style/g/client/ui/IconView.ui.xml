@@ -1,0 +1,11 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder" xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
+	<ui:import field="org.gwtbootstrap3.client.ui.constants.IconType.*" />
+	<ui:style>
+		.padding {
+			padding: 0px 2px 0px 0px;
+			color: black;
+		}
+	</ui:style>
+	<b:Button type="LINK" addStyleNames="{style.padding}" ui:field="mIcon" />
+</ui:UiBinder>

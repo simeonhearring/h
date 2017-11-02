@@ -1,0 +1,13 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder" xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
+	<ui:style>
+	
+	</ui:style>
+	<b:ButtonGroup ui:field="mGroup" dropUp="false">
+		<b:Tooltip ui:field="mTip">
+			<b:Button ui:field="mButton" dataToggle="DROPDOWN" type="PRIMARY" size="SMALL" />
+		</b:Tooltip>
+		<b:Button ui:field="mDrop" dataToggle="DROPDOWN" type="PRIMARY" size="SMALL" visible="false" />
+		<b:DropDownMenu ui:field="mMenu" />
+	</b:ButtonGroup>
+</ui:UiBinder>

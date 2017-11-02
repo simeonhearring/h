@@ -68,5 +68,10 @@
 			<scope>provided</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>h</groupId>
+			<artifactId>h-model</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
 	</dependencies>
 </project>

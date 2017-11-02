@@ -7,6 +7,11 @@
 
 	<entry-point class='h.khall.client.KhallEntryPoint' />
 
+	<stylesheet src='css/bootstrap.min.css' />
+	<stylesheet src='font-awesome/css/font-awesome.css' />
+	<stylesheet src='css/animate.css' />
+	<stylesheet src='css/style.css' />
+
 	<source path='client' />
 	<source path='shared' />
 

@@ -1,0 +1,21 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder" xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:b.gwt="urn:import:org.gwtbootstrap3.client.ui.gwt">
+	<ui:style>
+	.textarea {
+		-moz-appearance: textfield-multiline;
+		-webkit-appearance: textarea;
+		border: 1px solid gray;
+		font: medium -moz-fixed;
+		font: -webkit-small-control;
+		height: 28px;
+		overflow: auto;
+		padding: 2px;
+		resize: both;
+		width: 400px;
+		-webkit-user-modify: read-write;
+		word-wrap: break-word;
+		-webkit-line-break: after-white-space;
+	}
+	</ui:style>
+	<b.gwt:FlowPanel styleName="{style.textarea}" ui:field="mBox" />
+</ui:UiBinder>

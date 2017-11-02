@@ -1,0 +1,21 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder" xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+		
+	</ui:style>
+	<g:FlowPanel styleName="navbar navbar-inverse navbar-static-top">
+		<g:FlowPanel styleName="container">
+			<g:FlowPanel styleName="navbar-header">
+				<g:InlineLabel styleName="navbar-brand" ui:field="mText" />
+			</g:FlowPanel>
+			<g:HTMLPanel styleName="collapse navbar-collapse header-collapse">
+				<p class="navbar-text">DOB</p>
+				<g:InlineLabel styleName="navbar-brand" ui:field="mText1" />
+				<p class="navbar-text">Age</p>
+				<g:InlineLabel styleName="navbar-brand" ui:field="mText2" />
+				<p class="navbar-text">Sex</p>
+				<g:InlineLabel styleName="navbar-brand" ui:field="mText3" />
+			</g:HTMLPanel>
+		</g:FlowPanel>
+	</g:FlowPanel>
+</ui:UiBinder>

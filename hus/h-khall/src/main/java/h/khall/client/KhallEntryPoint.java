@@ -1,14 +1,16 @@
 package h.khall.client;
 
-import org.gwtbootstrap3.extras.notify.client.ui.Notify;
-
 import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.user.client.ui.RootPanel;
+
+import h.khall.client.ui.LoginView;
 
 public class KhallEntryPoint implements EntryPoint
 {
   @Override
   public void onModuleLoad()
   {
-    Notify.notify("Hello");
+    RootPanel.get().add(new LoginView());
+    RootPanel.get().addStyleName("gray-bg");
   }
 }
