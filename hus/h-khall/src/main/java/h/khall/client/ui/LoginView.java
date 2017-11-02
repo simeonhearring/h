@@ -13,11 +13,10 @@ import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.UIObject;
 import com.google.gwt.user.client.ui.Widget;
 
-import h.khall.client.model.LoginDisplay;
 import h.khall.client.model.LoginPresenter;
 import h.style.g.client.ui.AbstractView;
 
-public class LoginView extends AbstractView implements LoginDisplay
+public class LoginView extends AbstractView implements LoginPresenter.Display
 {
   private static final Binder BINDER = GWT.create(Binder.class);
 

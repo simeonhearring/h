@@ -2,9 +2,13 @@ package h.khall.client.model;
 
 public class LoginPresenter
 {
-  private LoginDisplay mDisplay;
+  public interface Display extends h.style.g.client.model.Display
+  {
+  }
 
-  public LoginPresenter(LoginDisplay inDisplay)
+  private Display mDisplay;
+
+  public LoginPresenter(Display inDisplay)
   {
     mDisplay = inDisplay;
   }
