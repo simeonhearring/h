@@ -20,22 +20,13 @@ public class KhallEntryPoint extends AbstractEntryPoint implements Callback<Void
   {
     new MainView();
 
+    Element ele = Document.get().getElementsByTagName("head").getItem(0);
+    ele.appendChild(scriptTag("js/khall.js"));
+
     new PageView().attach(RootPanel.get());
     // new RegisterView().attach(RootPanel.get());
     // new LoginView().attach(RootPanel.get());
     // Global.getInstance().fire(new LoginEvent());
-    // ScriptInjector.fromUrl("js/khall.js").setCallback(this);
-    // ScriptInjector.fromUrl("js/plugins/metisMenu/jquery.metisMenu.js").setCallback(this);
-    // ScriptInjector.fromUrl("js/plugins/slimscroll/jquery.slimscroll.min.js").setCallback(this);
-    // ScriptInjector.fromUrl("js/inspinia.js").setCallback(this);
-    // ScriptInjector.fromUrl("js/plugins/pace/pace.min.js").setCallback(this);
-
-    Element head = Document.get().getElementsByTagName("head").getItem(0);
-    head.appendChild(scriptTag("js/khall.js"));
-    head.appendChild(scriptTag("js/plugins/metisMenu/jquery.metisMenu.js"));
-    head.appendChild(scriptTag("js/plugins/slimscroll/jquery.slimscroll.min.js"));
-    head.appendChild(scriptTag("js/inspinia.js"));
-    head.appendChild(scriptTag("js/plugins/pace/pace.min.js"));
   }
 
   private ScriptElement scriptTag(String inSrc)

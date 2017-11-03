@@ -5,8 +5,9 @@ import org.gwtbootstrap3.client.ui.Button;
 import org.gwtbootstrap3.client.ui.Input;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.ScheduledCommand;
+import com.google.gwt.dom.client.Document;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -42,7 +43,6 @@ implements RegisterPresenter.Display, ScheduledCommand
   {
     initWidget(BINDER.createAndBindUi(this));
     mPresenter = new RegisterPresenter(this);
-    Scheduler.get().scheduleDeferred(this);
   }
 
   @Override
@@ -71,6 +71,34 @@ implements RegisterPresenter.Display, ScheduledCommand
     }
   }
 
+  @Override
+  protected void onLoad()
+  {
+    super.onLoad();
+    script();
+  }
+
+  public void script()
+  {
+    StringBuilder sb = new StringBuilder();
+
+    sb.append("$(document).ready(function(){\n");
+    sb.append("  $('.i-checks').iCheck({\n");
+    sb.append("    checkboxClass: 'icheckbox_square-green',\n");
+    sb.append("    radioClass: 'iradio_square-green',\n");
+    sb.append("  });\n");
+    sb.append("});");
+
+    Element ele = Document.get().getElementsByTagName("body").getItem(0);
+
+    ele.appendChild(scriptSrc("js/jquery-3.1.1.min.js"));
+    ele.appendChild(scriptSrc("js/bootstrap.min.js"));
+    ele.appendChild(scriptSrc("js/plugins/iCheck/icheck.min.js"));
+    // head.appendChild(scriptText(sb.toString()));
+    // calljs();
+  }
+
+  // TODO not being called
   private static native void calljs()
   /*-{
 		$wnd.readyicheck();
@@ -89,5 +117,6 @@ implements RegisterPresenter.Display, ScheduledCommand
   @Override
   public void execute()
   {
+    // script();
   }
 }

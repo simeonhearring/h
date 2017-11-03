@@ -24,7 +24,9 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.RepeatingCommand;
 import com.google.gwt.core.client.Scheduler.ScheduledCommand;
+import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.Element;
+import com.google.gwt.dom.client.ScriptElement;
 import com.google.gwt.dom.client.Style.TextAlign;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.BlurHandler;
@@ -587,5 +589,20 @@ public abstract class AbstractView extends Composite
         Window.scrollTo(0, Window.getScrollTop() + Window.getClientHeight());
       }
     });
+  }
+
+  public ScriptElement scriptText(String inText)
+  {
+    ScriptElement sce = Document.get().createScriptElement();
+    sce.setInnerHTML(inText);
+    return sce;
+  }
+
+  public ScriptElement scriptSrc(String inSrc)
+  {
+    ScriptElement sce = Document.get().createScriptElement();
+    sce.setType("text/javascript");
+    sce.setSrc(inSrc);
+    return sce;
   }
 }
