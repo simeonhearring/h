@@ -16,6 +16,6 @@
 	<source path='client' />
 	<source path='shared' />
 
-	<add-linker name="xsiframe" />
+	<add-linker name='xsiframe' />
 
 </module>

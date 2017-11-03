@@ -1,5 +1,8 @@
 package h.khall.client.ui;
 
+import com.google.gwt.core.client.Callback;
+import com.google.gwt.core.client.Scheduler;
+import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.RootPanel;
 
@@ -8,11 +11,14 @@ import h.khall.client.model.MainPresenter;
 import h.khall.client.model.RegisterPresenter;
 import h.style.g.client.ui.AbstractView;
 
-public class MainView extends AbstractView implements MainPresenter.Display
+public class MainView extends AbstractView
+    implements MainPresenter.Display, Callback<Void, Exception>, ScheduledCommand
 {
   public MainView()
   {
     new MainPresenter(this).events();
+
+    Scheduler.get().scheduleDeferred(this);
   }
 
   @Override
@@ -31,5 +37,22 @@ public class MainView extends AbstractView implements MainPresenter.Display
   public RegisterPresenter.Display register()
   {
     return new RegisterView();
+  }
+
+  @Override
+  public void onFailure(Exception inReason)
+  {
+    notify("Not Injected");
+  }
+
+  @Override
+  public void onSuccess(Void inResult)
+  {
+    notify("Injected");
+  }
+
+  @Override
+  public void execute()
+  {
   }
 }

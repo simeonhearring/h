@@ -19,7 +19,7 @@ import h.khall.client.model.RegisterPresenter;
 import h.style.g.client.ui.AbstractView;
 
 public class RegisterView extends AbstractView
-    implements RegisterPresenter.Display, ScheduledCommand
+implements RegisterPresenter.Display, ScheduledCommand
 {
   private static final Binder BINDER = GWT.create(Binder.class);
 
@@ -54,9 +54,9 @@ public class RegisterView extends AbstractView
   }
 
   @UiHandler(
-  {
-      "mLogin", "mRegister"
-  })
+      {
+        "mLogin", "mRegister"
+      })
   public void onClick(ClickEvent inEvent)
   {
     Object source = inEvent.getSource();
@@ -73,17 +73,17 @@ public class RegisterView extends AbstractView
 
   private static native void calljs()
   /*-{
-  	$wnd.readyicheck();
+		$wnd.readyicheck();
   }-*/;
 
   private static native void setup()
   /*-{
-  	$wnd.$(document).ready(function() {
-  		$wnd.$('.i-checks').iCheck({
-  			checkboxClass : 'icheckbox_square-green',
-  			radioClass : 'iradio_square-green',
-  		});
-  	});
+		$wnd.$(document).ready(function() {
+			$wnd.$('.i-checks').iCheck({
+				checkboxClass : 'icheckbox_square-green',
+				radioClass : 'iradio_square-green',
+			});
+		});
   }-*/;
 
   @Override
