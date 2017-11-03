@@ -13,6 +13,7 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.HasWidgets;
+import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.UIObject;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -69,6 +70,12 @@ implements RegisterPresenter.Display, ScheduledCommand
     {
       mPresenter.login();
     }
+  }
+
+  @Override
+  public void login()
+  {
+    new LoginView().attach(RootPanel.get());
   }
 
   @Override

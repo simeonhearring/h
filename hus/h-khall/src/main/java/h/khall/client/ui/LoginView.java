@@ -10,6 +10,7 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.HasWidgets;
+import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.UIObject;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -50,9 +51,9 @@ public class LoginView extends AbstractView implements LoginPresenter.Display
   }
 
   @UiHandler(
-  {
-      "mLogin", "mForgot", "mCreate"
-  })
+      {
+        "mLogin", "mForgot", "mCreate"
+      })
   public void onClick(ClickEvent inEvent)
   {
     Object source = inEvent.getSource();
@@ -69,5 +70,17 @@ public class LoginView extends AbstractView implements LoginPresenter.Display
     {
       mPresenter.register();
     }
+  }
+
+  @Override
+  public void loggedIn()
+  {
+    new PageView().attach(RootPanel.get());
+  }
+
+  @Override
+  public void register()
+  {
+    new RegisterView().attach(RootPanel.get());
   }
 }

@@ -6,6 +6,9 @@ public class LoginPresenter extends AbstractPresenter<LoginPresenter.Display>
 {
   public interface Display extends Attach
   {
+    void register();
+
+    void loggedIn();
   }
 
   public LoginPresenter(Display inDisplay)
@@ -16,6 +19,7 @@ public class LoginPresenter extends AbstractPresenter<LoginPresenter.Display>
   public void login(String inUserName, String inPassword, String inCongNum, String inEncrypt)
   {
     mDisplay.notify("login: " + inUserName);
+    mDisplay.loggedIn();
   }
 
   public void forgotPassword()
@@ -26,5 +30,6 @@ public class LoginPresenter extends AbstractPresenter<LoginPresenter.Display>
   public void register()
   {
     mDisplay.notify("register");
+    mDisplay.register();
   }
 }

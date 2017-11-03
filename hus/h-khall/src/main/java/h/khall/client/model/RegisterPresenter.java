@@ -13,14 +13,17 @@ public class RegisterPresenter extends AbstractPresenter<RegisterPresenter.Displ
       String inFirst)
   {
     mDisplay.notify("register: " + inCongNme);
+    mDisplay.login();
   }
 
   public void login()
   {
     mDisplay.notify("login");
+    mDisplay.login();
   }
 
   public interface Display extends Attach
   {
+    void login();
   }
 }

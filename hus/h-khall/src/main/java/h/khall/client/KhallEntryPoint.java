@@ -8,8 +8,8 @@ import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.ScriptElement;
 import com.google.gwt.user.client.ui.RootPanel;
 
+import h.khall.client.ui.LoginView;
 import h.khall.client.ui.MainView;
-import h.khall.client.ui.PageView;
 import h.style.g.client.AbstractEntryPoint;
 import h.style.g.client.ui.event.LoadMainEvent;
 
@@ -23,9 +23,9 @@ public class KhallEntryPoint extends AbstractEntryPoint implements Callback<Void
     Element ele = Document.get().getElementsByTagName("head").getItem(0);
     ele.appendChild(scriptTag("js/khall.js"));
 
-    new PageView().attach(RootPanel.get());
+    // new PageView().attach(RootPanel.get());
     // new RegisterView().attach(RootPanel.get());
-    // new LoginView().attach(RootPanel.get());
+    new LoginView().attach(RootPanel.get());
     // Global.getInstance().fire(new LoginEvent());
   }
 
