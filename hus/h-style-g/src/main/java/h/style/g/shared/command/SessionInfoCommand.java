@@ -35,6 +35,7 @@ public class SessionInfoCommand extends AbstractDataCommand<SessionInfo> impleme
   @Override
   public String getMessagePath()
   {
+    // move string here.
     return getData().getMessagePath();
   }
 }

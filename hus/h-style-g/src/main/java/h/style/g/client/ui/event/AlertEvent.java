@@ -7,7 +7,7 @@ public class AlertEvent extends Event<AlertEvent.Handler>
     void dispatch(AlertEvent inEvent);
   }
 
-  public static final Type<Handler> TYPE = new Type<>();
+  public static final TypeH<Handler> TYPE = new TypeH<>(AlertEvent.class);
 
   private final String mMessage;
 
@@ -31,5 +31,11 @@ public class AlertEvent extends Event<AlertEvent.Handler>
   public String getMessage()
   {
     return mMessage;
+  }
+
+  @Override
+  public String toString()
+  {
+    return AlertEvent.class.getSimpleName();
   }
 }

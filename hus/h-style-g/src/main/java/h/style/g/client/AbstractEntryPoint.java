@@ -23,7 +23,7 @@ import h.style.g.shared.command.LoggerCommand.Level;
 import h.style.g.shared.command.SessionInfoCommand;
 
 public abstract class AbstractEntryPoint
-implements EntryPoint, AlertEvent.Handler, LoadMainEvent.Handler
+    implements EntryPoint, AlertEvent.Handler, LoadMainEvent.Handler
 {
   @Override
   public void onModuleLoad()
@@ -51,7 +51,6 @@ implements EntryPoint, AlertEvent.Handler, LoadMainEvent.Handler
   public void dispatch(AlertEvent inEvent)
   {
     Notify.notify(inEvent.getMessage());
-    // Window.alert(inEvent.getMessage());
   }
 
   public void disableBrowserBack()

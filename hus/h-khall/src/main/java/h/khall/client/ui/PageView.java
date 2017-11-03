@@ -26,7 +26,7 @@ public class PageView extends AbstractView implements PagePresenter.Display, Sch
   }
 
   @UiField
-  Anchor mBars;
+  Anchor mBars, mLogout;
 
   PagePresenter mPresenter;
 
@@ -37,15 +37,19 @@ public class PageView extends AbstractView implements PagePresenter.Display, Sch
   }
 
   @UiHandler(
-      {
-        "mBars"
-      })
+  {
+      "mBars", "mLogout"
+  })
   public void onClick(ClickEvent inEvent)
   {
     Object source = inEvent.getSource();
     if (mBars.equals(source))
     {
       toggleNavBar();
+    }
+    else if (mLogout.equals(source))
+    {
+      mPresenter.logout();
     }
   }
 
@@ -66,6 +70,7 @@ public class PageView extends AbstractView implements PagePresenter.Display, Sch
 
   public void script()
   {
+    // TODO
     Element ele = Document.get().getElementsByTagName("body").getItem(0);
 
     ele.appendChild(scriptSrc("js/jquery-3.1.1.min.js"));

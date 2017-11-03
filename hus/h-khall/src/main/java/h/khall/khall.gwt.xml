@@ -13,6 +13,8 @@
 	<stylesheet src='css/style.css' />
 	<stylesheet src='css/plugins/iCheck/custom.css' />
 
+	<stylesheet src='css/khall.css' />
+
 	<source path='client' />
 	<source path='shared' />
 

@@ -10,6 +10,9 @@
 		<b:Row>
 			<b:Column size="MD_6">
 				<b.gwt:HTMLPanel>
+					<b.gwt:HTMLPanel addStyleNames="text-center">
+						<h2 class="logo-name">&#x0AB8;</h2>
+					</b.gwt:HTMLPanel>
 					<h2 class="font-bold">
 						Welcome to
 						<sup>&#x0AB8;</sup>

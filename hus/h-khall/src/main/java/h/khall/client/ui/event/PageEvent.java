@@ -4,13 +4,13 @@ import h.style.g.client.ui.event.Event;
 import h.style.g.client.ui.event.EventHandler;
 import h.style.g.client.ui.event.TypeH;
 
-public class LoginEvent extends Event<LoginEvent.Handler>
+public class PageEvent extends Event<PageEvent.Handler>
 {
-  public static final TypeH<Handler> TYPE = new TypeH<>(LoginEvent.class);
+  public static final TypeH<Handler> TYPE = new TypeH<>(PageEvent.class);
 
   public interface Handler extends EventHandler
   {
-    void dispatch(LoginEvent inEvent);
+    void dispatch(PageEvent inEvent);
   }
 
   @Override

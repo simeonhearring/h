@@ -124,17 +124,11 @@ public class RpcServiceImpl extends RemoteServiceServlet implements RpcService
       cmd.setRemoteHost(HostUtil.getRemoteAddr(getThreadLocalRequest()));
       cmd.setHostName(HostUtil.getHostName());
       cmd.setVersion(serverVersion(((WantsServerInfo) inCommand).getMessagePath()));
-      cmd.setEnvironment(environment());
     }
   }
 
   public static String serverVersion(String inPath)
   {
     return PropertyUtil.getValue(inPath, "-", "version", "gwtVersion", "buildNumber");
-  }
-
-  private String environment()
-  {
-    return (String) mAppContext.getBean("Environment");
   }
 }

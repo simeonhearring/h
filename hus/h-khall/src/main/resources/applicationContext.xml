@@ -9,4 +9,6 @@
 	<!-- COMMANDS -->
 	<bean id="LoggerCommand" class="h.style.g.server.command.LoggerCommandBean" />
 
+	<bean id="SessionInfoCommand" class="h.khall.server.command.SessionInfoCommandBean" />
+
 </beans>

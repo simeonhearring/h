@@ -2,10 +2,11 @@ package h.khall.client.ui.event;
 
 import h.style.g.client.ui.event.Event;
 import h.style.g.client.ui.event.EventHandler;
+import h.style.g.client.ui.event.TypeH;
 
 public class RegisterEvent extends Event<RegisterEvent.Handler>
 {
-  public static final Type<Handler> TYPE = new Type<>();
+  public static final TypeH<Handler> TYPE = new TypeH<>(RegisterEvent.class);
 
   public interface Handler extends EventHandler
   {

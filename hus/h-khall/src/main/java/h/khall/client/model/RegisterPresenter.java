@@ -1,5 +1,6 @@
 package h.khall.client.model;
 
+import h.khall.client.ui.event.LoginEvent;
 import h.style.g.client.model.AbstractPresenter;
 
 public class RegisterPresenter extends AbstractPresenter<RegisterPresenter.Display>
@@ -13,17 +14,14 @@ public class RegisterPresenter extends AbstractPresenter<RegisterPresenter.Displ
       String inFirst)
   {
     mDisplay.notify("register: " + inCongNme);
-    mDisplay.login();
   }
 
   public void login()
   {
-    mDisplay.notify("login");
-    mDisplay.login();
+    fire(new LoginEvent());
   }
 
   public interface Display extends Attach
   {
-    void login();
   }
 }

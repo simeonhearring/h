@@ -3,11 +3,13 @@ package h.khall.client.model;
 import com.google.gwt.user.client.ui.HasWidgets;
 
 import h.khall.client.ui.event.LoginEvent;
+import h.khall.client.ui.event.LogoutEvent;
+import h.khall.client.ui.event.PageEvent;
 import h.khall.client.ui.event.RegisterEvent;
 import h.style.g.client.model.AbstractPresenter;
 
 public class MainPresenter extends AbstractPresenter<MainPresenter.Display>
-implements RegisterEvent.Handler, LoginEvent.Handler
+    implements LoginEvent.Handler, RegisterEvent.Handler, PageEvent.Handler, LogoutEvent.Handler
 {
   public MainPresenter(MainPresenter.Display inDisplay)
   {
@@ -17,8 +19,16 @@ implements RegisterEvent.Handler, LoginEvent.Handler
 
   public void events()
   {
-    addHandler(RegisterEvent.TYPE, this);
     addHandler(LoginEvent.TYPE, this);
+    addHandler(RegisterEvent.TYPE, this);
+    addHandler(PageEvent.TYPE, this);
+    addHandler(LogoutEvent.TYPE, this);
+  }
+
+  @Override
+  public void dispatch(PageEvent inEvent)
+  {
+    attach(mDisplay.page());
   }
 
   @Override
@@ -29,6 +39,12 @@ implements RegisterEvent.Handler, LoginEvent.Handler
 
   @Override
   public void dispatch(LoginEvent inEvent)
+  {
+    attach(mDisplay.login());
+  }
+
+  @Override
+  public void dispatch(LogoutEvent inEvent)
   {
     attach(mDisplay.login());
   }
@@ -45,5 +61,7 @@ implements RegisterEvent.Handler, LoginEvent.Handler
     LoginPresenter.Display login();
 
     RegisterPresenter.Display register();
+
+    PagePresenter.Display page();
   }
 }
