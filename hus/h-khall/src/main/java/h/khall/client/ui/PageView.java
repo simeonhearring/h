@@ -76,7 +76,7 @@ public class PageView extends AbstractView implements PagePresenter.Display
 
   private static native void toggleNavBar()
   /*-{
-		$wnd.$('body').toggleClass('mini-navbar');
+		$wnd.jQuery('body').toggleClass('mini-navbar');
 		$wnd.SmoothlyMenu();
   }-*/;
 }
