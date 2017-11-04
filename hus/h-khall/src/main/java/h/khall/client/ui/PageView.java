@@ -63,6 +63,17 @@ public class PageView extends AbstractView implements PagePresenter.Display
     ((UIObject) inPanel).removeStyleName("gray-bg");
   }
 
+  @Override
+  protected void onLoad()
+  {
+    metis();
+  }
+
+  private static native void metis()
+  /*-{
+		$wnd.jQuery('#side-menu').metisMenu().show();
+  }-*/;
+
   private static native void toggleNavBar()
   /*-{
 		$wnd.$('body').toggleClass('mini-navbar');
