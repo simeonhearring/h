@@ -27,7 +27,7 @@ public class PageView extends AbstractView implements PagePresenter.Display
   HTMLPanel mTop;
 
   @UiField
-  Anchor mBars, mLogout;
+  Anchor mBars, mLogoutA, mLogoutB;
 
   PagePresenter mPresenter;
 
@@ -40,7 +40,7 @@ public class PageView extends AbstractView implements PagePresenter.Display
 
   @UiHandler(
   {
-      "mBars", "mLogout"
+      "mBars", "mLogoutA", "mLogoutB"
   })
   public void onClick(ClickEvent inEvent)
   {
@@ -49,7 +49,7 @@ public class PageView extends AbstractView implements PagePresenter.Display
     {
       toggleNavBar();
     }
-    else if (mLogout.equals(source))
+    else if (mLogoutA.equals(source) || mLogoutB.equals(source))
     {
       mPresenter.logout();
     }
@@ -65,7 +65,7 @@ public class PageView extends AbstractView implements PagePresenter.Display
 
   private static native void toggleNavBar()
   /*-{
-  	$wnd.$('body').toggleClass('mini-navbar');
-  	$wnd.SmoothlyMenu();
+		$wnd.$('body').toggleClass('mini-navbar');
+		$wnd.SmoothlyMenu();
   }-*/;
 }

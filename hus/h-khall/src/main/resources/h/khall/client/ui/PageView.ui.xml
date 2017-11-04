@@ -25,7 +25,7 @@
 							</a>
 							<ul class="dropdown-menu animated fadeInRight m-t-xs">
 								<li>
-									<a href="#">Logout</a>
+									<b:Anchor ui:field="mLogoutA" icon="SIGN_OUT" text="Log out" />
 								</li>
 							</ul>
 						</div>
@@ -61,7 +61,7 @@
 					</div>
 					<ul class="nav navbar-top-links navbar-right">
 						<li>
-							<b:Anchor ui:field="mLogout" icon="SIGN_OUT" text="Log out" />
+							<b:Anchor ui:field="mLogoutB" icon="SIGN_OUT" text="Log out" />
 						</li>
 					</ul>
 
