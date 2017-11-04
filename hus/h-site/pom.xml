@@ -8,6 +8,8 @@
 	<artifactId>h-site</artifactId>
 	<packaging>war</packaging>
 	<dependencies>
+
+		<!-- H -->
 		<dependency>
 			<groupId>h</groupId>
 			<artifactId>h-tool</artifactId>
@@ -23,5 +25,9 @@
 			<artifactId>h-style-b</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
+
 	</dependencies>
+	<build>
+		<finalName>ROOT</finalName>
+	</build>
 </project>

@@ -3,9 +3,7 @@ package h.style.g.server.rpc;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.ThreadContext;
+import org.apache.log4j.Logger;
 import org.gwtbootstrap3.extras.notify.client.constants.NotifyType;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.WebApplicationContext;
@@ -24,12 +22,11 @@ import h.style.g.shared.rpc.common.RpcResponse;
 import h.style.g.shared.rpc.common.WantsServerInfo;
 import h.tool.util.PropertyUtil;
 import h.tool.util.ServerErrorUtil;
-import h.tool.util.StringUtil;
 
 @SuppressWarnings("serial")
 public class RpcServiceImpl extends RemoteServiceServlet implements RpcService
 {
-  private static final Logger LOGGER = LogManager.getLogger(RpcServiceImpl.class);
+  protected static final Logger LOGGER = Logger.getLogger(RpcServiceImpl.class);
 
   private ApplicationContext mAppContext;
 
@@ -51,13 +48,13 @@ public class RpcServiceImpl extends RemoteServiceServlet implements RpcService
 
     try
     {
-      String hostName = HostUtil.getHostName();
-      String userInfo = StringUtil.ensure(inCommand.getUserInfo());
-      String ipAddress = HostUtil.getRemoteAddr(getThreadLocalRequest());
+      // String hostName = HostUtil.getHostName();
+      // String userInfo = StringUtil.ensure(inCommand.getUserInfo());
+      // String ipAddress = HostUtil.getRemoteAddr(getThreadLocalRequest());
 
-      ThreadContext.put("servername", hostName);
-      ThreadContext.put("userid", userInfo);
-      ThreadContext.put("clientip", ipAddress);
+      // ThreadContext.put("servername", hostName);
+      // ThreadContext.put("userid", userInfo);
+      // ThreadContext.put("clientip", ipAddress);
 
       if (allowDebug(inCommand))
       {
@@ -66,7 +63,7 @@ public class RpcServiceImpl extends RemoteServiceServlet implements RpcService
 
       bean = commandBeanName(inCommand);
 
-      LOGGER.warn("Executing rpc ... {}", bean);
+      LOGGER.warn("Executing rpc ... " + bean);
 
       ret = ((CommandBean<RpcCommand>) mAppContext.getBean(bean)).execute(inCommand);
 
@@ -85,7 +82,7 @@ public class RpcServiceImpl extends RemoteServiceServlet implements RpcService
       LOGGER.error("Error executing rpc command " + bean, e);
     }
 
-    ThreadContext.clearAll();
+    // ThreadContext.clearAll();
 
     return ret;
   }

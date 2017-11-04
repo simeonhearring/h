@@ -11,18 +11,18 @@
 			<b:Column size="MD_6">
 				<b.gwt:HTMLPanel>
 					<b.gwt:HTMLPanel addStyleNames="text-center">
-						<h2 class="logo-name">&#x0AB8;</h2>
+						<b:Anchor HTML="{msg.monogram}" addStyleNames="logo-name" href="{msg.domain}" />
 					</b.gwt:HTMLPanel>
 					<h2 class="font-bold">
 						Welcome to
-						<sup>&#x0AB8;</sup>
+						<sup><g:InlineHTML HTML="{msg.monogram}" /></sup>
 						Kingdom Hall
 					</h2>
 					<p>Designed for <a href="https://www.jw.org" target="_blank">Jehovah's Witnesses</a> use.</p>
 					<p>Assists congregation Elders with managing publisher record cards, midweek meeting assignments, field service groups, etc.</p>
 					<p>All personal data encrypted and cannot be accessed without congregation's unique encryption key.</p>
 					<p>
-						<small><sup>&#x0AB8;</sup> Kingdom Hall does not retain encryption keys.</small>
+						<small><sup><g:InlineHTML HTML="{msg.monogram}" /></sup> Kingdom Hall does not retain encryption keys.</small>
 					</p>
 				</b.gwt:HTMLPanel>
 			</b:Column>

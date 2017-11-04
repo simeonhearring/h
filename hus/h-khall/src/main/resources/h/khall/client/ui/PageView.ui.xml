@@ -39,7 +39,7 @@
 								</li>
 							</ul>
 						</div>
-						<div class="logo-element">&#x0AB8;</div>
+						<g:HTML addStyleNames="logo-element" HTML="{msg.monogram}"/>
 					</li>
 					<li class="active">
 						<a>

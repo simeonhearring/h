@@ -10,11 +10,11 @@
 		<b.gwt:HTMLPanel>
 			<b.gwt:HTMLPanel>
 				<b.gwt:HTMLPanel>
-					<h2 class="logo-name">&#x0AB8;</h2>
+					<b:Anchor HTML="{msg.monogram}" addStyleNames="logo-name" href="{msg.domain}" />
 				</b.gwt:HTMLPanel>
 				<h3>
 					Register to use
-					<sup>&#x0AB8;</sup>
+					<sup><g:InlineHTML HTML="{msg.monogram}" /></sup>
 					Kingdom Hall
 				</h3>
 				<b:Form addStyleNames="m-t">

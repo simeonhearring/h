@@ -1,15 +1,14 @@
 package h.style.g.server.command;
 
-import org.apache.logging.log4j.Level;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 
 import h.style.g.shared.command.LoggerCommand;
 import h.style.g.shared.rpc.common.RpcResponse;
 
 public class LoggerCommandBean extends AbstractCommandBean<LoggerCommand>
 {
-  private static final Logger LOGGER = LogManager.getLogger(LoggerCommandBean.class);
+  private static final Logger LOGGER = Logger.getLogger(LoggerCommandBean.class);
 
   @Override
   public RpcResponse execute(LoggerCommand inCommand)

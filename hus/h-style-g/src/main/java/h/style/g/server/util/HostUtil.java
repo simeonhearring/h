@@ -8,12 +8,11 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.apache.log4j.Logger;
 
 public final class HostUtil
 {
-  protected static final Logger LOGGER = LogManager.getLogger(HostUtil.class);
+  protected static final Logger LOGGER = Logger.getLogger(HostUtil.class);
 
   public static String getHostName()
   {

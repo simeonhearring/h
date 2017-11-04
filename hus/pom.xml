@@ -16,9 +16,17 @@
 	</modules>
 	<properties>
 		<junit.version>4.12</junit.version>
-		<maven.compiler.source>1.7</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
+
 		<spring.version>4.3.3.RELEASE</spring.version>
+
+		<jar.scope>provided</jar.scope>
+
+		<gwt.style>OBF</gwt.style>
+		<gwt.version>2.7.0</gwt.version>
+
+		<gwtmavenplugin.version>2.7.0</gwtmavenplugin.version>
+
+		<gwtbootstrap.version>0.9.4</gwtbootstrap.version>
 	</properties>
 	<build>
 		<plugins>
@@ -140,4 +148,94 @@
 			</plugins>
 		</pluginManagement>
 	</build>
+	<dependencies>
+
+		<!-- SPRING -->
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${spring.version}</version>
+			<scope>${jar.scope}</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spring.version}</version>
+			<scope>${jar.scope}</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.version}</version>
+			<scope>${jar.scope}</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- COMMON / UTIL -->
+		<dependency>
+			<groupId>com.thoughtworks.xstream</groupId>
+			<artifactId>xstream</artifactId>
+			<version>1.4.6</version>
+			<scope>${jar.scope}</scope>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.14</version>
+			<scope>${jar.scope}</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- GWT -->
+
+		<dependency>
+			<groupId>org.gwtbootstrap3</groupId>
+			<artifactId>gwtbootstrap3</artifactId>
+			<version>${gwtbootstrap.version}</version>
+			<scope>${jar.scope}</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.gwtbootstrap3</groupId>
+			<artifactId>gwtbootstrap3-extras</artifactId>
+			<version>${gwtbootstrap.version}</version>
+			<scope>${jar.scope}</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.codehaus.mojo</groupId>
+			<artifactId>gwt-maven-plugin</artifactId>
+			<version>${gwtmavenplugin.version}</version>
+			<scope>${jar.scope}</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-servlet</artifactId>
+			<version>${gwt.version}</version>
+			<scope>${jar.scope}</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-user</artifactId>
+			<version>${gwt.version}</version>
+			<scope>${jar.scope}</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-dev</artifactId>
+			<version>${gwt.version}</version>
+			<scope>${jar.scope}</scope>
+		</dependency>
+
+	</dependencies>
 </project>
