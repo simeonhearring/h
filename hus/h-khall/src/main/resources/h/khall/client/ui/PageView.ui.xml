@@ -15,10 +15,10 @@
 							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
 								<span class="clear">
 									<span class="block m-t-xs">
-										<strong class="font-bold">David Williams</strong>
+										<strong class="font-bold"><g:InlineHTML ui:field="mUserName" /></strong>
 									</span>
 									<span class="text-muted text-xs block">
-										Art Director
+										<g:InlineHTML ui:field="mUserTitle" />
 										<b class="caret"></b>
 									</span>
 								</span>

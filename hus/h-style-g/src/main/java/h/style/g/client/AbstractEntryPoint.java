@@ -10,6 +10,7 @@ import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.Window;
 
+import h.model.shared.SessionInfo;
 import h.style.g.client.model.CallBack;
 import h.style.g.client.service.rpc.RpcService;
 import h.style.g.client.service.rpc.RpcServiceAsync;
@@ -70,15 +71,14 @@ public abstract class AbstractEntryPoint
     });
   }
 
-  public void sessionInfo(final CallBack<Void> inCallback)
+  public void sessionInfo(final CallBack<SessionInfo> inCallback)
   {
     Global.fireS(new SessionInfoCommand(), new RpcCallback<SessionInfoCommand>()
     {
       @Override
       public void onRpcSuccess(SessionInfoCommand inResult)
       {
-        Global.setInfo(inResult.getData());
-        inCallback.onCallBack(null);
+        inCallback.onCallBack(inResult.getData());
       }
     });
   }

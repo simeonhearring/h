@@ -2,12 +2,13 @@ package h.khall.client;
 
 import h.khall.client.ui.MainView;
 import h.khall.client.ui.event.LoginEvent;
+import h.model.shared.SessionInfo;
 import h.style.g.client.AbstractEntryPoint;
 import h.style.g.client.model.CallBack;
 import h.style.g.client.ui.common.Global;
 import h.style.g.client.ui.event.LoadMainEvent;
 
-public class KhallEntryPoint extends AbstractEntryPoint implements CallBack<Void>
+public class KhallEntryPoint extends AbstractEntryPoint implements CallBack<SessionInfo>
 {
   @Override
   public void dispatch(LoadMainEvent inEvent)
@@ -17,8 +18,9 @@ public class KhallEntryPoint extends AbstractEntryPoint implements CallBack<Void
   }
 
   @Override
-  public void onCallBack(Void inResult)
+  public void onCallBack(SessionInfo inResult)
   {
+    Global.setInfo(inResult);
     Global.fireS(new LoginEvent());
   }
 }

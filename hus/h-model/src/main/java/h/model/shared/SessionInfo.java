@@ -15,6 +15,7 @@ public abstract class SessionInfo implements Serializable
 
   private String mUserName;
   private String mUserId;
+  private String mUserTitle;
 
   private Map<String, String> mProperties;
 
@@ -122,6 +123,16 @@ public abstract class SessionInfo implements Serializable
   public String getUserId()
   {
     return mUserId;
+  }
+
+  public String getUserTitle()
+  {
+    return mUserTitle;
+  }
+
+  public void setUserTitle(String inUserTitle)
+  {
+    mUserTitle = inUserTitle;
   }
 
   public List<Notice> getNotices()
