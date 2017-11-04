@@ -1,6 +1,7 @@
 package h.khall.client.ui;
 
 import org.gwtbootstrap3.client.ui.Anchor;
+import org.gwtbootstrap3.client.ui.gwt.HTMLPanel;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -8,6 +9,7 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.HasWidgets;
+import com.google.gwt.user.client.ui.UIObject;
 import com.google.gwt.user.client.ui.Widget;
 
 import h.khall.client.model.PagePresenter;
@@ -22,6 +24,9 @@ public class PageView extends AbstractView implements PagePresenter.Display
   }
 
   @UiField
+  HTMLPanel mTop;
+
+  @UiField
   Anchor mBars, mLogout;
 
   PagePresenter mPresenter;
@@ -29,6 +34,7 @@ public class PageView extends AbstractView implements PagePresenter.Display
   public PageView()
   {
     initWidget(BINDER.createAndBindUi(this));
+    mTop.getElement().setAttribute("id", "wrapper");
     mPresenter = new PagePresenter(this);
   }
 
@@ -54,6 +60,7 @@ public class PageView extends AbstractView implements PagePresenter.Display
   {
     inPanel.clear();
     inPanel.add(this);
+    ((UIObject) inPanel).removeStyleName("gray-bg");
   }
 
   private static native void toggleNavBar()
