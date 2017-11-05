@@ -67,19 +67,17 @@ public class RegisterView extends AbstractView implements RegisterPresenter.Disp
     }
   }
 
-  // TODO not being called
-  private static native void calljs()
-  /*-{
-  	$wnd.readyicheck();
-  }-*/;
+  @Override
+  protected void onLoad()
+  {
+    icheck();
+  }
 
-  private static native void setup()
+  private static native void icheck()
   /*-{
-  	$wnd.$(document).ready(function() {
-  		$wnd.$('.i-checks').iCheck({
-  			checkboxClass : 'icheckbox_square-green',
-  			radioClass : 'iradio_square-green',
-  		});
+  	$wnd.jQuery('.i-checks').iCheck({
+  		checkboxClass : 'icheckbox_square-green',
+  		radioClass : 'iradio_square-green',
   	});
   }-*/;
 }

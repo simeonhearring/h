@@ -35,7 +35,7 @@
 					</b:FormGroup>
 					<b:FormGroup>
 						<b.gwt:HTMLPanel addStyleNames="checkbox i-checks">
-							<b:CheckBox ui:field="mAgree" text="Agree the terms and policy" />
+							<b:CheckBox ui:field="mAgree" text="&nbsp;Agree the terms and policy" />
 						</b.gwt:HTMLPanel>
 					</b:FormGroup>
 
