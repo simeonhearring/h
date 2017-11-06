@@ -149,4 +149,31 @@ public class ChartUtil
 
     return sb.toString();
   }
+
+  public static Chart sample()
+  {
+    Chart ret = new Chart(Chart.Type.LINE);
+
+    ret.setResponsive(true);
+
+    ret.addLabel("January", "February", "March", "April", "May", "June", "July");
+
+    Chart.Dataset ds1 = ret.createDataset("Example dataset1");
+
+    ds1.setBackgroundColor("rgba(26,179,148,0.5)");
+    ds1.setBorderColor("rgba(26,179,148,0.7)");
+    ds1.setPointBackgroundColor("rgba(26,179,148,1)");
+    ds1.setPointBorderColor("#fff");
+    ds1.addData(28, 48, 40, 19, 86, 27, 90);
+
+    Chart.Dataset ds2 = ret.createDataset("Example dataset2");
+
+    ds2.setBackgroundColor("rgba(220,220,220,0.5)");
+    ds2.setBorderColor("rgba(220,220,220,1)");
+    ds2.setPointBackgroundColor("rgba(220,220,220,1)");
+    ds2.setPointBorderColor("#fff");
+    ds2.addData(65, 59, 80, 81, 56, 55, 40);
+
+    return ret;
+  }
 }

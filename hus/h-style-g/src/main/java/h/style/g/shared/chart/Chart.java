@@ -1,12 +1,17 @@
 package h.style.g.shared.chart;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.google.gwt.dev.util.collect.HashMap;
+/*
+ * http://www.chartjs.org/
+ */
 
-public class Chart
+@SuppressWarnings("serial")
+public class Chart implements Serializable
 {
   public enum Type
   {
@@ -40,6 +45,26 @@ public class Chart
     mType = inType;
     mData = new Data();
     mOptions = new Options();
+  }
+
+  public void setResponsive(boolean inResponsive)
+  {
+    mOptions.mResponsive = inResponsive;
+  }
+
+  public void addLabel(String... inLabels)
+  {
+    mData.addLabel(inLabels);
+  }
+
+  public void addLabel(String inLabel)
+  {
+    mData.addLabel(inLabel);
+  }
+
+  public Dataset createDataset(String inLabel)
+  {
+    return mData.createDataset(inLabel);
   }
 
   public String getCode()
@@ -86,9 +111,9 @@ public class Chart
       mLabels.add(inText);
     }
 
-    public void addLabel(String... inText)
+    public void addLabel(String... inLabels)
     {
-      for (String value : inText)
+      for (String value : inLabels)
       {
         mLabels.add(value);
       }
@@ -184,42 +209,11 @@ public class Chart
     }
   }
 
-  @SuppressWarnings("serial")
   public static class Labels extends ArrayList<String>
   {
   }
 
-  @SuppressWarnings("serial")
   public static class Datasets extends ArrayList<Dataset>
   {
-  }
-
-  public static Chart sample()
-  {
-    Chart ret = new Chart(Type.LINE);
-
-    ret.mOptions.mResponsive = true;
-
-    Data d = ret.mData;
-
-    d.addLabel("January", "February", "March", "April", "May", "June", "July");
-
-    Dataset ds1 = d.createDataset("Example dataset1");
-
-    ds1.setBackgroundColor("rgba(26,179,148,0.5)");
-    ds1.setBorderColor("rgba(26,179,148,0.7)");
-    ds1.setPointBackgroundColor("rgba(26,179,148,1)");
-    ds1.setPointBorderColor("#fff");
-    ds1.addData(28, 48, 40, 19, 86, 27, 90);
-
-    Dataset ds2 = d.createDataset("Example dataset2");
-
-    ds2.setBackgroundColor("rgba(220,220,220,0.5)");
-    ds2.setBorderColor("rgba(220,220,220,1)");
-    ds2.setPointBackgroundColor("rgba(220,220,220,1)");
-    ds2.setPointBorderColor("#fff");
-    ds2.addData(65, 59, 80, 81, 56, 55, 40);
-
-    return ret;
   }
 }
