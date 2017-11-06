@@ -5,6 +5,8 @@
 
 	<inherits name='org.gwtbootstrap3.GwtBootstrap3' />
 
+	<inherits name='com.google.gwt.json.JSON' />
+
 	<inherits name='org.gwtbootstrap3.extras.datepicker.DatePicker' />
 
 	<inherits name='org.gwtbootstrap3.extras.typeahead.Typeahead' />
