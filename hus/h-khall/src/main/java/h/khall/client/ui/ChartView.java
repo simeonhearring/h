@@ -1,6 +1,8 @@
 package h.khall.client.ui;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.core.client.JavaScriptObject;
+import com.google.gwt.core.client.JsonUtils;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Widget;
@@ -34,47 +36,58 @@ public class ChartView extends AbstractView implements ChartPresenter.Display
   @Override
   protected void onLoad()
   {
-    chart();
+    chart(parseJson(data()));
+    // chart(json().getJavaScriptObject());
   }
 
-  private static native void chart()
+  public static String data()
+  {
+    StringBuilder sb = new StringBuilder();
+
+    sb.append("{");
+    sb.append("  \"labels\" : [\"January\", \"February\", \"March\", \"April\", \"May\", \"June\", \"July\"],");
+    sb.append("  \"datasets\" : [");
+    sb.append("      {");
+    sb.append("          \"label\" : \"Example dataset\",");
+    sb.append("          \"backgroundColor\" : \"rgba(26,179,148,0.5)\",");
+    sb.append("          \"borderColor\" : \"rgba(26,179,148,0.7)\",");
+    sb.append("          \"pointBackgroundColor\" : \"rgba(26,179,148,1)\",");
+    sb.append("          \"pointBorderColor\" : \"#fff\",");
+    sb.append("          \"data\" : [ 28, 48, 40, 19, 86, 27, 90 ]");
+    sb.append("      },");
+    sb.append("      {");
+    sb.append("          \"label\" : \"Example dataset\",");
+    sb.append("          \"backgroundColor\" : \"rgba(220,220,220,0.5)\",");
+    sb.append("          \"borderColor\" : \"rgba(220,220,220,1)\",");
+    sb.append("          \"pointBackgroundColor\" : \"rgba(220,220,220,1)\",");
+    sb.append("          \"pointBorderColor\" : \"#fff\",");
+    sb.append("          \"data\" : [ 65, 59, 80, 81, 56, 55, 40 ]");
+    sb.append("      }");
+    sb.append("  ]");
+    sb.append("}");
+
+    return sb.toString();
+  }
+
+  public static <T extends JavaScriptObject> T parseJson(String inText)
+  {
+    return JsonUtils.safeEval(inText);
+  }
+
+  private static native void chart(JavaScriptObject inObj)
   /*-{
 		$wnd.$(document).ready(function() {
-
-			var lineData = {
-				labels : [ "January", "February", "March", "April", "May", "June", "July" ],
-				datasets : [
-					{
-						label : "Example dataset",
-						backgroundColor : "rgba(26,179,148,0.5)",
-						borderColor : "rgba(26,179,148,0.7)",
-						pointBackgroundColor : "rgba(26,179,148,1)",
-						pointBorderColor : "#fff",
-						data : [ 28, 48, 40, 19, 86, 27, 90 ]
-					},
-					{
-						label : "Example dataset",
-						backgroundColor : "rgba(220,220,220,0.5)",
-						borderColor : "rgba(220,220,220,1)",
-						pointBackgroundColor : "rgba(220,220,220,1)",
-						pointBorderColor : "#fff",
-						data : [ 65, 59, 80, 81, 56, 55, 40 ]
-					}
-				]
-			};
 
 			var lineOptions = {
 				responsive : true
 			};
 
-
 			var ctx = $doc.getElementById("lineChart").getContext("2d");
 			new $wnd.Chart(ctx, {
 				type : 'line',
-				data : lineData,
+				data : inObj,
 				options : lineOptions
 			});
-
 		});
   }-*/;
 }
