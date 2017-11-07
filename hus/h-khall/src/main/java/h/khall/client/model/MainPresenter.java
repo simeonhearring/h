@@ -28,7 +28,7 @@ public class MainPresenter extends AbstractPresenter<MainPresenter.Display>
   @Override
   public void dispatch(PageEvent inEvent)
   {
-    attach(mDisplay.page());
+    attach(mDisplay.pagefull());
   }
 
   @Override
@@ -63,5 +63,7 @@ public class MainPresenter extends AbstractPresenter<MainPresenter.Display>
     RegisterPresenter.Display register();
 
     PagePresenter.Display page();
+
+    PageFullPresenter.Display pagefull();
   }
 }

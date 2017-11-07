@@ -649,6 +649,30 @@ public abstract class AbstractView extends Composite
          $wnd.jQuery('#wizard').steps();
   }-*/;
 
+  public static native void slimScroll()
+  /*-{
+        $wnd.jQuery('.sidebar-collapse').slimScroll({
+            height: '100%',
+            railOpacity: 0.9
+        });
+        $wnd.jQuery('body.canvas-menu .sidebar-collapse').slimScroll({
+            height: '100%',
+            railOpacity: 0.9
+        });
+        $wnd.jQuery('.sidebar-container').slimScroll({
+            height: '100%',
+            railOpacity: 0.4,
+            wheelStep: 10
+        });
+        $wnd.jQuery('.small-chat-box .content').slimScroll({
+            height: '234px',
+            railOpacity: 0.4
+        });
+        $wnd.jQuery('.full-height-scroll').slimscroll({
+            height: '100%'
+        })
+  }-*/;
+
   public static native void datepicker(String inElementId)
   /*-{
         $wnd.jQuery(inElementId).datepicker({
