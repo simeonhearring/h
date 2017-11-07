@@ -315,6 +315,13 @@
 					</div>
 				</div>
 
+				<k:CloseableView heading="New Publisher">
+
+					<k:PersonView />
+
+				</k:CloseableView>
+
+
 				<div class="row">
 					<div class="col-lg-6">
 

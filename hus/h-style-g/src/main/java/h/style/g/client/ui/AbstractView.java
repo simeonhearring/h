@@ -617,4 +617,17 @@ public abstract class AbstractView extends Composite
     sce.setSrc(inSrc);
     return sce;
   }
+
+  public static native void icheck()
+  /*-{
+        $wnd.jQuery('.i-checks').iCheck({
+            checkboxClass : 'icheckbox_square-green',
+            radioClass : 'iradio_square-green',
+        });
+  }-*/;
+
+  public static native void steps()
+  /*-{
+         $wnd.jQuery('#wizard').steps();
+  }-*/;
 }

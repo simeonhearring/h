@@ -72,12 +72,4 @@ public class RegisterView extends AbstractView implements RegisterPresenter.Disp
   {
     icheck();
   }
-
-  private static native void icheck()
-  /*-{
-  	$wnd.jQuery('.i-checks').iCheck({
-  		checkboxClass : 'icheckbox_square-green',
-  		radioClass : 'iradio_square-green',
-  	});
-  }-*/;
 }
