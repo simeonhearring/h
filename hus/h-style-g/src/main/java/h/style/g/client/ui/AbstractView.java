@@ -222,6 +222,18 @@ public abstract class AbstractView extends Composite
     return ret;
   }
 
+  public void styleName(UIObject inUiObject, boolean inAdd, String inStyle)
+  {
+    if (inAdd)
+    {
+      inUiObject.addStyleName(inStyle);
+    }
+    else
+    {
+      inUiObject.removeStyleName(inStyle);
+    }
+  }
+
   protected HandlerRegistration add(HandlerRegistration inRegistration)
   {
     mRegistrations.add(inRegistration);

@@ -78,6 +78,8 @@ public class PageView extends AbstractView implements PagePresenter.Display
     inPanel.clear();
     inPanel.add(this);
     ((UIObject) inPanel).removeStyleName("gray-bg");
+    // ((UIObject) inPanel).addStyleName("fixed-sidebar no-skin-config
+    // full-height-layout");
   }
 
   @Override
