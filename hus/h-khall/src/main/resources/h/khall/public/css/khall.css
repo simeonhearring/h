@@ -2,3 +2,11 @@
 	font-size: 120px;
 	margin-top: 0px;
 }
+
+.strong {
+	font-weight: 700;
+}
+
+.kh_pillsize {
+	width: 200px !important;
+}

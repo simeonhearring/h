@@ -222,15 +222,33 @@ public abstract class AbstractView extends Composite
     return ret;
   }
 
-  public void styleName(UIObject inUiObject, boolean inAdd, String inStyle)
+  public void styleName(UIObject inUiObject, boolean inAdd, String... inStyle)
   {
-    if (inAdd)
+    for (String style : inStyle)
     {
-      inUiObject.addStyleName(inStyle);
+      if (inAdd)
+      {
+        inUiObject.addStyleName(style);
+      }
+      else
+      {
+        inUiObject.removeStyleName(style);
+      }
     }
-    else
+  }
+
+  public void styleName(String inStyle, boolean inAdd, UIObject... inUiObject)
+  {
+    for (UIObject object : inUiObject)
     {
-      inUiObject.removeStyleName(inStyle);
+      if (inAdd)
+      {
+        object.addStyleName(inStyle);
+      }
+      else
+      {
+        object.removeStyleName(inStyle);
+      }
     }
   }
 
@@ -506,33 +524,33 @@ public abstract class AbstractView extends Composite
 
   public static native void move(String inId, String inPosition)
   /*-{
-		$wnd.$("#" + inId).animate({
-			'margin-left' : inPosition
-		}, 1000);
+  	$wnd.$("#" + inId).animate({
+  		'margin-left' : inPosition
+  	}, 1000);
   }-*/;
 
   public static native void show(String inId, boolean inShow)
   /*-{
-		if (inShow) {
-			$wnd.$("#" + inId).show("fold", 1000);
-		} else {
-			$wnd.$("#" + inId).hide("drop", {
-				direction : "down"
-			}, "slow");
-		}
+  	if (inShow) {
+  		$wnd.$("#" + inId).show("fold", 1000);
+  	} else {
+  		$wnd.$("#" + inId).hide("drop", {
+  			direction : "down"
+  		}, "slow");
+  	}
   }-*/;
 
   public static native void color(String inId, boolean inColor)
   /*-{
-		if (inColor) {
-			$wnd.$("#" + inId).animate({
-				backgroundColor : "#eae6d8"
-			}, 1000);
-		} else {
-			$wnd.$("#" + inId).animate({
-				backgroundColor : "#fff"
-			}, 1000);
-		}
+  	if (inColor) {
+  		$wnd.$("#" + inId).animate({
+  			backgroundColor : "#eae6d8"
+  		}, 1000);
+  	} else {
+  		$wnd.$("#" + inId).animate({
+  			backgroundColor : "#fff"
+  		}, 1000);
+  	}
   }-*/;
 
   // public static native void setAnimatedScrollTop(MyView instance, String
@@ -550,12 +568,12 @@ public abstract class AbstractView extends Composite
 
   public static native void effect(String inId, String inEffect)
   /*-{
-		$wnd.$("#" + inId).effect(inEffect);
+  	$wnd.$("#" + inId).effect(inEffect);
   }-*/;
 
   public static native String getUserAgent()
   /*-{
-		return navigator.userAgent.toLowerCase();
+  	return navigator.userAgent.toLowerCase();
   }-*/;
 
   public static boolean isChromeBrowser()
@@ -575,7 +593,7 @@ public abstract class AbstractView extends Composite
 
   public static native void consoleNative(String inMessage)
   /*-{
-		console.log(inMessage);
+  	console.log(inMessage);
   }-*/;
 
   public void fire(double inDelaySeconds, final CallBack<?> inCallBack)
@@ -630,4 +648,27 @@ public abstract class AbstractView extends Composite
   /*-{
          $wnd.jQuery('#wizard').steps();
   }-*/;
+
+  public static native void datepicker(String inElementId)
+  /*-{
+        $wnd.jQuery(inElementId).datepicker({
+            todayBtn: "linked",
+            keyboardNavigation: false,
+            forceParse: false,
+            calendarWeeks: true,
+            autoclose: true
+        });
+  }-*/;
+
+  public static native void datepicker()
+  /*-{
+      $wnd.jQuery('#data_1 .input-group.date').datepicker({
+          todayBtn: "linked",
+          keyboardNavigation: false,
+          forceParse: false,
+          calendarWeeks: true,
+          autoclose: true
+      });
+  }-*/;
+
 }

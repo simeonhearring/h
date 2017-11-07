@@ -1,6 +1,6 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder" xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:b="urn:import:org.gwtbootstrap3.client.ui" xmlns:b.gwt="urn:import:org.gwtbootstrap3.client.ui.gwt"
-	xmlns:b.html="urn:import:org.gwtbootstrap3.client.ui.html" xmlns:h="urn:import:h.style.g.client.ui">
+	xmlns:b.html="urn:import:org.gwtbootstrap3.client.ui.html" xmlns:h="urn:import:h.style.g.client.ui" xmlns:b.date="urn:import:org.gwtbootstrap3.extras.datepicker.client.ui">
 	<ui:with field="msg" type="h.khall.client.resource.Messages" />
 	<ui:with field="res" type="h.khall.client.resource.Resource" />
 	<ui:style>
@@ -9,145 +9,185 @@
 	<b.gwt:HTMLPanel addStyleNames="row">
 		<div class="col-lg-12">
 			<div class="ibox-content">
-				<div id="wizard">
 
-					<h1>Personal</h1>
-					<div class="step-content">
-						<div class="text-center m-t-md">
-							<h2>Personal Information</h2>
+				<div class="wizard">
+
+					<b.gwt:HTMLPanel ui:field="mSteps" addStyleNames="steps">
+						<b.html:UnorderedList addStyleNames="nav nav-pills">
+							<b:ListItem ui:field="mStep1l" addStyleNames="current">
+								<b:Anchor ui:field="mStep1a" text="1. Personal" />
+							</b:ListItem>
+
+							<b:ListItem ui:field="mStep2l" addStyleNames="disabled">
+								<b:Anchor ui:field="mStep2a" text="2. Address" />
+							</b:ListItem>
+
+							<b:ListItem ui:field="mStep3l" addStyleNames="disabled">
+								<b:Anchor ui:field="mStep3a" text="3. Congregation" />
+							</b:ListItem>
+						</b.html:UnorderedList>
+					</b.gwt:HTMLPanel>
+
+					<b.gwt:HTMLPanel ui:field="mStep1c" addStyleNames="content">
+						<div class="body">
+							<div class="text-center m-t-md">
+								<h2>Personal Information</h2>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<label>First</label>
+									<h:InputView ui:field="mFirst" placeholder="First name" class="form-control" tabindex="1" />
+								</div>
+								<div class="form-group">
+									<label>Suffix</label>
+									<h:InputView ui:field="mSuffix" placeholder="Suffix (Jr., Sr., III)" class="form-control" tabindex="4" />
+								</div>
+								<div class="form-group">
+									<label>Email</label>
+									<h:InputView ui:field="mEmail" placeholder="Email address" class="form-control" tabindex="7" />
+								</div>
+							</div>
+							<div class="col-md-4 b-r">
+								<div class="form-group">
+									<label>Middle</label>
+									<h:InputView ui:field="mMiddle" placeholder="Middle name" class="form-control" tabindex="2" />
+								</div>
+								<div class="form-group">
+									<label>Gender</label>
+									<h:InputView ui:field="mGender" placeholder="Gender" class="form-control" tabindex="5" />
+								</div>
+								<div class="form-group">
+									<label>Mobile</label>
+									<h:InputView ui:field="mMobile" placeholder="Mobile phone" class="form-control" tabindex="8" />
+								</div>
+							</div>
+							<div class="col-md-4 b-r">
+								<div class="form-group">
+									<label>Last</label>
+									<h:InputView ui:field="mLast" placeholder="Last name" class="form-control" tabindex="3" />
+								</div>
+								<div class="form-group">
+									<label>Birth</label>
+									<h:InputView ui:field="mBirth" placeholder="Birth date" class="form-control" tabindex="6" />
+
+									<b.gwt:HTMLPanel ui:field="mDate" addStyleNames="input-group date">
+										<span class="input-group-addon">
+											<i class="fa fa-calendar"></i>
+										</span>
+										<input type="text" class="form-control" value="03/04/2014" />
+									</b.gwt:HTMLPanel>
+									<div class="form-group" id="data_1">
+										<div class="input-group date">
+											<span class="input-group-addon">
+												<i class="fa fa-calendar"></i>
+											</span>
+											<input type="text" class="form-control" value="03/04/2014" />
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label>Home</label>
+									<h:InputView ui:field="mHome" placeholder="Home phone" class="form-control" tabindex="9" />
+								</div>
+							</div>
 						</div>
-						<div class="col-md-4">
-							<div class="form-group">
-								<label>First</label>
-								<input type="text" placeholder="First name" class="form-control" tabindex="1" />
+					</b.gwt:HTMLPanel>
+
+					<b.gwt:HTMLPanel ui:field="mStep2c" addStyleNames="content" visible="false">
+						<div class="body">
+							<div class="text-center m-t-md">
+								<h2>Address information</h2>
 							</div>
-							<div class="form-group">
-								<label>Suffix</label>
-								<input type="text" placeholder="Suffix (Jr., Sr., III)" class="form-control" tabindex="4" />
+							<div class="col-md-6 b-r">
+								<div class="form-group">
+									<label>Address (1)</label>
+									<h:InputView ui:field="mAddress1" placeholder="Address line 1" class="form-control" tabindex="1" />
+								</div>
+								<div class="form-group">
+									<label>City</label>
+									<h:InputView ui:field="mCity" placeholder="City" class="form-control" tabindex="3" />
+								</div>
+								<div class="form-group">
+									<label>Zip</label>
+									<h:InputView ui:field="mZip" placeholder="Zip" class="form-control" tabindex="5" />
+								</div>
 							</div>
-							<div class="form-group">
-								<label>Email</label>
-								<input type="text" placeholder="Email address" class="form-control" tabindex="7" />
-							</div>
-						</div>
-						<div class="col-md-4 b-r">
-							<div class="form-group">
-								<label>Middle</label>
-								<input type="text" placeholder="Middle name" class="form-control" tabindex="2" />
-							</div>
-							<div class="form-group">
-								<label>Gender</label>
-								<input type="text" placeholder="Gender" class="form-control" tabindex="5" />
-							</div>
-							<div class="form-group">
-								<label>Mobile</label>
-								<input type="text" placeholder="Mobile phone" class="form-control" tabindex="8" />
-							</div>
-						</div>
-						<div class="col-md-4 b-r">
-							<div class="form-group">
-								<label>Last</label>
-								<input type="email" placeholder="Last name" class="form-control" tabindex="3" />
-							</div>
-							<div class="form-group">
-								<label>Birth</label>
-								<input type="text" placeholder="Birth date" class="form-control" tabindex="6" />
-							</div>
-							<div class="form-group">
-								<label>Home</label>
-								<input type="text" placeholder="Home phone" class="form-control" tabindex="9" />
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Address (2)</label>
+									<h:InputView ui:field="mAddress2" placeholder="Address line 2" class="form-control" tabindex="3" />
+								</div>
+								<div class="form-group">
+									<label>State</label>
+									<h:InputView ui:field="mState" placeholder="State" class="form-control" tabindex="4" />
+								</div>
 							</div>
 						</div>
+					</b.gwt:HTMLPanel>
+
+					<b.gwt:HTMLPanel ui:field="mStep3c" addStyleNames="content" visible="false">
+						<div class="body">
+							<div class="text-center m-t-md">
+								<h2>Congregation Information</h2>
+							</div>
+							<div class="col-md-6 b-r">
+								<div class="form-group">
+									<label>Field Service Group </label>
+									<h:InputView ui:field="mFsg" placeholder="Field service group" class="form-control" tabindex="1" />
+								</div>
+								<div class="form-group">
+									<label>Baptized</label>
+									<h:InputView ui:field="mBaptized" placeholder="Baptized" class="form-control" tabindex="3" />
+								</div>
+								<div class="form-group">
+									<label>Roles</label>
+									<h:InputView ui:field="mRoles" placeholder="Roles" class="form-control" tabindex="5" />
+								</div>
+								<div class="form-group">
+									<label>Emergency</label>
+									<h:InputView ui:field="mEmergency" placeholder="Emergency" class="form-control" tabindex="5" />
+								</div>
+								<div class="form-group">
+									<label>Head Of House</label>
+									<h:InputView ui:field="mHead" placeholder="Head of house" class="form-control" tabindex="5" />
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Faith</label>
+									<h:InputView ui:field="mFaith" placeholder="Faith" class="form-control" tabindex="1" />
+								</div>
+								<div class="form-group">
+									<label>Started Publishing</label>
+									<h:InputView ui:field="mPublishing" placeholder="Started publishing" class="form-control" tabindex="3" />
+								</div>
+								<div class="form-group">
+									<label>Categories</label>
+									<h:InputView ui:field="mCategories" placeholder="Categories" class="form-control" tabindex="5" />
+								</div>
+								<div class="form-group">
+									<label>Children</label>
+									<h:InputView ui:field="mChildren" placeholder="Children" class="form-control" tabindex="5" />
+								</div>
+								<div class="form-group">
+									<label>Family</label>
+									<h:InputView ui:field="mFamily" placeholder="Family members" class="form-control" tabindex="5" />
+								</div>
+							</div>
+						</div>
+					</b.gwt:HTMLPanel>
+
+					<div class="actions">
+						<ul>
+							<li>
+								<b:Anchor ui:field="mSave" text="Save" addStyleNames="strong" />
+							</li>
+						</ul>
 					</div>
-
-					<h1>Address</h1>
-					<div class="step-content">
-						<div class="text-center m-t-md">
-							<h2>Address information</h2>
-						</div>
-						<div class="col-md-6 b-r">
-							<div class="form-group">
-								<label>Address (1)</label>
-								<input type="text" placeholder="Address line 1" class="form-control" tabindex="1" />
-							</div>
-							<div class="form-group">
-								<label>City</label>
-								<input type="text" placeholder="City" class="form-control" tabindex="3" />
-							</div>
-							<div class="form-group">
-								<label>Zip</label>
-								<input type="email" placeholder="Zip" class="form-control" tabindex="5" />
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-								<label>Address (2)</label>
-								<input type="text" placeholder="Address line 2" class="form-control" tabindex="3" />
-							</div>
-							<div class="form-group">
-								<label>State</label>
-								<input type="email" placeholder="State" class="form-control" tabindex="4" />
-							</div>
-						</div>
-					</div>
-
-					<h1>Congregation</h1>
-					<div class="step-content">
-						<div class="text-center m-t-md">
-							<h2>Congregation Information</h2>
-						</div>
-						<div class="col-md-6 b-r">
-							<div class="form-group">
-								<label>Field Service Group </label>
-								<input type="text" placeholder="Field service group" class="form-control" tabindex="1" />
-							</div>
-							<div class="form-group">
-								<label>Baptized</label>
-								<input type="text" placeholder="Baptized" class="form-control" tabindex="3" />
-							</div>
-							<div class="form-group">
-								<label>Roles</label>
-								<input type="email" placeholder="Roles" class="form-control" tabindex="5" />
-							</div>
-							<div class="form-group">
-								<label>Emergency</label>
-								<input type="email" placeholder="Emergency" class="form-control" tabindex="5" />
-							</div>
-							<div class="form-group">
-								<label>Head Of House</label>
-								<input type="email" placeholder="Head of house" class="form-control" tabindex="5" />
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-								<label>Faith</label>
-								<input type="text" placeholder="Faith" class="form-control" tabindex="1" />
-							</div>
-							<div class="form-group">
-								<label>Started Publishing</label>
-								<input type="text" placeholder="Started publishing" class="form-control" tabindex="3" />
-							</div>
-							<div class="form-group">
-								<label>Categories</label>
-								<input type="email" placeholder="Categories" class="form-control" tabindex="5" />
-							</div>
-							<div class="form-group">
-								<label>Children</label>
-								<input type="email" placeholder="Children" class="form-control" tabindex="5" />
-							</div>
-							<div class="form-group">
-								<label>Family</label>
-								<input type="email" placeholder="Family members" class="form-control" tabindex="5" />
-							</div>
-						</div>
-					</div>
-
 				</div>
+
 			</div>
 			<div class="ibox-content">
-				<button class="btn btn-sm btn-primary m-t-n-xs" type="submit">
-					<strong>Save</strong>
-				</button>
 			</div>
 		</div>
 	</b.gwt:HTMLPanel>

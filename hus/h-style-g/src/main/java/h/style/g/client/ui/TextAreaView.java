@@ -12,7 +12,6 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Widget;
 
 import h.style.g.client.model.TextAreaDisplay;
-import h.style.g.client.model.TextAreaDisplay.Resize;
 
 public class TextAreaView extends AbstractTextBox implements TextAreaDisplay
 {

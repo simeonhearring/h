@@ -26,6 +26,6 @@
 				<b:Anchor ui:field="mRemove" addStyleNames="close-link" icon="TIMES" />
 			</div>
 		</div>
-		<b.gwt:HTMLPanel ui:field="mContent" addStyleNames="ibox-content no-padding ease" />
+		<b.gwt:HTMLPanel ui:field="mContent" addStyleNames="ibox-content no-padding" />
 	</b.gwt:HTMLPanel>
 </ui:UiBinder>

@@ -1897,7 +1897,7 @@ div.dt-button-info {
 }
 .form-control:focus,
 .single-line:focus {
-  border-color: #1ab394;
+  border-color: #1ab394 !important;
 }
 .has-success .form-control,
 .has-success .form-control:focus {
