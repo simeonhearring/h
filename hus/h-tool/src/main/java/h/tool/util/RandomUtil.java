@@ -61,4 +61,10 @@ public final class RandomUtil
     Random rnd = new Random();
     return inArray[rnd.nextInt(inArray.length - 1)];
   }
+
+  public static int randomInt(int inMax)
+  {
+    Random rnd = new Random();
+    return rnd.nextInt(inMax);
+  }
 }

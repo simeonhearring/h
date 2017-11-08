@@ -7,6 +7,7 @@ import h.style.g.server.command.AbstractCommandBean;
 import h.style.g.shared.chart.Chart;
 import h.style.g.shared.command.LoginCommand;
 import h.style.g.shared.rpc.common.RpcResponse;
+import h.tool.util.RandomUtil;
 
 public class LoginCommandBean extends AbstractCommandBean<LoginCommand>
 {
@@ -36,24 +37,38 @@ public class LoginCommandBean extends AbstractCommandBean<LoginCommand>
 
     ret.setResponsive(true);
 
-    ret.addLabel("January", "February", "March", "April", "May", "June", "July");
+    String[] months =
+      {
+          "January", "February", "March", "April", "May", "June", "July"
+      };
+    ret.addLabel(months);
 
-    Chart.Dataset ds1 = ret.createDataset("Example dataset1");
 
-    ds1.setBackgroundColor("rgba(26,179,148,0.5)");
-    ds1.setBorderColor("rgba(26,179,148,0.7)");
-    ds1.setPointBackgroundColor("rgba(26,179,148,1)");
-    ds1.setPointBorderColor("#fff");
-    ds1.addData(28, 48, 40, 19, 86, 27, 90);
+    dataset(ret.createDataset("Hearring"), random(months.length));
+    dataset(ret.createDataset("Humphrey"), random(months.length));
+    dataset(ret.createDataset("Tunstill"), random(months.length));
+    dataset(ret.createDataset("Kerstner"), random(months.length));
 
-    Chart.Dataset ds2 = ret.createDataset("Example dataset2");
+    return ret;
+  }
 
-    ds2.setBackgroundColor("rgba(220,220,220,0.5)");
-    ds2.setBorderColor("rgba(220,220,220,1)");
-    ds2.setPointBackgroundColor("rgba(220,220,220,1)");
-    ds2.setPointBorderColor("#fff");
-    ds2.addData(65, 59, 80, 81, 56, 55, 40);
+  private static void dataset(Chart.Dataset inSet, double[] inData)
+  {
+    String c1 = "hsla(" + RandomUtil.randomInt(360) + ",70%,10%,";
+    inSet.setBackgroundColor(c1 + "0." + RandomUtil.randomInt(9) + ")");
+    inSet.setBorderColor(c1 + "0." + RandomUtil.randomInt(9) + ")");
+    inSet.setPointBackgroundColor(c1 + "0." + RandomUtil.randomInt(9) + ")");
+    inSet.setPointBorderColor("#fff");
+    inSet.addData(inData);
+  }
 
+  private static double[] random(int inLength)
+  {
+    double[] ret = new double[inLength];
+    for (int i = 0; i < ret.length; i++)
+    {
+      ret[i] = RandomUtil.randomInt(100);
+    }
     return ret;
   }
 }
