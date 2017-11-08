@@ -5,12 +5,10 @@ import org.gwtbootstrap3.client.ui.gwt.HTMLPanel;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.safehtml.shared.SafeHtmlUtils;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.HasWidgets;
-import com.google.gwt.user.client.ui.InlineHTML;
 import com.google.gwt.user.client.ui.UIObject;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -29,10 +27,7 @@ public class PageFullView extends AbstractView implements PageFullPresenter.Disp
   HTMLPanel mTop;
 
   @UiField
-  Anchor mBars, mLogoutA, mLogoutB;
-
-  @UiField
-  InlineHTML mUserName, mUserTitle;
+  Anchor mBars, mLogout;
 
   PageFullPresenter mPresenter;
 
@@ -45,7 +40,7 @@ public class PageFullView extends AbstractView implements PageFullPresenter.Disp
 
   @UiHandler(
   {
-      "mBars", "mLogoutA", "mLogoutB"
+      "mBars", "mLogout"
   })
   public void onClick(ClickEvent inEvent)
   {
@@ -54,22 +49,10 @@ public class PageFullView extends AbstractView implements PageFullPresenter.Disp
     {
       toggleNavBar();
     }
-    else if (mLogoutA.equals(source) || mLogoutB.equals(source))
+    else if (mLogout.equals(source))
     {
       mPresenter.logout();
     }
-  }
-
-  @Override
-  public void setUserName(String inUserName)
-  {
-    mUserName.setHTML(SafeHtmlUtils.fromString(inUserName));
-  }
-
-  @Override
-  public void setUserTitle(String inUserTitle)
-  {
-    mUserTitle.setHTML(SafeHtmlUtils.fromString(inUserTitle));
   }
 
   @Override
