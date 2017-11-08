@@ -1,36 +1,33 @@
 package h.khall.client.model;
 
 import h.style.g.client.model.Attach;
-import h.style.g.client.ui.event.ChartEvent;
 import h.style.g.client.ui.event.RefreshEvent;
 import h.style.g.shared.chart.Chart;
 
 public class ChartPresenter extends AbstractPresenter<ChartPresenter.Display>
-implements RefreshEvent.Handler, ChartEvent.Handler
+    implements RefreshEvent.Handler
 {
-  public ChartPresenter(Display inDisplay)
-  {
-    initDisplay(inDisplay);
-  }
+  private String mDataType;
 
   public ChartPresenter events()
   {
     addHandler(RefreshEvent.TYPE, this);
-    addHandler(ChartEvent.TYPE, this);
     return this;
   }
 
   @Override
   public void dispatch(RefreshEvent inEvent)
   {
-    mDisplay.load(mProfile.getClient().getChart());
+    Chart chart = mProfile.getClient().getChart();
+    if (mDataType.equals(chart.getDataType()))
+    {
+      mDisplay.load(chart);
+    }
   }
 
-  @Override
-  public void dispatch(ChartEvent inEvent)
+  public void setDataType(String inDataType)
   {
-    // TODO not used
-    mDisplay.load(inEvent.getChart());
+    mDataType = inDataType;
   }
 
   public interface Display extends Attach

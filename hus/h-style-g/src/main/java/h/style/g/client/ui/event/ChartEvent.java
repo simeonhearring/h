@@ -11,12 +11,10 @@ public class ChartEvent extends Event<ChartEvent.Handler>
 
   public static final TypeH<Handler> TYPE = new TypeH<>(ChartEvent.class);
 
-  private final String mCanvasId;
   private final Chart mChart;
 
-  public ChartEvent(String inCanvasId, Chart inChart)
+  public ChartEvent(Chart inChart)
   {
-    mCanvasId = inCanvasId;
     mChart = inChart;
   }
 
@@ -32,19 +30,8 @@ public class ChartEvent extends Event<ChartEvent.Handler>
     inHandler.dispatch(this);
   }
 
-  public String getCanvasId()
-  {
-    return mCanvasId;
-  }
-
   public Chart getChart()
   {
     return mChart;
-  }
-
-  @Override
-  public String toString()
-  {
-    return ChartEvent.class.getSimpleName() + " " + mCanvasId;
   }
 }

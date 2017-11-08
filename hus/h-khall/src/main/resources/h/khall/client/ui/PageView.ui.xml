@@ -42,7 +42,44 @@
 
 			<div class="wrapper wrapper-content animated fadeInRight">
 
-				<k:ChartView ui:field="mChart1" />
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="ibox float-e-margins">
+							<div class="ibox-content">
+								<div>
+									<span class="pull-right text-right">
+										<small>
+											Average value of sales in the past month in:
+											<strong>United states</strong>
+										</small>
+										<br />
+										All sales: 162,862
+									</span>
+									<h1 class="m-b-xs">$ 50,992</h1>
+									<h3 class="font-bold no-margins">
+										Half-year revenue margin
+									</h3>
+									<small>Sales marketing.</small>
+								</div>
+
+								<k:ChartView dataType="FSG" />
+
+								<div class="m-t-md">
+									<small class="pull-right">
+										<i class="fa fa-clock-o">
+										</i>
+										Update on 16.07.2015
+									</small>
+									<small>
+										<strong>Analysis of sales:</strong>
+										The value has been changed over time, and last month reached a level over $50,000.
+									</small>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
 
 				<div class="row">
 					<div class="col-lg-4">

@@ -1,5 +1,6 @@
 package h.khall.server.command;
 
+import h.khall.shared.model.Charts;
 import h.khall.shared.model.Client;
 import h.khall.shared.model.Profile;
 import h.style.g.server.command.AbstractCommandBean;
@@ -30,6 +31,8 @@ public class LoginCommandBean extends AbstractCommandBean<LoginCommand>
   private static Chart sample()
   {
     Chart ret = new Chart(Chart.Type.LINE);
+
+    ret.setDataType(Charts.FSG);
 
     ret.setResponsive(true);
 

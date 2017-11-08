@@ -1,7 +1,9 @@
 package h.khall.client.ui;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.dom.client.CanvasElement;
 import com.google.gwt.uibinder.client.UiBinder;
+import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -18,12 +20,18 @@ public class ChartView extends AbstractView implements ChartPresenter.Display
   {
   }
 
+  @UiField
+  CanvasElement mCanvas;
+
   ChartPresenter mPresenter;
 
   public ChartView()
   {
+    mPresenter = new ChartPresenter().events();
     initWidget(BINDER.createAndBindUi(this));
-    mPresenter = new ChartPresenter(this).events();
+    setElementId(mCanvas);
+    mPresenter.initDisplay(this);
+
   }
 
   @Override
@@ -36,6 +44,11 @@ public class ChartView extends AbstractView implements ChartPresenter.Display
   @Override
   public void load(Chart inChart)
   {
-    ChartUtil.chart("lineChart", inChart);
+    ChartUtil.chart(mCanvas.getId(), inChart);
+  }
+
+  public void setDataType(String inDataType)
+  {
+    mPresenter.setDataType(inDataType);
   }
 }

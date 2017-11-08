@@ -31,6 +31,7 @@ public class Chart implements Serializable
     }
   }
 
+  private String mDataType;
   private Type mType;
   private Data mData;
   private Options mOptions;
@@ -80,6 +81,16 @@ public class Chart implements Serializable
   public Options getOptions()
   {
     return mOptions;
+  }
+
+  public String getDataType()
+  {
+    return mDataType;
+  }
+
+  public void setDataType(Enum<?> inDataType)
+  {
+    mDataType = inDataType.name();
   }
 
   public static class Data implements Serializable
