@@ -5,8 +5,9 @@ import com.google.gwt.user.client.ui.HasWidgets;
 import h.khall.client.ui.event.LoginEvent;
 import h.khall.client.ui.event.LogoutEvent;
 import h.khall.client.ui.event.PageEvent;
+import h.khall.client.ui.event.ProfileEvent;
 import h.khall.client.ui.event.RegisterEvent;
-import h.style.g.client.model.AbstractPresenter;
+import h.style.g.client.model.Attach;
 
 public class MainPresenter extends AbstractPresenter<MainPresenter.Display>
     implements LoginEvent.Handler, RegisterEvent.Handler, PageEvent.Handler, LogoutEvent.Handler

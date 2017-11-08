@@ -18,9 +18,9 @@ public class KhallEntryPoint extends AbstractEntryPoint implements CallBack<Sess
   }
 
   @Override
-  public void onCallBack(SessionInfo inResult)
+  public void onCallBack(SessionInfo inInfo)
   {
-    Global.setInfo(inResult);
+    Global.setInfo(inInfo);
     Global.fireS(new LoginEvent());
   }
 }

@@ -2,6 +2,7 @@ package h.khall.client.model;
 
 import h.khall.client.ui.event.LogoutEvent;
 import h.style.g.client.model.AbstractPresenter;
+import h.style.g.client.model.Attach;
 
 public class PageFullPresenter extends AbstractPresenter<PageFullPresenter.Display>
 {

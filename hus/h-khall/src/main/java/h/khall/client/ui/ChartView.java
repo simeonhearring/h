@@ -8,6 +8,7 @@ import com.google.gwt.user.client.ui.Widget;
 import h.khall.client.model.ChartPresenter;
 import h.style.g.client.ui.AbstractView;
 import h.style.g.client.ui.util.ChartUtil;
+import h.style.g.shared.chart.Chart;
 
 public class ChartView extends AbstractView implements ChartPresenter.Display
 {
@@ -22,7 +23,7 @@ public class ChartView extends AbstractView implements ChartPresenter.Display
   public ChartView()
   {
     initWidget(BINDER.createAndBindUi(this));
-    mPresenter = new ChartPresenter(this);
+    mPresenter = new ChartPresenter(this).events();
   }
 
   @Override
@@ -33,8 +34,8 @@ public class ChartView extends AbstractView implements ChartPresenter.Display
   }
 
   @Override
-  protected void onLoad()
+  public void load(Chart inChart)
   {
-    ChartUtil.chart("lineChart", ChartUtil.sample());
+    ChartUtil.chart("lineChart", inChart);
   }
 }

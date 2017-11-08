@@ -95,6 +95,12 @@ public abstract class AbstractView extends Composite
 
   protected String mAnimateKey;
 
+  public String encrypt(String inText)
+  {
+    // TODO encrypt
+    return inText;
+  }
+
   public void attach(HasWidgets inPanel)
   {
     inPanel.clear();

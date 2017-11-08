@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+// TODO is this in the right package.
 /*
  * http://www.chartjs.org/
  */
@@ -82,7 +82,7 @@ public class Chart implements Serializable
     return mOptions;
   }
 
-  public static class Data
+  public static class Data implements Serializable
   {
     private Labels mLabels;
     private Datasets mDatasets;
@@ -130,7 +130,7 @@ public class Chart implements Serializable
     }
   }
 
-  public static class Dataset
+  public static class Dataset implements Serializable
   {
     private String mLabel;
     private String mBackgroundColor;
@@ -199,7 +199,7 @@ public class Chart implements Serializable
     }
   }
 
-  public static class Options
+  public static class Options implements Serializable
   {
     private Boolean mResponsive;
 
@@ -209,11 +209,11 @@ public class Chart implements Serializable
     }
   }
 
-  public static class Labels extends ArrayList<String>
+  public static class Labels extends ArrayList<String> implements Serializable
   {
   }
 
-  public static class Datasets extends ArrayList<Dataset>
+  public static class Datasets extends ArrayList<Dataset> implements Serializable
   {
   }
 }

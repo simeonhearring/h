@@ -196,4 +196,10 @@ public class MockDisplay implements Display, IsWidget
   {
     return 0;
   }
+
+  @Override
+  public String encrypt(String inText)
+  {
+    return inText;
+  }
 }

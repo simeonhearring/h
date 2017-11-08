@@ -11,4 +11,6 @@
 
 	<bean id="SessionInfoCommand" class="h.khall.server.command.SessionInfoCommandBean" />
 
+	<bean id="LoginCommand" class="h.khall.server.command.LoginCommandBean" />
+
 </beans>

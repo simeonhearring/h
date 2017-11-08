@@ -11,9 +11,6 @@ public class SessionInfoCommandBean extends AbstractCommandBean<SessionInfoComma
   public RpcResponse execute(SessionInfoCommand inCommand)
   {
     SessionInfo data = new SessionInfo();
-    data.setUserId("simeonlhearring@gmail.com");
-    data.setUserTitle("Owner");
-    data.setUserName("Simeon L Hearring");
     inCommand.setData(data);
     return inCommand;
   }

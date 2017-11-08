@@ -1,15 +1,17 @@
 package h.khall.client.model;
 
 import h.khall.client.ui.event.PageEvent;
+import h.khall.client.ui.event.ProfileEvent;
 import h.khall.client.ui.event.RegisterEvent;
+import h.khall.shared.model.Profile;
 import h.style.g.client.model.AbstractPresenter;
+import h.style.g.client.model.Attach;
+import h.style.g.client.ui.common.RpcCallback;
+import h.style.g.client.ui.event.RefreshEvent;
+import h.style.g.shared.command.LoginCommand;
 
 public class LoginPresenter extends AbstractPresenter<LoginPresenter.Display>
 {
-  public interface Display extends Attach
-  {
-  }
-
   public LoginPresenter(Display inDisplay)
   {
     initDisplay(inDisplay);
@@ -17,7 +19,20 @@ public class LoginPresenter extends AbstractPresenter<LoginPresenter.Display>
 
   public void login(String inUserName, String inPassword, String inCongNum, String inEncrypt)
   {
-    fire(new PageEvent());
+    Profile profile = new Profile();
+    profile.setUserId(mDisplay.encrypt(inUserName));
+    profile.setPassword(mDisplay.encrypt(inPassword));
+    profile.setCongNum(mDisplay.encrypt(inCongNum));
+    profile.setEncrypt(mDisplay.encrypt(inEncrypt));
+
+    fire(new LoginCommand(profile), new RpcCallback<LoginCommand>()
+    {
+      @Override
+      public void onRpcSuccess(LoginCommand inCommand)
+      {
+        fire(new PageEvent(), new ProfileEvent(inCommand.getData()), new RefreshEvent());
+      }
+    });
   }
 
   public void forgotPassword()
@@ -28,5 +43,9 @@ public class LoginPresenter extends AbstractPresenter<LoginPresenter.Display>
   public void register()
   {
     fire(new RegisterEvent());
+  }
+
+  public interface Display extends Attach
+  {
   }
 }

@@ -1,18 +1,15 @@
 package h.khall.client.model;
 
 import h.khall.client.ui.event.LogoutEvent;
-import h.khall.client.ui.event.UserInfoEvent;
-import h.style.g.client.model.AbstractPresenter;
-import h.style.g.client.ui.common.Global;
+import h.style.g.client.ui.event.RefreshEvent;
 
 public class SideNavPresenter extends AbstractPresenter<SideNavPresenter.Display>
-implements UserInfoEvent.Handler
+    implements RefreshEvent.Handler
 {
   public SideNavPresenter(Display inDisplay)
   {
     initDisplay(inDisplay);
-    addHandler(UserInfoEvent.TYPE, this);
-    dispatch(new UserInfoEvent(Global.info().getUserName(), Global.info().getUserTitle()));
+    addHandler(RefreshEvent.TYPE, this);
   }
 
   public void logout()
@@ -21,10 +18,10 @@ implements UserInfoEvent.Handler
   }
 
   @Override
-  public void dispatch(UserInfoEvent inEvent)
+  public void dispatch(RefreshEvent inEvent)
   {
-    mDisplay.setUserName(inEvent.getName());
-    mDisplay.setUserTitle(inEvent.getTitle());
+    mDisplay.setUserName(mProfile.getUserName());
+    mDisplay.setUserTitle(mProfile.getUserTitle());
   }
 
   public interface Display extends h.style.g.client.model.Display

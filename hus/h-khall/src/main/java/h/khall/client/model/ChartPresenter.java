@@ -1,32 +1,40 @@
 package h.khall.client.model;
 
-import h.khall.client.ui.event.PageEvent;
-import h.khall.client.ui.event.RegisterEvent;
-import h.style.g.client.model.AbstractPresenter;
+import h.style.g.client.model.Attach;
+import h.style.g.client.ui.event.ChartEvent;
+import h.style.g.client.ui.event.RefreshEvent;
+import h.style.g.shared.chart.Chart;
 
 public class ChartPresenter extends AbstractPresenter<ChartPresenter.Display>
+implements RefreshEvent.Handler, ChartEvent.Handler
 {
   public ChartPresenter(Display inDisplay)
   {
     initDisplay(inDisplay);
   }
 
-  public void login(String inUserName, String inPassword, String inCongNum, String inEncrypt)
+  public ChartPresenter events()
   {
-    fire(new PageEvent());
+    addHandler(RefreshEvent.TYPE, this);
+    addHandler(ChartEvent.TYPE, this);
+    return this;
   }
 
-  public void forgotPassword()
+  @Override
+  public void dispatch(RefreshEvent inEvent)
   {
-    mDisplay.notify("forgot password");
+    mDisplay.load(mProfile.getClient().getChart());
   }
 
-  public void register()
+  @Override
+  public void dispatch(ChartEvent inEvent)
   {
-    fire(new RegisterEvent());
+    // TODO not used
+    mDisplay.load(inEvent.getChart());
   }
 
   public interface Display extends Attach
   {
+    void load(Chart inChart);
   }
 }

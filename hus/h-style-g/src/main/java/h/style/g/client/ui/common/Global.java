@@ -28,7 +28,7 @@ public class Global implements HasFire
 
   private RpcServiceAsync mRpcService;
 
-  private Debug mDebug;
+  private Debug mDebug = new DebugNotify(); // TODO remove
 
   private SessionInfo mInfo;
 
@@ -263,7 +263,7 @@ public class Global implements HasFire
     String ret = null;
     if (info() != null)
     {
-      ret = info().getUserId() + "-" + info().getUserName();
+      ret = info().getUserInfo();
     }
     return ret;
   }

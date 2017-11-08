@@ -13,6 +13,8 @@ import com.google.gwt.user.client.ui.IsWidget;
 
 public interface Display extends IsWidget, HasVisibility
 {
+  String encrypt(String inText);
+
   void notify(String inMessage);
 
   boolean confirm(String inMessage);

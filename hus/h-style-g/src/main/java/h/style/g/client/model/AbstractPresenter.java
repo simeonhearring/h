@@ -4,7 +4,7 @@ import h.style.g.shared.rpc.common.RpcCommand;
 import h.style.g.shared.rpc.common.RpcResponse;
 
 public abstract class AbstractPresenter<D extends Display>
-extends AbstractDataPresenter<D, RpcResponse>
+    extends AbstractDataPresenter<D, RpcResponse>
 {
   @Override
   public void go(D inDisplay)

@@ -2,6 +2,7 @@ package h.khall.client.model;
 
 import h.khall.client.ui.event.LoginEvent;
 import h.style.g.client.model.AbstractPresenter;
+import h.style.g.client.model.Attach;
 
 public class RegisterPresenter extends AbstractPresenter<RegisterPresenter.Display>
 {

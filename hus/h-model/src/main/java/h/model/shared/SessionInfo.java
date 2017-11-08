@@ -13,11 +13,29 @@ public abstract class SessionInfo implements Serializable
   private String mHostName;
   private String mRemoteHost;
 
-  private String mUserName;
-  private String mUserId;
-  private String mUserTitle;
-
   private Map<String, String> mProperties;
+
+  private Profile mProfile;
+
+  public String getUserInfo()
+  {
+    String ret = null;
+    if (mProfile != null)
+    {
+      ret = mProfile.getUserId() + "-" + mProfile.getUserName();
+    }
+    return ret;
+  }
+
+  public Profile getProfile()
+  {
+    return mProfile;
+  }
+
+  public void setProfile(Profile inProfile)
+  {
+    mProfile = inProfile;
+  }
 
   public String getEnvironment()
   {
@@ -103,36 +121,6 @@ public abstract class SessionInfo implements Serializable
       ret |= value != null && value.equals(inValue);
     }
     return ret;
-  }
-
-  public String getUserName()
-  {
-    return mUserName;
-  }
-
-  public void setUserName(String inUserName)
-  {
-    mUserName = inUserName;
-  }
-
-  public void setUserId(String inUserId)
-  {
-    mUserId = inUserId;
-  }
-
-  public String getUserId()
-  {
-    return mUserId;
-  }
-
-  public String getUserTitle()
-  {
-    return mUserTitle;
-  }
-
-  public void setUserTitle(String inUserTitle)
-  {
-    mUserTitle = inUserTitle;
   }
 
   public List<Notice> getNotices()

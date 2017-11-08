@@ -9,7 +9,7 @@ import h.style.g.shared.rpc.common.NotifyResponse;
 
 public abstract class RpcCallback<T> implements AsyncCallback<T>
 {
-  public abstract void onRpcSuccess(T inResult);
+  public abstract void onRpcSuccess(T inCommand);
 
   public void onNotify(NotifyResponse inResponse)
   {
