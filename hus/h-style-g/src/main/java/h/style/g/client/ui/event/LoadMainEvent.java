@@ -4,7 +4,7 @@ public class LoadMainEvent extends Event<LoadMainEvent.Handler>
 {
   public static final TypeH<Handler> TYPE = new TypeH<>(LoadMainEvent.class);
 
-  public interface Handler extends EventHandler
+  public interface Handler
   {
     void dispatch(LoadMainEvent inEvent);
   }

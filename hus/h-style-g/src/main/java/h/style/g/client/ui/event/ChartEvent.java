@@ -4,7 +4,7 @@ import h.style.g.shared.chart.Chart;
 
 public class ChartEvent extends Event<ChartEvent.Handler>
 {
-  public interface Handler extends EventHandler
+  public interface Handler
   {
     void dispatch(ChartEvent inEvent);
   }

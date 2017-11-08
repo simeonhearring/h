@@ -2,7 +2,7 @@ package h.style.g.client.ui.event;
 
 public class AlertEvent extends Event<AlertEvent.Handler>
 {
-  public interface Handler extends EventHandler
+  public interface Handler
   {
     void dispatch(AlertEvent inEvent);
   }

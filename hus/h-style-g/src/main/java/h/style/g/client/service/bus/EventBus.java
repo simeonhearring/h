@@ -8,7 +8,5 @@ public interface EventBus
 {
   <H> HandlerRegistration addHandler(Type<H> inType, H inHandler);
 
-  void fireEvent(Event<?> inEvent);
-
   void fire(Event<?> inEvent);
 }

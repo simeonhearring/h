@@ -1,8 +1,6 @@
 package h.style.g.client.ui.event;
 
-import com.google.gwt.event.shared.GwtEvent;
-
-public abstract class Event<H extends EventHandler> extends GwtEvent<H>
+public abstract class Event<H> extends com.google.web.bindery.event.shared.Event<H>
 {
   @Override
   public String toDebugString()

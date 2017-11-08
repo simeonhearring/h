@@ -1,8 +1,8 @@
 package h.style.g.client.ui.event;
 
-import com.google.gwt.event.shared.GwtEvent;
+import com.google.web.bindery.event.shared.Event.Type;
 
-public class TypeH<H> extends GwtEvent.Type<H>
+public class TypeH<H> extends Type<H>
 {
   private String mDebugName;
 

@@ -4,7 +4,7 @@ public class RefreshEvent extends Event<RefreshEvent.Handler>
 {
   public static final TypeH<Handler> TYPE = new TypeH<>(RefreshEvent.class);
 
-  public interface Handler extends EventHandler
+  public interface Handler
   {
     void dispatch(RefreshEvent inEvent);
   }

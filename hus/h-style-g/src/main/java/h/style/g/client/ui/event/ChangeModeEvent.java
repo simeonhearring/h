@@ -5,7 +5,7 @@ package h.style.g.client.ui.event;
  */
 public class ChangeModeEvent extends Event<ChangeModeEvent.Handler>
 {
-  public interface Handler extends EventHandler
+  public interface Handler
   {
     void dispatch(ChangeModeEvent inEvent);
   }
