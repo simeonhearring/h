@@ -1,0 +1,42 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder" xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:b="urn:import:org.gwtbootstrap3.client.ui" xmlns:b.gwt="urn:import:org.gwtbootstrap3.client.ui.gwt"
+	xmlns:b.html="urn:import:org.gwtbootstrap3.client.ui.html" xmlns:h="urn:import:h.style.g.client.ui" xmlns:k="urn:import:h.khall.client.ui">
+	<ui:with field="msg" type="h.khall.client.resource.Messages" />
+	<ui:with field="res" type="h.khall.client.resource.Resource" />
+	<ui:style>
+	
+	</ui:style>
+	<k:CloseableView heading="New data for the report">
+		<b.gwt:HTMLPanel>
+			<div class="ibox-content ibox-heading">
+				<h3>
+					Stock price up
+					<div class="stat-percent text-navy">
+						34%
+						<i class="fa fa-level-up"></i>
+					</div>
+				</h3>
+				<small>
+					<i class="fa fa-stack-exchange"></i>
+					New economic data from the previous quarter.
+				</small>
+			</div>
+			<div class="ibox-content">
+				<div>
+					<div class="pull-right text-right">
+						<span class="bar_dashboard">5,3,9,6,5,9,7,3,5,2,4,7,3,2,7,9,6,4,5,7,3,2,1,0,9,5,6,8,3,2,1</span>
+						<br />
+						<small class="font-bold">$ 20 054.43</small>
+					</div>
+					<h4>
+						NYS report new data!
+						<br />
+						<small class="m-r">
+							<a href="graph_flot.html"> Check the stock price! </a>
+						</small>
+					</h4>
+				</div>
+			</div>
+		</b.gwt:HTMLPanel>
+	</k:CloseableView>
+</ui:UiBinder>

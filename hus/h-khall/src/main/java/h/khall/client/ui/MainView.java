@@ -14,7 +14,7 @@ public class MainView extends AbstractView implements MainPresenter.Display
 {
   public MainView()
   {
-    new MainPresenter(this).events();
+    new MainPresenter(this).handlers();
   }
 
   @Override

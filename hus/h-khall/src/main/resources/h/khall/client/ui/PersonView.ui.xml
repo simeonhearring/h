@@ -187,8 +187,6 @@
 				</div>
 
 			</div>
-			<div class="ibox-content">
-			</div>
 		</div>
 	</b.gwt:HTMLPanel>
 </ui:UiBinder>

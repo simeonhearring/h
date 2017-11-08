@@ -8,10 +8,8 @@
 	</ui:style>
 	<b.gwt:HTMLPanel ui:field="mTop" addStyleNames="ibox float-e-margins">
 		<div class="ibox-title">
-
 			<b:Heading ui:field="mHeading" size="H5" />
 			<b.html:Span ui:field="mSubHeading" addStyleNames="label label-primary" />
-
 			<div class="ibox-tools">
 				<b:Anchor ui:field="mCollaspe" addStyleNames="collapse-link" icon="CHEVRON_UP" />
 				<b:Anchor ui:field="mWrench" addStyleNames="dropdown-toggle" icon="WRENCH" dataToggle="DROPDOWN" visible="false" />

@@ -5,7 +5,7 @@ import h.style.g.client.ui.event.RefreshEvent;
 import h.style.g.shared.chart.Chart;
 
 public class ChartPresenter extends AbstractPresenter<ChartPresenter.Display>
-implements RefreshEvent.Handler
+  implements RefreshEvent.Handler
 {
   private String mDataType;
 
