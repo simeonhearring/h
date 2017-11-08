@@ -4,15 +4,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.google.gwt.event.shared.GwtEvent.Type;
-import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.web.bindery.event.shared.Event.Type;
+import com.google.web.bindery.event.shared.HandlerRegistration;
 
 import h.style.g.client.ui.common.Global;
 import h.style.g.client.ui.common.HasFire;
 import h.style.g.client.ui.common.RpcCallback;
 import h.style.g.client.ui.event.Event;
-import h.style.g.client.ui.event.EventHandler;
 import h.style.g.shared.rpc.common.RpcCommand;
 import h.style.g.shared.rpc.common.RpcResponse;
 
@@ -67,7 +66,7 @@ extends RpcCallback<T> implements Presenter<D>, HasFire
   public abstract RpcCommand getDataCommand();
 
   @Override
-  public <H extends EventHandler> HandlerRegistration addHandler(Type<H> inType, H inHandler)
+  public <H> HandlerRegistration addHandler(Type<H> inType, H inHandler)
   {
     return mFire.addHandler(inType, inHandler);
   }

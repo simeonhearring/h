@@ -5,13 +5,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.google.gwt.event.shared.GwtEvent.Type;
-import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.web.bindery.event.shared.Event.Type;
+import com.google.web.bindery.event.shared.HandlerRegistration;
 
 import h.style.g.client.ui.common.HasFire;
 import h.style.g.client.ui.event.Event;
-import h.style.g.client.ui.event.EventHandler;
 import h.style.g.shared.rpc.common.RpcCommand;
 import h.style.g.shared.rpc.common.RpcResponse;
 
@@ -21,10 +20,10 @@ public class MockHasFire implements HasFire
   private RpcCommand mCommand;
   private AsyncCallback<?> mCallback;
   private List<Type<?>> mTypes = new ArrayList<>();
-  private Map<Type<?>, EventHandler> mHandlers = new HashMap<>();
+  private Map<Type<?>, Object> mHandlers = new HashMap<>();
 
   @Override
-  public <H extends EventHandler> HandlerRegistration addHandler(Type<H> inType, H inHandler)
+  public <H> HandlerRegistration addHandler(Type<H> inType, H inHandler)
   {
     mTypes.add(inType);
     mHandlers.put(inType, inHandler);
@@ -36,7 +35,7 @@ public class MockHasFire implements HasFire
     return mTypes;
   }
 
-  public Map<Type<?>, EventHandler> getHandlers()
+  public Map<Type<?>, Object> getHandlers()
   {
     return mHandlers;
   }

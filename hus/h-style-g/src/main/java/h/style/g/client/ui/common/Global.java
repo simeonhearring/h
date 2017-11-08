@@ -2,9 +2,9 @@ package h.style.g.client.ui.common;
 
 import java.util.List;
 
-import com.google.gwt.event.shared.GwtEvent.Type;
-import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.web.bindery.event.shared.Event.Type;
+import com.google.web.bindery.event.shared.HandlerRegistration;
 
 import h.model.shared.Debug;
 import h.model.shared.Notice;
@@ -13,7 +13,6 @@ import h.model.shared.SessionInfo;
 import h.style.g.client.service.bus.EventBus;
 import h.style.g.client.service.rpc.RpcServiceAsync;
 import h.style.g.client.ui.event.Event;
-import h.style.g.client.ui.event.EventHandler;
 import h.style.g.client.ui.util.JsniUtil;
 import h.style.g.shared.command.LoggerCommand;
 import h.style.g.shared.command.LoggerCommand.Level;
@@ -28,7 +27,12 @@ public class Global implements HasFire
 
   private RpcServiceAsync mRpcService;
 
-  private Debug mDebug = new DebugNotify(); // TODO remove
+  private Debug mDebug = debugger();
+
+  private Debugger debugger()
+  {
+    return new Debugger(Debugger.Type.CONSOLE);
+  }
 
   private SessionInfo mInfo;
 
@@ -252,7 +256,7 @@ public class Global implements HasFire
   }
 
   @Override
-  public <H extends EventHandler> HandlerRegistration addHandler(Type<H> inType, H inHandler)
+  public <H> HandlerRegistration addHandler(Type<H> inType, H inHandler)
   {
     debugAdd(inType);
     return INSTANCE.mEventBus.addHandler(inType, inHandler);
