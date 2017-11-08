@@ -6,29 +6,26 @@
 	<ui:style>
 	
 	</ui:style>
-	<b.gwt:HTMLPanel ui:field="mTop">
+	<b.gwt:HTMLPanel addStyleNames="wrapper wrapper-content animated fadeInRight">
 
-		<!-- SIDE -->
+		<k:StatsView />
 
-		<k:SideNavView />
+		<k:NewsView />
 
-		<!-- MAIN -->
+		<k:CloseableView heading="New Publisher">
+			<k:PersonView />
+		</k:CloseableView>
 
-		<div id="page-wrapper" class="gray-bg sidebar-content">
+		<div class="row">
 
-			<!-- TOP -->
+			<div class="col-lg-6">
+				<k:CommentView />
+				<k:CommentBView />
+			</div>
 
-			<k:TopNavView />
-
-			<!-- BODY -->
-
-			<k:SideBarView />
-
-			<b.gwt:HTMLPanel ui:field="mBody" />
-
-			<!-- FOOTER -->
-
-			<k:FooterView />
+			<div class="col-lg-6">
+				<k:TimelineView />
+			</div>
 		</div>
 
 	</b.gwt:HTMLPanel>

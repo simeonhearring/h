@@ -14,7 +14,9 @@ import com.google.gwt.user.client.ui.Widget;
 import h.khall.client.model.SideNavPresenter;
 import h.khall.client.ui.event.LogoutEvent;
 import h.khall.client.ui.event.MidweekEvent;
+import h.khall.client.ui.event.ResendProfileEvent;
 import h.style.g.client.ui.AbstractView;
+import h.style.g.client.ui.event.RefreshEvent;
 
 public class SideNavView extends AbstractView implements SideNavPresenter.Display
 {
@@ -55,6 +57,7 @@ public class SideNavView extends AbstractView implements SideNavPresenter.Displa
     else if (mParticipants.equals(source))
     {
       fire(new MidweekEvent());
+      fire(new ResendProfileEvent(), new RefreshEvent());
     }
   }
 

@@ -1,13 +1,10 @@
 package h.khall.client.ui;
 
-import org.gwtbootstrap3.client.ui.Anchor;
 import org.gwtbootstrap3.client.ui.gwt.HTMLPanel;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.UIObject;
 import com.google.gwt.user.client.ui.Widget;
@@ -24,10 +21,7 @@ public class PageView extends AbstractView implements PagePresenter.Display
   }
 
   @UiField
-  HTMLPanel mTop;
-
-  @UiField
-  Anchor mBars, mLogout;
+  HTMLPanel mTop, mBody;
 
   PagePresenter mPresenter;
 
@@ -35,24 +29,14 @@ public class PageView extends AbstractView implements PagePresenter.Display
   {
     initWidget(BINDER.createAndBindUi(this));
     mTop.getElement().setAttribute("id", "wrapper");
-    mPresenter = new PagePresenter(this);
+    mPresenter = new PagePresenter(this).handlers();
   }
 
-  @UiHandler(
+  @Override
+  public void midweek()
   {
-      "mBars", "mLogout"
-  })
-  public void onClick(ClickEvent inEvent)
-  {
-    Object source = inEvent.getSource();
-    if (mBars.equals(source))
-    {
-      toggleNavBar();
-    }
-    else if (mLogout.equals(source))
-    {
-      mPresenter.logout();
-    }
+    mBody.clear();
+    mBody.add(new MidweekView());
   }
 
   @Override

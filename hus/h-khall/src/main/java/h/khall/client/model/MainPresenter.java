@@ -4,14 +4,15 @@ import com.google.gwt.user.client.ui.HasWidgets;
 
 import h.khall.client.ui.event.LoginEvent;
 import h.khall.client.ui.event.LogoutEvent;
-import h.khall.client.ui.event.MidweekEvent;
 import h.khall.client.ui.event.PageEvent;
+import h.khall.client.ui.event.ProfileEvent;
 import h.khall.client.ui.event.RegisterEvent;
+import h.khall.client.ui.event.ResendProfileEvent;
 import h.style.g.client.model.Attach;
 
 public class MainPresenter extends AbstractPresenter<MainPresenter.Display>
 implements LoginEvent.Handler, RegisterEvent.Handler, PageEvent.Handler, LogoutEvent.Handler,
-    MidweekEvent.Handler
+  ResendProfileEvent.Handler
 {
   public MainPresenter(MainPresenter.Display inDisplay)
   {
@@ -25,7 +26,7 @@ implements LoginEvent.Handler, RegisterEvent.Handler, PageEvent.Handler, LogoutE
     addHandler(RegisterEvent.TYPE, this);
     addHandler(PageEvent.TYPE, this);
     addHandler(LogoutEvent.TYPE, this);
-    addHandler(MidweekEvent.TYPE, this);
+    addHandler(ResendProfileEvent.TYPE, this);
   }
 
   @Override
@@ -53,9 +54,9 @@ implements LoginEvent.Handler, RegisterEvent.Handler, PageEvent.Handler, LogoutE
   }
 
   @Override
-  public void dispatch(MidweekEvent inEvent)
+  public void dispatch(ResendProfileEvent inEvent)
   {
-    attach(mDisplay.pagefull());
+    fire(new ProfileEvent(mProfile));
   }
 
   private void attach(Attach inAttach)

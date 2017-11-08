@@ -4,7 +4,6 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.CanvasElement;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Widget;
 
 import h.khall.client.model.ChartPresenter;
@@ -31,13 +30,6 @@ public class ChartView extends AbstractView implements ChartPresenter.Display
     initWidget(BINDER.createAndBindUi(this));
     setElementId(mCanvas);
     mPresenter.initDisplay(this);
-  }
-
-  @Override
-  public void attach(HasWidgets inPanel)
-  {
-    inPanel.clear();
-    inPanel.add(this);
   }
 
   @Override

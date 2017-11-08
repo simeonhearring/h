@@ -222,11 +222,11 @@ public class Global implements HasFire
     }
   }
 
-  public static void debugAdd(Object inObject)
+  public static void debugAdd(Object inObject, Object inHandler)
   {
     if (isDebugOn())
     {
-      debug("add|" + inObject.toString());
+      debug("add|" + inObject.toString() + "|" + inHandler.getClass().getSimpleName());
     }
   }
 
@@ -258,7 +258,7 @@ public class Global implements HasFire
   @Override
   public <H> HandlerRegistration addHandler(Type<H> inType, H inHandler)
   {
-    debugAdd(inType);
+    debugAdd(inType, inHandler);
     return INSTANCE.mEventBus.addHandler(inType, inHandler);
   }
 
