@@ -27,11 +27,10 @@ public class ChartView extends AbstractView implements ChartPresenter.Display
 
   public ChartView()
   {
-    mPresenter = new ChartPresenter().events();
+    mPresenter = new ChartPresenter().handlers();
     initWidget(BINDER.createAndBindUi(this));
     setElementId(mCanvas);
     mPresenter.initDisplay(this);
-
   }
 
   @Override
@@ -39,6 +38,14 @@ public class ChartView extends AbstractView implements ChartPresenter.Display
   {
     inPanel.clear();
     inPanel.add(this);
+  }
+
+  @Override
+  protected void onUnload()
+  {
+    mPresenter.removeHandlers();
+    mPresenter.initDisplay(null);
+    mPresenter = null;
   }
 
   @Override

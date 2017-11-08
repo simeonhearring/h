@@ -54,7 +54,7 @@ public class LoginCommandBean extends AbstractCommandBean<LoginCommand>
 
   private static void dataset(Chart.Dataset inSet, double[] inData)
   {
-    String c1 = "hsla(" + RandomUtil.randomInt(360) + ",70%,10%,";
+    String c1 = "hsla(" + RandomUtil.randomInt(360) + ",90%,90%,";
     inSet.setBackgroundColor(c1 + "0." + RandomUtil.randomInt(9) + ")");
     inSet.setBorderColor(c1 + "0." + RandomUtil.randomInt(9) + ")");
     inSet.setPointBackgroundColor(c1 + "0." + RandomUtil.randomInt(9) + ")");

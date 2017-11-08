@@ -1,6 +1,8 @@
 package h.style.g.client.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import com.google.gwt.event.shared.GwtEvent.Type;
 import com.google.gwt.event.shared.HandlerRegistration;
@@ -21,9 +23,12 @@ extends RpcCallback<T> implements Presenter<D>, HasFire
 
   private HasFire mFire;
 
+  private List<HandlerRegistration> mRegistrations;
+
   public AbstractDataPresenter()
   {
     setFire(Global.getInstance());
+    mRegistrations = new ArrayList<>();
   }
 
   public void setFire(HasFire inFire)
@@ -90,5 +95,19 @@ extends RpcCallback<T> implements Presenter<D>, HasFire
   public <C extends RpcCommand> void fire(C inCommand, Event<?>... inEvents)
   {
     mFire.fire(inCommand, inEvents);
+  }
+
+  public void register(HandlerRegistration inHr)
+  {
+    mRegistrations.add(inHr);
+  }
+
+  public void removeHandlers()
+  {
+    for (HandlerRegistration value : mRegistrations)
+    {
+      value.removeHandler();
+    }
+    mRegistrations.clear();
   }
 }

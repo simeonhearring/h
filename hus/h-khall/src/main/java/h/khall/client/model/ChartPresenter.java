@@ -5,13 +5,13 @@ import h.style.g.client.ui.event.RefreshEvent;
 import h.style.g.shared.chart.Chart;
 
 public class ChartPresenter extends AbstractPresenter<ChartPresenter.Display>
-    implements RefreshEvent.Handler
+implements RefreshEvent.Handler
 {
   private String mDataType;
 
-  public ChartPresenter events()
+  public ChartPresenter handlers()
   {
-    addHandler(RefreshEvent.TYPE, this);
+    register(addHandler(RefreshEvent.TYPE, this));
     return this;
   }
 
