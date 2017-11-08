@@ -6,7 +6,7 @@ import h.khall.shared.model.Profile;
 import h.style.g.client.model.Display;
 
 public class AbstractPresenter<D extends Display>
-extends h.style.g.client.model.AbstractPresenter<D> implements ProfileEvent.Handler
+    extends h.style.g.client.model.AbstractPresenter<D> implements ProfileEvent.Handler
 {
   protected Profile mProfile;
 
