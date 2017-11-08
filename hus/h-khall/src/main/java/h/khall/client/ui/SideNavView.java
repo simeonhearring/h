@@ -44,9 +44,9 @@ public class SideNavView extends AbstractView implements SideNavPresenter.Displa
   }
 
   @UiHandler(
-      {
-        "mLogout", "mParticipants", "mCurriculum", "mSchedule", "mEnrollment"
-      })
+  {
+      "mLogout", "mParticipants", "mCurriculum", "mSchedule", "mEnrollment"
+  })
   public void onClick(ClickEvent inEvent)
   {
     Object source = inEvent.getSource();

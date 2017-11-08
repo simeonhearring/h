@@ -22,6 +22,7 @@ public class LogoutEvent extends Event<LogoutEvent.Handler>
   @Override
   protected void dispatch(Handler inHandler)
   {
+    debug(inHandler);
     inHandler.dispatch(this);
   }
 }

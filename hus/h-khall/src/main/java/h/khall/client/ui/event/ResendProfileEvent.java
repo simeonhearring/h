@@ -22,6 +22,7 @@ public class ResendProfileEvent extends Event<ResendProfileEvent.Handler>
   @Override
   protected void dispatch(Handler inHandler)
   {
+    debug(inHandler);
     inHandler.dispatch(this);
   }
 }

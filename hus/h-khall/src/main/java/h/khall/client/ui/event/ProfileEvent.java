@@ -30,6 +30,7 @@ public class ProfileEvent extends Event<ProfileEvent.Handler>
   @Override
   protected void dispatch(Handler inHandler)
   {
+    debug(inHandler);
     inHandler.dispatch(this);
   }
 

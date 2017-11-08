@@ -190,6 +190,14 @@ public class Global implements HasFire
     }
   }
 
+  public static void debugDispatch(String inValue)
+  {
+    if (isDebugOn())
+    {
+      debug("dispatch|" + inValue);
+    }
+  }
+
   public static void debugBack(Class<?> inClass)
   {
     if (isDebugOn())

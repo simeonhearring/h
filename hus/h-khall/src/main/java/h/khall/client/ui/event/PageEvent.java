@@ -22,6 +22,7 @@ public class PageEvent extends Event<PageEvent.Handler>
   @Override
   protected void dispatch(Handler inHandler)
   {
+    debug(inHandler);
     inHandler.dispatch(this);
   }
 }

@@ -22,12 +22,7 @@ public class RegisterEvent extends Event<RegisterEvent.Handler>
   @Override
   protected void dispatch(Handler inHandler)
   {
+    debug(inHandler);
     inHandler.dispatch(this);
-  }
-
-  @Override
-  public String toDebugString()
-  {
-    return super.toDebugString() + " register";
   }
 }

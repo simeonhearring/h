@@ -22,6 +22,7 @@ public class LoginEvent extends Event<LoginEvent.Handler>
   @Override
   protected void dispatch(Handler inHandler)
   {
+    debug(inHandler);
     inHandler.dispatch(this);
   }
 }

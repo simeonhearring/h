@@ -12,7 +12,7 @@ public class AbstractPresenter<D extends Display>
 
   public AbstractPresenter()
   {
-    addHandler(ProfileEvent.TYPE, this);
+    register(addHandler(ProfileEvent.TYPE, this));
   }
 
   @Override

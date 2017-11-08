@@ -6,4 +6,10 @@ public class AbstractView<P extends AbstractPresenter<?>>
   extends h.style.g.client.ui.AbstractView
 {
   protected P mPresenter;
+
+  @Override
+  protected void onUnload()
+  {
+    mPresenter.removeHandlers();
+  }
 }
