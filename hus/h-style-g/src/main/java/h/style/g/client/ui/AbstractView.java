@@ -695,4 +695,14 @@ public abstract class AbstractView extends Composite
       });
   }-*/;
 
+  public static native void metis()
+  /*-{
+        $wnd.jQuery('#side-menu').metisMenu().show();
+  }-*/;
+
+  public static native void toggleNavBar()
+  /*-{
+        $wnd.jQuery('body').toggleClass('mini-navbar');
+        $wnd.SmoothlyMenu();
+  }-*/;
 }

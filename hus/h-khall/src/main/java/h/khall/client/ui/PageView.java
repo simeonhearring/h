@@ -5,12 +5,10 @@ import org.gwtbootstrap3.client.ui.gwt.HTMLPanel;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.safehtml.shared.SafeHtmlUtils;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.HasWidgets;
-import com.google.gwt.user.client.ui.InlineHTML;
 import com.google.gwt.user.client.ui.UIObject;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -29,10 +27,7 @@ public class PageView extends AbstractView implements PagePresenter.Display
   HTMLPanel mTop;
 
   @UiField
-  Anchor mBars, mLogoutA, mLogoutB;
-
-  @UiField
-  InlineHTML mUserName, mUserTitle;
+  Anchor mBars, mLogoutB;
 
   PagePresenter mPresenter;
 
@@ -45,7 +40,7 @@ public class PageView extends AbstractView implements PagePresenter.Display
 
   @UiHandler(
   {
-      "mBars", "mLogoutA", "mLogoutB"
+      "mBars", "mLogoutB"
   })
   public void onClick(ClickEvent inEvent)
   {
@@ -54,22 +49,10 @@ public class PageView extends AbstractView implements PagePresenter.Display
     {
       toggleNavBar();
     }
-    else if (mLogoutA.equals(source) || mLogoutB.equals(source))
+    else if (mLogoutB.equals(source))
     {
       mPresenter.logout();
     }
-  }
-
-  @Override
-  public void setUserName(String inUserName)
-  {
-    mUserName.setHTML(SafeHtmlUtils.fromString(inUserName));
-  }
-
-  @Override
-  public void setUserTitle(String inUserTitle)
-  {
-    mUserTitle.setHTML(SafeHtmlUtils.fromString(inUserTitle));
   }
 
   @Override
@@ -78,8 +61,6 @@ public class PageView extends AbstractView implements PagePresenter.Display
     inPanel.clear();
     inPanel.add(this);
     ((UIObject) inPanel).removeStyleName("gray-bg");
-    // ((UIObject) inPanel).addStyleName("fixed-sidebar no-skin-config
-    // full-height-layout");
   }
 
   @Override
@@ -87,15 +68,4 @@ public class PageView extends AbstractView implements PagePresenter.Display
   {
     metis();
   }
-
-  private static native void metis()
-  /*-{
-		$wnd.jQuery('#side-menu').metisMenu().show();
-  }-*/;
-
-  private static native void toggleNavBar()
-  /*-{
-		$wnd.jQuery('body').toggleClass('mini-navbar');
-		$wnd.SmoothlyMenu();
-  }-*/;
 }
