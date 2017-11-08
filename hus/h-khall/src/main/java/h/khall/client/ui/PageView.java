@@ -27,7 +27,7 @@ public class PageView extends AbstractView implements PagePresenter.Display
   HTMLPanel mTop;
 
   @UiField
-  Anchor mBars, mLogoutB;
+  Anchor mBars, mLogout;
 
   PagePresenter mPresenter;
 
@@ -40,7 +40,7 @@ public class PageView extends AbstractView implements PagePresenter.Display
 
   @UiHandler(
   {
-      "mBars", "mLogoutB"
+      "mBars", "mLogout"
   })
   public void onClick(ClickEvent inEvent)
   {
@@ -49,7 +49,7 @@ public class PageView extends AbstractView implements PagePresenter.Display
     {
       toggleNavBar();
     }
-    else if (mLogoutB.equals(source))
+    else if (mLogout.equals(source))
     {
       mPresenter.logout();
     }

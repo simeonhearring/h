@@ -38,7 +38,7 @@ public class SideNavView extends AbstractView implements SideNavPresenter.Displa
 
   @UiHandler(
       {
-        "mLogoutA"
+      "mLogout"
       })
   public void onClick(ClickEvent inEvent)
   {
