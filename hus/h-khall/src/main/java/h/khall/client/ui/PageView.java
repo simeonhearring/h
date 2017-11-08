@@ -33,11 +33,30 @@ public class PageView extends AbstractView implements PagePresenter.Display
   }
 
   @Override
+  public void sample()
+  {
+    clear();
+    mBody.add(new SampleView());
+  }
+
+  @Override
   public void midweek()
   {
-    mBody.clear();
+    clear();
     mBody.add(new MidweekView());
   }
+
+  private void clear()
+  {
+    int ct = mBody.getWidgetCount();
+    for (int i = 0; i < ct; i++)
+    {
+      Widget widget = mBody.getWidget(i);
+      widget.removeFromParent();
+    }
+    // mBody.clear();
+  }
+
 
   @Override
   public void attach(HasWidgets inPanel)
