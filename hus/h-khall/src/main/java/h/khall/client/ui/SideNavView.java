@@ -12,6 +12,7 @@ import com.google.gwt.user.client.ui.InlineHTML;
 import com.google.gwt.user.client.ui.Widget;
 
 import h.khall.client.model.SideNavPresenter;
+import h.khall.client.ui.event.LogoutEvent;
 import h.style.g.client.ui.AbstractView;
 
 public class SideNavView extends AbstractView implements SideNavPresenter.Display
@@ -28,6 +29,9 @@ public class SideNavView extends AbstractView implements SideNavPresenter.Displa
   @UiField
   InlineHTML mUserName, mUserTitle;
 
+  @UiField
+  Anchor mParticipants, mCurriculum, mSchedule, mEnrollment;
+
   SideNavPresenter mPresenter;
 
   public SideNavView()
@@ -38,14 +42,18 @@ public class SideNavView extends AbstractView implements SideNavPresenter.Displa
 
   @UiHandler(
   {
-      "mLogout"
+      "mLogout", "mParticipants", "mCurriculum", "mSchedule", "mEnrollment"
   })
   public void onClick(ClickEvent inEvent)
   {
     Object source = inEvent.getSource();
     if (mLogout.equals(source))
     {
-      mPresenter.logout();
+      fire(new LogoutEvent());
+    }
+    else if (mParticipants.equals(source))
+    {
+      fire(new LogoutEvent());
     }
   }
 

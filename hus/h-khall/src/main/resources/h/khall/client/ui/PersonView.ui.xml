@@ -76,7 +76,7 @@
 										</span>
 										<input type="text" class="form-control" value="03/04/2014" />
 									</b.gwt:HTMLPanel>
-									<div class="form-group" id="data_1">
+<!-- 									<div class="form-group" id="data_1">
 										<div class="input-group date">
 											<span class="input-group-addon">
 												<i class="fa fa-calendar"></i>
@@ -84,7 +84,7 @@
 											<input type="text" class="form-control" value="03/04/2014" />
 										</div>
 									</div>
-								</div>
+ -->								</div>
 								<div class="form-group">
 									<label>Home</label>
 									<h:InputView ui:field="mHome" placeholder="Home phone" class="form-control" tabindex="9" />

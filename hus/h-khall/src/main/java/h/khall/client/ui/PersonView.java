@@ -236,8 +236,8 @@ public class PersonView extends AbstractView implements PersonPresenter.Display
   {
     icheck();
     steps();
-    datepicker();
-    datepicker(mDate.getId());
+    // datepicker();
+    // datepicker(mDate.getId());
   }
 
   @Override

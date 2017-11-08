@@ -61,6 +61,7 @@ import com.google.gwt.user.client.ui.UIObject;
 import h.style.g.client.model.CallBack;
 import h.style.g.client.model.ModalDisplay;
 import h.style.g.client.ui.common.Global;
+import h.style.g.client.ui.event.Event;
 
 public abstract class AbstractView extends Composite
 {
@@ -601,6 +602,11 @@ public abstract class AbstractView extends Composite
   /*-{
   	console.log(inMessage);
   }-*/;
+
+  public void fire(Event<?>... inEvent)
+  {
+    Global.fireS(inEvent);
+  }
 
   public void fire(double inDelaySeconds, final CallBack<?> inCallBack)
   {
