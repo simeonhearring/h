@@ -27,3 +27,9 @@
 	overflow-x: hidden !important;
 	max-height: 800px;
 }
+
+.flip .card {
+	min-height: 25px;
+	height: 25px;
+	border: 0px;
+}

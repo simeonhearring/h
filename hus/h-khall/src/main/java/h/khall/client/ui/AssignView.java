@@ -1,6 +1,5 @@
 package h.khall.client.ui;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.gwtbootstrap3.extras.tagsinput.client.callback.ItemTextCallback;
@@ -13,47 +12,91 @@ import org.gwtbootstrap3.extras.tagsinput.client.event.ItemRemovedHandler;
 import org.gwtbootstrap3.extras.tagsinput.client.ui.base.MultiValueTagsInput;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.core.client.Scheduler;
-import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.dom.client.Element;
+import com.google.gwt.dom.client.LabelElement;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Widget;
 
+import h.khall.client.model.AssignmentPresenter;
+import h.khall.client.model.AssignmentPresenter.AssignDisplay;
 import h.model.shared.Part;
-import h.model.shared.Person;
-import h.model.shared.StudyPoint;
 import h.model.shared.Tag;
+import h.style.g.client.model.CallBack;
 
-public class PersonMultiView extends h.style.g.client.ui.AbstractView
+public class AssignView extends h.style.g.client.ui.AbstractView
   implements ItemTextCallback<Tag>, ItemValueCallback<Tag>, ItemAddedHandler<Tag>,
-  ItemRemovedHandler<Tag>, OnTagExistsCallback<Tag>, ScheduledCommand
+  ItemRemovedHandler<Tag>, OnTagExistsCallback<Tag>, AssignmentPresenter.AssignDisplay
 {
   private static final Binder BINDER = GWT.create(Binder.class);
 
-  interface Binder extends UiBinder<Widget, PersonMultiView>
+  interface Binder extends UiBinder<Widget, AssignView>
   {
   }
 
   @UiField
+  LabelElement mLabel;
+
+  @UiField
   MultiValueTagsInput<Tag> mTag;
 
+  private Part mPart;
   private AssignSet mDataset;
+  private CallBack<AssignDisplay> mAddedCallBack;
 
-  public PersonMultiView()
+  public AssignView()
   {
     initWidget(BINDER.createAndBindUi(this));
 
     mDataset = new AssignSet();
-    mDataset.setPart(Part.BIBLE_READING);
+    mDataset.setPart(mPart);
 
     mTag.setItemText(this);
     mTag.setItemValue(this);
     mTag.onTagExists(this);
 
-    mTag.setDatasets(mDataset);
+    mTag.addItemAddedHandler(this);
+    mTag.addItemRemovedHandler(this);
 
-    Scheduler.get().scheduleDeferred(this);
+    mTag.setDatasets(mDataset);
+  }
+
+  @Override
+  public Part getPart()
+  {
+    return mPart;
+  }
+
+  @Override
+  public List<Tag> getValues()
+  {
+    return mTag.getItems();
+  }
+
+  @Override
+  public void remove(Tag inTag)
+  {
+    mTag.remove(inTag);
+  }
+
+  public void setLabel(String inText)
+  {
+    mLabel.setInnerText(inText);
+  }
+
+  public void setColor(String inColor)
+  {
+    mLabel.getStyle().setColor(inColor);
+  }
+
+  public void setPart(Part inPart)
+  {
+    mPart = inPart;
+    setLabel(mPart.getLabel(true));
+    if (mDataset != null)
+    {
+      mDataset.setPart(mPart);
+    }
   }
 
   public void setValue(List<Tag> inValue)
@@ -64,15 +107,12 @@ public class PersonMultiView extends h.style.g.client.ui.AbstractView
     }
   }
 
-  @Override
-  public void execute()
+  public void setValue(Tag... inValue)
   {
-    List<Tag> values = new ArrayList<>();
-    values.add(new Person("Hearring", "Simeon"));
-    values.add(StudyPoint.SP_1);
-    setValue(values);
-    mTag.addItemAddedHandler(this);
-    mTag.addItemRemovedHandler(this);
+    for (Tag value : inValue)
+    {
+      mTag.add(value);
+    }
   }
 
   public void clear()
@@ -89,13 +129,15 @@ public class PersonMultiView extends h.style.g.client.ui.AbstractView
   @Override
   public void onItemAdded(ItemAddedEvent<Tag> inEvent)
   {
-    notify(inEvent.getItem().getName() + " added.");
+    if (mAddedCallBack != null)
+    {
+      mAddedCallBack.onCallBack(this);
+    }
   }
 
   @Override
   public void onItemRemoved(ItemRemovedEvent<Tag> inEvent)
   {
-    notify(inEvent.getItem().getName() + " removed.");
   }
 
   @Override
@@ -108,5 +150,10 @@ public class PersonMultiView extends h.style.g.client.ui.AbstractView
   public String getItemText(Tag inItem)
   {
     return inItem.getName();
+  }
+
+  public void setAddedCallback(CallBack<AssignDisplay> inCallBack)
+  {
+    mAddedCallBack = inCallBack;
   }
 }

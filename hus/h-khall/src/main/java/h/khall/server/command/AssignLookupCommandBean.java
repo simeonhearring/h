@@ -84,7 +84,7 @@ public class AssignLookupCommandBean extends AbstractCommandBean<AssignLookupCom
     }
   }
 
-  private List<Person> persons()
+  private static List<Person> persons()
   {
     List<Person> ret = new ArrayList<>();
     for (int i = 0; i < 50; i++)
