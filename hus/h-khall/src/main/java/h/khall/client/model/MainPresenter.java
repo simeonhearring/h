@@ -2,6 +2,7 @@ package h.khall.client.model;
 
 import com.google.gwt.user.client.ui.HasWidgets;
 
+import h.khall.client.ui.event.ForgotEvent;
 import h.khall.client.ui.event.LoginEvent;
 import h.khall.client.ui.event.LogoutEvent;
 import h.khall.client.ui.event.PageEvent;
@@ -12,7 +13,7 @@ import h.style.g.client.model.Attach;
 
 public class MainPresenter extends AbstractPresenter<MainPresenter.Display>
 implements LoginEvent.Handler, RegisterEvent.Handler, PageEvent.Handler, LogoutEvent.Handler,
-  ResendProfileEvent.Handler
+  ResendProfileEvent.Handler, ForgotEvent.Handler
 {
   public MainPresenter(MainPresenter.Display inDisplay)
   {
@@ -26,6 +27,7 @@ implements LoginEvent.Handler, RegisterEvent.Handler, PageEvent.Handler, LogoutE
     addHandler(RegisterEvent.TYPE, this);
     addHandler(PageEvent.TYPE, this);
     addHandler(LogoutEvent.TYPE, this);
+    addHandler(ForgotEvent.TYPE, this);
     addHandler(ResendProfileEvent.TYPE, this);
   }
 
@@ -54,6 +56,12 @@ implements LoginEvent.Handler, RegisterEvent.Handler, PageEvent.Handler, LogoutE
   }
 
   @Override
+  public void dispatch(ForgotEvent inEvent)
+  {
+    attach(mDisplay.forgot());
+  }
+
+  @Override
   public void dispatch(ResendProfileEvent inEvent)
   {
     fire(new ProfileEvent(mProfile));
@@ -75,5 +83,7 @@ implements LoginEvent.Handler, RegisterEvent.Handler, PageEvent.Handler, LogoutE
     PagePresenter.Display page();
 
     PageFullPresenter.Display pagefull();
+
+    ForgotPresenter.Display forgot();
   }
 }

@@ -3,6 +3,7 @@ package h.khall.client.ui;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.RootPanel;
 
+import h.khall.client.model.ForgotPresenter;
 import h.khall.client.model.LoginPresenter;
 import h.khall.client.model.MainPresenter;
 import h.khall.client.model.PageFullPresenter;
@@ -27,6 +28,12 @@ public class MainView extends AbstractView implements MainPresenter.Display
   public LoginPresenter.Display login()
   {
     return new LoginView();
+  }
+
+  @Override
+  public ForgotPresenter.Display forgot()
+  {
+    return new ForgotView();
   }
 
   @Override

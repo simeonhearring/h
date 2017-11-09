@@ -1,5 +1,6 @@
 package h.khall.client.model;
 
+import h.khall.client.ui.event.ForgotEvent;
 import h.khall.client.ui.event.PageEvent;
 import h.khall.client.ui.event.ProfileEvent;
 import h.khall.client.ui.event.RegisterEvent;
@@ -37,7 +38,7 @@ public class LoginPresenter extends AbstractPresenter<LoginPresenter.Display>
 
   public void forgotPassword()
   {
-    mDisplay.notify("forgot password");
+    fire(new ForgotEvent());
   }
 
   public void register()
