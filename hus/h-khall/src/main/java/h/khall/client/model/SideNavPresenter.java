@@ -1,6 +1,5 @@
 package h.khall.client.model;
 
-import h.khall.client.ui.event.LogoutEvent;
 import h.style.g.client.ui.event.RefreshEvent;
 
 public class SideNavPresenter extends AbstractPresenter<SideNavPresenter.Display>
@@ -10,11 +9,6 @@ public class SideNavPresenter extends AbstractPresenter<SideNavPresenter.Display
   {
     initDisplay(inDisplay);
     addHandler(RefreshEvent.TYPE, this);
-  }
-
-  public void logout()
-  {
-    fire(new LogoutEvent());
   }
 
   @Override

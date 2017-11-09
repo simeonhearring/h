@@ -1,9 +1,9 @@
-package h.tool.util;
+package h.model.shared.util;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public final class StringUtil
+public class StringUtil
 {
   private StringUtil()
   {
@@ -418,8 +418,7 @@ public final class StringUtil
 
   public static boolean contains(String inValue, String inContains)
   {
-    boolean ret = inValue.indexOf(inContains) != -1;
-    return ret;
+    return inValue.indexOf(inContains) != -1;
   }
 
   public static String substring(String inValue, int inIndex)

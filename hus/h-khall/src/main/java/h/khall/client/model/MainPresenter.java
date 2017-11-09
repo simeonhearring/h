@@ -2,18 +2,13 @@ package h.khall.client.model;
 
 import com.google.gwt.user.client.ui.HasWidgets;
 
-import h.khall.client.ui.event.ForgotEvent;
-import h.khall.client.ui.event.LoginEvent;
-import h.khall.client.ui.event.LogoutEvent;
-import h.khall.client.ui.event.PageEvent;
+import h.khall.client.ui.event.AttachEvent;
 import h.khall.client.ui.event.ProfileEvent;
-import h.khall.client.ui.event.RegisterEvent;
 import h.khall.client.ui.event.ResendProfileEvent;
 import h.style.g.client.model.Attach;
 
 public class MainPresenter extends AbstractPresenter<MainPresenter.Display>
-implements LoginEvent.Handler, RegisterEvent.Handler, PageEvent.Handler, LogoutEvent.Handler,
-  ResendProfileEvent.Handler, ForgotEvent.Handler
+  implements AttachEvent.Handler, ResendProfileEvent.Handler
 {
   public MainPresenter(MainPresenter.Display inDisplay)
   {
@@ -23,42 +18,36 @@ implements LoginEvent.Handler, RegisterEvent.Handler, PageEvent.Handler, LogoutE
 
   public void handlers()
   {
-    addHandler(LoginEvent.TYPE, this);
-    addHandler(RegisterEvent.TYPE, this);
-    addHandler(PageEvent.TYPE, this);
-    addHandler(LogoutEvent.TYPE, this);
-    addHandler(ForgotEvent.TYPE, this);
+    addHandler(AttachEvent.TYPE, this);
     addHandler(ResendProfileEvent.TYPE, this);
   }
 
   @Override
-  public void dispatch(PageEvent inEvent)
+  public void dispatch(AttachEvent inEvent)
   {
-    attach(mDisplay.page());
-  }
-
-  @Override
-  public void dispatch(RegisterEvent inEvent)
-  {
-    attach(mDisplay.register());
-  }
-
-  @Override
-  public void dispatch(LoginEvent inEvent)
-  {
-    attach(mDisplay.login());
-  }
-
-  @Override
-  public void dispatch(LogoutEvent inEvent)
-  {
-    attach(mDisplay.login());
-  }
-
-  @Override
-  public void dispatch(ForgotEvent inEvent)
-  {
-    attach(mDisplay.forgot());
+    switch (inEvent.getType())
+    {
+      case LOGIN:
+        attach(mDisplay.login());
+        break;
+      case LOGOUT:
+        attach(mDisplay.login());
+        break;
+      case FORGOT:
+        attach(mDisplay.forgot());
+        break;
+      case MAILBOX:
+        attach(mDisplay.pagefull());
+        break;
+      case REGISTER:
+        attach(mDisplay.register());
+        break;
+      case MIDWEEK:
+        attach(mDisplay.page());
+        break;
+      default:
+        break;
+    }
   }
 
   @Override

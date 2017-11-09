@@ -12,7 +12,8 @@ import com.google.gwt.user.client.ui.InlineHTML;
 import com.google.gwt.user.client.ui.Widget;
 
 import h.khall.client.model.SideNavPresenter;
-import h.khall.client.ui.event.LogoutEvent;
+import h.khall.client.ui.event.AttachEvent;
+import h.khall.client.ui.event.AttachEvent.TypeA;
 import h.style.g.client.ui.AbstractView;
 
 public class SideNavView extends AbstractView implements SideNavPresenter.Display
@@ -46,7 +47,7 @@ public class SideNavView extends AbstractView implements SideNavPresenter.Displa
     Object source = inEvent.getSource();
     if (mLogout.equals(source))
     {
-      fire(new LogoutEvent());
+      fire(new AttachEvent(TypeA.LOGOUT));
     }
   }
 

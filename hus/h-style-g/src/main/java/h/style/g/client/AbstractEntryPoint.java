@@ -17,6 +17,7 @@ import h.style.g.client.service.rpc.RpcServiceAsync;
 import h.style.g.client.ui.common.Global;
 import h.style.g.client.ui.common.RpcCallback;
 import h.style.g.client.ui.event.AlertEvent;
+import h.style.g.client.ui.event.Event;
 import h.style.g.client.ui.event.LoadMainEvent;
 import h.style.g.client.ui.service.bus.GwtEventBus;
 import h.style.g.client.ui.util.JsniUtil;
@@ -45,7 +46,12 @@ public abstract class AbstractEntryPoint
     Global.getInstance().addHandler(LoadMainEvent.TYPE, this);
     Global.exportNativeDebug();
     Global.log(Level.INFO, "Started... " + JsniUtil.getBrowserInfo(), null);
-    Global.getInstance().fire(new LoadMainEvent());
+    fire(new LoadMainEvent());
+  }
+
+  public void fire(Event<?>... inEvent)
+  {
+    Global.fireS(inEvent);
   }
 
   @Override

@@ -1,6 +1,7 @@
 package h.khall.client.model;
 
-import h.khall.client.ui.event.LoginEvent;
+import h.khall.client.ui.event.AttachEvent;
+import h.khall.client.ui.event.AttachEvent.TypeA;
 import h.style.g.client.model.AbstractPresenter;
 import h.style.g.client.model.Attach;
 
@@ -19,7 +20,7 @@ public class RegisterPresenter extends AbstractPresenter<RegisterPresenter.Displ
 
   public void login()
   {
-    fire(new LoginEvent());
+    fire(new AttachEvent(TypeA.LOGIN));
   }
 
   public interface Display extends Attach

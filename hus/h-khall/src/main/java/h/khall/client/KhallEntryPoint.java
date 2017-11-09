@@ -1,7 +1,8 @@
 package h.khall.client;
 
 import h.khall.client.ui.MainView;
-import h.khall.client.ui.event.LoginEvent;
+import h.khall.client.ui.event.AttachEvent;
+import h.khall.client.ui.event.AttachEvent.TypeA;
 import h.model.shared.SessionInfo;
 import h.style.g.client.AbstractEntryPoint;
 import h.style.g.client.model.CallBack;
@@ -21,6 +22,6 @@ public class KhallEntryPoint extends AbstractEntryPoint implements CallBack<Sess
   public void onCallBack(SessionInfo inInfo)
   {
     Global.setInfo(inInfo);
-    Global.fireS(new LoginEvent());
+    fire(new AttachEvent(TypeA.LOGIN));
   }
 }

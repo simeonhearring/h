@@ -7,6 +7,23 @@
 	font-weight: 700;
 }
 
-.kh_pillsize {
-	width: 200px !important;
+.tt-dropdown-menu {
+	max-height: 350px;
+	overflow-y: auto;
+	width: 250px;
+	font-size: smaller;
+}
+
+.bootstrap-tagsinput {
+	width: 100%;
+}
+
+.bootstrap-tagsinput input[class=tt-input] {
+	width: 20px;
+	border: 0px !important;
+}
+
+.kh_scroll {
+	overflow-x: hidden !important;
+	max-height: 800px;
 }

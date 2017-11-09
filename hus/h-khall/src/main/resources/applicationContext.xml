@@ -13,4 +13,6 @@
 
 	<bean id="LoginCommand" class="h.khall.server.command.LoginCommandBean" />
 
+	<bean id="PersonLookupCommand" class="h.khall.server.command.PersonLookupCommandBean" />
+
 </beans>

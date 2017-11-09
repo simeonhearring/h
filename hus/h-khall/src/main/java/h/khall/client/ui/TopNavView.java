@@ -10,6 +10,8 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Widget;
 
 import h.khall.client.model.TopNavPresenter;
+import h.khall.client.ui.event.AttachEvent;
+import h.khall.client.ui.event.AttachEvent.TypeA;
 
 public class TopNavView extends AbstractView<TopNavPresenter> implements TopNavPresenter.Display
 {
@@ -41,7 +43,7 @@ public class TopNavView extends AbstractView<TopNavPresenter> implements TopNavP
     }
     else if (mLogout.equals(source))
     {
-      mPresenter.logout();
+      fire(new AttachEvent(TypeA.LOGOUT));
     }
   }
 }

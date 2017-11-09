@@ -1,7 +1,7 @@
 package h.khall.client.model;
 
-import h.khall.client.ui.event.ForgotEvent;
-import h.khall.client.ui.event.PageEvent;
+import h.khall.client.ui.event.AttachEvent;
+import h.khall.client.ui.event.AttachEvent.TypeA;
 import h.khall.client.ui.event.ProfileEvent;
 import h.khall.client.ui.event.RegisterEvent;
 import h.khall.shared.model.Profile;
@@ -31,14 +31,15 @@ public class LoginPresenter extends AbstractPresenter<LoginPresenter.Display>
       @Override
       public void onRpcSuccess(LoginCommand inCommand)
       {
-        fire(new PageEvent(), new ProfileEvent(inCommand.getData()), new RefreshEvent());
+        fire(new AttachEvent(TypeA.MIDWEEK), new ProfileEvent(inCommand.getData()),
+            new RefreshEvent());
       }
     });
   }
 
   public void forgotPassword()
   {
-    fire(new ForgotEvent());
+    fire(new AttachEvent(TypeA.FORGOT));
   }
 
   public void register()

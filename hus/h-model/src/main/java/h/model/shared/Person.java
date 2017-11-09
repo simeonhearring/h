@@ -1,8 +1,12 @@
 package h.model.shared;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Person
+import h.model.shared.util.StringUtil;
+
+@SuppressWarnings("serial")
+public class Person implements Serializable
 {
   public enum Gender
   {
@@ -36,6 +40,16 @@ public class Person
   private String mChildren;
   private String mHead;
   private String mFamily;
+
+  public Person()
+  {
+  }
+
+  public Person(String inLast, String inFirst)
+  {
+    mLast = inLast;
+    mFirst = inFirst;
+  }
 
   public String getFirst()
   {
@@ -277,4 +291,9 @@ public class Person
     mFamily = inFamily;
   }
 
+  public String getName()
+  {
+    return StringUtil.ensure(mLast, "", ", ") + StringUtil.ensure(mFirst)
+        + StringUtil.ensure(mSuffix, " ");
+  }
 }
