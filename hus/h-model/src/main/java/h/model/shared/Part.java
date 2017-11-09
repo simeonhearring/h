@@ -1,0 +1,19 @@
+package h.model.shared;
+
+public enum Part
+{
+  CHAIRMAN,
+  PRAYER,
+  LIVING_1,
+  LIVING_2,
+  TREASURES,
+  DIGGING,
+  C_BIBLE_STUDY,
+  BIBLE_READING,
+  INITIAL_CALL,
+  F_RETURN_VISIT,
+  S_RETURN_VISIT,
+  T_RETURN_VISIT,
+  BIBLE_STUDY,
+  TALK;
+}

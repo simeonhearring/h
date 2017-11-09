@@ -9,22 +9,25 @@ import org.gwtbootstrap3.extras.typeahead.client.base.SuggestionCallback;
 import org.gwtbootstrap3.extras.typeahead.client.base.SuggestionTemplate;
 import org.gwtbootstrap3.extras.typeahead.client.base.Template;
 
-import h.khall.shared.command.PersonLookupCommand;
-import h.model.shared.Person;
+import h.khall.shared.command.AssignLookupCommand;
+import h.model.shared.Part;
+import h.model.shared.Tag;
 import h.style.g.client.ui.common.Global;
 import h.style.g.client.ui.common.RpcCallback;
 
-public class PersonSet extends Dataset<Person>
+public class AssignSet extends Dataset<Tag>
 {
-  public PersonSet()
+  private Part mPart;
+
+  public AssignSet()
   {
-    setSuggestionTemplate(new SuggestionTemplate<Person>()
+    setSuggestionTemplate(new SuggestionTemplate<Tag>()
     {
       @Override
-      public String render(Suggestion<Person> suggestion)
+      public String render(Suggestion<Tag> inSuggestion)
       {
-        Person person = suggestion.getData();
-        return "<strong>" + person.getName() + "</strong>";
+        Tag tag = inSuggestion.getData();
+        return "<strong>" + tag.getName() + "</strong>";
       }
     });
 
@@ -39,24 +42,26 @@ public class PersonSet extends Dataset<Person>
   }
 
   @Override
-  public void findMatches(String inQuery, final SuggestionCallback<Person> inCallback)
+  public void findMatches(String inQuery, final SuggestionCallback<Tag> inCallback)
   {
     final String queryLower = inQuery.toLowerCase();
-    Global.fireS(new PersonLookupCommand(queryLower), new RpcCallback<PersonLookupCommand>()
+    Global.fireS(new AssignLookupCommand(queryLower, mPart), new RpcCallback<AssignLookupCommand>()
     {
       @Override
-      public void onRpcSuccess(PersonLookupCommand inCommand)
+      public void onRpcSuccess(AssignLookupCommand inCommand)
       {
-        List<Suggestion<Person>> suggestions = new ArrayList<>();
-        for (Person value : inCommand.getData())
+        List<Suggestion<Tag>> suggestions = new ArrayList<>();
+        for (Tag value : inCommand.getData())
         {
-          if (value.getName().toLowerCase().contains(queryLower))
-          {
-            suggestions.add(Suggestion.create(value.getName(), value, PersonSet.this));
-          }
+          suggestions.add(Suggestion.create(value.getName(), value, AssignSet.this));
         }
         inCallback.execute(suggestions);
       }
     });
+  }
+
+  public void setPart(Part inPart)
+  {
+    mPart = inPart;
   }
 }

@@ -15,4 +15,5 @@
 
 	<bean id="PersonLookupCommand" class="h.khall.server.command.PersonLookupCommandBean" />
 
+	<bean id="AssignLookupCommand" class="h.khall.server.command.AssignLookupCommandBean" />
 </beans>

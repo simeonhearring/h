@@ -6,13 +6,15 @@ import java.util.Date;
 import h.model.shared.util.StringUtil;
 
 @SuppressWarnings("serial")
-public class Person implements Serializable
+public class Person implements Serializable, Tag
 {
   public enum Gender
   {
     Male,
     Female;
   }
+
+  private Long mId;
 
   private String mFirst;
   private String mMiddle;
@@ -49,6 +51,11 @@ public class Person implements Serializable
   {
     mLast = inLast;
     mFirst = inFirst;
+  }
+
+  public void setId(Long inId)
+  {
+    mId = inId;
   }
 
   public String getFirst()
@@ -291,9 +298,28 @@ public class Person implements Serializable
     mFamily = inFamily;
   }
 
+  @Override
   public String getName()
   {
     return StringUtil.ensure(mLast, "", ", ") + StringUtil.ensure(mFirst)
         + StringUtil.ensure(mSuffix, " ");
+  }
+
+  @Override
+  public String getId()
+  {
+    return String.valueOf(mId);
+  }
+
+  @Override
+  public String getType()
+  {
+    return "PERSON";
+  }
+
+  @Override
+  public String getValue()
+  {
+    return getName();
   }
 }
