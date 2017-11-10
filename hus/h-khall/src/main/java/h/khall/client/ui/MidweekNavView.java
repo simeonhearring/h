@@ -9,13 +9,13 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Widget;
 
-import h.khall.client.model.EmptyPresenter;
 import h.khall.client.ui.event.MidweekEvent;
 import h.khall.client.ui.event.ResendProfileEvent;
 import h.khall.client.ui.event.SampleEvent;
+import h.style.g.client.ui.AbstractView;
 import h.style.g.client.ui.event.RefreshEvent;
 
-public class MidweekNavView extends AbstractView<EmptyPresenter>
+public class MidweekNavView extends AbstractView
 {
   private static final Binder BINDER = GWT.create(Binder.class);
 

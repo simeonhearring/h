@@ -3,6 +3,7 @@
        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
 	<!-- DAOS -->
+	<bean id="Dao" class="h.khall.server.dao.bean.JavaBeanDaoImpl" />
 
 	<!-- SERVICES -->
 
@@ -11,9 +12,15 @@
 
 	<bean id="SessionInfoCommand" class="h.khall.server.command.SessionInfoCommandBean" />
 
-	<bean id="LoginCommand" class="h.khall.server.command.LoginCommandBean" />
+	<bean id="LoginCommand" class="h.khall.server.command.LoginCommandBean">
+		<property name="dao" ref="Dao" />
+	</bean>
 
-	<bean id="PersonLookupCommand" class="h.khall.server.command.PersonLookupCommandBean" />
+	<bean id="PersonLookupCommand" class="h.khall.server.command.PersonLookupCommandBean">
+		<property name="dao" ref="Dao" />
+	</bean>
 
-	<bean id="AssignLookupCommand" class="h.khall.server.command.AssignLookupCommandBean" />
+	<bean id="AssignLookupCommand" class="h.khall.server.command.AssignLookupCommandBean">
+		<property name="dao" ref="Dao" />
+	</bean>
 </beans>

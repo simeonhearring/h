@@ -322,4 +322,20 @@ public class Person implements Serializable, Tag
   {
     return getName();
   }
+
+  @Override
+  public String toString()
+  {
+    StringBuilder builder = new StringBuilder();
+    builder.append("Person [mId=");
+    builder.append(mId);
+    builder.append(", mLast=");
+    builder.append(mLast);
+    builder.append(", mFirst=");
+    builder.append(mFirst);
+    builder.append(", mSuffix=");
+    builder.append(mSuffix);
+    builder.append("]");
+    return builder.toString();
+  }
 }

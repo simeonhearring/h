@@ -1,4 +1,4 @@
-package h.model.shared;
+package h.khall.shared.model;
 
 import h.model.shared.util.StringUtil;
 
@@ -13,12 +13,35 @@ public enum Part
   F_RETURN_VISIT,
   S_RETURN_VISIT,
   T_RETURN_VISIT,
-  BIBLE_STUDY,
   TALK,
+  BIBLE_STUDY,
   LIVING_1,
   LIVING_2,
   C_BIBLE_STUDY,
   PRAYER_2,;
+
+  public Part getParent()
+  {
+    Part ret = this;
+    switch (this)
+    {
+      case S_RETURN_VISIT:
+      case T_RETURN_VISIT:
+        ret = F_RETURN_VISIT;
+        break;
+      case BIBLE_STUDY:
+        ret = TALK;
+        break;
+      default:
+        break;
+    }
+    return ret;
+  }
+
+  public boolean isAssisted()
+  {
+    return getParticipants() > 1;
+  }
 
   public int getParticipants()
   {
@@ -49,6 +72,7 @@ public enum Part
       case F_RETURN_VISIT:
       case S_RETURN_VISIT:
       case T_RETURN_VISIT:
+      case TALK:
       case BIBLE_STUDY:
         ret = true;
         break;

@@ -9,6 +9,7 @@ import com.google.web.bindery.event.shared.HandlerRegistration;
 import h.model.shared.Debug;
 import h.model.shared.Notice;
 import h.model.shared.Params;
+import h.model.shared.Profile;
 import h.model.shared.SessionInfo;
 import h.style.g.client.service.bus.EventBus;
 import h.style.g.client.service.rpc.RpcServiceAsync;
@@ -17,6 +18,7 @@ import h.style.g.client.ui.util.JsniUtil;
 import h.style.g.shared.command.LoggerCommand;
 import h.style.g.shared.command.LoggerCommand.Level;
 import h.style.g.shared.rpc.common.RpcCommand;
+import h.style.g.shared.rpc.common.RpcProfileCommand;
 import h.style.g.shared.rpc.common.RpcResponse;
 
 public class Global implements HasFire
@@ -90,6 +92,12 @@ public class Global implements HasFire
     if (inCommand != null)
     {
       inCommand.setUserInfo(userInfo());
+
+      if (inCommand instanceof RpcProfileCommand)
+      {
+        ((RpcProfileCommand) inCommand).setProfile(profile());
+      }
+
       fireS(inCommand, inCallback);
     }
   }
@@ -276,6 +284,16 @@ public class Global implements HasFire
     if (info() != null)
     {
       ret = info().getUserInfo();
+    }
+    return ret;
+  }
+
+  private static Profile profile()
+  {
+    Profile ret = null;
+    if (info() != null)
+    {
+      ret = info().getProfile();
     }
     return ret;
   }

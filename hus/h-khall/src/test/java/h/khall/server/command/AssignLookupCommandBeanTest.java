@@ -7,7 +7,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import h.model.shared.Part;
+import h.khall.shared.model.Part;
 import h.model.shared.Tag;
 
 public class AssignLookupCommandBeanTest

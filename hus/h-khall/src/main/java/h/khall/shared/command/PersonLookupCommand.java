@@ -10,19 +10,7 @@ import h.style.g.shared.rpc.CommandName;
 @CommandName("PersonLookupCommand")
 public class PersonLookupCommand extends AbstractDataCommand<List<Person>>
 {
-  private String mQuery;
-
   PersonLookupCommand()
   {
-  }
-
-  public PersonLookupCommand(String inQuery)
-  {
-    mQuery = inQuery;
-  }
-
-  public String getQuery()
-  {
-    return mQuery;
   }
 }

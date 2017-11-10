@@ -6,6 +6,7 @@ import h.style.g.shared.chart.Chart;
 public class Client extends h.model.shared.Client
 {
   private Chart mChart;
+  private Meeting mMeeting;
 
   public Chart getChart()
   {
@@ -15,5 +16,15 @@ public class Client extends h.model.shared.Client
   public void setChart(Chart inChart)
   {
     mChart = inChart;
+  }
+
+  public Meeting getMeeting()
+  {
+    return mMeeting;
+  }
+
+  public void setMeeting(Meeting inMeeting)
+  {
+    mMeeting = inMeeting;
   }
 }

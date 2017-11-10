@@ -1,4 +1,6 @@
-package h.model.shared;
+package h.khall.shared.model;
+
+import h.model.shared.Tag;
 
 public enum StudyPoint implements Tag
 {

@@ -1,5 +1,6 @@
 package h.tool.util;
 
+import java.util.List;
 import java.util.Random;
 
 public final class RandomUtil
@@ -66,5 +67,11 @@ public final class RandomUtil
   {
     Random rnd = new Random();
     return rnd.nextInt(inMax);
+  }
+
+  public static <M> M random(List<M> inList)
+  {
+    Random rnd = new Random();
+    return inList.get(rnd.nextInt(inList.size() - 1));
   }
 }

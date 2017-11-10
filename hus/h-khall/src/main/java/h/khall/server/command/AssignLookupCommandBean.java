@@ -3,26 +3,18 @@ package h.khall.server.command;
 import java.util.ArrayList;
 import java.util.List;
 
+import h.khall.server.dao.Dao;
 import h.khall.shared.command.AssignLookupCommand;
-import h.model.shared.Part;
+import h.khall.shared.model.Part;
+import h.khall.shared.model.Profile;
+import h.khall.shared.model.StudyPoint;
 import h.model.shared.Person;
-import h.model.shared.StudyPoint;
 import h.model.shared.Tag;
-import h.style.g.server.command.AbstractCommandBean;
+import h.style.g.server.command.AbstractDaoCommandBean;
 import h.style.g.shared.rpc.common.RpcResponse;
-import h.tool.util.RandomUtil;
 
-public class AssignLookupCommandBean extends AbstractCommandBean<AssignLookupCommand>
+public class AssignLookupCommandBean extends AbstractDaoCommandBean<Dao, AssignLookupCommand>
 {
-  private static final String[] LAST =
-  {
-      "Smith", "Doe", "Roe", "Henderson", "Johnson", "Walker", "Davidson", "Kent", "Parker", "Wayne"
-  };
-  private static final String[] FIRST =
-  {
-      "John", "Jane", "Paul", "Phil", "Ron", "Don", "Pete", "Josh", "Simone", "Jackie", "Bruce"
-  };
-
   @Override
   public RpcResponse execute(AssignLookupCommand inCommand)
   {
@@ -36,7 +28,7 @@ public class AssignLookupCommandBean extends AbstractCommandBean<AssignLookupCom
     }
     else
     {
-      filterPerson(data, query, persons());
+      filterPerson(data, query, mDao.selectAssignable((Profile) inCommand.getProfile()));
     }
 
     return inCommand;
@@ -82,18 +74,5 @@ public class AssignLookupCommandBean extends AbstractCommandBean<AssignLookupCom
         }
       }
     }
-  }
-
-  private static List<Person> persons()
-  {
-    List<Person> ret = new ArrayList<>();
-    for (int i = 0; i < 50; i++)
-    {
-      Person person = new Person();
-      person.setLast(RandomUtil.random(LAST));
-      person.setFirst(RandomUtil.random(FIRST));
-      ret.add(person);
-    }
-    return ret;
   }
 }

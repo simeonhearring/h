@@ -32,7 +32,7 @@
 					<b.gwt:HTMLPanel ui:field="mStep1c" addStyleNames="content">
 						<div class="body">
 							<div class="m-t-md">
-								<h2 ui:field="mWeekOf">November 13-19</h2>
+								<h2 ui:field="mWeekOf" />
 							</div>
 							<div class="col-md-4">
 								<k:AssignView ui:field="mChairman" part="CHAIRMAN" />
@@ -59,11 +59,11 @@
 									</b.card:Front>
 									<b.card:Back>
 										<b.gwt:HTMLPanel>
-											<label>Auxiliary Classroom</label>
-											<k:AssignView ui:field="mReading2" part="BIBLE_READING" />
-											<k:AssignView ui:field="mInitial2" part="INITIAL_CALL" />
-											<k:AssignView ui:field="mRv2" part="F_RETURN_VISIT" />
-											<k:AssignView ui:field="mTalk2" part="TALK" />
+											<label>Auxiliary Classroom #1</label>
+											<k:AssignView ui:field="mReading2" part="BIBLE_READING" hall="AUX1" />
+											<k:AssignView ui:field="mInitial2" part="INITIAL_CALL" hall="AUX1" />
+											<k:AssignView ui:field="mRv2" part="F_RETURN_VISIT" hall="AUX1" />
+											<k:AssignView ui:field="mTalk2" part="TALK" hall="AUX1" />
 										</b.gwt:HTMLPanel>
 									</b.card:Back>
 								</b.card:Card>

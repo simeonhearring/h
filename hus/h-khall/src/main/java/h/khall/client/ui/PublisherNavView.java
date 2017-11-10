@@ -9,9 +9,9 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Widget;
 
-import h.khall.client.model.EmptyPresenter;
+import h.style.g.client.ui.AbstractView;
 
-public class PublisherNavView extends AbstractView<EmptyPresenter>
+public class PublisherNavView extends AbstractView
 {
   private static final Binder BINDER = GWT.create(Binder.class);
 

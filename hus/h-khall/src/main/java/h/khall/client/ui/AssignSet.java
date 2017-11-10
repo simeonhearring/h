@@ -10,7 +10,7 @@ import org.gwtbootstrap3.extras.typeahead.client.base.SuggestionTemplate;
 import org.gwtbootstrap3.extras.typeahead.client.base.Template;
 
 import h.khall.shared.command.AssignLookupCommand;
-import h.model.shared.Part;
+import h.khall.shared.model.Part;
 import h.model.shared.Tag;
 import h.style.g.client.ui.common.Global;
 import h.style.g.client.ui.common.RpcCallback;

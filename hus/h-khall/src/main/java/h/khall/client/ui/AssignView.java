@@ -20,7 +20,8 @@ import com.google.gwt.user.client.ui.Widget;
 
 import h.khall.client.model.AssignmentPresenter;
 import h.khall.client.model.AssignmentPresenter.AssignDisplay;
-import h.model.shared.Part;
+import h.khall.shared.model.Hall;
+import h.khall.shared.model.Part;
 import h.model.shared.Tag;
 import h.style.g.client.model.CallBack;
 
@@ -40,6 +41,7 @@ public class AssignView extends h.style.g.client.ui.AbstractView
   @UiField
   MultiValueTagsInput<Tag> mTag;
 
+  private Hall mHall = Hall.MAIN;
   private Part mPart;
   private AssignSet mDataset;
   private CallBack<AssignDisplay> mAddedCallBack;
@@ -59,6 +61,17 @@ public class AssignView extends h.style.g.client.ui.AbstractView
     mTag.addItemRemovedHandler(this);
 
     mTag.setDatasets(mDataset);
+  }
+
+  public void setHall(Hall inHall)
+  {
+    mHall = inHall;
+  }
+
+  @Override
+  public Hall getHall()
+  {
+    return mHall;
   }
 
   @Override
@@ -99,16 +112,20 @@ public class AssignView extends h.style.g.client.ui.AbstractView
     }
   }
 
+  @Override
   public void setValue(List<Tag> inValue)
   {
+    clear();
     for (Tag value : inValue)
     {
       mTag.add(value);
     }
   }
 
+  @Override
   public void setValue(Tag... inValue)
   {
+    clear();
     for (Tag value : inValue)
     {
       mTag.add(value);
@@ -152,6 +169,7 @@ public class AssignView extends h.style.g.client.ui.AbstractView
     return inItem.getName();
   }
 
+  @Override
   public void setAddedCallback(CallBack<AssignDisplay> inCallBack)
   {
     mAddedCallBack = inCallBack;

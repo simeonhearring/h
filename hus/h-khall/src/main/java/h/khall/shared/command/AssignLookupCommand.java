@@ -2,7 +2,7 @@ package h.khall.shared.command;
 
 import java.util.List;
 
-import h.model.shared.Part;
+import h.khall.shared.model.Part;
 import h.model.shared.Tag;
 import h.style.g.shared.command.AbstractDataCommand;
 import h.style.g.shared.rpc.CommandName;
