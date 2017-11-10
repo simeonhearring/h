@@ -1,16 +1,24 @@
 package h.khall.client.ui.event;
 
+import h.model.shared.Client;
 import h.style.g.client.ui.event.Event;
 import h.style.g.client.ui.event.EventHandler;
 import h.style.g.client.ui.event.TypeH;
 
-public class ResendProfileEvent extends Event<ResendProfileEvent.Handler>
+public class ClientEvent extends Event<ClientEvent.Handler>
 {
-  public static final TypeH<Handler> TYPE = new TypeH<>(ResendProfileEvent.class);
+  public static final TypeH<Handler> TYPE = new TypeH<>(ClientEvent.class);
 
   public interface Handler extends EventHandler
   {
-    void dispatch(ResendProfileEvent inEvent);
+    void dispatch(ClientEvent inEvent);
+  }
+
+  private Client mClient;
+
+  public ClientEvent(Client inClient)
+  {
+    mClient = inClient;
   }
 
   @Override
@@ -24,5 +32,10 @@ public class ResendProfileEvent extends Event<ResendProfileEvent.Handler>
   {
     debug(inHandler);
     inHandler.dispatch(this);
+  }
+
+  public Client getClient()
+  {
+    return mClient;
   }
 }

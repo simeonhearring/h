@@ -3,20 +3,9 @@ package h.khall.shared.model;
 @SuppressWarnings("serial")
 public class Profile extends h.model.shared.Profile
 {
+  private String mCongNme;
   private String mCongNum;
   private String mEncrypt;
-
-  private Client mClient;
-
-  public Client getClient()
-  {
-    return mClient;
-  }
-
-  public void setClient(Client inClient)
-  {
-    mClient = inClient;
-  }
 
   public String getCongNum()
   {
@@ -36,5 +25,15 @@ public class Profile extends h.model.shared.Profile
   public void setEncrypt(String inEncrypt)
   {
     mEncrypt = inEncrypt;
+  }
+
+  public String getCongNme()
+  {
+    return mCongNme;
+  }
+
+  public void setCongNme(String inCongNme)
+  {
+    mCongNme = inCongNme;
   }
 }

@@ -42,7 +42,7 @@ public class AssignmentPresenter extends AbstractPresenter<AssignmentPresenter.D
   @Override
   public void dispatch(RefreshEvent inEvent)
   {
-    Meeting meeting = client().getMeeting();
+    Meeting meeting = mClient.getMeeting();
     Week week = meeting.getWeek(2017, 10, 2);
     mDisplay.setWeekOf(dateRange(week.getOf()));
 

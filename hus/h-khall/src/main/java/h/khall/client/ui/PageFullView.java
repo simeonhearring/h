@@ -15,9 +15,9 @@ import com.google.gwt.user.client.ui.Widget;
 import h.khall.client.model.PageFullPresenter;
 import h.khall.client.ui.event.AttachEvent;
 import h.khall.client.ui.event.AttachEvent.TypeA;
-import h.style.g.client.ui.AbstractView;
 
-public class PageFullView extends AbstractView implements PageFullPresenter.Display
+public class PageFullView extends AbstractView<PageFullPresenter>
+  implements PageFullPresenter.Display
 {
   private static final Binder BINDER = GWT.create(Binder.class);
 
@@ -30,8 +30,6 @@ public class PageFullView extends AbstractView implements PageFullPresenter.Disp
 
   @UiField
   Anchor mBars, mLogout;
-
-  PageFullPresenter mPresenter;
 
   public PageFullView()
   {

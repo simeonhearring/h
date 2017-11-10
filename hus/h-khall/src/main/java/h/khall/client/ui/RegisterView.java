@@ -14,9 +14,9 @@ import com.google.gwt.user.client.ui.UIObject;
 import com.google.gwt.user.client.ui.Widget;
 
 import h.khall.client.model.RegisterPresenter;
-import h.style.g.client.ui.AbstractView;
 
-public class RegisterView extends AbstractView implements RegisterPresenter.Display
+public class RegisterView extends AbstractView<RegisterPresenter>
+  implements RegisterPresenter.Display
 {
   private static final Binder BINDER = GWT.create(Binder.class);
 
@@ -32,8 +32,6 @@ public class RegisterView extends AbstractView implements RegisterPresenter.Disp
 
   @UiField
   Anchor mLogin;
-
-  RegisterPresenter mPresenter;
 
   public RegisterView()
   {

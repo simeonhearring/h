@@ -18,7 +18,7 @@ public class ChartPresenter extends AbstractPresenter<ChartPresenter.Display>
   @Override
   public void dispatch(RefreshEvent inEvent)
   {
-    Chart chart = mProfile.getClient().getChart();
+    Chart chart = mClient.getChart();
     if (mDataType.equals(chart.getDataType()))
     {
       mDisplay.load(chart);

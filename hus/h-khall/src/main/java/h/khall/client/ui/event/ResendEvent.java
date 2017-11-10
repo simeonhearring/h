@@ -4,13 +4,13 @@ import h.style.g.client.ui.event.Event;
 import h.style.g.client.ui.event.EventHandler;
 import h.style.g.client.ui.event.TypeH;
 
-public class RegisterEvent extends Event<RegisterEvent.Handler>
+public class ResendEvent extends Event<ResendEvent.Handler>
 {
-  public static final TypeH<Handler> TYPE = new TypeH<>(RegisterEvent.class);
+  public static final TypeH<Handler> TYPE = new TypeH<>(ResendEvent.class);
 
   public interface Handler extends EventHandler
   {
-    void dispatch(RegisterEvent inEvent);
+    void dispatch(ResendEvent inEvent);
   }
 
   @Override

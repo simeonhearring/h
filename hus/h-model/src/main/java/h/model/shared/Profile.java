@@ -10,6 +10,8 @@ public class Profile implements Serializable
   private String mUserTitle;
   private String mPassword;
 
+  private String mFirst, mLast;
+
   public String getUserName()
   {
     return mUserName;
@@ -48,5 +50,25 @@ public class Profile implements Serializable
   public void setPassword(String inPassword)
   {
     mPassword = inPassword;
+  }
+
+  public String getLast()
+  {
+    return mLast;
+  }
+
+  public void setLast(String inLast)
+  {
+    mLast = inLast;
+  }
+
+  public String getFirst()
+  {
+    return mFirst;
+  }
+
+  public void setFirst(String inFirst)
+  {
+    mFirst = inFirst;
   }
 }

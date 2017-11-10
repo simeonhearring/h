@@ -3,12 +3,13 @@ package h.khall.client.model;
 import com.google.gwt.user.client.ui.HasWidgets;
 
 import h.khall.client.ui.event.AttachEvent;
+import h.khall.client.ui.event.ClientEvent;
 import h.khall.client.ui.event.ProfileEvent;
-import h.khall.client.ui.event.ResendProfileEvent;
+import h.khall.client.ui.event.ResendEvent;
 import h.style.g.client.model.Attach;
 
 public class MainPresenter extends AbstractPresenter<MainPresenter.Display>
-  implements AttachEvent.Handler, ResendProfileEvent.Handler
+  implements AttachEvent.Handler, ResendEvent.Handler
 {
   public MainPresenter(MainPresenter.Display inDisplay)
   {
@@ -19,7 +20,7 @@ public class MainPresenter extends AbstractPresenter<MainPresenter.Display>
   public void handlers()
   {
     addHandler(AttachEvent.TYPE, this);
-    addHandler(ResendProfileEvent.TYPE, this);
+    addHandler(ResendEvent.TYPE, this);
   }
 
   @Override
@@ -51,9 +52,9 @@ public class MainPresenter extends AbstractPresenter<MainPresenter.Display>
   }
 
   @Override
-  public void dispatch(ResendProfileEvent inEvent)
+  public void dispatch(ResendEvent inEvent)
   {
-    fire(new ProfileEvent(mProfile));
+    fire(new ProfileEvent(mProfile), new ClientEvent(mClient));
   }
 
   private void attach(Attach inAttach)

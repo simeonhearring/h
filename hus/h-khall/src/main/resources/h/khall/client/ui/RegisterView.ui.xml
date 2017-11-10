@@ -28,10 +28,10 @@
 						<b:Input ui:field="mFirst" type="TEXT" placeholder="First name" />
 					</b:FormGroup>
 					<b:FormGroup>
-						<b:Input ui:field="mLast" type="TEXT" placeholder="First name" />
+						<b:Input ui:field="mLast" type="TEXT" placeholder="Last name" />
 					</b:FormGroup>
 					<b:FormGroup>
-						<b:Input ui:field="mEmail" type="EMAIL" placeholder="User name" />
+						<b:Input ui:field="mEmail" type="EMAIL" placeholder="Email address" />
 					</b:FormGroup>
 					<b:FormGroup>
 						<b.gwt:HTMLPanel addStyleNames="checkbox i-checks">

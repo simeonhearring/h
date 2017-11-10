@@ -14,9 +14,8 @@ import com.google.gwt.user.client.ui.UIObject;
 import com.google.gwt.user.client.ui.Widget;
 
 import h.khall.client.model.LoginPresenter;
-import h.style.g.client.ui.AbstractView;
 
-public class LoginView extends AbstractView implements LoginPresenter.Display
+public class LoginView extends AbstractView<LoginPresenter> implements LoginPresenter.Display
 {
   private static final Binder BINDER = GWT.create(Binder.class);
 
@@ -32,8 +31,6 @@ public class LoginView extends AbstractView implements LoginPresenter.Display
 
   @UiField
   Anchor mForgot, mCreate;
-
-  LoginPresenter mPresenter;
 
   public LoginView()
   {

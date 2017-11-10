@@ -10,9 +10,8 @@ import com.google.gwt.user.client.ui.UIObject;
 import com.google.gwt.user.client.ui.Widget;
 
 import h.khall.client.model.PagePresenter;
-import h.style.g.client.ui.AbstractView;
 
-public class PageView extends AbstractView implements PagePresenter.Display
+public class PageView extends AbstractView<PagePresenter> implements PagePresenter.Display
 {
   private static final Binder BINDER = GWT.create(Binder.class);
 
@@ -22,8 +21,6 @@ public class PageView extends AbstractView implements PagePresenter.Display
 
   @UiField
   HTMLPanel mTop, mBody;
-
-  PagePresenter mPresenter;
 
   public PageView()
   {

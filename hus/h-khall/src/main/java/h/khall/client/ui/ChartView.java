@@ -7,11 +7,10 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Widget;
 
 import h.khall.client.model.ChartPresenter;
-import h.style.g.client.ui.AbstractView;
 import h.style.g.client.ui.util.ChartUtil;
 import h.style.g.shared.chart.Chart;
 
-public class ChartView extends AbstractView implements ChartPresenter.Display
+public class ChartView extends AbstractView<ChartPresenter> implements ChartPresenter.Display
 {
   private static final Binder BINDER = GWT.create(Binder.class);
 
@@ -21,8 +20,6 @@ public class ChartView extends AbstractView implements ChartPresenter.Display
 
   @UiField
   CanvasElement mCanvas;
-
-  ChartPresenter mPresenter;
 
   public ChartView()
   {

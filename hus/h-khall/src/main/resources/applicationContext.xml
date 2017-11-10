@@ -16,6 +16,10 @@
 		<property name="dao" ref="Dao" />
 	</bean>
 
+	<bean id="RegisterCommand" class="h.khall.server.command.RegisterCommandBean">
+		<property name="dao" ref="Dao" />
+	</bean>
+
 	<bean id="PersonLookupCommand" class="h.khall.server.command.PersonLookupCommandBean">
 		<property name="dao" ref="Dao" />
 	</bean>
