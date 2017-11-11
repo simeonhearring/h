@@ -5,7 +5,14 @@
 	<ui:with field="msg" type="h.khall.client.resource.Messages" />
 	<ui:with field="res" type="h.khall.client.resource.Resource" />
 	<ui:style>
+	.color {
+		border-top-color: #2f4050;
+		border-right-color: #2f4050;
+	}
 	
+	.margin {
+		margin-bottom: 50px;
+	}
 	</ui:style>
 	<b.gwt:HTMLPanel addStyleNames="row">
 		<div class="col-lg-12">
@@ -34,39 +41,49 @@
 							<div class="m-t-md">
 								<h2 ui:field="mWeekOf" />
 							</div>
-							<div class="col-md-4">
+							<div class="col-md-4 b-r {style.color}">
 								<k:AssignView ui:field="mChairman" part="CHAIRMAN" />
 								<k:AssignView ui:field="mPrayer1" part="PRAYER_1" />
 								<k:AssignView ui:field="mPrayer2" part="PRAYER_2" />
-							</div>
-							<div class="col-md-4 b-r">
+								<b.html:Hr addStyleNames="{style.color}" />
 								<k:AssignView ui:field="mTreasures" part="TREASURES" />
-								<k:AssignView ui:field="mDigging" part="DIGGING" />
-								<k:AssignView ui:field="mLiving1" part="LIVING_1" />
-								<k:AssignView ui:field="mLiving2" part="LIVING_2" />
-								<k:AssignView ui:field="mCStudy" part="C_BIBLE_STUDY" />
+								<k:AssignView ui:field="mDigging" part="DIGGING" addStyleNames="{style.margin}" />
 							</div>
-							<div class="col-md-4 b-r">
-								<b.card:Card>
-									<b.card:Front>
-										<b.gwt:HTMLPanel>
-											<label>Main Hall</label>
-											<k:AssignView ui:field="mReading1" part="BIBLE_READING" />
-											<k:AssignView ui:field="mInitial1" part="INITIAL_CALL" />
-											<k:AssignView ui:field="mRv1" part="F_RETURN_VISIT" />
-											<k:AssignView ui:field="mTalk1" part="TALK" />
-										</b.gwt:HTMLPanel>
-									</b.card:Front>
-									<b.card:Back>
-										<b.gwt:HTMLPanel>
-											<label>Auxiliary Classroom #1</label>
-											<k:AssignView ui:field="mReading2" part="BIBLE_READING" hall="AUX1" />
-											<k:AssignView ui:field="mInitial2" part="INITIAL_CALL" hall="AUX1" />
-											<k:AssignView ui:field="mRv2" part="F_RETURN_VISIT" hall="AUX1" />
-											<k:AssignView ui:field="mTalk2" part="TALK" hall="AUX1" />
-										</b.gwt:HTMLPanel>
-									</b.card:Back>
-								</b.card:Card>
+							<div class="col-md-8">
+								<div class="row" style="height: 250px">
+									<div class="col-md-12">
+										<b.card:Card>
+											<b.card:Front>
+												<b.gwt:HTMLPanel>
+													<label>Main Hall</label>
+													<k:AssignView ui:field="mReading1" part="BIBLE_READING" />
+													<k:AssignView ui:field="mInitial1" part="INITIAL_CALL" />
+													<k:AssignView ui:field="mRv1" part="F_RETURN_VISIT" />
+													<k:AssignView ui:field="mTalk1" part="TALK" />
+												</b.gwt:HTMLPanel>
+											</b.card:Front>
+											<b.card:Back>
+												<b.gwt:HTMLPanel>
+													<label>Auxiliary Classroom #1</label>
+													<k:AssignView ui:field="mReading2" part="BIBLE_READING" hall="AUX1" />
+													<k:AssignView ui:field="mInitial2" part="INITIAL_CALL" hall="AUX1" />
+													<k:AssignView ui:field="mRv2" part="F_RETURN_VISIT" hall="AUX1" />
+													<k:AssignView ui:field="mTalk2" part="TALK" hall="AUX1" />
+												</b.gwt:HTMLPanel>
+											</b.card:Back>
+										</b.card:Card>
+									</div>
+								</div>
+								<b.html:Hr addStyleNames="{style.color}" />
+								<div class="row">
+									<div class="col-md-6">
+										<k:AssignView ui:field="mLiving1" part="LIVING_1" />
+									</div>
+									<div class="col-md-6">
+										<k:AssignView ui:field="mLiving2" part="LIVING_2" />
+									</div>
+								</div>
+								<k:AssignView ui:field="mCStudy" part="C_BIBLE_STUDY" />
 							</div>
 						</div>
 					</b.gwt:HTMLPanel>

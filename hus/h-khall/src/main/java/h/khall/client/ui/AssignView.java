@@ -92,16 +92,19 @@ public class AssignView extends h.style.g.client.ui.AbstractView
     mTag.remove(inTag);
   }
 
+  @Override
   public void setLabel(String inText)
   {
     mLabel.setInnerText(inText);
   }
 
+  @Override
   public void setColor(String inColor)
   {
     mLabel.getStyle().setColor(inColor);
   }
 
+  @Override
   public void setPart(Part inPart)
   {
     mPart = inPart;
@@ -115,7 +118,6 @@ public class AssignView extends h.style.g.client.ui.AbstractView
   @Override
   public void setValue(List<Tag> inValue)
   {
-    clear();
     for (Tag value : inValue)
     {
       mTag.add(value);
@@ -125,13 +127,13 @@ public class AssignView extends h.style.g.client.ui.AbstractView
   @Override
   public void setValue(Tag... inValue)
   {
-    clear();
     for (Tag value : inValue)
     {
       mTag.add(value);
     }
   }
 
+  @Override
   public void clear()
   {
     mTag.removeAll();

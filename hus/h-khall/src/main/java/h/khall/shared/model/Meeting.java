@@ -3,14 +3,14 @@ package h.khall.shared.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.google.common.annotations.GwtIncompatible;
-
-import h.model.shared.Tag;
 
 @SuppressWarnings("serial")
 public class Meeting implements Serializable
@@ -83,8 +83,10 @@ public class Meeting implements Serializable
     }
   }
 
-  public static class Month extends Setup<Week> implements Serializable, ISetup
+  public static class Month extends Setup<Week> implements Serializable, ISetup, Comparator<Integer>
   {
+    private Map<Integer, Integer> mKeys;
+
     @Override
     public Week create(Date inWeekOf)
     {
@@ -95,6 +97,40 @@ public class Meeting implements Serializable
     {
       setup(inWeek, inValue);
       mMap.get(inWeek).add(inValue);
+    }
+
+    private int key(int inKey)
+    {
+      int ret = -1;
+
+      if (mKeys == null)
+      {
+        mKeys = new HashMap<>();
+        List<Integer> list = new ArrayList<>(mMap.keySet());
+        Collections.sort(list);
+        for (int i = 0; i < list.size(); i++)
+        {
+          mKeys.put(i, list.get(i));
+        }
+      }
+
+      if (mKeys.containsKey(inKey))
+      {
+        ret = mKeys.get(inKey);
+      }
+      return ret;
+    }
+
+    @Override
+    public Week g(int inKey)
+    {
+      return super.g(key(inKey));
+    }
+
+    @Override
+    public int compare(Integer inO1, Integer inO2)
+    {
+      return inO1.compareTo(inO2);
     }
   }
 
@@ -127,13 +163,30 @@ public class Meeting implements Serializable
       return mAssignment;
     }
 
-    public List<Tag> getTags(Part inPart, Hall inHall)
+    public boolean contains(Part inPart)
     {
-      List<Tag> ret = new ArrayList<>();
-      Assignment a = get(inPart, inHall);
-      if (a != null)
+      List<Part> parts = new ArrayList<>();
+      for (Assignment value : mAssignment)
       {
-        a.addTags(ret);
+        parts.add(value.getPart().getParent());
+      }
+      return parts.contains(inPart.getParent());
+    }
+
+    public Part getPart(Part inPart)
+    {
+      Part ret = inPart;
+      if (inPart.ambigous())
+      {
+        List<Part> parts = new ArrayList<>();
+        for (Assignment value : mAssignment)
+        {
+          if (value.getPart().ambigous())
+          {
+            parts.add(value.getPart());
+          }
+        }
+        ret = ret.match(parts);
       }
       return ret;
     }
@@ -150,6 +203,18 @@ public class Meeting implements Serializable
         }
       }
       return ret;
+    }
+
+    @Override
+    public String toString()
+    {
+      StringBuilder builder = new StringBuilder();
+      builder.append("Week [mOf=");
+      builder.append(mOf);
+      builder.append(", mAssignment=");
+      builder.append(mAssignment);
+      builder.append("]");
+      return builder.toString();
     }
   }
 
@@ -188,6 +253,16 @@ public class Meeting implements Serializable
         ret = create(null);
       }
       return ret;
+    }
+
+    @Override
+    public String toString()
+    {
+      StringBuilder builder = new StringBuilder();
+      builder.append("Setup [mMap=");
+      builder.append(mMap);
+      builder.append("]");
+      return builder.toString();
     }
   }
 }

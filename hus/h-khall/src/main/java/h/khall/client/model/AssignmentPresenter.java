@@ -1,12 +1,10 @@
 package h.khall.client.model;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 
 import h.khall.client.model.AssignmentPresenter.AssignDisplay;
+import h.khall.shared.model.Assignment;
 import h.khall.shared.model.Hall;
 import h.khall.shared.model.Meeting;
 import h.khall.shared.model.Meeting.Week;
@@ -18,14 +16,10 @@ import h.style.g.client.ui.event.RefreshEvent;
 public class AssignmentPresenter extends AbstractPresenter<AssignmentPresenter.Display>
   implements CallBack<AssignDisplay>, RefreshEvent.Handler
 {
-  private Map<String, AssignDisplay> mAssigns;
-
   public AssignmentPresenter(Display inDisplay)
   {
     initDisplay(inDisplay);
-    mAssigns = new HashMap<>();
   }
-
 
   public AssignmentPresenter handlers()
   {
@@ -34,7 +28,6 @@ public class AssignmentPresenter extends AbstractPresenter<AssignmentPresenter.D
     for (AssignDisplay value : mDisplay.getAssignDisplay())
     {
       value.setAddedCallback(this);
-      mAssigns.put(value.getHall().name() + "|" + value.getPart().name(), value);
     }
     return this;
   }
@@ -43,13 +36,21 @@ public class AssignmentPresenter extends AbstractPresenter<AssignmentPresenter.D
   public void dispatch(RefreshEvent inEvent)
   {
     Meeting meeting = mClient.getMeeting();
-    Week week = meeting.getWeek(2017, 10, 2);
+    Week week = meeting.getWeek(2017, 0, 2); // TODO
     mDisplay.setWeekOf(dateRange(week.getOf()));
 
-    for (Entry<String, AssignDisplay> value : mAssigns.entrySet())
+    for (AssignDisplay value : mDisplay.getAssignDisplay())
     {
-      List<Tag> tags = week.getTags(value.getValue().getPart(), value.getValue().getHall());
-      value.getValue().setValue(tags);
+      value.clear();
+
+      value.setVisible(week.contains(value.getPart()));
+      value.setPart(week.getPart(value.getPart()));
+
+      Assignment assignment = week.get(value.getPart().getParent(), value.getHall());
+      if (assignment != null)
+      {
+        value.setValue(assignment.getTags());
+      }
     }
   }
 
@@ -66,9 +67,13 @@ public class AssignmentPresenter extends AbstractPresenter<AssignmentPresenter.D
   {
     Hall getHall();
 
+    void setVisible(boolean inVisible);
+
     Part getPart();
 
     List<Tag> getValues();
+
+    void clear();
 
     void remove(Tag inTag);
 
@@ -76,7 +81,13 @@ public class AssignmentPresenter extends AbstractPresenter<AssignmentPresenter.D
 
     void setValue(Tag... inValue);
 
+    void setLabel(String inText);
+
     void setAddedCallback(CallBack<AssignDisplay> inCallBack);
+
+    void setColor(String inColor);
+
+    void setPart(Part inPart);
   }
 
   public interface Display extends h.style.g.client.model.Display

@@ -1,5 +1,7 @@
 package h.khall.shared.model;
 
+import java.util.List;
+
 import h.model.shared.util.StringUtil;
 
 public enum Part
@@ -115,6 +117,38 @@ public enum Part
       default:
         ret = StringUtil.toTitle(this.name().replaceAll("_", " "));
         break;
+    }
+    return ret;
+  }
+
+  public boolean ambigous()
+  {
+    boolean ret = false;
+    switch (this)
+    {
+      case F_RETURN_VISIT:
+      case S_RETURN_VISIT:
+      case T_RETURN_VISIT:
+      case BIBLE_STUDY:
+      case TALK:
+        ret = true;
+        break;
+      default:
+        break;
+    }
+    return ret;
+  }
+
+  public Part match(List<Part> inParts)
+  {
+    Part ret = this;
+    for (Part value : inParts)
+    {
+      if (ret.getParent().equals(value.getParent()))
+      {
+        ret = value;
+        break;
+      }
     }
     return ret;
   }

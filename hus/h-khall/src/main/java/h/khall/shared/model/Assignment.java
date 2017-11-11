@@ -1,6 +1,7 @@
 package h.khall.shared.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -77,7 +78,14 @@ public class Assignment implements Serializable
     mStudyPoint = inStudyPoint;
   }
 
-  public void addTags(List<Tag> inTags)
+  public List<Tag> getTags()
+  {
+    List<Tag> ret = new ArrayList<>();
+    addTags(ret);
+    return ret;
+  }
+
+  private void addTags(List<Tag> inTags)
   {
     if (mParticipant != null)
     {

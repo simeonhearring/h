@@ -1,6 +1,5 @@
 package h.khall.server.dao.bean;
 
-import java.util.Date;
 import java.util.List;
 
 import h.khall.server.dao.Dao;
@@ -35,7 +34,7 @@ public class JavaBeanDaoImpl implements Dao
   public Meeting selectMonthly(Profile inProfile)
   {
     Meeting ret = new Meeting();
-    ret.setAssignments(RandomAssignments.assigns(new Date(), PERSONS));
+    ret.setAssignments(RandomAssignments.assigns(PERSONS));
     return ret;
   }
 
