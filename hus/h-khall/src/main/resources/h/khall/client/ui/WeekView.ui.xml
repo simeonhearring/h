@@ -18,20 +18,37 @@
 		height: 300px;
 	}
 	</ui:style>
-	<b.gwt:HTMLPanel addStyleNames="content">
-		<div class="body">
-			<div class="m-t-md">
-				<h2 ui:field="mWeekOf" />
+	<b.gwt:HTMLPanel addStyleNames="ibox-content">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="m-t-md">
+					<h3 ui:field="mWeekOf" />
+				</div>
 			</div>
+		</div>
+		<b.html:Hr addStyleNames="{style.color}" />
+		<div class="row">
 			<div class="col-md-4 b-r {style.color}">
-				<k:AssignView ui:field="mChairman" part="CHAIRMAN" />
-				<k:AssignView ui:field="mPrayer1" part="PRAYER_1" />
-				<k:AssignView ui:field="mPrayer2" part="PRAYER_2" />
-				<b.html:Hr addStyleNames="{style.color}" />
-				<k:AssignView ui:field="mTreasures" part="TREASURES" />
-				<k:AssignView ui:field="mDigging" part="DIGGING" addStyleNames="{style.margin}" />
+				<form role="form">
+					<k:AssignView ui:field="mChairman" part="CHAIRMAN" />
+					<k:AssignView ui:field="mPrayer1" part="PRAYER_1" />
+					<k:AssignView ui:field="mPrayer2" part="PRAYER_2" />
+					<b.html:Hr addStyleNames="{style.color}" />
+					<k:AssignView ui:field="mTreasures" part="TREASURES" />
+					<k:AssignView ui:field="mDigging" part="DIGGING" addStyleNames="{style.margin}" />
+				</form>
 			</div>
-			<div class="col-md-8">
+			<div class="col-md-8" style="{style.height}">
+				<div class="row">
+					<div class="col-md-6">
+						<k:AssignView ui:field="mLiving1" part="LIVING_1" />
+					</div>
+					<div class="col-md-6">
+						<k:AssignView ui:field="mLiving2" part="LIVING_2" />
+					</div>
+				</div>
+				<k:AssignView ui:field="mCStudy" part="C_BIBLE_STUDY" />
+				<b.html:Hr addStyleNames="{style.color}" />
 				<div class="row" style="{style.height}">
 					<div class="col-md-12">
 						<b.card:Card>
@@ -56,16 +73,6 @@
 						</b.card:Card>
 					</div>
 				</div>
-				<b.html:Hr addStyleNames="{style.color}" />
-				<div class="row">
-					<div class="col-md-6">
-						<k:AssignView ui:field="mLiving1" part="LIVING_1" />
-					</div>
-					<div class="col-md-6">
-						<k:AssignView ui:field="mLiving2" part="LIVING_2" />
-					</div>
-				</div>
-				<k:AssignView ui:field="mCStudy" part="C_BIBLE_STUDY" />
 			</div>
 		</div>
 	</b.gwt:HTMLPanel>

@@ -8,15 +8,7 @@
 	</ui:style>
 	<b.gwt:HTMLPanel addStyleNames="wrapper wrapper-content animated fadeInRight">
 
-		<g:ScrollPanel addStyleNames="kh_scroll">
-			<b.gwt:HTMLPanel>
-
-				<k:CloseableView heading="New Publisher">
-					<k:MonthView />
-				</k:CloseableView>
-
-			</b.gwt:HTMLPanel>
-		</g:ScrollPanel>
+		<k:MonthView />
 
 	</b.gwt:HTMLPanel>
 </ui:UiBinder>
