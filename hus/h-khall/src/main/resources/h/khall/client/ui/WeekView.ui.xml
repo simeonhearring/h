@@ -11,7 +11,11 @@
 	}
 	
 	.margin {
-		margin-bottom: 50px;
+		margin-bottom: 110px;
+	}
+	
+	.height {
+		height: 300px;
 	}
 	</ui:style>
 	<b.gwt:HTMLPanel addStyleNames="content">
@@ -28,7 +32,7 @@
 				<k:AssignView ui:field="mDigging" part="DIGGING" addStyleNames="{style.margin}" />
 			</div>
 			<div class="col-md-8">
-				<div class="row" style="height: 250px">
+				<div class="row" style="{style.height}">
 					<div class="col-md-12">
 						<b.card:Card>
 							<b.card:Front>
