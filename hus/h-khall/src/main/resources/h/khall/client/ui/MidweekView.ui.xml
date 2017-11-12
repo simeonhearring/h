@@ -12,7 +12,7 @@
 			<b.gwt:HTMLPanel>
 
 				<k:CloseableView heading="New Publisher">
-					<k:AssignmentView />
+					<k:MonthView />
 				</k:CloseableView>
 
 			</b.gwt:HTMLPanel>

@@ -27,4 +27,8 @@
 	<bean id="AssignLookupCommand" class="h.khall.server.command.AssignLookupCommandBean">
 		<property name="dao" ref="Dao" />
 	</bean>
+
+	<bean id="AssignmentSaveCommand" class="h.khall.server.command.AssignmentSaveCommandBean">
+		<property name="dao" ref="Dao" />
+	</bean>
 </beans>

@@ -18,8 +18,8 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Widget;
 
-import h.khall.client.model.AssignmentPresenter;
-import h.khall.client.model.AssignmentPresenter.AssignDisplay;
+import h.khall.client.model.WeekPresenter;
+import h.khall.shared.model.Assignment;
 import h.khall.shared.model.Hall;
 import h.khall.shared.model.Part;
 import h.model.shared.Tag;
@@ -27,7 +27,7 @@ import h.style.g.client.model.CallBack;
 
 public class AssignView extends h.style.g.client.ui.AbstractView
   implements ItemTextCallback<Tag>, ItemValueCallback<Tag>, ItemAddedHandler<Tag>,
-  ItemRemovedHandler<Tag>, OnTagExistsCallback<Tag>, AssignmentPresenter.AssignDisplay
+  ItemRemovedHandler<Tag>, OnTagExistsCallback<Tag>, WeekPresenter.AssignDisplay
 {
   private static final Binder BINDER = GWT.create(Binder.class);
 
@@ -44,7 +44,9 @@ public class AssignView extends h.style.g.client.ui.AbstractView
   private Hall mHall = Hall.MAIN;
   private Part mPart;
   private AssignSet mDataset;
-  private CallBack<AssignDisplay> mAddedCallBack;
+  private CallBack<WeekPresenter.AssignDisplay> mCallBack;
+
+  private Assignment mAssignment;
 
   public AssignView()
   {
@@ -61,6 +63,18 @@ public class AssignView extends h.style.g.client.ui.AbstractView
     mTag.addItemRemovedHandler(this);
 
     mTag.setDatasets(mDataset);
+  }
+
+  @Override
+  public Assignment getAssignment()
+  {
+    return mAssignment;
+  }
+
+  @Override
+  public void setAssignment(Assignment inAssignment)
+  {
+    mAssignment = inAssignment;
   }
 
   public void setHall(Hall inHall)
@@ -142,21 +156,25 @@ public class AssignView extends h.style.g.client.ui.AbstractView
   @Override
   public void onTagExists(Tag inPerson, Element inTag)
   {
-    notify(inPerson.getName() + " exists.");
+    notify(inPerson.getName() + " exists, no duplicates.");
   }
 
   @Override
   public void onItemAdded(ItemAddedEvent<Tag> inEvent)
   {
-    if (mAddedCallBack != null)
+    if (mCallBack != null)
     {
-      mAddedCallBack.onCallBack(this);
+      mCallBack.onCallBack(this);
     }
   }
 
   @Override
   public void onItemRemoved(ItemRemovedEvent<Tag> inEvent)
   {
+    if (mCallBack != null)
+    {
+      mCallBack.onCallBack(this);
+    }
   }
 
   @Override
@@ -172,8 +190,8 @@ public class AssignView extends h.style.g.client.ui.AbstractView
   }
 
   @Override
-  public void setAddedCallback(CallBack<AssignDisplay> inCallBack)
+  public void setCallback(CallBack<WeekPresenter.AssignDisplay> inCallBack)
   {
-    mAddedCallBack = inCallBack;
+    mCallBack = inCallBack;
   }
 }

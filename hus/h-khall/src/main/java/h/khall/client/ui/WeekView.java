@@ -6,15 +6,14 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Widget;
 
-import h.khall.client.model.AssignmentPresenter;
-import h.khall.client.model.AssignmentPresenter.AssignDisplay;
+import h.khall.client.model.WeekPresenter;
+import h.khall.shared.model.Meeting.Week;
 
-public class AssignmentView extends AbstractView<AssignmentPresenter>
-  implements AssignmentPresenter.Display
+public class WeekView extends AbstractView<WeekPresenter> implements WeekPresenter.Display
 {
   private static final Binder BINDER = GWT.create(Binder.class);
 
-  interface Binder extends UiBinder<Widget, AssignmentView>
+  interface Binder extends UiBinder<Widget, WeekView>
   {
   }
 
@@ -25,10 +24,16 @@ public class AssignmentView extends AbstractView<AssignmentPresenter>
   AssignView mChairman, mPrayer1, mPrayer2, mTreasures, mDigging, mLiving1, mLiving2, mCStudy,
       mReading1, mInitial1, mRv1, mTalk1, mReading2, mInitial2, mRv2, mTalk2;
 
-  public AssignmentView()
+  public WeekView()
   {
     initWidget(BINDER.createAndBindUi(this));
-    mPresenter = new AssignmentPresenter(this).handlers();
+    mPresenter = new WeekPresenter(this);
+  }
+
+  @Override
+  public void setWeek(Week inWeek)
+  {
+    mPresenter.setWeek(inWeek);
   }
 
   @Override
@@ -38,9 +43,9 @@ public class AssignmentView extends AbstractView<AssignmentPresenter>
   }
 
   @Override
-  public AssignDisplay[] getAssignDisplay()
+  public WeekPresenter.AssignDisplay[] getAssignDisplay()
   {
-    return new AssignDisplay[]
+    return new WeekPresenter.AssignDisplay[]
     {
         mChairman,
         mPrayer1,

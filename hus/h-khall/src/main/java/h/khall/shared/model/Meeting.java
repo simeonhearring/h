@@ -132,6 +132,16 @@ public class Meeting implements Serializable
     {
       return inO1.compareTo(inO2);
     }
+
+//    public List<Week> getWeeks()
+//    {
+//      List<Week> ret = new ArrayList<>();
+//      for (int i = 0; i < mMap.size(); i++)
+//      {
+//        ret.add(g(i));
+//      }
+//      return ret;
+//    }
   }
 
   public static class Week implements Serializable, ISetup
@@ -202,6 +212,16 @@ public class Meeting implements Serializable
           break;
         }
       }
+
+      if (ret == null)
+      {
+        ret = new Assignment();
+        ret.setWeekOf(mOf);
+        ret.setPart(inPart);
+        ret.setHall(inHall);
+        mAssignment.add(ret);
+      }
+
       return ret;
     }
 
