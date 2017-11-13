@@ -14,7 +14,7 @@ public class MonthPresenter extends AbstractPresenter<MonthPresenter.Display>
   public void setMonth(int inYear, int inMo, Month inMonth)
   {
     @SuppressWarnings("deprecation")
-    Date d = new Date(inYear, inMo, 1);
+    Date d = new Date(inYear - 1900, inMo, 1);
     mDisplay.setMonth(format("MMMM yyyy", d).toUpperCase());
 
     mDisplay.getWeek0().setWeek(inMonth.g(0));

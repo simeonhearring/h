@@ -63,7 +63,7 @@ public class RandomAssignments
   {
     List<Assignment> ret = new ArrayList<>();
     long date = 1483336800000L; // January 2, 2017
-    for (int i = 0; i < 40; i++)
+    for (int i = 0; i < 55; i++)
     {
       date += 604800 * 1000;
       assigns(ret, new Date(date), inPersons);

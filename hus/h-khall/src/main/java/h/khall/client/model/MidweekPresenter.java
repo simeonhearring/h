@@ -1,5 +1,7 @@
 package h.khall.client.model;
 
+import java.util.Date;
+
 import h.khall.shared.model.Meeting;
 import h.style.g.client.ui.event.RefreshEvent;
 
@@ -12,6 +14,7 @@ public class MidweekPresenter extends AbstractPresenter<MidweekPresenter.Display
   public MidweekPresenter(Display inDisplay)
   {
     initDisplay(inDisplay);
+    mPageIndex = currentIndex();
   }
 
   public MidweekPresenter handlers()
@@ -51,6 +54,25 @@ public class MidweekPresenter extends AbstractPresenter<MidweekPresenter.Display
     mDisplay.getMonth0().setMonth(yr, mo0, meeting.getMonth(yr, mo0));
     mDisplay.getMonth1().setMonth(yr, mo1, meeting.getMonth(yr, mo1));
     mDisplay.getMonth2().setMonth(yr, mo2, meeting.getMonth(yr, mo2));
+  }
+
+  private int currentIndex()
+  {
+    int ret = 0;
+    @SuppressWarnings("deprecation")
+    int mo = new Date().getMonth();
+    for (int i = 0; i < mRange.length; i++)
+    {
+      for (int value : mRange[i])
+      {
+        if (mo == value)
+        {
+          ret = i;
+          break;
+        }
+      }
+    }
+    return ret;
   }
 
   public interface Display extends h.style.g.client.model.Display
