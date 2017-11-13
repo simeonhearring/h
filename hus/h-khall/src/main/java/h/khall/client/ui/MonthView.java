@@ -7,6 +7,7 @@ import com.google.gwt.user.client.ui.Widget;
 
 import h.khall.client.model.MonthPresenter;
 import h.khall.client.model.WeekPresenter.Display;
+import h.khall.shared.model.Meeting.Month;
 
 public class MonthView extends AbstractView<MonthPresenter>
   implements MonthPresenter.Display
@@ -18,12 +19,27 @@ public class MonthView extends AbstractView<MonthPresenter>
   }
 
   @UiField
+  CloseableView mHead;
+
+  @UiField
   WeekView mW0, mW1, mW2, mW3, mW4;
 
   public MonthView()
   {
     initWidget(BINDER.createAndBindUi(this));
-    mPresenter = new MonthPresenter(this).handlers();
+    mPresenter = new MonthPresenter(this);
+  }
+
+  @Override
+  public void setMonth(int inYear, int inMo, Month inMonth)
+  {
+    mPresenter.setMonth(inYear, inMo, inMonth);
+  }
+
+  @Override
+  public void setMonth(String inText)
+  {
+    mHead.setHeading(inText);
   }
 
   @Override

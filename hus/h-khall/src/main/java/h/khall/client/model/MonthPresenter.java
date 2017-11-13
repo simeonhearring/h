@@ -1,39 +1,35 @@
 package h.khall.client.model;
 
-import h.khall.shared.model.Meeting;
+import java.util.Date;
+
 import h.khall.shared.model.Meeting.Month;
-import h.style.g.client.ui.event.RefreshEvent;
 
 public class MonthPresenter extends AbstractPresenter<MonthPresenter.Display>
-  implements RefreshEvent.Handler
 {
   public MonthPresenter(Display inDisplay)
   {
     initDisplay(inDisplay);
   }
 
-  public MonthPresenter handlers()
+  public void setMonth(int inYear, int inMo, Month inMonth)
   {
-    addHandler(RefreshEvent.TYPE, this);
-    return this;
-  }
+    @SuppressWarnings("deprecation")
+    Date d = new Date(inYear, inMo, 1);
+    mDisplay.setMonth(format("MMMM yyyy", d).toUpperCase());
 
-  @Override
-  public void dispatch(RefreshEvent inEvent)
-  {
-    Meeting meeting = mClient.getMeeting();
-
-    Month month = meeting.getMonth(2017, 0);
-
-    mDisplay.getWeek0().setWeek(month.g(0));
-    mDisplay.getWeek1().setWeek(month.g(1));
-    mDisplay.getWeek2().setWeek(month.g(2));
-    mDisplay.getWeek3().setWeek(month.g(3));
-    mDisplay.getWeek4().setWeek(month.g(4));
+    mDisplay.getWeek0().setWeek(inMonth.g(0));
+    mDisplay.getWeek1().setWeek(inMonth.g(1));
+    mDisplay.getWeek2().setWeek(inMonth.g(2));
+    mDisplay.getWeek3().setWeek(inMonth.g(3));
+    mDisplay.getWeek4().setWeek(inMonth.g(4));
   }
 
   public interface Display extends h.style.g.client.model.Display
   {
+    void setMonth(int inYear, int inMo, Month inMonth);
+
+    void setMonth(String inText);
+
     WeekPresenter.Display getWeek0();
 
     WeekPresenter.Display getWeek1();

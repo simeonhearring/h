@@ -30,6 +30,7 @@ public class WeekPresenter extends AbstractPresenter<WeekPresenter.Display>
     for (AssignDisplay value : mDisplay.getAssignDisplay())
     {
       value.clear();
+      value.setCallback(null);
 
       value.setVisible(inWeek.contains(value.getPart()));
       value.setPart(inWeek.getPart(value.getPart()));

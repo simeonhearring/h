@@ -1,13 +1,64 @@
 package h.khall.client.model;
 
+import h.khall.shared.model.Meeting;
+import h.style.g.client.ui.event.RefreshEvent;
+
 public class MidweekPresenter extends AbstractPresenter<MidweekPresenter.Display>
+  implements RefreshEvent.Handler
 {
+  private int[][] mRange = {{0,1,2}, {3,4,5}, {6,7,8}, {9,10,11}};
+  private int mPageIndex = 0;
+
   public MidweekPresenter(Display inDisplay)
   {
     initDisplay(inDisplay);
   }
 
+  public MidweekPresenter handlers()
+  {
+    addHandler(RefreshEvent.TYPE, this);
+    return this;
+  }
+
+  public void previous()
+  {
+    mPageIndex = mPageIndex == 0 ? mRange.length - 1 : mPageIndex - 1;
+    addMonths();
+  }
+
+  public void next()
+  {
+    mPageIndex = mPageIndex == mRange.length - 1 ? 0 : mPageIndex + 1;
+    addMonths();
+  }
+
+  @Override
+  public void dispatch(RefreshEvent inEvent)
+  {
+    addMonths();
+  }
+
+  private void addMonths()
+  {
+    Meeting meeting = mClient.getMeeting();
+
+    int yr = 2017;
+
+    int mo0 = mRange[mPageIndex][0];
+    int mo1 = mRange[mPageIndex][1];
+    int mo2 = mRange[mPageIndex][2];
+
+    mDisplay.getMonth0().setMonth(yr, mo0, meeting.getMonth(yr, mo0));
+    mDisplay.getMonth1().setMonth(yr, mo1, meeting.getMonth(yr, mo1));
+    mDisplay.getMonth2().setMonth(yr, mo2, meeting.getMonth(yr, mo2));
+  }
+
   public interface Display extends h.style.g.client.model.Display
   {
+    MonthPresenter.Display getMonth0();
+
+    MonthPresenter.Display getMonth1();
+
+    MonthPresenter.Display getMonth2();
   }
 }

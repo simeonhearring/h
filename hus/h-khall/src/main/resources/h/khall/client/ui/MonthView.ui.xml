@@ -7,7 +7,7 @@
 	<ui:style>
 	
 	</ui:style>
-	<k:CloseableView ui:field="mHead" heading="Schedule">
+	<k:CloseableView ui:field="mHead">
 		<g:ScrollPanel addStyleNames="kh_scroll">
 			<b.gwt:HTMLPanel>
 				<k:WeekView ui:field="mW0" />

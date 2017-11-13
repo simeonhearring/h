@@ -62,8 +62,8 @@ public class RandomAssignments
   public static List<Assignment> assigns(List<Person> inPersons)
   {
     List<Assignment> ret = new ArrayList<>();
-    long date = 1483336800000L;
-    for (int i = 0; i < 10; i++)
+    long date = 1483336800000L; // January 2, 2017
+    for (int i = 0; i < 40; i++)
     {
       date += 604800 * 1000;
       assigns(ret, new Date(date), inPersons);
