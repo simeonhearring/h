@@ -5,17 +5,11 @@ import java.util.Date;
 @SuppressWarnings("serial")
 public class Person extends h.model.shared.Person
 {
-  public enum Type
-  {
-    STUDENT,
-    MINISTRY;
-  }
-
   private String mFsg;
   private String mFaith;
   private Date mBaptized;
-  private String mRoles;
-  private String mCategories;
+  private Roles mRoles;
+  private Categories mCategories;
   private String mEmergency;
   private String mChildren;
   private String mHead;
@@ -29,30 +23,23 @@ public class Person extends h.model.shared.Person
     if (mStudent == null)
     {
       mStudent = new Student();
+      mStudent.normalize();
     }
     if (mMinistry == null)
     {
       mMinistry = new Ministry();
+      mMinistry.normalize();
     }
-  }
-
-  public String getStatus(Type inType)
-  {
-    String ret = null;
-
-    switch (inType)
+    if (mRoles == null)
     {
-      case MINISTRY:
-        ret = getMinistryStatus();
-        break;
-      case STUDENT:
-        ret = getStudentStatus();
-        break;
-      default:
-        break;
+      mRoles = new Roles();
+      mRoles.normalize();
     }
-
-    return ret;
+    if (mCategories == null)
+    {
+      mCategories = new Categories();
+      mCategories.normalize();
+    }
   }
 
   public String getFsg()
@@ -85,22 +72,22 @@ public class Person extends h.model.shared.Person
     mBaptized = inBaptized;
   }
 
-  public String getRoles()
+  public Roles getRoles()
   {
     return mRoles;
   }
 
-  public void setRoles(String inTypes)
+  public void setRoles(Roles inRoles)
   {
-    mRoles = inTypes;
+    mRoles = inRoles;
   }
 
-  public String getCategories()
+  public Categories getCategories()
   {
     return mCategories;
   }
 
-  public void setCategories(String inCategories)
+  public void setCategories(Categories inCategories)
   {
     mCategories = inCategories;
   }
@@ -145,9 +132,9 @@ public class Person extends h.model.shared.Person
     mFamily = inFamily;
   }
 
-  public String getStudentStatus()
+  public boolean isStudent()
   {
-    return mStudent.getStatus();
+    return mRoles.contains(Roles.Role.STUDENT);
   }
 
   public Student getStudent()

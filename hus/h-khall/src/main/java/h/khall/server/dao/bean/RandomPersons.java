@@ -8,9 +8,10 @@ import java.util.List;
 
 import h.khall.shared.model.Person;
 import h.khall.shared.model.Persons;
+import h.khall.shared.model.Roles;
+import h.khall.shared.model.Roles.Role;
 import h.khall.shared.model.Student;
 import h.model.shared.Person.Gender;
-import h.tool.util.RandomUtil;
 
 public class RandomPersons
 {
@@ -34,6 +35,7 @@ public class RandomPersons
 
       person.setFsg(random(LAST).toUpperCase() + " FSG");
       person.setStudent(student());
+      person.setRoles(roles());
 
       person.normalize();
 
@@ -43,10 +45,21 @@ public class RandomPersons
     return ret;
   }
 
+  private static Roles roles()
+  {
+    Roles ret = new Roles();
+    ret.normalize();
+    if (random(BOOL))
+    {
+      ret.add(Role.STUDENT);
+    }
+    return ret;
+  }
+
   private static Student student()
   {
     Student ret = new Student();
-    ret.setInactive(RandomUtil.random(BOOL));
+    ret.normalize();
     return ret;
   }
 

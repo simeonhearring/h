@@ -73,11 +73,17 @@ public class PersonTableView extends AbstractView
     mTable.setWidget(row, ++column, address);
 
     Span status = new Span();
-    status.setStyleName("label label-primary");
-    status.setText(inPerson.getStatus(Person.Type.STUDENT));
+    boolean student = inPerson.isStudent();
+    status.setStyleName("label label-" + (student ? "primary" : "warning"));
+    status.setText(getStudentStatus(student));
     mTable.getCellFormatter().getElement(row, column).addClassName("client-status");
     mTable.setWidget(row, ++column, status);
  }
+
+  public String getStudentStatus(boolean inStatus)
+  {
+    return inStatus ? "Enrolled" : "Not Enrolled";
+  }
 
   public void clear()
   {

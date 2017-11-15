@@ -1,14 +1,26 @@
 package h.khall.shared.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @SuppressWarnings("serial")
 public class Student implements Serializable
 {
-  private Boolean mInactive;
   private List<Part> mParts;
   private List<Hall> mHalls;
+
+  public void normalize()
+  {
+    if (mParts == null)
+    {
+      mParts = new ArrayList<>();
+    }
+    if (mHalls == null)
+    {
+      mHalls = new ArrayList<>();
+    }
+  }
 
   public List<Part> getParts()
   {
@@ -28,20 +40,5 @@ public class Student implements Serializable
   public void setHalls(List<Hall> inHalls)
   {
     mHalls = inHalls;
-  }
-
-  public Boolean getInactive()
-  {
-    return mInactive;
-  }
-
-  public void setInactive(Boolean inInactive)
-  {
-    mInactive = inInactive;
-  }
-
-  public String getStatus()
-  {
-    return mInactive != null && mInactive ? "Enrolled" : "Not Enrolled";
   }
 }

@@ -1,6 +1,7 @@
 package h.khall.shared.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -10,6 +11,14 @@ public class Ministry implements Serializable
   private Boolean mPublisher;
   private Date mPublishing;
   private List<Report> mReports;
+
+  public void normalize()
+  {
+    if (mReports == null)
+    {
+      mReports = new ArrayList<>();
+    }
+  }
 
   public List<Report> getReports()
   {

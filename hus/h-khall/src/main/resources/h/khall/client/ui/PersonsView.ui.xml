@@ -28,7 +28,7 @@
 		</div>
 		<div class="clients-list">
 			<ul class="nav nav-tabs">
-				<span class="pull-right small text-muted">1406 Elements</span>
+				<b.html:Span ui:field="mCount" addStyleNames="pull-right small text-muted" />
 				<li class="active">
 					<a data-toggle="tab" href="#tab-1">
 						<i class="fa fa-user"></i>

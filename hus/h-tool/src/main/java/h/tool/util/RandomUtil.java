@@ -59,19 +59,19 @@ public final class RandomUtil
   public static int random(int... inArray)
   {
     Random rnd = new Random();
-    return inArray[rnd.nextInt(inArray.length - 1)];
+    return inArray[rnd.nextInt(inArray.length)];
   }
 
   public static String random(String... inArray)
   {
     Random rnd = new Random();
-    return inArray[rnd.nextInt(inArray.length - 1)];
+    return inArray[rnd.nextInt(inArray.length)];
   }
 
   public static <E> E random(E[] inArray)
   {
     Random rnd = new Random();
-    return inArray[rnd.nextInt(inArray.length - 1)];
+    return inArray[rnd.nextInt(inArray.length)];
   }
 
   public static int randomInt(int inMax)
@@ -83,6 +83,6 @@ public final class RandomUtil
   public static <M> M random(List<M> inList)
   {
     Random rnd = new Random();
-    return inList.get(rnd.nextInt(inList.size() - 1));
+    return inList.get(rnd.nextInt(inList.size()));
   }
 }

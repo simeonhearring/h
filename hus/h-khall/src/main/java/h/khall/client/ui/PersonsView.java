@@ -2,6 +2,8 @@ package h.khall.client.ui;
 
 import java.util.List;
 
+import org.gwtbootstrap3.client.ui.html.Span;
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -19,18 +21,21 @@ public class PersonsView extends AbstractView<PersonsPresenter> implements Perso
   }
 
   @UiField
+  Span mCount;
+
+  @UiField
   PersonTableView mAll;
 
   public PersonsView()
   {
     initWidget(BINDER.createAndBindUi(this));
     mPresenter = new PersonsPresenter(this).handlers();
-    ;
   }
 
   @Override
   public void setAll(List<Person> inList)
   {
+    mCount.setText(inList.size() + " shown");
     mAll.setValues(inList);
   }
 }

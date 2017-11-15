@@ -41,8 +41,8 @@ public class PersonPresenter extends AbstractPresenter<PersonPresenter.Display>
     mDisplay.setFaith(mPerson.getFaith());
     mDisplay.setBaptized(mPerson.getBaptized());
     mDisplay.setPublishing(mPerson.getPublishing());
-    mDisplay.setRoles(mPerson.getRoles());
-    mDisplay.setCategories(mPerson.getCategories());
+    // TODO mDisplay.setRoles(mPerson.getRoles());
+    // mDisplay.setCategories(mPerson.getCategories());
     mDisplay.setEmergency(mPerson.getEmergency());
     mDisplay.setChildren(mPerson.getChildren());
     mDisplay.setHead(mPerson.getHead());
@@ -136,7 +136,7 @@ public class PersonPresenter extends AbstractPresenter<PersonPresenter.Display>
 
   public void chgTypes(String inValue)
   {
-    mPerson.setRoles(inValue);
+    // mPerson.setRoles(inValue);
   }
 
   public void chgEmergency(String inValue)
@@ -161,7 +161,7 @@ public class PersonPresenter extends AbstractPresenter<PersonPresenter.Display>
 
   public void chgCategories(String inValue)
   {
-    mPerson.setCategories(inValue);
+    // mPerson.setCategories(inValue);
   }
 
   public void chgChildren(String inValue)
