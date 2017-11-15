@@ -26,6 +26,8 @@ public class LoginCommandBean extends AbstractDaoCommandBean<Dao, LoginCommand>
 
     client.setMeeting(mDao.selectMonthly(profile));
 
+    client.setPersons(mDao.selectPersons(profile));
+
     return inCommand;
   }
 }

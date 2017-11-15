@@ -1,5 +1,7 @@
 package h.khall.shared.model;
 
+import java.util.List;
+
 import h.model.shared.Tag;
 
 public enum StudyPoint implements Tag
@@ -160,5 +162,35 @@ public enum StudyPoint implements Tag
   public String toString()
   {
     return getQueryInfo();
+  }
+
+  public static boolean doFilter(String inQuery)
+  {
+    return startsWith(inQuery, "#", "1", "2", "3", "4", "5", "6", "7", "8", "9");
+  }
+
+  private static boolean startsWith(String inQuery, String... inText)
+  {
+    boolean ret = false;
+    for (String value : inText)
+    {
+      ret |= inQuery.startsWith(value);
+    }
+    return ret;
+  }
+
+  public static void filter(List<Tag> inData, Part inPart, String inQuery)
+  {
+    inQuery = inQuery.replaceAll("#", "").toLowerCase();
+    for (StudyPoint value : StudyPoint.values())
+    {
+      if (value.getQueryInfo().contains(inQuery))
+      {
+        if (inPart == null || value.isValid(inPart))
+        {
+          inData.add(value);
+        }
+      }
+    }
   }
 }

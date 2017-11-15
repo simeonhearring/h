@@ -7,6 +7,7 @@ public class Client extends h.model.shared.Client
 {
   private Chart mChart;
   private Meeting mMeeting;
+  private Persons mPersons;
 
   public Chart getChart()
   {
@@ -26,5 +27,15 @@ public class Client extends h.model.shared.Client
   public void setMeeting(Meeting inMeeting)
   {
     mMeeting = inMeeting;
+  }
+
+  public Persons getPersons()
+  {
+    return mPersons;
+  }
+
+  public void setPersons(Persons inPersons)
+  {
+    mPersons = inPersons;
   }
 }

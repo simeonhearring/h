@@ -3,7 +3,7 @@ package h.khall.client.model;
 import java.util.Date;
 
 import h.khall.shared.command.SavePersonCommand;
-import h.model.shared.Person;
+import h.khall.shared.model.Person;
 import h.model.shared.Person.Gender;
 import h.style.g.client.model.AbstractPresenter;
 

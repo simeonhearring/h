@@ -8,13 +8,13 @@
 	</ui:style>
 	<b.html:UnorderedList addStyleNames="nav nav-second-level">
 		<b:ListItem>
-			<b:Anchor ui:field="mA1" text="Participants" />
+			<b:Anchor ui:field="mA1" text="Schedule" />
 		</b:ListItem>
 		<b:ListItem>
 			<b:Anchor ui:field="mA2" text="Curriculum" />
 		</b:ListItem>
 		<b:ListItem>
-			<b:Anchor ui:field="mA3" text="Schedule" />
+			<b:Anchor ui:field="mA3" text="Participants" />
 		</b:ListItem>
 		<b:ListItem>
 			<b:Anchor ui:field="mA4" text="Enrollment" />

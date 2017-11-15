@@ -1,11 +1,12 @@
 package h.khall.client.model;
 
 import h.khall.client.ui.event.MidweekEvent;
+import h.khall.client.ui.event.ParticipantEvent;
 import h.khall.client.ui.event.SampleEvent;
 import h.style.g.client.model.Attach;
 
 public class PagePresenter extends AbstractPresenter<PagePresenter.Display>
-  implements SampleEvent.Handler, MidweekEvent.Handler
+  implements SampleEvent.Handler, MidweekEvent.Handler, ParticipantEvent.Handler
 {
   public PagePresenter(Display inDisplay)
   {
@@ -16,6 +17,7 @@ public class PagePresenter extends AbstractPresenter<PagePresenter.Display>
   {
     addHandler(SampleEvent.TYPE, this);
     addHandler(MidweekEvent.TYPE, this);
+    addHandler(ParticipantEvent.TYPE, this);
     return this;
   }
 
@@ -31,10 +33,18 @@ public class PagePresenter extends AbstractPresenter<PagePresenter.Display>
     mDisplay.midweek();
   }
 
+  @Override
+  public void dispatch(ParticipantEvent inEvent)
+  {
+    mDisplay.participants();
+  }
+
   public interface Display extends Attach
   {
     void midweek();
 
     void sample();
+
+    void participants();
   }
 }

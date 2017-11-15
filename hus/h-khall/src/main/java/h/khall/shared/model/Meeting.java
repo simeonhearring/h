@@ -16,6 +16,17 @@ import com.google.common.annotations.GwtIncompatible;
 public class Meeting implements Serializable
 {
   private Decade mDecade;
+  private int mYear;
+
+  public int getYear()
+  {
+    return mYear;
+  }
+
+  public void setYear(int inYear)
+  {
+    mYear = inYear;
+  }
 
   @GwtIncompatible(value = "uses java.util.Calendar - server only!")
   public void setAssignments(List<Assignment> inAssignments)

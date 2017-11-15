@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import h.model.shared.Person;
 import h.model.shared.Tag;
 
 @SuppressWarnings("serial")

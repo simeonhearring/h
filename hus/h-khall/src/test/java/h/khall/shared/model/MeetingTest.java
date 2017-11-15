@@ -6,7 +6,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import h.khall.server.dao.bean.RandomAssignments;
-import h.khall.server.dao.bean.RandomPeople;
+import h.khall.server.dao.bean.RandomPersons;
 
 public class MeetingTest
 {
@@ -15,7 +15,8 @@ public class MeetingTest
   public void test1()
   {
     Meeting model = new Meeting();
-    model.setAssignments(RandomAssignments.assigns(new Date(), RandomPeople.persons()));
+    model.setAssignments(
+        RandomAssignments.assigns(new Date(), RandomPersons.persons().getPersons()));
     Assert.assertEquals(1, model.getMonth(2017, new Date().getMonth()).size());
   }
 
@@ -23,7 +24,7 @@ public class MeetingTest
   public void test2()
   {
     Meeting model = new Meeting();
-    model.setAssignments(RandomAssignments.assigns(RandomPeople.persons()));
+    model.setAssignments(RandomAssignments.assigns(RandomPersons.persons().getPersons()));
     Assert.assertEquals(true, model.getMonth(2017, 1).size() > 0);
 
     Assert.assertEquals(true, model.getWeek(2017, 2, 0).getAssignment().size() > 0);

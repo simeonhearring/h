@@ -71,4 +71,10 @@ public class MonthView extends AbstractView<MonthPresenter>
   {
     return mW4;
   }
+
+  @Override
+  protected void onLoad()
+  {
+    slimScroll();
+  }
 }

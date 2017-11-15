@@ -14,22 +14,23 @@
 
 		<!-- MAIN -->
 
-		<div id="page-wrapper" class="gray-bg sidebar-content">
+		<b.gwt:HTMLPanel ui:field="mWrapper" addStyleNames="gray-bg sidebar-content">
 
 			<!-- TOP -->
 
-			<k:TopNavView />
+			<k:TopNavView ui:field="mTopNav" />
 
 			<!-- BODY -->
 
-			<k:SideBarView />
+			<k:SideBarView ui:field="mSideBar" />
 
 			<b.gwt:HTMLPanel ui:field="mBody" />
 
 			<!-- FOOTER -->
 
 			<k:FooterView />
-		</div>
+
+		</b.gwt:HTMLPanel>
 
 	</b.gwt:HTMLPanel>
 </ui:UiBinder>

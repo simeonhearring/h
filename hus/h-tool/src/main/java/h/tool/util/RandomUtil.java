@@ -38,6 +38,11 @@ public final class RandomUtil
     return random(7, ABC123);
   }
 
+  public static String randomNumbers(int inLength)
+  {
+    return random(inLength, S123);
+  }
+
   private static String random(int inLength, String inChoices)
   {
     Random rnd = new Random();
@@ -51,7 +56,13 @@ public final class RandomUtil
     return sb.toString();
   }
 
-  public static String random(String[] inArray)
+  public static int random(int... inArray)
+  {
+    Random rnd = new Random();
+    return inArray[rnd.nextInt(inArray.length - 1)];
+  }
+
+  public static String random(String... inArray)
   {
     Random rnd = new Random();
     return inArray[rnd.nextInt(inArray.length - 1)];

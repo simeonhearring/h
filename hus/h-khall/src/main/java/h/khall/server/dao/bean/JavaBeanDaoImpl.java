@@ -1,18 +1,16 @@
 package h.khall.server.dao.bean;
 
-import java.util.List;
-
 import h.khall.server.dao.Dao;
 import h.khall.shared.model.Charts;
 import h.khall.shared.model.Meeting;
+import h.khall.shared.model.Persons;
 import h.khall.shared.model.Profile;
-import h.model.shared.Person;
 import h.style.g.shared.chart.Chart;
 import h.tool.util.RandomUtil;
 
 public class JavaBeanDaoImpl implements Dao
 {
-  private static final List<Person> PERSONS = RandomPeople.persons();
+  private static final Persons PERSONS = RandomPersons.persons();
 
   @Override
   public Profile selectProfile(h.model.shared.Profile inProfile)
@@ -34,12 +32,13 @@ public class JavaBeanDaoImpl implements Dao
   public Meeting selectMonthly(Profile inProfile)
   {
     Meeting ret = new Meeting();
-    ret.setAssignments(RandomAssignments.assigns(PERSONS));
+    ret.setYear(2017);
+    ret.setAssignments(RandomAssignments.assigns(PERSONS.getPersons()));
     return ret;
   }
 
   @Override
-  public List<Person> selectAssignable(Profile inProfile)
+  public Persons selectPersons(Profile inProfile)
   {
     return PERSONS;
   }

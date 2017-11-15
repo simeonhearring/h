@@ -11,7 +11,7 @@ public class PersonLookupCommandBean extends AbstractDaoCommandBean<Dao, PersonL
   @Override
   public RpcResponse execute(PersonLookupCommand inCommand)
   {
-    inCommand.setData(mDao.selectAssignable((Profile) inCommand.getProfile()));
+    inCommand.setData(mDao.selectPersons((Profile) inCommand.getProfile()));
     return inCommand;
   }
 }

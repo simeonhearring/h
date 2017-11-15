@@ -20,12 +20,16 @@ public class PageView extends AbstractView<PagePresenter> implements PagePresent
   }
 
   @UiField
-  HTMLPanel mTop, mBody;
+  HTMLPanel mTop, mBody, mWrapper;
+
+  @UiField
+  SideBarView mSideBar;
 
   public PageView()
   {
     initWidget(BINDER.createAndBindUi(this));
     mTop.getElement().setAttribute("id", "wrapper");
+    mWrapper.getElement().setAttribute("id", "page-wrapper");
     mPresenter = new PagePresenter(this).handlers();
   }
 
@@ -40,7 +44,18 @@ public class PageView extends AbstractView<PagePresenter> implements PagePresent
   public void midweek()
   {
     clear();
+    mWrapper.setStyleName("gray-bg sidebar-content");
+    mSideBar.setVisible(true);
     mBody.add(new MidweekView());
+  }
+
+  @Override
+  public void participants()
+  {
+    clear();
+    mWrapper.setStyleName("gray-bg");
+    mSideBar.setVisible(false);
+    mBody.add(new ParticipantView());
   }
 
   private void clear()

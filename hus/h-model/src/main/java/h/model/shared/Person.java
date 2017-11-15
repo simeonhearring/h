@@ -32,17 +32,6 @@ public class Person implements Serializable, Tag
   private String mState;
   private String mZip;
 
-  private String mFsg;
-  private String mFaith;
-  private Date mBaptized;
-  private Date mPublishing;
-  private String mRoles;
-  private String mCategories;
-  private String mEmergency;
-  private String mChildren;
-  private String mHead;
-  private String mFamily;
-
   public Person()
   {
   }
@@ -106,6 +95,11 @@ public class Person implements Serializable, Tag
   public void setGender(Gender inGender)
   {
     mGender = inGender;
+  }
+
+  public boolean isMale()
+  {
+    return Gender.Male.equals(mGender);
   }
 
   public Date getBirth()
@@ -196,106 +190,6 @@ public class Person implements Serializable, Tag
   public void setZip(String inZip)
   {
     mZip = inZip;
-  }
-
-  public String getFsg()
-  {
-    return mFsg;
-  }
-
-  public void setFsg(String inFsg)
-  {
-    mFsg = inFsg;
-  }
-
-  public String getFaith()
-  {
-    return mFaith;
-  }
-
-  public void setFaith(String inFaith)
-  {
-    mFaith = inFaith;
-  }
-
-  public Date getBaptized()
-  {
-    return mBaptized;
-  }
-
-  public void setBaptized(Date inBaptized)
-  {
-    mBaptized = inBaptized;
-  }
-
-  public Date getPublishing()
-  {
-    return mPublishing;
-  }
-
-  public void setPublishing(Date inPublishing)
-  {
-    mPublishing = inPublishing;
-  }
-
-  public String getRoles()
-  {
-    return mRoles;
-  }
-
-  public void setRoles(String inTypes)
-  {
-    mRoles = inTypes;
-  }
-
-  public String getCategories()
-  {
-    return mCategories;
-  }
-
-  public void setCategories(String inCategories)
-  {
-    mCategories = inCategories;
-  }
-
-  public String getEmergency()
-  {
-    return mEmergency;
-  }
-
-  public void setEmergency(String inEmergency)
-  {
-    mEmergency = inEmergency;
-  }
-
-  public String getChildren()
-  {
-    return mChildren;
-  }
-
-  public void setChildren(String inChildren)
-  {
-    mChildren = inChildren;
-  }
-
-  public String getHead()
-  {
-    return mHead;
-  }
-
-  public void setHead(String inHead)
-  {
-    mHead = inHead;
-  }
-
-  public String getFamily()
-  {
-    return mFamily;
-  }
-
-  public void setFamily(String inFamily)
-  {
-    mFamily = inFamily;
   }
 
   @Override

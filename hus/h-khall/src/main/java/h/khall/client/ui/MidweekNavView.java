@@ -10,6 +10,7 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Widget;
 
 import h.khall.client.ui.event.MidweekEvent;
+import h.khall.client.ui.event.ParticipantEvent;
 import h.khall.client.ui.event.ResendEvent;
 import h.khall.client.ui.event.SampleEvent;
 import h.style.g.client.ui.AbstractView;
@@ -50,6 +51,8 @@ public class MidweekNavView extends AbstractView
     }
     else if (mA3.equals(source))
     {
+      fire(new ParticipantEvent());
+      fire(new ResendEvent(), new RefreshEvent());
     }
     else if (mA4.equals(source))
     {

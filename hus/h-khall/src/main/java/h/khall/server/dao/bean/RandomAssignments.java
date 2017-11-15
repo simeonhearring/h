@@ -23,8 +23,8 @@ import java.util.List;
 import h.khall.shared.model.Assignment;
 import h.khall.shared.model.Hall;
 import h.khall.shared.model.Part;
+import h.khall.shared.model.Person;
 import h.khall.shared.model.StudyPoint;
-import h.model.shared.Person;
 import h.tool.util.RandomUtil;
 
 public class RandomAssignments

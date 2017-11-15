@@ -8,8 +8,8 @@ import h.khall.shared.model.Assignment;
 import h.khall.shared.model.Hall;
 import h.khall.shared.model.Meeting.Week;
 import h.khall.shared.model.Part;
+import h.khall.shared.model.Person;
 import h.khall.shared.model.StudyPoint;
-import h.model.shared.Person;
 import h.model.shared.Tag;
 import h.style.g.client.model.CallBack;
 

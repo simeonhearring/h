@@ -13,6 +13,7 @@
 	<stylesheet src='css/style.css' />
 	<stylesheet src='css/plugins/iCheck/custom.css' />
 	<stylesheet src='css/plugins/steps/jquery.steps.css' />
+	<stylesheet src='css/plugins/toastr/toastr.min.css' />
 
 	<stylesheet src='css/khall.css' />
 
