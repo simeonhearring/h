@@ -1,6 +1,6 @@
 package h.khall.shared.command;
 
-import h.khall.shared.model.Assignment;
+import h.model.shared.khall.Assignment;
 import h.style.g.shared.command.AbstractCommand;
 import h.style.g.shared.rpc.CommandName;
 

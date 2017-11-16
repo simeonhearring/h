@@ -12,8 +12,7 @@
 			<div id="contact-1" class="tab-pane active">
 				<div class="row m-b-lg">
 					<div class="col-lg-4 text-center">
-						<h2>Nicki Smith</h2>
-
+						<b:Heading ui:field="mName" size="H3" />
 						<div class="m-b-sm">
 							<img alt="image" class="img-circle" src="img/a2.jpg" style="width: 62px" />
 						</div>
@@ -22,11 +21,24 @@
 						<strong>
 							About me
 						</strong>
-
-						<p>
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-							tempor incididunt ut labore et dolore magna aliqua.
-						</p>
+						<address>
+							<strong>
+								<b.html:Span ui:field="mRole" />
+							</strong>
+							<br />
+							<b.html:Span ui:field="mAddressLine" />
+							<br />
+							<b.html:Span ui:field="mCityLine" />
+							<br />
+							<abbr title="Phone">P:</abbr>
+							<b.html:Span ui:field="mHome" />
+							<br />
+							<abbr title="Mobile">M:</abbr>
+							<b.html:Span ui:field="mMobile" />
+							<br />
+							<abbr title="Email">E:</abbr>
+							<b.html:Span ui:field="mEmail" />
+						</address>
 						<button type="button" class="btn btn-primary btn-sm btn-block">
 							<i class="fa fa-envelope"></i>
 							Send Message

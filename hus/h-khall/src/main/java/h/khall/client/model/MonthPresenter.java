@@ -2,7 +2,7 @@ package h.khall.client.model;
 
 import java.util.Date;
 
-import h.khall.shared.model.Meeting.Month;
+import h.model.shared.khall.Meeting.Month;
 
 public class MonthPresenter extends AbstractPresenter<MonthPresenter.Display>
 {

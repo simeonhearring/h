@@ -154,7 +154,7 @@ public class IconView extends AbstractView implements IconDisplay, SortIconDispl
   @Override
   public HandlerRegistration addDoubleClickHandler(DoubleClickHandler inHandler)
   {
-    return add(mIcon.addDomHandler(inHandler, DoubleClickEvent.getType()));
+    return register(mIcon.addDomHandler(inHandler, DoubleClickEvent.getType()));
   }
 
   @Override

@@ -1,8 +1,8 @@
 package h.khall.server.dao;
 
-import h.khall.shared.model.Meeting;
-import h.khall.shared.model.Persons;
-import h.khall.shared.model.Profile;
+import h.model.shared.khall.Meeting;
+import h.model.shared.khall.Persons;
+import h.model.shared.khall.Profile;
 import h.style.g.shared.chart.Chart;
 
 public interface Dao

@@ -1,37 +1,37 @@
 package h.khall.server.dao.bean;
 
-import static h.khall.shared.model.Part.BIBLE_READING;
-import static h.khall.shared.model.Part.BIBLE_STUDY;
-import static h.khall.shared.model.Part.CHAIRMAN;
-import static h.khall.shared.model.Part.C_BIBLE_STUDY;
-import static h.khall.shared.model.Part.DIGGING;
-import static h.khall.shared.model.Part.F_RETURN_VISIT;
-import static h.khall.shared.model.Part.INITIAL_CALL;
-import static h.khall.shared.model.Part.LIVING_1;
-import static h.khall.shared.model.Part.LIVING_2;
-import static h.khall.shared.model.Part.PRAYER_1;
-import static h.khall.shared.model.Part.PRAYER_2;
-import static h.khall.shared.model.Part.S_RETURN_VISIT;
-import static h.khall.shared.model.Part.TALK;
-import static h.khall.shared.model.Part.TREASURES;
-import static h.khall.shared.model.Part.T_RETURN_VISIT;
+import static h.model.shared.khall.Part.BIBLE_READING;
+import static h.model.shared.khall.Part.BIBLE_STUDY;
+import static h.model.shared.khall.Part.CHAIRMAN;
+import static h.model.shared.khall.Part.C_BIBLE_STUDY;
+import static h.model.shared.khall.Part.DIGGING;
+import static h.model.shared.khall.Part.F_RETURN_VISIT;
+import static h.model.shared.khall.Part.INITIAL_CALL;
+import static h.model.shared.khall.Part.LIVING_1;
+import static h.model.shared.khall.Part.LIVING_2;
+import static h.model.shared.khall.Part.SONG_1;
+import static h.model.shared.khall.Part.SONG_3;
+import static h.model.shared.khall.Part.S_RETURN_VISIT;
+import static h.model.shared.khall.Part.TALK;
+import static h.model.shared.khall.Part.TREASURES;
+import static h.model.shared.khall.Part.T_RETURN_VISIT;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import h.khall.shared.model.Assignment;
-import h.khall.shared.model.Hall;
-import h.khall.shared.model.Part;
-import h.khall.shared.model.Person;
-import h.khall.shared.model.StudyPoint;
+import h.model.shared.khall.Assignment;
+import h.model.shared.khall.Hall;
+import h.model.shared.khall.Part;
+import h.model.shared.khall.Person;
+import h.model.shared.khall.StudyPoint;
 import h.tool.util.RandomUtil;
 
 public class RandomAssignments
 {
   private static Part[] PARTS =
   {
-      CHAIRMAN, PRAYER_1, TREASURES, DIGGING, BIBLE_READING, LIVING_1, C_BIBLE_STUDY, PRAYER_2
+      CHAIRMAN, SONG_1, TREASURES, DIGGING, BIBLE_READING, LIVING_1, C_BIBLE_STUDY, SONG_3
   };
 
   private static Part[] PARTSA =

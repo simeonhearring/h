@@ -85,7 +85,7 @@ public class AnchorListItemWrapper extends AbstractView implements AnchorListIte
   @Override
   public HandlerRegistration addDoubleClickHandler(DoubleClickHandler inHandler)
   {
-    return add(mIcon.addDomHandler(inHandler, DoubleClickEvent.getType()));
+    return register(mIcon.addDomHandler(inHandler, DoubleClickEvent.getType()));
   }
 
   @Override

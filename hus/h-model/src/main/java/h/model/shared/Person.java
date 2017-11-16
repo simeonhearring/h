@@ -142,6 +142,24 @@ public class Person implements Serializable, Tag
     mHome = inHome;
   }
 
+  public String getAddress()
+  {
+    return StringUtil.ensure(mAddress1, "", " ") + StringUtil.ensure(mAddress2, "", " ")
+        + StringUtil.ensure(mCity, "", ", ") + StringUtil.ensure(mState, "", ", ")
+        + StringUtil.ensure(mZip);
+  }
+
+  public String getAddressLine()
+  {
+    return StringUtil.ensure(mAddress1, "", " ") + StringUtil.ensure(mAddress2, "", "");
+  }
+
+  public String getCityLine()
+  {
+    return StringUtil.ensure(mCity, "", ", ") + StringUtil.ensure(mState, "", ", ")
+        + StringUtil.ensure(mZip);
+  }
+
   public String getAddress1()
   {
     return mAddress1;
@@ -215,6 +233,25 @@ public class Person implements Serializable, Tag
   public String getValue()
   {
     return getName();
+  }
+
+  public String toQuery()
+  {
+    StringBuilder builder = new StringBuilder();
+    builder.append(StringUtil.ensure(mLast));
+    builder.append(" ");
+    builder.append(StringUtil.ensure(mFirst));
+    builder.append(" ");
+    builder.append(StringUtil.ensure(mSuffix));
+    builder.append(" ");
+    builder.append(getAddress());
+    builder.append(" ");
+    builder.append(StringUtil.ensure(mHome));
+    builder.append(" ");
+    builder.append(StringUtil.ensure(mMobile));
+    builder.append(" ");
+    builder.append(StringUtil.ensure(mEmail));
+    return builder.toString();
   }
 
   @Override

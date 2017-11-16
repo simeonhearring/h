@@ -7,6 +7,8 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import h.model.shared.Tag;
+import h.model.shared.khall.Part;
+import h.model.shared.khall.StudyPoint;
 
 public class StudyPointTest
 {

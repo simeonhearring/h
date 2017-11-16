@@ -10,6 +10,7 @@ public class AbstractView<P extends AbstractPresenter<?>>
   @Override
   protected void onUnload()
   {
+    super.onUnload();
     mPresenter.removeHandlers();
   }
 }

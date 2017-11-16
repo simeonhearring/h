@@ -3,8 +3,8 @@ package h.khall.client.model;
 import java.util.Date;
 
 import h.khall.shared.command.SavePersonCommand;
-import h.khall.shared.model.Person;
 import h.model.shared.Person.Gender;
+import h.model.shared.khall.Person;
 import h.style.g.client.model.AbstractPresenter;
 
 public class PersonPresenter extends AbstractPresenter<PersonPresenter.Display>
@@ -38,7 +38,7 @@ public class PersonPresenter extends AbstractPresenter<PersonPresenter.Display>
     mDisplay.setZip(mPerson.getZip());
 
     mDisplay.setFsg(mPerson.getFsg());
-    mDisplay.setFaith(mPerson.getFaith());
+    // mDisplay.setFaith(mPerson.getFaith());
     mDisplay.setBaptized(mPerson.getBaptized());
     mDisplay.setPublishing(mPerson.getPublishing());
     // TODO mDisplay.setRoles(mPerson.getRoles());
@@ -151,7 +151,7 @@ public class PersonPresenter extends AbstractPresenter<PersonPresenter.Display>
 
   public void chgFaith(String inValue)
   {
-    mPerson.setFaith(inValue);
+    // mPerson.setFaith(inValue);
   }
 
   public void chgPublishing(Date inValue)

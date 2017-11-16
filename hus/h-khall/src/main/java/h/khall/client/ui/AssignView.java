@@ -19,10 +19,10 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Widget;
 
 import h.khall.client.model.WeekPresenter;
-import h.khall.shared.model.Assignment;
-import h.khall.shared.model.Hall;
-import h.khall.shared.model.Part;
 import h.model.shared.Tag;
+import h.model.shared.khall.Assignment;
+import h.model.shared.khall.Hall;
+import h.model.shared.khall.Part;
 import h.style.g.client.model.CallBack;
 
 public class AssignView extends h.style.g.client.ui.AbstractView

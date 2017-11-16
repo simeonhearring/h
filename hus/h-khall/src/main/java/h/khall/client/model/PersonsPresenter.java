@@ -1,8 +1,10 @@
 package h.khall.client.model;
 
+import static h.model.shared.khall.Persons.filter;
+
 import java.util.List;
 
-import h.khall.shared.model.Person;
+import h.model.shared.khall.Person;
 import h.style.g.client.ui.event.RefreshEvent;
 
 public class PersonsPresenter extends AbstractPresenter<PersonsPresenter.Display>
@@ -23,10 +25,23 @@ public class PersonsPresenter extends AbstractPresenter<PersonsPresenter.Display
   public void dispatch(RefreshEvent inEvent)
   {
     mDisplay.setAll(mClient.getPersons().getPersons());
+    mDisplay.setElders(mClient.getPersons().getElders());
+    mDisplay.setRegular(mClient.getPersons().getRegular());
   }
 
   public interface Display extends h.style.g.client.model.Display
   {
     void setAll(List<Person> inList);
+
+    void setElders(List<Person> inList);
+
+    void setRegular(List<Person> inList);
+  }
+
+  public void search(String inText)
+  {
+    mDisplay.setAll(filter(mClient.getPersons().getPersons(), inText));
+    mDisplay.setElders(filter(mClient.getPersons().getElders(), inText));
+    mDisplay.setRegular(filter(mClient.getPersons().getRegular(), inText));
   }
 }

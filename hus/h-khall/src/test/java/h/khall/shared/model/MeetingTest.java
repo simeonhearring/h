@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import h.khall.server.dao.bean.RandomAssignments;
 import h.khall.server.dao.bean.RandomPersons;
+import h.model.shared.khall.Meeting;
 
 public class MeetingTest
 {

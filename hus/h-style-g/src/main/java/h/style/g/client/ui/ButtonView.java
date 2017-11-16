@@ -224,7 +224,7 @@ public class ButtonView extends AbstractView implements ButtonDisplay
   @Override
   public HandlerRegistration addDoubleClickHandler(DoubleClickHandler inHandler)
   {
-    return add(mButton.addDomHandler(inHandler, DoubleClickEvent.getType()));
+    return register(mButton.addDomHandler(inHandler, DoubleClickEvent.getType()));
   }
 
   @Override

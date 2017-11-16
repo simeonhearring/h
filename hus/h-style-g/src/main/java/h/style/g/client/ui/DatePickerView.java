@@ -111,6 +111,6 @@ public class DatePickerView extends AbstractView implements DateSelectDisplay<Ch
   @Override
   public HandlerRegistration addChangeDateHandler(ChangeDateHandler inHandler)
   {
-    return add(mDate.addChangeDateHandler(inHandler));
+    return register(mDate.addChangeDateHandler(inHandler));
   }
 }

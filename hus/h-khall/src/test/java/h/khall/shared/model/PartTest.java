@@ -6,6 +6,8 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
+import h.model.shared.khall.Part;
+
 public class PartTest
 {
   @Test

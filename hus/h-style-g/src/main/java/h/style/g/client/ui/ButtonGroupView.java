@@ -68,7 +68,7 @@ public class ButtonGroupView extends AbstractView implements ButtonGroupDisplay
   {
     if (inHandler != null)
     {
-      add(mButton.addClickHandler(inHandler));
+      register(mButton.addClickHandler(inHandler));
     }
   }
 
@@ -81,7 +81,7 @@ public class ButtonGroupView extends AbstractView implements ButtonGroupDisplay
     }
     if (inHandler != null)
     {
-      mButtonHandlerRegistration = add(mButton.addClickHandler(inHandler));
+      mButtonHandlerRegistration = register(mButton.addClickHandler(inHandler));
     }
   }
 
@@ -251,7 +251,7 @@ public class ButtonGroupView extends AbstractView implements ButtonGroupDisplay
   {
     if (inHander != null)
     {
-      add(inItem.addClickHandler(inHander));
+      register(inItem.addClickHandler(inHander));
     }
     mMenu.add(inItem.setUpTip(inTip));
   }

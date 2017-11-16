@@ -1,8 +1,5 @@
 package h.style.g.client.ui;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.gwtbootstrap3.client.ui.base.ValueBoxBase;
 
 import com.google.gwt.core.client.Scheduler;
@@ -23,8 +20,6 @@ abstract class AbstractValueBox extends AbstractView
 {
   protected ValueBoxBase<String> mValueBox;
 
-  List<HandlerRegistration> mRegistrations = new ArrayList<>();
-
   public void setTextBox(ValueBoxBase<String> inTextBox)
   {
     mValueBox = inTextBox;
@@ -34,11 +29,7 @@ abstract class AbstractValueBox extends AbstractView
   protected void onUnload()
   {
     super.onUnload();
-    for (HandlerRegistration value : mRegistrations)
-    {
-      value.removeHandler();
-    }
-    mRegistrations.clear();
+    clearHandlers();
   }
 
   public void setPlaceholder(String inPlaceHolder)
@@ -61,12 +52,6 @@ abstract class AbstractValueBox extends AbstractView
   public void setHeight(String inHeight)
   {
     mValueBox.setHeight(inHeight);
-  }
-
-  private HandlerRegistration register(HandlerRegistration inRegistration)
-  {
-    mRegistrations.add(inRegistration);
-    return inRegistration;
   }
 
   public boolean isSource(Event<?> inEvent)

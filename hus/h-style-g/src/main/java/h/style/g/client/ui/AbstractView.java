@@ -1,5 +1,7 @@
 package h.style.g.client.ui;
 
+import static h.model.shared.util.TextUtil.toText;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -102,6 +104,11 @@ public abstract class AbstractView extends Composite
     return inText;
   }
 
+  public String text(Enum<?> inEnum)
+  {
+    return toText(inEnum);
+  }
+
   public void attach(HasWidgets inPanel)
   {
     inPanel.clear();
@@ -162,11 +169,6 @@ public abstract class AbstractView extends Composite
     }
 
     mTooltip.setTitle(inTip);
-
-    if (!isnew)
-    {
-      // mTooltip.reconfigure();
-    }
   }
 
   public boolean isDev()
@@ -259,7 +261,7 @@ public abstract class AbstractView extends Composite
     }
   }
 
-  protected HandlerRegistration add(HandlerRegistration inRegistration)
+  protected HandlerRegistration register(HandlerRegistration inRegistration)
   {
     mRegistrations.add(inRegistration);
     return inRegistration;
@@ -284,7 +286,7 @@ public abstract class AbstractView extends Composite
   protected <T> HandlerRegistration addValueChangeHandler(HasValueChangeHandlers<T> inWidget,
       ValueChangeHandler<T> inHandler)
   {
-    return add(inWidget.addValueChangeHandler(inHandler));
+    return register(inWidget.addValueChangeHandler(inHandler));
   }
 
   protected <T> HandlerRegistration setValueChangeHandler(HasValueChangeHandlers<T> inWidget,
@@ -296,35 +298,35 @@ public abstract class AbstractView extends Composite
 
   protected HandlerRegistration addClickHandler(HasClickHandlers inWidget, ClickHandler inHandler)
   {
-    return add(inWidget.addClickHandler(inHandler));
+    return register(inWidget.addClickHandler(inHandler));
   }
 
   protected HandlerRegistration addDoubleClickHandler(HasDoubleClickHandlers inWidget,
       DoubleClickHandler inHandler)
   {
-    return add(inWidget.addDoubleClickHandler(inHandler));
+    return register(inWidget.addDoubleClickHandler(inHandler));
   }
 
   protected HandlerRegistration addBlurHandler(HasBlurHandlers inWidget, BlurHandler inHandler)
   {
-    return add(inWidget.addBlurHandler(inHandler));
+    return register(inWidget.addBlurHandler(inHandler));
   }
 
   protected HandlerRegistration addFocusHandler(HasFocusHandlers inWidget, FocusHandler inHandler)
   {
-    return add(inWidget.addFocusHandler(inHandler));
+    return register(inWidget.addFocusHandler(inHandler));
   }
 
   protected HandlerRegistration addMouseOutHandler(HasMouseOutHandlers inWidget,
       MouseOutHandler inHandler)
   {
-    return add(inWidget.addMouseOutHandler(inHandler));
+    return register(inWidget.addMouseOutHandler(inHandler));
   }
 
   protected HandlerRegistration addMouseOverHandler(HasMouseOverHandlers inWidget,
       MouseOverHandler inHandler)
   {
-    return add(inWidget.addMouseOverHandler(inHandler));
+    return register(inWidget.addMouseOverHandler(inHandler));
   }
 
   protected HandlerRegistration setClickHandler(HasClickHandlers inWidget, ClickHandler inHandler)

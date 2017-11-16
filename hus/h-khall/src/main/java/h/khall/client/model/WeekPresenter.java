@@ -4,13 +4,13 @@ import java.util.Date;
 import java.util.List;
 
 import h.khall.shared.command.AssignmentSaveCommand;
-import h.khall.shared.model.Assignment;
-import h.khall.shared.model.Hall;
-import h.khall.shared.model.Meeting.Week;
-import h.khall.shared.model.Part;
-import h.khall.shared.model.Person;
-import h.khall.shared.model.StudyPoint;
 import h.model.shared.Tag;
+import h.model.shared.khall.Assignment;
+import h.model.shared.khall.Hall;
+import h.model.shared.khall.Part;
+import h.model.shared.khall.Person;
+import h.model.shared.khall.StudyPoint;
+import h.model.shared.khall.Meeting.Week;
 import h.style.g.client.model.CallBack;
 
 public class WeekPresenter extends AbstractPresenter<WeekPresenter.Display>

@@ -7,7 +7,7 @@ import com.google.gwt.user.client.ui.Widget;
 
 import h.khall.client.model.MonthPresenter;
 import h.khall.client.model.WeekPresenter.Display;
-import h.khall.shared.model.Meeting.Month;
+import h.model.shared.khall.Meeting.Month;
 
 public class MonthView extends AbstractView<MonthPresenter>
   implements MonthPresenter.Display

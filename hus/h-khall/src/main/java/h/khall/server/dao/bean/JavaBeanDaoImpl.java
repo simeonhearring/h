@@ -1,10 +1,10 @@
 package h.khall.server.dao.bean;
 
 import h.khall.server.dao.Dao;
-import h.khall.shared.model.Charts;
-import h.khall.shared.model.Meeting;
-import h.khall.shared.model.Persons;
-import h.khall.shared.model.Profile;
+import h.model.shared.khall.Charts;
+import h.model.shared.khall.Meeting;
+import h.model.shared.khall.Persons;
+import h.model.shared.khall.Profile;
 import h.style.g.shared.chart.Chart;
 import h.tool.util.RandomUtil;
 

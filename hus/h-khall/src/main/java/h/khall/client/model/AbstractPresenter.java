@@ -3,7 +3,7 @@ package h.khall.client.model;
 import h.khall.client.ui.event.ClientEvent;
 import h.khall.client.ui.event.ProfileEvent;
 import h.khall.shared.model.Client;
-import h.khall.shared.model.Profile;
+import h.model.shared.khall.Profile;
 import h.style.g.client.model.Display;
 
 public class AbstractPresenter<D extends Display> extends

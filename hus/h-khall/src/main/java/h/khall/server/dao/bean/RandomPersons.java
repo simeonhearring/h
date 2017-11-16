@@ -6,12 +6,12 @@ import static h.tool.util.RandomUtil.randomNumbers;
 import java.util.ArrayList;
 import java.util.List;
 
-import h.khall.shared.model.Person;
-import h.khall.shared.model.Persons;
-import h.khall.shared.model.Roles;
-import h.khall.shared.model.Roles.Role;
-import h.khall.shared.model.Student;
 import h.model.shared.Person.Gender;
+import h.model.shared.khall.Person;
+import h.model.shared.khall.Persons;
+import h.model.shared.khall.Roles;
+import h.model.shared.khall.Student;
+import h.model.shared.khall.Roles.Role;
 
 public class RandomPersons
 {
@@ -19,13 +19,14 @@ public class RandomPersons
   {
     Persons ret = new Persons();
     List<Person> list = new ArrayList<>();
-    for (int i = 0; i < 50; i++)
+    for (int i = 0; i < 150; i++)
     {
       Person person = new Person();
       person.setLast(random(LAST));
       person.setFirst(random(FIRST));
-      person.setEmail(person.getName().replaceAll(" ", "_").toLowerCase() + "@gmail.com");
+      person.setEmail(person.getName().replaceAll(",", "").replaceAll(" ", "_").toLowerCase() + "@gmail.com");
       person.setMobile(randomNumbers(3) + "-" + randomNumbers(3) + "-" + randomNumbers(4));
+      person.setHome(randomNumbers(3) + "-" + randomNumbers(3) + "-" + randomNumbers(4));
       person.setGender(random(Gender.values()));
       person.setAddress1(randomNumbers(random(2, 3, 4, 5)) + random(STREET));
       String[] city = random(CITY);
@@ -52,6 +53,14 @@ public class RandomPersons
     if (random(BOOL))
     {
       ret.add(Role.STUDENT);
+    }
+    if (random(BOOL) && random(BOOL) && random(BOOL))
+    {
+      ret.add(Role.ELDER);
+    }
+    if (random(BOOL) && random(BOOL))
+    {
+      ret.add(Role.REGULAR_PIONEER);
     }
     return ret;
   }

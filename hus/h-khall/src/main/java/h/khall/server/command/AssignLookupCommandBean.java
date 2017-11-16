@@ -5,9 +5,9 @@ import java.util.List;
 
 import h.khall.server.dao.Dao;
 import h.khall.shared.command.AssignLookupCommand;
-import h.khall.shared.model.Profile;
-import h.khall.shared.model.StudyPoint;
 import h.model.shared.Tag;
+import h.model.shared.khall.Profile;
+import h.model.shared.khall.StudyPoint;
 import h.style.g.server.command.AbstractDaoCommandBean;
 import h.style.g.shared.rpc.common.RpcResponse;
 
@@ -26,7 +26,7 @@ public class AssignLookupCommandBean extends AbstractDaoCommandBean<Dao, AssignL
     }
     else
     {
-      mDao.selectPersons((Profile) inCommand.getProfile()).filterPerson(data, query);
+      mDao.selectPersons((Profile) inCommand.getProfile()).filterName(data, query);
     }
 
     return inCommand;

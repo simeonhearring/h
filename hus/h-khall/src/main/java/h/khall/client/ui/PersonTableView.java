@@ -1,20 +1,27 @@
 package h.khall.client.ui;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.gwtbootstrap3.client.ui.Anchor;
-import org.gwtbootstrap3.client.ui.Icon;
+import org.gwtbootstrap3.client.ui.Tooltip;
+import org.gwtbootstrap3.client.ui.constants.IconPosition;
 import org.gwtbootstrap3.client.ui.constants.IconType;
 import org.gwtbootstrap3.client.ui.html.Span;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Widget;
 
-import h.khall.shared.model.Person;
+import h.khall.client.ui.event.PersonInfoEvent;
+import h.model.shared.khall.Person;
 import h.style.g.client.ui.AbstractView;
+import h.style.g.client.ui.SpanIconView;
 
 public class PersonTableView extends AbstractView
 {
@@ -32,43 +39,52 @@ public class PersonTableView extends AbstractView
     initWidget(BINDER.createAndBindUi(this));
   }
 
-//  <tr>
-//  <td class="client-avatar">
-//      <img alt="image" src="img/a2.jpg" />
-//  </td>
-//  <td>
-//      <a data-toggle="tab" href="#contact-1" class="client-link">Anthony Jackson</a>
-//  </td>
-//  <td> Tellus Institute</td>
-//  <td class="contact-type">
-//      <i class="fa fa-envelope">
-//      </i>
-//  </td>
-//  <td> gravida@rbisit.com</td>
-//  <td class="client-status">
-//      <span class="label label-primary">Active</span>
-//  </td>
-//</tr>
-
-  private void add(Person inPerson)
+  private void add(final Person inPerson)
   {
     int row = mTable.getRowCount();
     int column = -1;
 
-    Anchor name = new Anchor();
-    name.addStyleName("client-link");
-    name.setText(inPerson.getName());
-    mTable.setWidget(row, ++column, name);
+    mTable.setWidget(row, ++column, name(inPerson));
 
-    Icon gender = new Icon(inPerson.isMale() ? IconType.MALE : IconType.FEMALE);
-    mTable.setWidget(row, ++column, gender);
-    mTable.getCellFormatter().getElement(row, column).addClassName("contact-type");
+    final Map<IconType, String> values = new HashMap<>();
+    values.put(IconType.MOBILE_PHONE, inPerson.getMobile());
+    values.put(IconType.ENVELOPE, inPerson.getEmail());
+    values.put(IconType.PHONE, inPerson.getHome());
+    values.put(IconType.ADDRESS_BOOK, inPerson.getAddress());
 
-    Span fsg = new Span();
-    fsg.setText(inPerson.getFsg());
-    mTable.setWidget(row, ++column, fsg);
+    final SpanIconView contact = new SpanIconView();
+    contact.setMarginRight(5.0);
+
+    contact.setIcon(IconType.MOBILE_PHONE);
+    contact.setText(inPerson.getMobile());
+    mTable.setWidget(row, ++column, contact);
+
+    ClickHandler clickHandler = new ClickHandler()
+    {
+      private int mIndex = 0;
+      private IconType[] mOptions =
+      {
+          IconType.MOBILE_PHONE, IconType.ENVELOPE, IconType.PHONE, IconType.ADDRESS_BOOK
+      };
+
+      @Override
+      public void onClick(ClickEvent inEvent)
+      {
+        IconType type = mOptions[next()];
+        contact.setIcon(type);
+        contact.setText(values.get(type));
+      }
+
+      private int next()
+      {
+        mIndex = mIndex == mOptions.length - 1 ? 0 : mIndex + 1;
+        return mIndex;
+      }
+    };
+    contact.addClickHandler(clickHandler);
 
     Span address = new Span();
+    new Tooltip(address, inPerson.getAddress());
     address.setText(inPerson.getAddress1());
     mTable.setWidget(row, ++column, address);
 
@@ -78,9 +94,29 @@ public class PersonTableView extends AbstractView
     status.setText(getStudentStatus(student));
     mTable.getCellFormatter().getElement(row, column).addClassName("client-status");
     mTable.setWidget(row, ++column, status);
- }
+  }
 
-  public String getStudentStatus(boolean inStatus)
+  private Anchor name(final Person inPerson)
+  {
+    Anchor ret = new Anchor();
+    ret.addStyleName("client-link");
+    ret.setText(inPerson.getName());
+
+    ret.setIcon(inPerson.isMale() ? IconType.MALE : IconType.FEMALE);
+    ret.setIconPosition(IconPosition.RIGHT);
+
+    register(ret.addClickHandler(new ClickHandler()
+    {
+      @Override
+      public void onClick(ClickEvent inEvent)
+      {
+        fire(new PersonInfoEvent(inPerson));
+      }
+    }));
+    return ret;
+  }
+
+  private String getStudentStatus(boolean inStatus)
   {
     return inStatus ? "Enrolled" : "Not Enrolled";
   }

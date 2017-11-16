@@ -112,6 +112,6 @@ public class DateTimePickerView extends AbstractView implements
   @Override
   public HandlerRegistration addChangeDateHandler(ChangeDateHandler inHandler)
   {
-    return add(mDate.addChangeDateHandler(inHandler));
+    return register(mDate.addChangeDateHandler(inHandler));
   }
 }

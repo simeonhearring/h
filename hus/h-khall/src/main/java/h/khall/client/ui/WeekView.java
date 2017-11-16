@@ -7,7 +7,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Widget;
 
 import h.khall.client.model.WeekPresenter;
-import h.khall.shared.model.Meeting.Week;
+import h.model.shared.khall.Meeting.Week;
 
 public class WeekView extends AbstractView<WeekPresenter> implements WeekPresenter.Display
 {

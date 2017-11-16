@@ -2,7 +2,7 @@ package h.khall.client.model;
 
 import java.util.Date;
 
-import h.khall.shared.model.Meeting;
+import h.model.shared.khall.Meeting;
 import h.style.g.client.ui.event.RefreshEvent;
 
 public class MidweekPresenter extends AbstractPresenter<MidweekPresenter.Display>

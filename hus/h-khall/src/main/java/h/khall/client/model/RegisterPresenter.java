@@ -2,7 +2,7 @@ package h.khall.client.model;
 
 import h.khall.client.ui.event.AttachEvent;
 import h.khall.client.ui.event.AttachEvent.TypeA;
-import h.khall.shared.model.Profile;
+import h.model.shared.khall.Profile;
 import h.model.shared.util.StringUtil;
 import h.style.g.client.model.Attach;
 import h.style.g.client.ui.common.RpcCallback;

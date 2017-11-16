@@ -2,8 +2,8 @@ package h.khall.server.command;
 
 import h.khall.server.dao.Dao;
 import h.khall.shared.model.Client;
-import h.khall.shared.model.Profile;
 import h.model.shared.Login;
+import h.model.shared.khall.Profile;
 import h.style.g.server.command.AbstractDaoCommandBean;
 import h.style.g.shared.command.LoginCommand;
 import h.style.g.shared.rpc.common.RpcResponse;

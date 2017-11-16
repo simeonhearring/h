@@ -1,5 +1,7 @@
 package h.khall.shared.model;
 
+import h.model.shared.khall.Meeting;
+import h.model.shared.khall.Persons;
 import h.style.g.shared.chart.Chart;
 
 @SuppressWarnings("serial")
