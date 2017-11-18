@@ -46,6 +46,20 @@ public enum Part
     return ret;
   }
 
+  public static Part[] student()
+  {
+    return new Part[]
+    {
+        BIBLE_READING,
+        INITIAL_CALL,
+        F_RETURN_VISIT,
+        S_RETURN_VISIT,
+        T_RETURN_VISIT,
+        TALK,
+        BIBLE_STUDY
+    };
+  }
+
   public boolean isAssisted()
   {
     return getParticipants() > 1;

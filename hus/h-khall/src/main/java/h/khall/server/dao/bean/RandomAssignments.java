@@ -21,6 +21,7 @@ import java.util.Date;
 import java.util.List;
 
 import h.model.shared.khall.Assignment;
+import h.model.shared.khall.Curriculum;
 import h.model.shared.khall.Hall;
 import h.model.shared.khall.Part;
 import h.model.shared.khall.Person;
@@ -98,17 +99,20 @@ public class RandomAssignments
 
     if (inPart.isStudyPoint())
     {
-      inList.add(assignment(inWeekOf, inPart, Hall.AUX1, inPersons));
+      inList.add(assignment(inWeekOf, inPart, Hall.SECOND, inPersons));
     }
   }
 
   private static Assignment assignment(Date inWeekOf, Part inPart, Hall inHall,
       List<Person> inPersons)
   {
+    Curriculum curriculum = new Curriculum();
+    curriculum.setDate(inWeekOf);
+    curriculum.setPart(inPart);
+
     Assignment ret = new Assignment();
-    ret.setWeekOf(inWeekOf);
-    ret.setPart(inPart);
-    ret.setHall(inHall);
+    ret.setCurriculum(curriculum);
+    ret.setSchool(inHall);
 
     if (RandomUtil.randomInt(11) % 2 == 0)
     {

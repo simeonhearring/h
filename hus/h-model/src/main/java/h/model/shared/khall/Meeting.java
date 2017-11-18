@@ -227,9 +227,10 @@ public class Meeting implements Serializable
       if (ret == null)
       {
         ret = new Assignment();
-        ret.setWeekOf(mOf);
-        ret.setPart(inPart);
-        ret.setHall(inHall);
+        // TODO
+        // ret.setWeekOf(mOf);
+        // ret.setPart(inPart);
+        // ret.setHall(inHall);
         mAssignment.add(ret);
       }
 

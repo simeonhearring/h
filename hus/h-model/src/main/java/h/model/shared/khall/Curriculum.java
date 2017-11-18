@@ -54,6 +54,7 @@ public class Curriculum implements Serializable
     mSource = inSource;
   }
 
+  // @com.fasterxml.jackson.annotation.JsonIgnore
   public Long getDurationMinutes()
   {
     return mDurationMinutes;

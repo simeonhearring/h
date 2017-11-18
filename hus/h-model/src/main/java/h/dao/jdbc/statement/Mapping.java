@@ -5,10 +5,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import h.dao.jdbc.AbstractSql;
+import h.model.shared.khall.Assignment;
 import h.model.shared.khall.Curriculum;
 import h.model.shared.khall.Hall;
 import h.model.shared.khall.Part;
-import h.model.shared.khall.Schedule;
+import h.model.shared.khall.StudyPoint;
+import h.model.shared.util.NumberUtil;
 
 //import net.husoftware._sec.shared.model.AssignmentWeekend;
 //import net.husoftware._sec.shared.model.Attendance;
@@ -299,28 +301,31 @@ public class Mapping
   // return ret;
   // }
 
-  public static Schedule mapSchedule(ResultSet inRs, String inC, String inS) throws SQLException
+  public static Assignment mapSchedule(ResultSet inRs, String inC, String inS) throws SQLException
   {
-    Schedule ret = new Schedule();
-    // mapAbstractModel(inRs, inS, ret);
+    Assignment ret = new Assignment();
+    ret.setCurriculum(mapCurriculum(inRs, inC));
+    ret.setId(NumberUtil.toLong(inRs.getBigDecimal(inS + ".mId")));
     ret.setCongregation(inRs.getLong(inS + ".mCongregation"));
     ret.setSchool(AbstractSql.valueOf(inRs.getString(inS + ".mSchool"), Hall.values()));
-    // ret.setLevel(AbstractSql.valueOf(inRs.getString(inS + ".mLevel"),
-    // Level.values()));
-    ret.setCurriculum(mapCurriculum(inRs, inC));
+    ret.setStudyPoint(StudyPoint.get(inRs.getString(inS + ".mStudyPoint")));
+    ret.setParticipantId(NumberUtil.toLong(inRs.getObject(inS + ".mParticipant")));
+    ret.setAssistantId(NumberUtil.toLong(inRs.getObject(inS + ".mAssistant")));
     return ret;
   }
 
-  public static Schedule mapSchedule(ResultSet inRs, String inS) throws SQLException
-  {
-    Schedule ret = new Schedule();
-    // mapAbstractModel(inRs, inS, ret);
-    ret.setCongregation(inRs.getLong(inS + ".mCongregation"));
-    ret.setSchool(AbstractSql.valueOf(inRs.getString(inS + ".mSchool"), Hall.values()));
-    // ret.setLevel(AbstractSql.valueOf(inRs.getString(inS + ".mLevel"),
-    // Level.values()));
-    return ret;
-  }
+  // public static Schedule mapSchedule(ResultSet inRs, String inS) throws
+  // SQLException
+  // {
+  // Assignment ret = new Assignment();
+  // // mapAbstractModel(inRs, inS, ret);
+  // ret.setCongregation(inRs.getLong(inS + ".mCongregation"));
+  // ret.setSchool(AbstractSql.valueOf(inRs.getString(inS + ".mSchool"),
+  // Hall.values()));
+  // // ret.setLevel(AbstractSql.valueOf(inRs.getString(inS + ".mLevel"),
+  // // Level.values()));
+  // return ret;
+  // }
 
   // public static Student mapStudent(ResultSet inRs, String inS, String inP)
   // throws SQLException
@@ -346,9 +351,7 @@ public class Mapping
   public static Curriculum mapCurriculum(ResultSet inRs, String inC) throws SQLException
   {
     Curriculum ret = new Curriculum();
-    // mapAbstractModel(inRs, inC, ret);
-    // ret.setNote(valueOf(inRs.getString(inC + ".mNote"),
-    // Curriculum.Note.values()));
+    ret.setId(NumberUtil.toLong(inRs.getBigDecimal(inC + ".mId")));
     ret.setPart(AbstractSql.valueOf(inRs.getString(inC + ".mPart"), Part.values()));
     ret.setSource(inRs.getString(inC + ".mSource"));
     ret.setTheme(inRs.getString(inC + ".mTheme"));

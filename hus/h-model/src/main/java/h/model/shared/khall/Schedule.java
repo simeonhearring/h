@@ -7,9 +7,9 @@ public class Schedule implements Serializable
 {
   private Long mId;
 
+  private Curriculum mCurriculum;
   private Long mCongregation;
   private Hall mSchool;
-  private Curriculum mCurriculum;
 
   public Long getCongregation()
   {

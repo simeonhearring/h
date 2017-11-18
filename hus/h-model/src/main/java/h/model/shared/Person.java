@@ -223,6 +223,11 @@ public class Person implements Serializable, Tag
     return String.valueOf(mId);
   }
 
+  public Long getIdLong()
+  {
+    return mId;
+  }
+
   @Override
   public String getType()
   {

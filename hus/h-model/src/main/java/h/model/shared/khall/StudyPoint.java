@@ -3,6 +3,7 @@ package h.model.shared.khall;
 import java.util.List;
 
 import h.model.shared.Tag;
+import h.model.shared.util.EnumUtil;
 
 public enum StudyPoint implements Tag
 {
@@ -192,5 +193,15 @@ public enum StudyPoint implements Tag
         }
       }
     }
+  }
+
+  public static StudyPoint get(String inName)
+  {
+    return EnumUtil.valueOf(inName, values());
+  }
+
+  public static String get(StudyPoint inValue)
+  {
+    return EnumUtil.name(inValue);
   }
 }

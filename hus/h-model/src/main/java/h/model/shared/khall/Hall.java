@@ -3,8 +3,7 @@ package h.model.shared.khall;
 public enum Hall
 {
   MAIN,
-  AUX1,
-  AUX2;
+  SECOND;
 
   public String school()
   {

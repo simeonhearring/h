@@ -8,43 +8,28 @@ import java.util.List;
 import h.model.shared.Tag;
 
 @SuppressWarnings("serial")
-public class Assignment implements Serializable
+public class Assignment extends Schedule implements Serializable
 {
-  private Date mWeekOf;
-  private Part mPart;
-  private Hall mHall;
+  private StudyPoint mStudyPoint;
+  private Long mParticipantId;
+  private Long mAssistantId;
+
   private Person mParticipant;
   private Person mAssistant;
-  private StudyPoint mStudyPoint;
 
   public Date getWeekOf()
   {
-    return mWeekOf;
-  }
-
-  public void setWeekOf(Date inWeekOf)
-  {
-    mWeekOf = inWeekOf;
+    return getCurriculum().getDate();
   }
 
   public Part getPart()
   {
-    return mPart;
-  }
-
-  public void setPart(Part inPart)
-  {
-    mPart = inPart;
+    return getCurriculum().getPart();
   }
 
   public Hall getHall()
   {
-    return mHall;
-  }
-
-  public void setHall(Hall inHall)
-  {
-    mHall = inHall;
+    return getSchool();
   }
 
   public Person getParticipant()
@@ -105,14 +90,40 @@ public class Assignment implements Serializable
   {
     StringBuilder builder = new StringBuilder();
     builder.append("Assignment [mWeekOf=");
-    builder.append(mWeekOf);
+    builder.append(getWeekOf());
     builder.append(", mPart=");
-    builder.append(mPart);
+    builder.append(getPart());
     builder.append(", mHall=");
-    builder.append(mHall);
+    builder.append(getHall());
     builder.append(", mParticipant=");
     builder.append(mParticipant);
     builder.append("]");
     return builder.toString();
+  }
+
+  public Long getParticipantId()
+  {
+    return mParticipantId;
+  }
+
+  public void setParticipantId(Long inParticipantId)
+  {
+    mParticipantId = inParticipantId;
+  }
+
+  public Long getAssistantId()
+  {
+    return mAssistantId;
+  }
+
+  public void setAssistantId(Long inAssistantId)
+  {
+    mAssistantId = inAssistantId;
+  }
+
+  public void ids()
+  {
+    mParticipantId = mParticipant == null ? null : mParticipant.getIdLong();
+    mAssistantId = mAssistant == null ? null : mAssistant.getIdLong();
   }
 }
