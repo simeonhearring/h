@@ -11,8 +11,45 @@ public class Curriculum implements Serializable
   private Part mPart;
   private String mTheme;
   private String mSource;
-  private Long mDurationMinutes;
-  private Long mSort;
+  private Integer mDurationMinutes;
+  private Integer mSort; // Apply1=8, Apply2=9, Apply3=10
+
+  public Part getPpart()
+  {
+    Part ret = mPart;
+    switch (mPart)
+    {
+      case INITIAL_CALL:
+      case F_RETURN_VISIT:
+      case S_RETURN_VISIT:
+      case T_RETURN_VISIT:
+      case TALK:
+      case BIBLE_STUDY:
+        ret = sortpart();
+        break;
+      default:
+        break;
+    }
+    return ret;
+  }
+
+  private Part sortpart()
+  {
+    Part ret = null;
+    switch (mSort)
+    {
+      case 8:
+        ret = Part.APPLY1;
+        break;
+      case 9:
+        ret = Part.APPLY2;
+        break;
+      case 10:
+        ret = Part.APPLY3;
+        break;
+    }
+    return ret;
+  }
 
   public Date getDate()
   {
@@ -55,22 +92,22 @@ public class Curriculum implements Serializable
   }
 
   // @com.fasterxml.jackson.annotation.JsonIgnore
-  public Long getDurationMinutes()
+  public Integer getDurationMinutes()
   {
     return mDurationMinutes;
   }
 
-  public void setDurationMinutes(Long inDurationMinutes)
+  public void setDurationMinutes(Integer inDurationMinutes)
   {
     mDurationMinutes = inDurationMinutes;
   }
 
-  public Long getSort()
+  public Integer getSort()
   {
     return mSort;
   }
 
-  public void setSort(Long inSort)
+  public void setSort(Integer inSort)
   {
     mSort = inSort;
   }

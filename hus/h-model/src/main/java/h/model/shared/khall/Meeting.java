@@ -184,32 +184,14 @@ public class Meeting implements Serializable
       return mAssignment;
     }
 
-    public boolean contains(Part inPart)
+    public boolean contains(Part inPpart)
     {
       List<Part> parts = new ArrayList<>();
       for (Assignment value : mAssignment)
       {
-        parts.add(value.getPart().getParent());
+        parts.add(value.getCurriculum().getPpart());
       }
-      return parts.contains(inPart.getParent());
-    }
-
-    public Part getPart(Part inPart)
-    {
-      Part ret = inPart;
-      if (inPart.ambigous())
-      {
-        List<Part> parts = new ArrayList<>();
-        for (Assignment value : mAssignment)
-        {
-          if (value.getPart().ambigous())
-          {
-            parts.add(value.getPart());
-          }
-        }
-        ret = ret.match(parts);
-      }
-      return ret;
+      return parts.contains(inPpart);
     }
 
     public Assignment get(Part inPart, Hall inHall)
@@ -217,23 +199,12 @@ public class Meeting implements Serializable
       Assignment ret = null;
       for (Assignment value : mAssignment)
       {
-        if (inPart.equals(value.getPart()) && inHall.equals(value.getHall()))
+        if (inPart.equals(value.getCurriculum().getPpart()) && inHall.equals(value.getHall()))
         {
           ret = value;
           break;
         }
       }
-
-      if (ret == null)
-      {
-        ret = new Assignment();
-        // TODO
-        // ret.setWeekOf(mOf);
-        // ret.setPart(inPart);
-        // ret.setHall(inHall);
-        mAssignment.add(ret);
-      }
-
       return ret;
     }
 

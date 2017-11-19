@@ -356,8 +356,8 @@ public class Mapping
     ret.setSource(inRs.getString(inC + ".mSource"));
     ret.setTheme(inRs.getString(inC + ".mTheme"));
     ret.setDate(inRs.getDate(inC + ".mDate"));
-    ret.setDurationMinutes(toLong(inRs.getObject(inC + ".mDurationMinutes")));
-    ret.setSort(toLong(inRs.getObject(inC + ".mSort")));
+    ret.setDurationMinutes(toInteger(inRs.getObject(inC + ".mDurationMinutes")));
+    ret.setSort(toInteger(inRs.getObject(inC + ".mSort")));
     return ret;
   }
 
@@ -397,7 +397,7 @@ public class Mapping
     {
       if (inObject instanceof Long)
       {
-        ret = ((Integer) inObject).intValue();
+        ret = ((Long) inObject).intValue();
       }
       else if (inObject instanceof BigDecimal)
       {

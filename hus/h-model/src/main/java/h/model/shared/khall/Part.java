@@ -6,6 +6,9 @@ import h.model.shared.util.StringUtil;
 
 public enum Part
 {
+  APPLY1,
+  APPLY2,
+  APPLY3,
   I_VIDEO,
   F_RETURN_VISIT_VIDEO,
   S_RETURN_VISIT_VIDEO,

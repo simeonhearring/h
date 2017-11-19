@@ -31,8 +31,8 @@
 			<div class="col-md-4 b-r {style.color}">
 				<form role="form">
 					<k:AssignView ui:field="mChairman" part="CHAIRMAN" />
-					<k:AssignView ui:field="mPrayer1" part="PRAYER_1" />
-					<k:AssignView ui:field="mPrayer2" part="PRAYER_2" />
+					<k:AssignView ui:field="mPrayer1" part="SONG_1" />
+					<k:AssignView ui:field="mPrayer2" part="SONG_3" />
 					<b.html:Hr addStyleNames="{style.color}" />
 					<k:AssignView ui:field="mTreasures" part="TREASURES" />
 					<k:AssignView ui:field="mDigging" part="DIGGING" addStyleNames="{style.margin}" />
@@ -55,19 +55,19 @@
 							<b.card:Front>
 								<b.gwt:HTMLPanel>
 									<label>Main Hall</label>
-									<k:AssignView ui:field="mReading1" part="BIBLE_READING" />
-									<k:AssignView ui:field="mInitial1" part="INITIAL_CALL" />
-									<k:AssignView ui:field="mRv1" part="F_RETURN_VISIT" />
-									<k:AssignView ui:field="mTalk1" part="TALK" />
+									<k:AssignView ui:field="mReadingM" part="BIBLE_READING" />
+									<k:AssignView ui:field="mApply1M" part="APPLY1" ppart="APPLY1" />
+									<k:AssignView ui:field="mApply2M" part="APPLY2" ppart="APPLY2" />
+									<k:AssignView ui:field="mApply3M" part="APPLY3" ppart="APPLY3" />
 								</b.gwt:HTMLPanel>
 							</b.card:Front>
 							<b.card:Back>
 								<b.gwt:HTMLPanel>
 									<label>Auxiliary Classroom #1</label>
-									<k:AssignView ui:field="mReading2" part="BIBLE_READING" hall="AUX1" />
-									<k:AssignView ui:field="mInitial2" part="INITIAL_CALL" hall="AUX1" />
-									<k:AssignView ui:field="mRv2" part="F_RETURN_VISIT" hall="AUX1" />
-									<k:AssignView ui:field="mTalk2" part="TALK" hall="AUX1" />
+									<k:AssignView ui:field="mReadingA" part="BIBLE_READING" hall="SECOND" />
+									<k:AssignView ui:field="mApply1A" part="APPLY1" ppart="APPLY1" hall="SECOND" />
+									<k:AssignView ui:field="mApply2A" part="APPLY2" ppart="APPLY2" hall="SECOND" />
+									<k:AssignView ui:field="mApply3A" part="APPLY3" ppart="APPLY3" hall="SECOND" />
 								</b.gwt:HTMLPanel>
 							</b.card:Back>
 						</b.card:Card>

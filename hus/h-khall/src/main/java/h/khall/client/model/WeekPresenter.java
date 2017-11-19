@@ -7,10 +7,10 @@ import h.khall.shared.command.AssignmentSaveCommand;
 import h.model.shared.Tag;
 import h.model.shared.khall.Assignment;
 import h.model.shared.khall.Hall;
+import h.model.shared.khall.Meeting.Week;
 import h.model.shared.khall.Part;
 import h.model.shared.khall.Person;
 import h.model.shared.khall.StudyPoint;
-import h.model.shared.khall.Meeting.Week;
 import h.style.g.client.model.CallBack;
 
 public class WeekPresenter extends AbstractPresenter<WeekPresenter.Display>
@@ -32,14 +32,18 @@ public class WeekPresenter extends AbstractPresenter<WeekPresenter.Display>
       value.clear();
       value.setCallback(null);
 
-      value.setVisible(inWeek.contains(value.getPart()));
-      value.setPart(inWeek.getPart(value.getPart()));
+      Part ppart = value.getPpart();
+      boolean contains = inWeek.contains(ppart);
+      value.setVisible(contains);
+      if (contains)
+      {
+        Assignment assignment = inWeek.get(ppart, value.getHall());
+        value.setAssignment(assignment);
+        value.setValue(assignment.getTags());
+        value.setPart(assignment.getPart());
 
-      Assignment assignment = inWeek.get(value.getPart().getParent(), value.getHall());
-      value.setAssignment(assignment);
-      value.setValue(assignment.getTags());
-
-      value.setCallback(this);
+        value.setCallback(this);
+      }
     }
 
     mDisplay.setVisible(of != null);
@@ -114,6 +118,8 @@ public class WeekPresenter extends AbstractPresenter<WeekPresenter.Display>
     Hall getHall();
 
     Part getPart();
+
+    Part getPpart();
 
     void setAssignment(Assignment inAssignment);
 

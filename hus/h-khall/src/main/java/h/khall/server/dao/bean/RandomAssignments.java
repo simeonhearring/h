@@ -35,30 +35,46 @@ public class RandomAssignments
       CHAIRMAN, SONG_1, TREASURES, DIGGING, BIBLE_READING, LIVING_1, C_BIBLE_STUDY, SONG_3
   };
 
-  private static Part[] PARTSA =
+  private static PartSort[] PARTSA =
   {
-      F_RETURN_VISIT, TALK, LIVING_2
+      new PartSort(F_RETURN_VISIT, 8),
+      new PartSort(TALK, 10),
+      new PartSort(LIVING_2, getSortId(LIVING_2))
   };
 
-  private static Part[] PARTSB =
+  private static PartSort[] PARTSB =
   {
-      INITIAL_CALL, S_RETURN_VISIT, BIBLE_STUDY,
+      new PartSort(INITIAL_CALL, 8), new PartSort(S_RETURN_VISIT, 9), new PartSort(BIBLE_STUDY, 10)
   };
 
-  private static Part[] PARTSC =
+  private static PartSort[] PARTSC =
   {
-      T_RETURN_VISIT, TALK, LIVING_2
+      new PartSort(T_RETURN_VISIT, 9),
+      new PartSort(TALK, 10),
+      new PartSort(LIVING_2, getSortId(LIVING_2))
   };
 
-  private static Part[] PARTSD =
+  private static PartSort[] PARTSD =
   {
-      INITIAL_CALL, BIBLE_STUDY,
+      new PartSort(INITIAL_CALL, 8), new PartSort(BIBLE_STUDY, 10),
   };
 
-  private static Part[][] PARTSE =
+  private static PartSort[][] PARTSE =
   {
       PARTSA, PARTSB, PARTSC, PARTSD
   };
+
+  private static class PartSort
+  {
+    Part mPart;
+    int mSort;
+
+    public PartSort(Part inPart, int inSort)
+    {
+      mPart = inPart;
+      mSort = inSort;
+    }
+  }
 
   public static List<Assignment> assigns(List<Person> inPersons)
   {
@@ -83,32 +99,33 @@ public class RandomAssignments
   {
     for (Part value : PARTS)
     {
-      assign(ret, inWeekOf, inPersons, value);
+      assign(ret, inWeekOf, inPersons, value, getSortId(value));
     }
 
-    for (Part value : RandomUtil.random(PARTSE))
+    for (PartSort value : RandomUtil.random(PARTSE))
     {
-      assign(ret, inWeekOf, inPersons, value);
+      assign(ret, inWeekOf, inPersons, value.mPart, value.mSort);
     }
   }
 
   private static void assign(List<Assignment> inList, Date inWeekOf, List<Person> inPersons,
-      Part inPart)
+      Part inPart, int inSort)
   {
-    inList.add(assignment(inWeekOf, inPart, Hall.MAIN, inPersons));
+    inList.add(assignment(inWeekOf, inPart, Hall.MAIN, inPersons, inSort));
 
     if (inPart.isStudyPoint())
     {
-      inList.add(assignment(inWeekOf, inPart, Hall.SECOND, inPersons));
+      inList.add(assignment(inWeekOf, inPart, Hall.SECOND, inPersons, inSort));
     }
   }
 
   private static Assignment assignment(Date inWeekOf, Part inPart, Hall inHall,
-      List<Person> inPersons)
+      List<Person> inPersons, int inSort)
   {
     Curriculum curriculum = new Curriculum();
     curriculum.setDate(inWeekOf);
     curriculum.setPart(inPart);
+    curriculum.setSort(inSort);
 
     Assignment ret = new Assignment();
     ret.setCurriculum(curriculum);
@@ -129,6 +146,54 @@ public class RandomAssignments
           ret.setStudyPoint(RandomUtil.random(StudyPoint.values()));
         }
       }
+    }
+    return ret;
+  }
+
+  public static int getSortId(Part inPart)
+  {
+    int ret = -1;
+    switch (inPart)
+    {
+      case CHAIRMAN:
+        ret = 1;
+        break;
+      case SONG_1:
+        ret = 2;
+        break;
+      // OPENING COMMENTS = 3
+      case TREASURES:
+        ret = 4;
+        break;
+      case DIGGING:
+        ret = 5;
+        break;
+      case BIBLE_READING:
+        ret = 6;
+        break;
+      // PREPARE = 7
+      case APPLY1:
+        ret = 8;
+      case APPLY2:
+        ret = 9;
+      case APPLY3:
+        ret = 10;
+        // SONG2 = 11
+      case LIVING_1:
+        ret = 12;
+        break;
+      case LIVING_2:
+        ret = 13;
+        break;
+      case C_BIBLE_STUDY:
+        ret = 14;
+        break;
+      // REVIEW = 15
+      // CO_TALK = 16
+      case SONG_3:
+        ret = 17;
+      default:
+        break;
     }
     return ret;
   }

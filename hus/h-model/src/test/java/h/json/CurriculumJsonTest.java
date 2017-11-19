@@ -29,7 +29,7 @@ public class CurriculumJsonTest
     model.setTheme(null);
     model.setSource("MATTHEW 1-3");
     model.setDurationMinutes(null);
-    model.setSort(1L);
+    model.setSort(1);
 
     String j = json.writeValue(model);
 

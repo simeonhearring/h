@@ -95,6 +95,8 @@ public class Assignment extends Schedule implements Serializable
     builder.append(getPart());
     builder.append(", mHall=");
     builder.append(getHall());
+    builder.append(", mSort=");
+    builder.append(getCurriculum().getSort());
     builder.append(", mParticipant=");
     builder.append(mParticipant);
     builder.append("]");

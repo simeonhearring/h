@@ -42,7 +42,7 @@ public class AssignView extends h.style.g.client.ui.AbstractView
   MultiValueTagsInput<Tag> mTag;
 
   private Hall mHall = Hall.MAIN;
-  private Part mPart;
+  private Part mPart, mPpart;
   private AssignSet mDataset;
   private CallBack<WeekPresenter.AssignDisplay> mCallBack;
 
@@ -122,11 +122,23 @@ public class AssignView extends h.style.g.client.ui.AbstractView
   public void setPart(Part inPart)
   {
     mPart = inPart;
+    mPpart = mPpart == null ? mPart : mPpart;
     setLabel(mPart.getLabel(true));
     if (mDataset != null)
     {
       mDataset.setPart(mPart);
     }
+  }
+
+  public void setPpart(Part inPpart)
+  {
+    mPpart = inPpart;
+  }
+
+  @Override
+  public Part getPpart()
+  {
+    return mPpart;
   }
 
   @Override
