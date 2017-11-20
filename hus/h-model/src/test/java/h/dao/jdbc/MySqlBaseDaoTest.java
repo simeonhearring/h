@@ -63,7 +63,7 @@ public class MySqlBaseDaoTest
 
   protected String getDataSourceBeanName()
   {
-    return "DataSourceSEC";
+    return "Khall";
   }
 
   public DataSource getDataSource()

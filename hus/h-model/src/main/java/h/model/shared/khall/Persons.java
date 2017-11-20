@@ -2,7 +2,9 @@ package h.model.shared.khall;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import h.model.shared.Tag;
 
@@ -10,6 +12,7 @@ import h.model.shared.Tag;
 public class Persons implements Serializable
 {
   private List<Person> mPersons;
+  private Map<Long, Person> mOrganize;
 
   public List<Person> getPersons()
   {
@@ -19,6 +22,16 @@ public class Persons implements Serializable
   public void setPersons(List<Person> inPersons)
   {
     mPersons = inPersons;
+    organize();
+  }
+
+  private void organize()
+  {
+    mOrganize = new HashMap<>();
+    for (Person value : mPersons)
+    {
+      mOrganize.put(value.getIdLong(), value);
+    }
   }
 
   public List<Person> getElders()
@@ -71,5 +84,10 @@ public class Persons implements Serializable
         inData.add(value);
       }
     }
+  }
+
+  public Person get(Long inId)
+  {
+    return mOrganize.get(inId);
   }
 }

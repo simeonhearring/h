@@ -20,15 +20,16 @@ public class ScheduleSqlTest extends MySqlBaseDaoTest
     mSql = new ScheduleSql(mDataSource);
   }
 
-  // this is the procedure for adding new schedules for curriculum.
+  // this is the procedure for adding new schedules from curriculum.
   // @Test
   public void test()
   {
-    mSql.upsert(1, Hall.MAIN, 2018, 2);
+    int mo = 2; // 1=Jan, 2=Feb
+    mSql.upsert(1, Hall.MAIN, 2018, mo);
 
     for (Part value : Part.student())
     {
-      mSql.upsert(1, Hall.SECOND, 2018, 2, value);
+      mSql.upsert(1, Hall.SECOND, 2018, mo, value);
     }
   }
 

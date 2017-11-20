@@ -11,21 +11,38 @@ public class MonthPresenter extends AbstractPresenter<MonthPresenter.Display>
     initDisplay(inDisplay);
   }
 
+  public void reset()
+  {
+    mDisplay.setMonth(null);
+    mDisplay.setVisible(false);
+    mDisplay.getWeek0().reset();
+    mDisplay.getWeek1().reset();
+    mDisplay.getWeek2().reset();
+    mDisplay.getWeek3().reset();
+    mDisplay.getWeek4().reset();
+  }
+
   public void setMonth(int inYear, int inMo, Month inMonth)
   {
     @SuppressWarnings("deprecation")
     Date d = new Date(inYear - 1900, inMo, 1);
     mDisplay.setMonth(format("MMMM yyyy", d).toUpperCase());
 
-    mDisplay.getWeek0().setWeek(inMonth.g(0));
-    mDisplay.getWeek1().setWeek(inMonth.g(1));
-    mDisplay.getWeek2().setWeek(inMonth.g(2));
-    mDisplay.getWeek3().setWeek(inMonth.g(3));
-    mDisplay.getWeek4().setWeek(inMonth.g(4));
+    if (!inMonth.empty())
+    {
+      mDisplay.getWeek0().setWeek(inMonth.g(0));
+      mDisplay.getWeek1().setWeek(inMonth.g(1));
+      mDisplay.getWeek2().setWeek(inMonth.g(2));
+      mDisplay.getWeek3().setWeek(inMonth.g(3));
+      mDisplay.getWeek4().setWeek(inMonth.g(4));
+      mDisplay.setVisible(true);
+    }
   }
 
   public interface Display extends h.style.g.client.model.Display
   {
+    void reset();
+
     void setMonth(int inYear, int inMo, Month inMonth);
 
     void setMonth(String inText);

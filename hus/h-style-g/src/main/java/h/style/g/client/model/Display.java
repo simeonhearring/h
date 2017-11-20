@@ -25,6 +25,8 @@ public interface Display extends IsWidget, HasVisibility
 
   void confirm(String inMessage, ConfirmCallback inCallback);
 
+  void console(String inAction, String inMessage);
+
   void prompt(String inMessage, PromptCallback inCallback);
 
   String format(String inPattern, Date inDate);

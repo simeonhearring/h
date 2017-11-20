@@ -10,7 +10,7 @@ public class AssignmentSaveCommandBean extends AbstractDaoCommandBean<Dao, Assig
   @Override
   public RpcResponse execute(AssignmentSaveCommand inCommand)
   {
-    // TODO save assignment
+    mDao.update(inCommand.getAssignment());
     return inCommand;
   }
 }

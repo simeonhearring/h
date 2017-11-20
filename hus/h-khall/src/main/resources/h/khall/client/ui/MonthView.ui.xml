@@ -8,7 +8,7 @@
 	
 	</ui:style>
 	<k:CloseableView ui:field="mHead">
-		<b.gwt:HTMLPanel addStyleNames="full-height-scroll kh_scroll">
+		<b.gwt:HTMLPanel ui:field="mScroll" addStyleNames="full-height-scroll kh_scroll">
 			<b.gwt:HTMLPanel>
 				<k:WeekView ui:field="mW0" />
 				<k:WeekView ui:field="mW1" />

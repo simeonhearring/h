@@ -202,4 +202,9 @@ public class MockDisplay implements Display, IsWidget
   {
     return inText;
   }
+
+  @Override
+  public void console(String inAction, String inMessage)
+  {
+  }
 }

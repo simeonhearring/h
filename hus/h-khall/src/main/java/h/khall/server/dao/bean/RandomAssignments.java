@@ -133,11 +133,11 @@ public class RandomAssignments
 
     if (RandomUtil.randomInt(11) % 2 == 0)
     {
-      ret.setParticipant(RandomUtil.random(inPersons));
+      ret.setParticipantId(RandomUtil.random(inPersons).getIdLong());
 
       if (ret.getPart().isAssisted())
       {
-        ret.setAssistant(RandomUtil.random(inPersons));
+        ret.setAssistantId(RandomUtil.random(inPersons).getIdLong());
       }
       if (ret.getPart().isStudyPoint())
       {

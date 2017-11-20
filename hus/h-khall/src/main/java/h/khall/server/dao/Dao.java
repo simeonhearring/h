@@ -1,5 +1,6 @@
 package h.khall.server.dao;
 
+import h.model.shared.khall.Assignment;
 import h.model.shared.khall.Meeting;
 import h.model.shared.khall.Persons;
 import h.model.shared.khall.Profile;
@@ -14,4 +15,6 @@ public interface Dao
   Meeting selectMonthly(Profile inProfile);
 
   Persons selectPersons(Profile inProfile);
+
+  void update(Assignment inAssignment);
 }

@@ -1,5 +1,7 @@
 package h.khall.client.ui;
 
+import org.gwtbootstrap3.client.ui.gwt.HTMLPanel;
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -22,6 +24,9 @@ public class MonthView extends AbstractView<MonthPresenter>
   CloseableView mHead;
 
   @UiField
+  HTMLPanel mScroll;
+
+  @UiField
   WeekView mW0, mW1, mW2, mW3, mW4;
 
   public MonthView()
@@ -31,9 +36,21 @@ public class MonthView extends AbstractView<MonthPresenter>
   }
 
   @Override
+  public void reset()
+  {
+    mPresenter.reset();
+  }
+
+  @Override
   public void setMonth(int inYear, int inMo, Month inMonth)
   {
     mPresenter.setMonth(inYear, inMo, inMonth);
+  }
+
+  @Override
+  public void setVisible(boolean inVisible)
+  {
+    mScroll.setVisible(inVisible);
   }
 
   @Override

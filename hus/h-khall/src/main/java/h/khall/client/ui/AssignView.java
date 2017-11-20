@@ -160,7 +160,7 @@ public class AssignView extends h.style.g.client.ui.AbstractView
   }
 
   @Override
-  public void clear()
+  public void removeAll()
   {
     mTag.removeAll();
   }

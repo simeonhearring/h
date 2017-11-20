@@ -31,6 +31,12 @@ public class WeekView extends AbstractView<WeekPresenter> implements WeekPresent
   }
 
   @Override
+  public void reset()
+  {
+    mPresenter.reset();
+  }
+
+  @Override
   public void setWeek(Week inWeek)
   {
     mPresenter.setWeek(inWeek);

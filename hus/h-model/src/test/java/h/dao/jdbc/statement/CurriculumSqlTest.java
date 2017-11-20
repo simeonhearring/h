@@ -8,7 +8,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import h.dao.jdbc.MySqlBaseDaoTest;
+import h.json.CurriculumCreate;
 import h.model.shared.khall.Curriculum;
+import h.model.shared.khall.Curriculums;
 
 public class CurriculumSqlTest extends MySqlBaseDaoTest
 {
@@ -18,6 +20,19 @@ public class CurriculumSqlTest extends MySqlBaseDaoTest
   public void before()
   {
     mSql = new CurriculumSql(mDataSource);
+  }
+
+  // this is the procedure for adding curriculum
+  // @Test
+  public void test()
+  {
+    Curriculums curr = new Curriculums();
+    curr.setCurriculums(CurriculumCreate.create());
+
+    for (Curriculum value : curr.getCurriculums())
+    {
+      mSql.upsert(value);
+    }
   }
 
   @Test

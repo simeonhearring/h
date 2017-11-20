@@ -81,7 +81,6 @@ public class ScheduleSql extends AbstractSql
 
   public void update(Assignment inAssignment)
   {
-    inAssignment.ids();
     update(inAssignment.getParticipantId(), inAssignment.getAssistantId(),
         inAssignment.getStudyPoint(), inAssignment.getId());
   }

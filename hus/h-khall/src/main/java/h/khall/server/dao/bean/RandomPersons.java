@@ -10,8 +10,8 @@ import h.model.shared.Person.Gender;
 import h.model.shared.khall.Person;
 import h.model.shared.khall.Persons;
 import h.model.shared.khall.Roles;
-import h.model.shared.khall.Student;
 import h.model.shared.khall.Roles.Role;
+import h.model.shared.khall.Student;
 
 public class RandomPersons
 {
@@ -22,6 +22,7 @@ public class RandomPersons
     for (int i = 0; i < 150; i++)
     {
       Person person = new Person();
+      person.setId(Long.valueOf(i));
       person.setLast(random(LAST));
       person.setFirst(random(FIRST));
       person.setEmail(person.getName().replaceAll(",", "").replaceAll(" ", "_").toLowerCase() + "@gmail.com");

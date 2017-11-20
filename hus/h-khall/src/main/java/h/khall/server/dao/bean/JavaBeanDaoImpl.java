@@ -1,6 +1,7 @@
 package h.khall.server.dao.bean;
 
 import h.khall.server.dao.Dao;
+import h.model.shared.khall.Assignment;
 import h.model.shared.khall.Charts;
 import h.model.shared.khall.Meeting;
 import h.model.shared.khall.Persons;
@@ -19,6 +20,8 @@ public class JavaBeanDaoImpl implements Dao
     ret.setUserId("simeonlhearring@gmail.com");
     ret.setUserTitle("Owner");
     ret.setUserName("Simeon L Hearring");
+    ret.setCongId(1);
+    ret.setYear(2018);
     return ret;
   }
 
@@ -32,7 +35,7 @@ public class JavaBeanDaoImpl implements Dao
   public Meeting selectMonthly(Profile inProfile)
   {
     Meeting ret = new Meeting();
-    ret.setYear(2017);
+    ret.setYear(inProfile.getYear());
     ret.setAssignments(RandomAssignments.assigns(PERSONS.getPersons()));
     return ret;
   }
@@ -83,5 +86,10 @@ public class JavaBeanDaoImpl implements Dao
       ret[i] = RandomUtil.randomInt(100);
     }
     return ret;
+  }
+
+  @Override
+  public void update(Assignment inAssignment)
+  {
   }
 }

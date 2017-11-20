@@ -1,7 +1,5 @@
 package h.khall.client.model;
 
-import java.util.Date;
-
 import h.model.shared.khall.Meeting;
 import h.style.g.client.ui.event.RefreshEvent;
 
@@ -43,6 +41,10 @@ public class MidweekPresenter extends AbstractPresenter<MidweekPresenter.Display
 
   private void addMonths()
   {
+    mDisplay.getMonth0().reset();
+    mDisplay.getMonth1().reset();
+    mDisplay.getMonth2().reset();
+
     Meeting meeting = mClient.getMeeting();
 
     int yr = meeting.getYear();
@@ -59,19 +61,20 @@ public class MidweekPresenter extends AbstractPresenter<MidweekPresenter.Display
   private int currentIndex()
   {
     int ret = 0;
-    @SuppressWarnings("deprecation")
-    int mo = new Date().getMonth();
-    for (int i = 0; i < mRange.length; i++)
-    {
-      for (int value : mRange[i])
-      {
-        if (mo == value)
-        {
-          ret = i;
-          break;
-        }
-      }
-    }
+    // TODO
+    // @SuppressWarnings("deprecation")
+    // int mo = new Date().getMonth();
+    // for (int i = 0; i < mRange.length; i++)
+    // {
+    // for (int value : mRange[i])
+    // {
+    // if (mo == value)
+    // {
+    // ret = i;
+    // break;
+    // }
+    // }
+    // }
     return ret;
   }
 

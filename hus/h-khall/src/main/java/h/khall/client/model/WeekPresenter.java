@@ -21,31 +21,45 @@ public class WeekPresenter extends AbstractPresenter<WeekPresenter.Display>
     initDisplay(inDisplay);
   }
 
+  public void reset()
+  {
+    mDisplay.setWeekOf(null);
+    for (AssignDisplay value : mDisplay.getAssignDisplay())
+    {
+      value.setCallback(null);
+      value.removeAll();
+    }
+  }
+
   public void setWeek(Week inWeek)
   {
     Date of = inWeek.getOf();
 
-    mDisplay.setWeekOf(dateRange(of));
-
-    for (AssignDisplay value : mDisplay.getAssignDisplay())
+    if (of != null)
     {
-      value.clear();
-      value.setCallback(null);
+      mDisplay.setWeekOf(dateRange(of));
 
-      Part ppart = value.getPpart();
-      boolean contains = inWeek.contains(ppart);
-      value.setVisible(contains);
-      if (contains)
+      for (AssignDisplay value : mDisplay.getAssignDisplay())
       {
-        Assignment assignment = inWeek.get(ppart, value.getHall());
-        value.setAssignment(assignment);
-        value.setValue(assignment.getTags());
-        value.setPart(assignment.getPart());
+        Part ppart = value.getPpart();
+        Hall hall = value.getHall();
+        Assignment assignment = inWeek.get(ppart, hall);
+        boolean contains = assignment != null;
+        value.setVisible(contains);
+        if (contains)
+        {
+          value.setAssignment(assignment);
+          value.setValue(mClient.getTags(assignment));
+          value.setPart(assignment.getPart());
 
-        value.setCallback(this);
+          value.setCallback(this);
+        }
+        else
+        {
+          mDisplay.console("Alert", "Week of " + of + " does not have a " + ppart + " part.");
+        }
       }
     }
-
     mDisplay.setVisible(of != null);
   }
 
@@ -54,8 +68,8 @@ public class WeekPresenter extends AbstractPresenter<WeekPresenter.Display>
   {
     Assignment assignment = inDisplay.getAssignment();
 
-    Person par = null;
-    Person ass = null;
+    Long par = null;
+    Long ass = null;
     StudyPoint st = null;
 
     for (Tag value : inDisplay.getValues())
@@ -64,11 +78,11 @@ public class WeekPresenter extends AbstractPresenter<WeekPresenter.Display>
       {
         if (par == null)
         {
-          par = (Person) value;
+          par = ((Person) value).getIdLong();
         }
         else if (inDisplay.getPart().isAssisted() && ass == null)
         {
-          ass = (Person) value;
+          ass = ((Person) value).getIdLong();
         }
         else
         {
@@ -93,8 +107,16 @@ public class WeekPresenter extends AbstractPresenter<WeekPresenter.Display>
       }
     }
 
-    assignment.setParticipant(par);
-    assignment.setAssistant(ass);
+    if (par == null && (ass == null || st == null))
+    {
+      ass = null;
+      st = null;
+      inDisplay.removeAll();
+      mDisplay.notify("Please add participant first.");
+    }
+
+    assignment.setParticipantId(par);
+    assignment.setAssistantId(ass);
     assignment.setStudyPoint(st);
 
     fire(new AssignmentSaveCommand(assignment));
@@ -129,7 +151,7 @@ public class WeekPresenter extends AbstractPresenter<WeekPresenter.Display>
 
     List<Tag> getValues();
 
-    void clear();
+    void removeAll();
 
     void remove(Tag inTag);
 
@@ -153,5 +175,7 @@ public class WeekPresenter extends AbstractPresenter<WeekPresenter.Display>
     void setWeekOf(String inText);
 
     void setWeek(Week inWeek);
+
+    void reset();
   }
 }

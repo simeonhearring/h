@@ -3,9 +3,11 @@ package h.model.shared.khall;
 @SuppressWarnings("serial")
 public class Profile extends h.model.shared.Profile
 {
+  private Integer mCongId;
   private String mCongNme;
   private String mCongNum;
   private String mEncrypt;
+  private Integer mYear, mMonth;
 
   public String getCongNum()
   {
@@ -35,5 +37,35 @@ public class Profile extends h.model.shared.Profile
   public void setCongNme(String inCongNme)
   {
     mCongNme = inCongNme;
+  }
+
+  public Integer getCongId()
+  {
+    return mCongId;
+  }
+
+  public void setCongId(Integer inCongId)
+  {
+    mCongId = inCongId;
+  }
+
+  public Integer getYear()
+  {
+    return mYear;
+  }
+
+  public void setYear(Integer inYear)
+  {
+    mYear = inYear;
+  }
+
+  public Integer getMonth()
+  {
+    return mMonth;
+  }
+
+  public void setMonth(Integer inMonth)
+  {
+    mMonth = inMonth;
   }
 }

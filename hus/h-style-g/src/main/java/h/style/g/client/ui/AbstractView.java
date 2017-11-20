@@ -181,6 +181,11 @@ public abstract class AbstractView extends Composite
     return Global.getEnvironment();
   }
 
+  public void console(String inAction, String inMessage)
+  {
+    Global.debug(inAction, inMessage);
+  }
+
   public ModalDisplay getModal()
   {
     return new ModalView();
