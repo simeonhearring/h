@@ -57,7 +57,7 @@ public class Roles implements Serializable
     mRoles.add(inRole);
   }
 
-  public Role getPrimary()
+  public Role gPrimary()
   {
     Role ret = Role.STUDENT;
 

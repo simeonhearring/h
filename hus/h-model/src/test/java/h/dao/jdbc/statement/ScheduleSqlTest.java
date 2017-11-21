@@ -24,7 +24,7 @@ public class ScheduleSqlTest extends MySqlBaseDaoTest
   // @Test
   public void test()
   {
-    int mo = 2; // 1=Jan, 2=Feb
+    int mo = 1; // 1=Jan, 2=Feb
     mSql.upsert(1, Hall.MAIN, 2018, mo);
 
     for (Part value : Part.student())

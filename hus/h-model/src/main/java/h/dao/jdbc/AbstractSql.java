@@ -16,6 +16,7 @@ import org.springframework.jdbc.object.SqlUpdate;
 
 import com.thoughtworks.xstream.XStream;
 
+import h.json.JsonMapper;
 import h.model.shared.util.EnumUtil;
 import h.parser.Parser;
 import h.util.ResourceUtil;
@@ -128,6 +129,12 @@ public abstract class AbstractSql
   private static final Map<String, Integer> MAP = getJdbcTypeName();
 
   protected Statements mStmts;
+  protected JsonMapper mJsonMapper;
+
+  public AbstractSql()
+  {
+    mJsonMapper = new JsonMapper();
+  }
 
   protected String getSql(Class<?> inClass)
   {
@@ -209,6 +216,21 @@ public abstract class AbstractSql
       ret[i] = Types.NUMERIC;
     }
     return ret;
+  }
+
+  public void setJsonMapper(JsonMapper inJsonMapper)
+  {
+    mJsonMapper = inJsonMapper;
+  }
+
+  public String writeValue(Object inModel)
+  {
+    return mJsonMapper.writeValue(inModel);
+  }
+
+  public <M> M readValue(String inText, Class<M> inClass)
+  {
+    return mJsonMapper.readValue(inText, inClass);
   }
 
   protected Statements getStatements(String inXmlName)

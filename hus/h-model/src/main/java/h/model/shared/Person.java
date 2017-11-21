@@ -3,6 +3,8 @@ package h.model.shared;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import h.model.shared.util.StringUtil;
 
 @SuppressWarnings("serial")
@@ -97,6 +99,7 @@ public class Person implements Serializable, Tag
     mGender = inGender;
   }
 
+  @JsonIgnore
   public boolean isMale()
   {
     return Gender.Male.equals(mGender);
@@ -142,19 +145,19 @@ public class Person implements Serializable, Tag
     mHome = inHome;
   }
 
-  public String getAddress()
+  public String gAddress()
   {
     return StringUtil.ensure(mAddress1, "", " ") + StringUtil.ensure(mAddress2, "", " ")
         + StringUtil.ensure(mCity, "", ", ") + StringUtil.ensure(mState, "", ", ")
         + StringUtil.ensure(mZip);
   }
 
-  public String getAddressLine()
+  public String gAddressLine()
   {
     return StringUtil.ensure(mAddress1, "", " ") + StringUtil.ensure(mAddress2, "", "");
   }
 
-  public String getCityLine()
+  public String gCityLine()
   {
     return StringUtil.ensure(mCity, "", ", ") + StringUtil.ensure(mState, "", ", ")
         + StringUtil.ensure(mZip);
@@ -211,6 +214,7 @@ public class Person implements Serializable, Tag
   }
 
   @Override
+  @JsonIgnore
   public String getName()
   {
     return StringUtil.ensure(mLast, "", ", ") + StringUtil.ensure(mFirst)
@@ -223,18 +227,21 @@ public class Person implements Serializable, Tag
     return String.valueOf(mId);
   }
 
+  @JsonIgnore
   public Long getIdLong()
   {
     return mId;
   }
 
   @Override
+  @JsonIgnore
   public String getType()
   {
     return "PERSON";
   }
 
   @Override
+  @JsonIgnore
   public String getValue()
   {
     return getName();
@@ -249,7 +256,7 @@ public class Person implements Serializable, Tag
     builder.append(" ");
     builder.append(StringUtil.ensure(mSuffix));
     builder.append(" ");
-    builder.append(getAddress());
+    builder.append(gAddress());
     builder.append(" ");
     builder.append(StringUtil.ensure(mHome));
     builder.append(" ");

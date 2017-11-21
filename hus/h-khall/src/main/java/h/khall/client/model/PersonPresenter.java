@@ -37,7 +37,7 @@ public class PersonPresenter extends AbstractPresenter<PersonPresenter.Display>
     mDisplay.setState(mPerson.getState());
     mDisplay.setZip(mPerson.getZip());
 
-    mDisplay.setFsg(mPerson.getFsg());
+    // mDisplay.setFsg(mPerson.getFsgId());
     // mDisplay.setFaith(mPerson.getFaith());
     mDisplay.setBaptized(mPerson.getBaptized());
     mDisplay.setPublishing(mPerson.getPublishing());
@@ -126,7 +126,7 @@ public class PersonPresenter extends AbstractPresenter<PersonPresenter.Display>
 
   public void chgFsg(String inValue)
   {
-    mPerson.setFsg(inValue);
+    // mPerson.setFsgId(inValue);
   }
 
   public void chgBaptized(Date inValue)

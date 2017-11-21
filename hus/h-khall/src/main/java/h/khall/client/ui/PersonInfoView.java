@@ -37,8 +37,8 @@ public class PersonInfoView extends AbstractView<PersonInfoPresenter>
   {
     mName.setText(inPerson.getName());
     mRole.setText(text(inPerson.getRole()));
-    mAddressLine.setText(inPerson.getAddressLine());
-    mCityLine.setText(inPerson.getCityLine());
+    mAddressLine.setText(inPerson.gAddressLine());
+    mCityLine.setText(inPerson.gCityLine());
     mHome.setText(inPerson.getHome());
     mMobile.setText(inPerson.getMobile());
     mEmail.setText(inPerson.getEmail());

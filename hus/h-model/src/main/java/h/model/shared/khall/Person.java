@@ -2,12 +2,15 @@ package h.model.shared.khall;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import h.model.shared.khall.Roles.Role;
 
 @SuppressWarnings("serial")
 public class Person extends h.model.shared.Person
 {
-  private String mFsg;
+  private Integer mCongId;
+  private Integer mFsgId;
   private Date mBaptized;
   private Roles mRoles;
   private Categories mCategories;
@@ -18,6 +21,14 @@ public class Person extends h.model.shared.Person
 
   private Student mStudent;
   private Ministry mMinistry;
+
+  public String gLocater()
+  {
+    StringBuilder sb = new StringBuilder();
+    sb.append("c").append(mCongId).append(",");
+    sb.append("f").append(mFsgId).append(",");
+    return sb.toString();
+  }
 
   public void normalize()
   {
@@ -43,14 +54,24 @@ public class Person extends h.model.shared.Person
     }
   }
 
-  public String getFsg()
+  public Integer getFsgId()
   {
-    return mFsg;
+    return mFsgId;
   }
 
-  public void setFsg(String inFsg)
+  public void setFsgId(Integer inFsg)
   {
-    mFsg = inFsg;
+    mFsgId = inFsg;
+  }
+
+  public Integer getCongId()
+  {
+    return mCongId;
+  }
+
+  public void setCongId(Integer inCongId)
+  {
+    mCongId = inCongId;
   }
 
   public Date getBaptized()
@@ -63,9 +84,10 @@ public class Person extends h.model.shared.Person
     mBaptized = inBaptized;
   }
 
+  @JsonIgnore
   public Role getRole()
   {
-    return mRoles.getPrimary();
+    return mRoles.gPrimary();
   }
 
   public Roles getRoles()
@@ -128,21 +150,25 @@ public class Person extends h.model.shared.Person
     mFamily = inFamily;
   }
 
+  @JsonIgnore
   public boolean isStudent()
   {
     return mRoles.contains(Roles.Role.STUDENT);
   }
 
+  @JsonIgnore
   public boolean isElder()
   {
     return mRoles.contains(Roles.Role.ELDER);
   }
 
+  @JsonIgnore
   public boolean isRegular()
   {
     return mRoles.contains(Roles.Role.REGULAR_PIONEER);
   }
 
+  @JsonIgnore
   public boolean isAnoited()
   {
     return mRoles.contains(Roles.Role.ANOITED);
@@ -158,11 +184,6 @@ public class Person extends h.model.shared.Person
     mStudent = inStudent;
   }
 
-  public String getMinistryStatus()
-  {
-    return mMinistry.getStatus();
-  }
-
   public Ministry getMinistry()
   {
     return mMinistry;
@@ -173,6 +194,7 @@ public class Person extends h.model.shared.Person
     mMinistry = inMinistry;
   }
 
+  @JsonIgnore
   public Date getPublishing()
   {
     return mMinistry.getPublishing();

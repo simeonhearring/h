@@ -8,7 +8,6 @@ import java.util.List;
 @SuppressWarnings("serial")
 public class Ministry implements Serializable
 {
-  private Boolean mPublisher;
   private Date mPublishing;
   private List<Report> mReports;
 
@@ -38,20 +37,5 @@ public class Ministry implements Serializable
   public void setPublishing(Date inPublishing)
   {
     mPublishing = inPublishing;
-  }
-
-  public Boolean getPublisher()
-  {
-    return mPublisher;
-  }
-
-  public void setPublisher(Boolean inPublisher)
-  {
-    mPublisher = inPublisher;
-  }
-
-  public String getStatus()
-  {
-    return null;
   }
 }

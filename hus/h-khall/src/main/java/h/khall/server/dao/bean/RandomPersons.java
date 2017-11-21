@@ -17,6 +17,10 @@ public class RandomPersons
 {
   public static Persons persons()
   {
+    int[] fsg =
+    {
+        1, 2, 3, 4, 5
+    };
     Persons ret = new Persons();
     List<Person> list = new ArrayList<>();
     for (int i = 0; i < 150; i++)
@@ -35,7 +39,7 @@ public class RandomPersons
       person.setState(city[1]);
       person.setZip(String.valueOf(randomNumbers(5)));
 
-      person.setFsg(random(LAST).toUpperCase() + " FSG");
+      person.setFsgId(random(fsg));
       person.setStudent(student());
       person.setRoles(roles());
 

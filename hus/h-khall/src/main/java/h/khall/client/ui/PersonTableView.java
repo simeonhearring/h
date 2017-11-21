@@ -50,7 +50,7 @@ public class PersonTableView extends AbstractView
     values.put(IconType.MOBILE_PHONE, inPerson.getMobile());
     values.put(IconType.ENVELOPE, inPerson.getEmail());
     values.put(IconType.PHONE, inPerson.getHome());
-    values.put(IconType.ADDRESS_BOOK, inPerson.getAddress());
+    values.put(IconType.ADDRESS_BOOK, inPerson.gAddress());
 
     final SpanIconView contact = new SpanIconView();
     contact.setMarginRight(5.0);
@@ -84,7 +84,7 @@ public class PersonTableView extends AbstractView
     contact.addClickHandler(clickHandler);
 
     Span address = new Span();
-    new Tooltip(address, inPerson.getAddress());
+    new Tooltip(address, inPerson.gAddress());
     address.setText(inPerson.getAddress1());
     mTable.setWidget(row, ++column, address);
 

@@ -3,6 +3,7 @@ package h.json;
 import java.io.IOException;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class JsonMapper
@@ -12,6 +13,7 @@ public class JsonMapper
   public JsonMapper()
   {
     mMapper = new ObjectMapper();
+    mMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
   }
 
   public ObjectMapper getMapper()
