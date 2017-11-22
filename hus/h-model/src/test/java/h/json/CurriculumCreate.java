@@ -14,8 +14,18 @@ public class CurriculumCreate
   public static List<Curriculum> create()
   {
     List<Curriculum> ret = new ArrayList<>();
+    Curriculum m1573 = new Curriculum();
+    m1573.setId(1573L);
+    m1573.setDate(newDate("2017-1-2"));
+    m1573.setPart(Part.CHAIRMAN);
+    m1573.setTheme(null);
+    m1573.setSource("ISAIAH 24-28");
+    m1573.setDurationMinutes(null);
+    m1573.setSort(1);
+    ret.add(m1573);
 
     Curriculum chW1 = new Curriculum();
+    chW1.setId(1L);
     chW1.setDate(newDate("2018-01-01"));
     chW1.setPart(Part.CHAIRMAN);
     chW1.setTheme(null);

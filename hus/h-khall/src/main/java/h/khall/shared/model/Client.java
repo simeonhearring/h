@@ -1,20 +1,22 @@
 package h.khall.shared.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import h.model.shared.Tag;
+import h.model.shared.khall.AssignPart;
 import h.model.shared.khall.Assignment;
 import h.model.shared.khall.Meeting;
+import h.model.shared.khall.Part;
+import h.model.shared.khall.Person;
 import h.model.shared.khall.Persons;
 import h.style.g.shared.chart.Chart;
 
 @SuppressWarnings("serial")
 public class Client extends h.model.shared.Client
 {
-  private Chart mChart;
-  private Meeting mMeeting;
   private Persons mPersons;
+  private Meeting mMeeting;
+  private Chart mChart;
 
   public Chart getChart()
   {
@@ -48,18 +50,16 @@ public class Client extends h.model.shared.Client
 
   public List<Tag> getTags(Assignment inAssignment)
   {
-    List<Tag> ret = new ArrayList<>();
-    if (inAssignment.getParticipantId() != null)
+    return mPersons.getTags(inAssignment.getParticipantId(), inAssignment.getAssistantId(),
+        inAssignment.getStudyPoint());
+  }
+
+  public AssignPart gAssignPart(Part inPart)
+  {
+    AssignPart ret = new AssignPart(inPart);
+    for (Person value : mPersons.gAvailable(inPart))
     {
-      ret.add(mPersons.get(inAssignment.getParticipantId()));
-      if (inAssignment.getAssistantId() != null)
-      {
-        ret.add(mPersons.get(inAssignment.getAssistantId()));
-      }
-      if (inAssignment.getStudyPoint() != null)
-      {
-        ret.add(inAssignment.getStudyPoint());
-      }
+      ret.add(value, mMeeting.gHistory(mPersons, value.getIdLong()));
     }
     return ret;
   }

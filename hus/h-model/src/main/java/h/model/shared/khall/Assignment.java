@@ -3,6 +3,9 @@ package h.model.shared.khall;
 import java.io.Serializable;
 import java.util.Date;
 
+import h.model.shared.util.StringUtil;
+import h.model.shared.util.TimeUtil;
+
 @SuppressWarnings("serial")
 public class Assignment extends Schedule implements Serializable
 {
@@ -71,5 +74,33 @@ public class Assignment extends Schedule implements Serializable
   public void setAssistantId(Long inAssistantId)
   {
     mAssistantId = inAssistantId;
+  }
+
+  public String gHistoryLine(Persons inPersons, Long inParticipantId)
+  {
+    Date wo = getWeekOf();
+    String sp = mStudyPoint != null ? mStudyPoint.item() : "";
+    String pt = getPart().getLabel(true);
+    String at = inPersons.gName(mAssistantId);
+
+    if (inParticipantId == mAssistantId)
+    {
+      pt = getPart().assistant().getLabel(true);
+      sp = "";
+      at = "";
+    }
+
+    StringBuilder sb = new StringBuilder();
+    sb.append(TimeUtil.format("MM-dd-yy", wo)).append(" ");
+    sb.append(pt).append(" ");
+    sb.append(sp).append(" ");
+    sb.append(StringUtil.ensure(at, "--"));
+
+    return sb.toString();
+  }
+
+  public boolean isAssignedTo(Long inId)
+  {
+    return inId.equals(mParticipantId) || inId.equals(mAssistantId);
   }
 }

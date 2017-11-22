@@ -20,8 +20,9 @@ public class JavaBeanDaoImpl implements Dao
     ret.setUserId("simeonlhearring@gmail.com");
     ret.setUserTitle("Owner");
     ret.setUserName("Simeon L Hearring");
-    ret.setCongId(1);
+    ret.setCongId(59);
     ret.setYear(2018);
+    ret.setEncrypt("9M1})6Y]ibnxrp^zSQz@*BAc[Cn+Ub1R");
     return ret;
   }
 
@@ -35,8 +36,7 @@ public class JavaBeanDaoImpl implements Dao
   public Meeting selectMonthly(Profile inProfile)
   {
     Meeting ret = new Meeting();
-    ret.setYear(inProfile.getYear());
-    ret.setAssignments(RandomAssignments.assigns(PERSONS.getPersons()));
+    ret.setAssignments(RandomAssignments.assigns(selectPersons(inProfile).getPersons()));
     return ret;
   }
 

@@ -21,4 +21,9 @@
 		<Types>VARCHAR,VARCHAR</Types>
 		<Sql>insert into PERSON (mLocater,mProfile) values (?,AES_ENCRYPT(?,@key))</Sql>
 	</Statement>
+	<Statement>
+		<Key>INSERT_PE1</Key>
+		<Types>NUMERIC,VARCHAR,VARCHAR</Types>
+		<Sql>insert into PERSON (mId,mLocater,mProfile) values (?,?,AES_ENCRYPT(?,@key))</Sql>
+	</Statement>
 </Statements> 

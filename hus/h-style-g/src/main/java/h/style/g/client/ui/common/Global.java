@@ -29,14 +29,14 @@ public class Global implements HasFire
 
   private RpcServiceAsync mRpcService;
 
+  private SessionInfo mInfo;
+
   private Debug mDebug = debugger();
 
   private Debugger debugger()
   {
     return new Debugger(Debugger.Type.CONSOLE);
   }
-
-  private SessionInfo mInfo;
 
   public static void setEventBus(EventBus inEventBus)
   {
@@ -51,6 +51,11 @@ public class Global implements HasFire
   public static void setInfo(SessionInfo inInfo)
   {
     INSTANCE.mInfo = inInfo;
+  }
+
+  public static void setProfile(Profile inProfile)
+  {
+    info().setProfile(inProfile);
   }
 
   public static List<Notice> getNotices()
@@ -89,6 +94,12 @@ public class Global implements HasFire
   public <C extends RpcCommand, R extends RpcResponse> void fire(C inCommand,
       AsyncCallback<R> inCallback)
   {
+    fireS(inCommand, inCallback);
+  }
+
+  public static <C extends RpcCommand, R extends RpcResponse> void fireS(C inCommand,
+      AsyncCallback<R> inCallback)
+  {
     if (inCommand != null)
     {
       inCommand.setUserInfo(userInfo());
@@ -98,15 +109,9 @@ public class Global implements HasFire
         ((RpcProfileCommand) inCommand).setProfile(profile());
       }
 
-      fireS(inCommand, inCallback);
+      debugFire(inCommand.getClass());
+      INSTANCE.mRpcService.fire(inCommand, inCallback);
     }
-  }
-
-  public static <C extends RpcCommand, R extends RpcResponse> void fireS(C inCommand,
-      AsyncCallback<R> inCallback)
-  {
-    debugFire(inCommand.getClass());
-    INSTANCE.mRpcService.fire(inCommand, inCallback);
   }
 
   @Override

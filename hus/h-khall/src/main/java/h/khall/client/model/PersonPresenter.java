@@ -31,11 +31,11 @@ public class PersonPresenter extends AbstractPresenter<PersonPresenter.Display>
     mDisplay.setMobile(mPerson.getMobile());
     mDisplay.setHome(mPerson.getHome());
 
-    mDisplay.setAddress1(mPerson.getAddress1());
-    mDisplay.setAddress2(mPerson.getAddress2());
-    mDisplay.setCity(mPerson.getCity());
-    mDisplay.setState(mPerson.getState());
-    mDisplay.setZip(mPerson.getZip());
+    mDisplay.setAddress1(mPerson.gAddress1());
+    mDisplay.setAddress2(mPerson.gAddress2());
+    mDisplay.setCity(mPerson.gCity());
+    mDisplay.setState(mPerson.gState());
+    mDisplay.setZip(mPerson.gZip());
 
     // mDisplay.setFsg(mPerson.getFsgId());
     // mDisplay.setFaith(mPerson.getFaith());
@@ -45,7 +45,7 @@ public class PersonPresenter extends AbstractPresenter<PersonPresenter.Display>
     // mDisplay.setCategories(mPerson.getCategories());
     mDisplay.setEmergency(mPerson.getEmergency());
     mDisplay.setChildren(mPerson.getChildren());
-    mDisplay.setHead(mPerson.getHead());
+    // mDisplay.setHead(mPerson.getHead());
     mDisplay.setFamily(mPerson.getFamily());
   }
 
@@ -146,7 +146,7 @@ public class PersonPresenter extends AbstractPresenter<PersonPresenter.Display>
 
   public void chgHead(String inValue)
   {
-    mPerson.setHead(inValue);
+    // mPerson.setHead(inValue);
   }
 
   public void chgFaith(String inValue)

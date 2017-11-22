@@ -15,24 +15,14 @@ import com.google.common.annotations.GwtIncompatible;
 @SuppressWarnings("serial")
 public class Meeting implements Serializable
 {
+  private Assignments mAssignments;
   private Decade mDecade;
-  private int mYear;
-
-  public int getYear()
-  {
-    return mYear;
-  }
-
-  public void setYear(int inYear)
-  {
-    mYear = inYear;
-  }
 
   @GwtIncompatible(value = "uses java.util.Calendar - server only!")
   public void setAssignments(List<Assignment> inAssignments)
   {
+    mAssignments = new Assignments(inAssignments);
     mDecade = new Decade();
-
     for (Assignment value : inAssignments)
     {
       Date d = value.getWeekOf();
@@ -46,6 +36,11 @@ public class Meeting implements Serializable
 
       mDecade.addAssignment(year, month, week, value);
     }
+  }
+
+  public List<String> gHistory(Persons inPersons, Long inId)
+  {
+    return mAssignments.gHistory(inPersons, inId, 10);
   }
 
   /*
@@ -74,7 +69,7 @@ public class Meeting implements Serializable
 
     public void addAssignment(int inYear, int inMonth, int inWeek, Assignment inValue)
     {
-      setup(inYear, inValue);
+      setup(inYear, inValue.getWeekOf());
       mMap.get(inYear).add(inMonth, inWeek, inValue);
     }
   }
@@ -89,7 +84,7 @@ public class Meeting implements Serializable
 
     public void add(int inMonth, int inWeek, Assignment inValue)
     {
-      setup(inMonth, inValue);
+      setup(inMonth, inValue.getWeekOf());
       mMap.get(inMonth).add(inWeek, inValue);
     }
   }
@@ -106,7 +101,7 @@ public class Meeting implements Serializable
 
     public void add(int inWeek, Assignment inValue)
     {
-      setup(inWeek, inValue);
+      setup(inWeek, inValue.getWeekOf());
       mMap.get(inWeek).add(inValue);
     }
 
@@ -221,11 +216,11 @@ public class Meeting implements Serializable
 
     public abstract V create(Date inWeekOf);
 
-    public void setup(int inKey, Assignment inValue)
+    public void setup(int inKey, Date inValue)
     {
       if (!mMap.containsKey(inKey))
       {
-        mMap.put(inKey, create(inValue.getWeekOf()));
+        mMap.put(inKey, create(inValue));
       }
     }
 

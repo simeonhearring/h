@@ -10,6 +10,7 @@ import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.Window;
 
+import h.model.shared.Profile;
 import h.model.shared.SessionInfo;
 import h.style.g.client.model.CallBack;
 import h.style.g.client.service.rpc.RpcService;
@@ -47,6 +48,11 @@ public abstract class AbstractEntryPoint
     Global.exportNativeDebug();
     Global.log(Level.INFO, "Started... " + JsniUtil.getBrowserInfo(), null);
     fire(new LoadMainEvent());
+  }
+
+  public void setProfile(Profile inProfile)
+  {
+    Global.setProfile(inProfile);
   }
 
   public void fire(Event<?>... inEvent)

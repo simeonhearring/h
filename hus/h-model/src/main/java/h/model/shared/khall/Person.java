@@ -16,7 +16,7 @@ public class Person extends h.model.shared.Person
   private Categories mCategories;
   private String mEmergency;
   private String mChildren;
-  private String mHead;
+  private Long mHead;
   private String mFamily;
 
   private Student mStudent;
@@ -52,6 +52,12 @@ public class Person extends h.model.shared.Person
       mCategories = new Categories();
       mCategories.normalize();
     }
+  }
+
+  @JsonIgnore
+  public boolean isAvailable(Part inPart)
+  {
+    return mStudent.getParts().contains(inPart);
   }
 
   public Integer getFsgId()
@@ -130,12 +136,12 @@ public class Person extends h.model.shared.Person
     mChildren = inChildren;
   }
 
-  public String getHead()
+  public Long getHead()
   {
     return mHead;
   }
 
-  public void setHead(String inHead)
+  public void setHead(Long inHead)
   {
     mHead = inHead;
   }

@@ -59,14 +59,14 @@ public class ScheduleSql extends AbstractSql
     };
   }
 
-  public int upsert(long inCongregationId, Hall inSchool, int inYear, int inMonth)
+  public int upsert(long inCongId, Hall inSchool, int inYear, int inMonth)
   {
-    return mUpsertYM.update(params(inSchool, inCongregationId, inYear, inMonth));
+    return mUpsertYM.update(params(inSchool, inCongId, inYear, inMonth));
   }
 
-  public int upsert(long inCongregationId, Hall inSchool, int inYear, int inMonth, Part inPart)
+  public int upsert(long inCongId, Hall inSchool, int inYear, int inMonth, Part inPart)
   {
-    return mUpsertYMP.update(params(inSchool, inCongregationId, inYear, inMonth, inPart.name()));
+    return mUpsertYMP.update(params(inSchool, inCongId, inYear, inMonth, inPart.name()));
   }
 
   public List<Assignment> select(long inCongregation, int inYear)

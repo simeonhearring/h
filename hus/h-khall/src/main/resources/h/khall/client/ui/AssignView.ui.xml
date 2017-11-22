@@ -7,7 +7,7 @@
 	
 	</ui:style>
 	<b.gwt:HTMLPanel addStyleNames="form-group">
-		<label ui:field="mLabel" />
+		<b:Label ui:field="mLabel" />
 		<b.tag:MultiValueTagsInput ui:field="mTag" allowDuplicaties="false" trimValue="true" width="100%" />
 	</b.gwt:HTMLPanel>
 </ui:UiBinder>

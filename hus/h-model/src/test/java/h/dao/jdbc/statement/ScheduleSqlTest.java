@@ -9,7 +9,6 @@ import h.model.shared.khall.Hall;
 import h.model.shared.khall.Part;
 import h.model.shared.khall.StudyPoint;
 
-
 public class ScheduleSqlTest extends MySqlBaseDaoTest
 {
   private ScheduleSql mSql;
@@ -24,12 +23,13 @@ public class ScheduleSqlTest extends MySqlBaseDaoTest
   // @Test
   public void test()
   {
+    int congId = 59;
     int mo = 1; // 1=Jan, 2=Feb
-    mSql.upsert(1, Hall.MAIN, 2018, mo);
+    mSql.upsert(congId, Hall.MAIN, 2018, mo);
 
     for (Part value : Part.student())
     {
-      mSql.upsert(1, Hall.SECOND, 2018, mo, value);
+      mSql.upsert(congId, Hall.SECOND, 2018, mo, value);
     }
   }
 

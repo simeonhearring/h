@@ -47,7 +47,7 @@ public class MidweekPresenter extends AbstractPresenter<MidweekPresenter.Display
 
     Meeting meeting = mClient.getMeeting();
 
-    int yr = meeting.getYear();
+    int yr = mProfile.getYear();
 
     int mo0 = mRange[mPageIndex][0];
     int mo1 = mRange[mPageIndex][1];

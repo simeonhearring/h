@@ -43,8 +43,10 @@ public class WeekPresenter extends AbstractPresenter<WeekPresenter.Display>
       {
         Part ppart = value.getPpart();
         Hall hall = value.getHall();
+
         Assignment assignment = inWeek.get(ppart, hall);
         boolean contains = assignment != null;
+
         value.setVisible(contains);
         if (contains)
         {

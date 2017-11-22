@@ -90,4 +90,41 @@ public class Persons implements Serializable
   {
     return mOrganize.get(inId);
   }
+
+  public String gName(Long inId)
+  {
+    Person person = get(inId);
+    return person != null ? person.getName() : null;
+  }
+
+  public List<Tag> getTags(Long inParticipantId, Long inAssistantId, StudyPoint inStudyPoint)
+  {
+    List<Tag> ret = new ArrayList<>();
+    if (inParticipantId != null)
+    {
+      ret.add(get(inParticipantId));
+      if (inAssistantId != null)
+      {
+        ret.add(get(inAssistantId));
+      }
+      if (inStudyPoint != null)
+      {
+        ret.add(inStudyPoint);
+      }
+    }
+    return ret;
+  }
+
+  public List<Person> gAvailable(Part inPart)
+  {
+    List<Person> ret = new ArrayList<>();
+    for (Person value : mPersons)
+    {
+      if (value.isAvailable(inPart))
+      {
+        ret.add(value);
+      }
+    }
+    return ret;
+  }
 }

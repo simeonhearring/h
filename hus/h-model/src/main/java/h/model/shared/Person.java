@@ -28,11 +28,7 @@ public class Person implements Serializable, Tag
   private String mMobile;
   private String mHome;
 
-  private String mAddress1;
-  private String mAddress2;
-  private String mCity;
-  private String mState;
-  private String mZip;
+  private String[] mAddress = new String[5];
 
   public Person()
   {
@@ -42,6 +38,16 @@ public class Person implements Serializable, Tag
   {
     mLast = inLast;
     mFirst = inFirst;
+  }
+
+  public void setAddress(String[] inAddress)
+  {
+    mAddress = inAddress;
+  }
+
+  public String[] getAddress()
+  {
+    return mAddress;
   }
 
   public void setId(Long inId)
@@ -147,70 +153,84 @@ public class Person implements Serializable, Tag
 
   public String gAddress()
   {
-    return StringUtil.ensure(mAddress1, "", " ") + StringUtil.ensure(mAddress2, "", " ")
-        + StringUtil.ensure(mCity, "", ", ") + StringUtil.ensure(mState, "", ", ")
-        + StringUtil.ensure(mZip);
+    return StringUtil.ensure(gAddress1(), "", " ") + StringUtil.ensure(gAddress2(), "", " ")
+        + StringUtil.ensure(gCity(), "", ", ") + StringUtil.ensure(gState(), "", ", ")
+        + StringUtil.ensure(gZip());
   }
 
   public String gAddressLine()
   {
-    return StringUtil.ensure(mAddress1, "", " ") + StringUtil.ensure(mAddress2, "", "");
+    return StringUtil.ensure(gAddress1(), "", " ") + StringUtil.ensure(gAddress2(), "", "");
   }
 
   public String gCityLine()
   {
-    return StringUtil.ensure(mCity, "", ", ") + StringUtil.ensure(mState, "", ", ")
-        + StringUtil.ensure(mZip);
+    return StringUtil.ensure(gCity(), "", ", ") + StringUtil.ensure(gState(), "", ", ")
+        + StringUtil.ensure(gZip());
   }
 
-  public String getAddress1()
+  public String gAddress1()
   {
-    return mAddress1;
+    return gAddressPart(0);
   }
 
   public void setAddress1(String inAddress1)
   {
-    mAddress1 = inAddress1;
+    setAddressPart(0, inAddress1);
   }
 
-  public String getAddress2()
+  public String gAddress2()
   {
-    return mAddress2;
+    return gAddressPart(1);
   }
 
   public void setAddress2(String inAddress2)
   {
-    mAddress2 = inAddress2;
+    setAddressPart(1, inAddress2);
   }
 
-  public String getCity()
+  public String gCity()
   {
-    return mCity;
+    return gAddressPart(2);
   }
 
   public void setCity(String inCity)
   {
-    mCity = inCity;
+    setAddressPart(2, inCity);
   }
 
-  public String getState()
+  public String gState()
   {
-    return mState;
+    return gAddressPart(3);
   }
 
   public void setState(String inState)
   {
-    mState = inState;
+    setAddressPart(3, inState);
   }
 
-  public String getZip()
+  public String gZip()
   {
-    return mZip;
+    return gAddressPart(4);
   }
 
   public void setZip(String inZip)
   {
-    mZip = inZip;
+    setAddressPart(4, inZip);
+  }
+
+  private String gAddressPart(int inIndex)
+  {
+    return mAddress == null ? null : mAddress[inIndex];
+  }
+
+  private void setAddressPart(int inIndex, String inText)
+  {
+    if (mAddress == null)
+    {
+      mAddress = new String[5];
+    }
+    mAddress[inIndex] = inText;
   }
 
   @Override

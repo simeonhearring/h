@@ -136,6 +136,11 @@ public enum StudyPoint implements Tag
     return ret;
   }
 
+  public String item()
+  {
+    return "#" + mId + " " + mName;
+  }
+
   @Override
   public String getType()
   {

@@ -6,6 +6,9 @@ import h.model.shared.util.StringUtil;
 
 public enum Part
 {
+  READER,
+  RETURN_VISIT,
+  ASSISTANT,
   APPLY1,
   APPLY2,
   APPLY3,
@@ -174,5 +177,10 @@ public enum Part
       }
     }
     return ret;
+  }
+
+  public Part assistant()
+  {
+    return C_BIBLE_STUDY.equals(this) ? READER : ASSISTANT;
   }
 }

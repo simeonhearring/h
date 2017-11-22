@@ -2,6 +2,7 @@ package h.khall.client.ui;
 
 import java.util.List;
 
+import org.gwtbootstrap3.client.ui.Label;
 import org.gwtbootstrap3.extras.tagsinput.client.callback.ItemTextCallback;
 import org.gwtbootstrap3.extras.tagsinput.client.callback.ItemValueCallback;
 import org.gwtbootstrap3.extras.tagsinput.client.callback.OnTagExistsCallback;
@@ -13,12 +14,15 @@ import org.gwtbootstrap3.extras.tagsinput.client.ui.base.MultiValueTagsInput;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Element;
-import com.google.gwt.dom.client.LabelElement;
+import com.google.gwt.dom.client.Style.Cursor;
+import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Widget;
 
 import h.khall.client.model.WeekPresenter;
+import h.khall.client.ui.event.PartInfoEvent;
 import h.model.shared.Tag;
 import h.model.shared.khall.Assignment;
 import h.model.shared.khall.Hall;
@@ -36,7 +40,7 @@ public class AssignView extends h.style.g.client.ui.AbstractView
   }
 
   @UiField
-  LabelElement mLabel;
+  Label mLabel;
 
   @UiField
   MultiValueTagsInput<Tag> mTag;
@@ -52,6 +56,8 @@ public class AssignView extends h.style.g.client.ui.AbstractView
   {
     initWidget(BINDER.createAndBindUi(this));
 
+    mLabel.getElement().getStyle().setCursor(Cursor.POINTER);
+
     mDataset = new AssignSet();
     mDataset.setPart(mPart);
 
@@ -63,6 +69,15 @@ public class AssignView extends h.style.g.client.ui.AbstractView
     mTag.addItemRemovedHandler(this);
 
     mTag.setDatasets(mDataset);
+  }
+
+  @UiHandler(
+  {
+      "mLabel"
+  })
+  public void onClick(ClickEvent inEvent)
+  {
+    fire(new PartInfoEvent(mPart));
   }
 
   @Override
@@ -109,13 +124,13 @@ public class AssignView extends h.style.g.client.ui.AbstractView
   @Override
   public void setLabel(String inText)
   {
-    mLabel.setInnerText(inText);
+    mLabel.setText(inText);
   }
 
   @Override
   public void setColor(String inColor)
   {
-    mLabel.getStyle().setColor(inColor);
+    mLabel.getElement().getStyle().setColor(inColor);
   }
 
   @Override

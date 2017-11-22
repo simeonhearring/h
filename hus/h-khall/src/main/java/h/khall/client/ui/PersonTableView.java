@@ -85,7 +85,7 @@ public class PersonTableView extends AbstractView
 
     Span address = new Span();
     new Tooltip(address, inPerson.gAddress());
-    address.setText(inPerson.getAddress1());
+    address.setText(inPerson.gAddress1());
     mTable.setWidget(row, ++column, address);
 
     Span status = new Span();

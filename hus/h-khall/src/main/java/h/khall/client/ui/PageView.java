@@ -44,8 +44,8 @@ public class PageView extends AbstractView<PagePresenter> implements PagePresent
   public void midweek()
   {
     clear();
-    mWrapper.setStyleName("gray-bg sidebar-content");
-    mSideBar.setVisible(true);
+    mWrapper.setStyleName("gray-bg");
+    mSideBar.setVisible(false);
     mBody.add(new MidweekView());
   }
 
