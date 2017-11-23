@@ -1,7 +1,8 @@
-package h.style.g.shared.command;
+package h.khall.shared.command;
 
-import h.model.shared.Login;
-import h.model.shared.Profile;
+import h.khall.shared.model.Login;
+import h.model.shared.khall.Profile;
+import h.style.g.shared.command.AbstractDataCommand;
 import h.style.g.shared.rpc.CommandName;
 
 @SuppressWarnings("serial")

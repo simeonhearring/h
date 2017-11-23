@@ -17,8 +17,15 @@ import h.model.shared.util.MapUtil;
 @SuppressWarnings("serial")
 public class Meeting implements Serializable
 {
+  private static Assignments.Count sCount = Assignments.Count.ALL;
+
   private Assignments mAssignments;
   private Decade mDecade;
+
+  public void setCount(Assignments.Count inCount)
+  {
+    sCount = inCount;
+  }
 
   @GwtIncompatible(value = "uses java.util.Calendar - server only!")
   public void setAssignments(List<Assignment> inAssignments)
@@ -175,7 +182,7 @@ public class Meeting implements Serializable
   public static class Week implements Serializable, ISetup
   {
     private Date mOf;
-    private List<Assignment> mAssignment = new ArrayList<>();
+    private Assignments mAssignment = new Assignments(new ArrayList<Assignment>());
 
     Week()
     {
@@ -194,20 +201,12 @@ public class Meeting implements Serializable
     @Override
     public double gCount()
     {
-      return mAssignment.size();
+      return mAssignment.gCount(sCount);
     }
 
     public int gAssigned()
     {
-      int ret = 0;
-      for (Assignment value : mAssignment)
-      {
-        if (value.isAssigned())
-        {
-          ret++;
-        }
-      }
-      return ret;
+      return mAssignment.gAssigned(sCount);
     }
 
     public void add(Assignment inValue)
@@ -215,23 +214,14 @@ public class Meeting implements Serializable
       mAssignment.add(inValue);
     }
 
-    public List<Assignment> getAssignment()
+    public List<Assignment> gAssignment()
     {
-      return mAssignment;
+      return mAssignment.gAssignments();
     }
 
     public Assignment get(Part inPpart, Hall inHall)
     {
-      Assignment ret = null;
-      for (Assignment value : mAssignment)
-      {
-        if (inPpart.equals(value.getCurriculum().getPpart()) && inHall.equals(value.getHall()))
-        {
-          ret = value;
-          break;
-        }
-      }
-      return ret;
+      return mAssignment.gAssignment(inPpart, inHall);
     }
 
     @Override

@@ -1,6 +1,8 @@
-package h.model.shared;
+package h.khall.shared.model;
 
 import java.io.Serializable;
+
+import h.model.shared.khall.Profile;
 
 @SuppressWarnings("serial")
 public class Login implements Serializable

@@ -4,13 +4,13 @@ import h.khall.client.ui.event.AttachEvent;
 import h.khall.client.ui.event.AttachEvent.TypeA;
 import h.khall.client.ui.event.ClientEvent;
 import h.khall.client.ui.event.ProfileEvent;
-import h.model.shared.Login;
+import h.khall.shared.command.LoginCommand;
+import h.khall.shared.model.Login;
 import h.model.shared.khall.Profile;
 import h.model.shared.util.StringUtil;
 import h.style.g.client.model.Attach;
 import h.style.g.client.ui.common.RpcCallback;
 import h.style.g.client.ui.event.RefreshEvent;
-import h.style.g.shared.command.LoginCommand;
 
 public class LoginPresenter extends AbstractPresenter<LoginPresenter.Display>
 {

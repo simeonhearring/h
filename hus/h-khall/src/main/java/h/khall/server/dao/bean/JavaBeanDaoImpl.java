@@ -2,6 +2,7 @@ package h.khall.server.dao.bean;
 
 import h.khall.server.dao.Dao;
 import h.model.shared.khall.Assignment;
+import h.model.shared.khall.Assignments.Count;
 import h.model.shared.khall.Charts;
 import h.model.shared.khall.Meeting;
 import h.model.shared.khall.Persons;
@@ -23,6 +24,7 @@ public class JavaBeanDaoImpl implements Dao
     ret.setCongId(59);
     ret.setYear(2018);
     ret.setEncrypt("9M1})6Y]ibnxrp^zSQz@*BAc[Cn+Ub1R");
+    ret.setCount(Count.STUDENT);
     return ret;
   }
 

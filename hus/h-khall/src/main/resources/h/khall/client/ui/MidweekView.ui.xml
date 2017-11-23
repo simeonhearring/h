@@ -14,11 +14,16 @@
 		<div class="row">
 			<div class="col-sm-9">
 				<div class="ibox">
-					<b:Pager ui:field="mPager" previousText="Previous" previousIcon="ANGLE_LEFT" nextText="Next" nextIcon="ANGLE_RIGHT" alignToSides="true" />
+
+					<b.gwt:HTMLPanel addStyleNames="ibox-content marginB25">
+						<b:Heading size="H2" text="Quarterly Assignments" alignment="CENTER" />
+						<b:Pager ui:field="mPager" previousText="Previous" previousIcon="ANGLE_LEFT" nextText="Next" nextIcon="ANGLE_RIGHT" alignToSides="true" />
+					</b.gwt:HTMLPanel>
 
 					<k:MonthView ui:field="mM0" />
 					<k:MonthView ui:field="mM1" />
 					<k:MonthView ui:field="mM2" />
+
 				</div>
 			</div>
 			<div class="col-sm-3">

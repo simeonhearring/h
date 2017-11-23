@@ -8,6 +8,7 @@ public class Profile extends h.model.shared.Profile
   private String mCongNum;
   private String mEncrypt;
   private Integer mYear, mMonth;
+  private Assignments.Count mCount;
 
   public String getCongNum()
   {
@@ -67,5 +68,15 @@ public class Profile extends h.model.shared.Profile
   public void setMonth(Integer inMonth)
   {
     mMonth = inMonth;
+  }
+
+  public Assignments.Count getCount()
+  {
+    return mCount;
+  }
+
+  public void setCount(Assignments.Count inCount)
+  {
+    mCount = inCount;
   }
 }

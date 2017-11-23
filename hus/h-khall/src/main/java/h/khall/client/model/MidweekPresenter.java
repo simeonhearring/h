@@ -87,9 +87,10 @@ public class MidweekPresenter extends AbstractPresenter<MidweekPresenter.Display
 
   private void addYearChart()
   {
-    int yr = mProfile.getYear();
+    Meeting meeting = mClient.getMeeting();
+    meeting.setCount(mProfile.getCount());
 
-    Year year = mClient.getMeeting().getYear(yr);
+    Year year = meeting.getYear(mProfile.getYear());
 
     mChart.update(sMonthNames);
     mChart.update(V.Assignments.name(), year.gCountM());
