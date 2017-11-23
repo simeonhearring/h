@@ -26,7 +26,7 @@
 						<small>Sales marketing.</small>
 					</div>
 
-					<k:ChartView dataType="FSG" />
+					<k:ChartView ui:field="mChart" />
 
 					<div class="m-t-md">
 						<small class="pull-right">

@@ -1,6 +1,8 @@
 package h.model.shared.khall;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -19,8 +21,10 @@ public class Person extends h.model.shared.Person
   private Long mHead;
   private String mFamily;
 
-  private Student mStudent;
   private Ministry mMinistry;
+
+  private List<Part> mParts;
+  private List<Hall> mHalls;
 
   public String gLocater()
   {
@@ -32,11 +36,6 @@ public class Person extends h.model.shared.Person
 
   public void normalize()
   {
-    if (mStudent == null)
-    {
-      mStudent = new Student();
-      mStudent.normalize();
-    }
     if (mMinistry == null)
     {
       mMinistry = new Ministry();
@@ -52,12 +51,40 @@ public class Person extends h.model.shared.Person
       mCategories = new Categories();
       mCategories.normalize();
     }
+    if (mParts == null)
+    {
+      mParts = new ArrayList<>();
+    }
+    if (mHalls == null)
+    {
+      mHalls = new ArrayList<>();
+    }
+  }
+
+  public List<Part> getParts()
+  {
+    return mParts;
+  }
+
+  public void setParts(List<Part> inParts)
+  {
+    mParts = inParts;
+  }
+
+  public List<Hall> getHalls()
+  {
+    return mHalls;
+  }
+
+  public void setHalls(List<Hall> inHalls)
+  {
+    mHalls = inHalls;
   }
 
   @JsonIgnore
-  public boolean isAvailable(Part inPart)
+  public boolean isAvailable(Part inPart, Gender inGender)
   {
-    return mStudent.getParts().contains(inPart);
+    return mParts.contains(inPart) && (inGender == null || inGender.equals(getGender()));
   }
 
   public Integer getFsgId()
@@ -169,6 +196,12 @@ public class Person extends h.model.shared.Person
   }
 
   @JsonIgnore
+  public boolean isServant()
+  {
+    return mRoles.contains(Roles.Role.MINISTERIAL_SERVANT);
+  }
+
+  @JsonIgnore
   public boolean isRegular()
   {
     return mRoles.contains(Roles.Role.REGULAR_PIONEER);
@@ -178,16 +211,6 @@ public class Person extends h.model.shared.Person
   public boolean isAnoited()
   {
     return mRoles.contains(Roles.Role.ANOITED);
-  }
-
-  public Student getStudent()
-  {
-    return mStudent;
-  }
-
-  public void setStudent(Student inStudent)
-  {
-    mStudent = inStudent;
   }
 
   public Ministry getMinistry()

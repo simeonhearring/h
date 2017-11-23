@@ -6,6 +6,7 @@ import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import h.model.shared.util.StringUtil;
+import h.model.shared.util.TimeUtil;
 
 @SuppressWarnings("serial")
 public class Person implements Serializable, Tag
@@ -239,6 +240,12 @@ public class Person implements Serializable, Tag
   {
     return StringUtil.ensure(mLast, "", ", ") + StringUtil.ensure(mFirst)
         + StringUtil.ensure(mSuffix, " ");
+  }
+
+  public String gNameAge()
+  {
+    int age = TimeUtil.getAge(mBirth);
+    return getName() + (age == 0 ? "" : " " + age);
   }
 
   @Override

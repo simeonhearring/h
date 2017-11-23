@@ -10,6 +10,8 @@ import java.util.Map;
  * http://www.chartjs.org/
  */
 
+import h.model.shared.util.RandomUtil;
+
 @SuppressWarnings("serial")
 public class Chart implements Serializable
 {
@@ -68,6 +70,11 @@ public class Chart implements Serializable
     return mData.createDataset(inLabel);
   }
 
+  public Dataset createDataset(String inLabel, Double... inData)
+  {
+    return mData.createDataset(inLabel, inData);
+  }
+
   public String getCode()
   {
     return mType.mCode;
@@ -93,6 +100,31 @@ public class Chart implements Serializable
     mDataType = inDataType.name();
   }
 
+  public void update(String[] inLabel)
+  {
+    mData.addLabel(inLabel);
+  }
+
+  public void update(String inDatasetLabel, Double[] inData)
+  {
+    for (Dataset value : mData.mDatasets)
+    {
+      if (inDatasetLabel.equals(value.mLabel))
+      {
+        value.addData(inData);
+      }
+    }
+  }
+
+  public void format(Dataset inSet)
+  {
+    String c1 = "hsla(" + RandomUtil.randomInt(360) + ",90%,90%,";
+    inSet.setBackgroundColor(c1 + "0." + RandomUtil.randomInt(9) + ")");
+    inSet.setBorderColor(c1 + "0." + RandomUtil.randomInt(9) + ")");
+    // inSet.setPointBackgroundColor(c1 + "0." + RandomUtil.randomInt(9) + ")");
+    inSet.setPointBorderColor("#fff");
+  }
+
   public static class Data implements Serializable
   {
     private Labels mLabels;
@@ -112,6 +144,15 @@ public class Chart implements Serializable
       return ret;
     }
 
+    public Dataset createDataset(String inLabel, Double[] inData)
+    {
+      Dataset ret = new Dataset();
+      ret.setLabel(inLabel);
+      ret.addData(inData);
+      addDataset(ret);
+      return ret;
+    }
+
     public void addDataset(Dataset ret)
     {
       mDatasets.add(ret);
@@ -124,6 +165,7 @@ public class Chart implements Serializable
 
     public void addLabel(String... inLabels)
     {
+      mLabels.clear();
       for (String value : inLabels)
       {
         mLabels.add(value);
@@ -166,9 +208,10 @@ public class Chart implements Serializable
       return ret;
     }
 
-    public void addData(double... inDouble)
+    public void addData(Double... inDouble)
     {
-      for (double value : inDouble)
+      mData.clear();
+      for (Double value : inDouble)
       {
         mData.add(value);
       }

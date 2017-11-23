@@ -1,5 +1,6 @@
 package h.model.shared.khall;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import h.model.shared.util.StringUtil;
@@ -182,5 +183,66 @@ public enum Part
   public Part assistant()
   {
     return C_BIBLE_STUDY.equals(this) ? READER : ASSISTANT;
+  }
+
+  public static List<Part> everyone()
+  {
+    List<Part> ret = new ArrayList<>();
+    ret.add(INITIAL_CALL);
+    ret.add(F_RETURN_VISIT);
+    ret.add(S_RETURN_VISIT);
+    ret.add(T_RETURN_VISIT);
+    ret.add(BIBLE_STUDY);
+    ret.add(ASSISTANT);
+    return ret;
+  }
+
+  public static List<Part> male()
+  {
+    List<Part> ret = everyone();
+    ret.add(BIBLE_READING);
+    ret.add(TALK);
+    return ret;
+  }
+
+  public static List<Part> servant()
+  {
+    List<Part> ret = male();
+    ret.add(TREASURES);
+    ret.add(DIGGING);
+    ret.add(LIVING_1);
+    ret.add(LIVING_2);
+    ret.add(READER);
+    return ret;
+  }
+
+  public static List<Part> elder()
+  {
+    List<Part> ret = servant();
+    ret.add(CHAIRMAN);
+    ret.add(C_BIBLE_STUDY);
+    return ret;
+  }
+
+  public static List<Part> parts(Person inPerson)
+  {
+    List<Part> ret = null;
+    if (inPerson.isElder())
+    {
+      ret = Part.elder();
+    }
+    else if (inPerson.isServant())
+    {
+      ret = Part.servant();
+    }
+    else if (inPerson.isMale())
+    {
+      ret = Part.male();
+    }
+    else
+    {
+      ret = Part.everyone();
+    }
+    return ret;
   }
 }

@@ -33,3 +33,7 @@
 	height: 25px;
 	border: 0px;
 }
+
+.kh_list span[class=badge] {
+	float: right;
+}

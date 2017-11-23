@@ -15,10 +15,12 @@ public class PartInfoEvent extends Event<PartInfoEvent.Handler>
   }
 
   private Part mPart;
+  private Long mParticipantId;
 
-  public PartInfoEvent(Part inPart)
+  public PartInfoEvent(Part inPart, Long inParticipantId)
   {
     mPart = inPart;
+    mParticipantId = inParticipantId;
   }
 
   @Override
@@ -37,5 +39,10 @@ public class PartInfoEvent extends Event<PartInfoEvent.Handler>
   public Part getPart()
   {
     return mPart;
+  }
+
+  public Long getParticipantId()
+  {
+    return mParticipantId;
   }
 }

@@ -3,6 +3,7 @@ package h.khall.client.model;
 import java.util.Date;
 import java.util.List;
 
+import h.khall.client.ui.event.AssignmentSavedEvent;
 import h.khall.shared.command.AssignmentSaveCommand;
 import h.model.shared.Tag;
 import h.model.shared.khall.Assignment;
@@ -27,6 +28,7 @@ public class WeekPresenter extends AbstractPresenter<WeekPresenter.Display>
     for (AssignDisplay value : mDisplay.getAssignDisplay())
     {
       value.setCallback(null);
+      value.setVisible(false);
       value.removeAll();
     }
   }
@@ -34,8 +36,9 @@ public class WeekPresenter extends AbstractPresenter<WeekPresenter.Display>
   public void setWeek(Week inWeek)
   {
     Date of = inWeek.getOf();
+    boolean validWeek = of != null;
 
-    if (of != null)
+    if (validWeek)
     {
       mDisplay.setWeekOf(dateRange(of));
 
@@ -45,24 +48,18 @@ public class WeekPresenter extends AbstractPresenter<WeekPresenter.Display>
         Hall hall = value.getHall();
 
         Assignment assignment = inWeek.get(ppart, hall);
-        boolean contains = assignment != null;
-
-        value.setVisible(contains);
-        if (contains)
+        if (assignment != null)
         {
           value.setAssignment(assignment);
           value.setValue(mClient.getTags(assignment));
           value.setPart(assignment.getPart());
 
+          value.setVisible(true);
           value.setCallback(this);
-        }
-        else
-        {
-          mDisplay.console("Alert", "Week of " + of + " does not have a " + ppart + " part.");
         }
       }
     }
-    mDisplay.setVisible(of != null);
+    mDisplay.setVisible(validWeek);
   }
 
   @Override
@@ -109,19 +106,18 @@ public class WeekPresenter extends AbstractPresenter<WeekPresenter.Display>
       }
     }
 
-    if (par == null && (ass == null || st == null))
+    if (par == null && st != null)
     {
       ass = null;
       st = null;
       inDisplay.removeAll();
-      mDisplay.notify("Please add participant first.");
     }
 
     assignment.setParticipantId(par);
     assignment.setAssistantId(ass);
     assignment.setStudyPoint(st);
 
-    fire(new AssignmentSaveCommand(assignment));
+    fire(new AssignmentSaveCommand(assignment), new AssignmentSavedEvent());
   }
 
   @SuppressWarnings("deprecation")

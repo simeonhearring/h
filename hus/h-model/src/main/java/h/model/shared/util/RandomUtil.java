@@ -1,5 +1,6 @@
 package h.model.shared.util;
 
+import java.util.List;
 import java.util.Random;
 
 public final class RandomUtil
@@ -23,14 +24,14 @@ public final class RandomUtil
     return random(32, AB123SYM);
   }
 
-  public static byte[] randomBytes(int inLength)
-  {
-    return random(inLength, AB123SYMS).getBytes();
-  }
-
   public static String random(int inLength)
   {
     return random(inLength, AB123SYM);
+  }
+
+  public static byte[] randomBytes(int inLength)
+  {
+    return random(inLength, AB123SYMS).getBytes();
   }
 
   public static String authCode(int inLength)
@@ -41,6 +42,11 @@ public final class RandomUtil
   public static String coupon()
   {
     return random(7, ABC123);
+  }
+
+  public static String randomNumbers(int inLength)
+  {
+    return random(inLength, S123);
   }
 
   private static String random(int inLength, String inChoices)
@@ -56,9 +62,33 @@ public final class RandomUtil
     return sb.toString();
   }
 
-  public static String random(String[] inArray)
+  public static int random(int... inArray)
   {
     Random rnd = new Random();
-    return inArray[rnd.nextInt(inArray.length - 1)];
+    return inArray[rnd.nextInt(inArray.length)];
+  }
+
+  public static String random(String... inArray)
+  {
+    Random rnd = new Random();
+    return inArray[rnd.nextInt(inArray.length)];
+  }
+
+  public static <E> E random(E[] inArray)
+  {
+    Random rnd = new Random();
+    return inArray[rnd.nextInt(inArray.length)];
+  }
+
+  public static int randomInt(int inMax)
+  {
+    Random rnd = new Random();
+    return rnd.nextInt(inMax);
+  }
+
+  public static <M> M random(List<M> inList)
+  {
+    Random rnd = new Random();
+    return inList.get(rnd.nextInt(inList.size()));
   }
 }

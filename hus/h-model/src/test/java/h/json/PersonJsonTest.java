@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import h.model.shared.Person.Gender;
 import h.model.shared.khall.Categories;
+import h.model.shared.khall.Part;
 import h.model.shared.khall.Person;
 import h.model.shared.khall.Roles;
 
@@ -46,9 +47,13 @@ public class PersonJsonTest
 
     ret.add(model);
 
-    JsonMapper mapper = new JsonMapper();
-    String jsonTxt = mapper.writeValue(model);
+    model.setParts(Part.elder());
 
+    JsonMapper mapper = new JsonMapper();
+
+
+    String jsonTxt = mapper.writeValue(model);
+    System.out.println(jsonTxt);
     Assert.assertNotNull(jsonTxt);
 
     Person results = mapper.readValue(jsonTxt, Person.class);

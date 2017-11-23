@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import h.model.shared.Person.Gender;
 import h.model.shared.Tag;
 
 @SuppressWarnings("serial")
@@ -88,6 +89,11 @@ public class Persons implements Serializable
 
   public Person get(Long inId)
   {
+    if (inId == null)
+    {
+      return null;
+    }
+
     return mOrganize.get(inId);
   }
 
@@ -95,6 +101,12 @@ public class Persons implements Serializable
   {
     Person person = get(inId);
     return person != null ? person.getName() : null;
+  }
+
+  public Gender gGender(Long inId)
+  {
+    Person person = get(inId);
+    return person != null ? person.getGender() : null;
   }
 
   public List<Tag> getTags(Long inParticipantId, Long inAssistantId, StudyPoint inStudyPoint)
@@ -115,12 +127,13 @@ public class Persons implements Serializable
     return ret;
   }
 
-  public List<Person> gAvailable(Part inPart)
+  public List<Person> gAvailable(Part inPart, Long inParticipantId)
   {
     List<Person> ret = new ArrayList<>();
+    Gender gender = gGender(inParticipantId);
     for (Person value : mPersons)
     {
-      if (value.isAvailable(inPart))
+      if (value.isAvailable(inPart, gender))
       {
         ret.add(value);
       }

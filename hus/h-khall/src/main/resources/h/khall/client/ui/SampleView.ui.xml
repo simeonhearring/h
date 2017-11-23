@@ -8,7 +8,7 @@
 	</ui:style>
 	<b.gwt:HTMLPanel addStyleNames="wrapper wrapper-content animated fadeInRight">
 
-		<k:StatsView />
+		<k:StatsView dataType="FSG" />
 
 		<k:NewsView />
 

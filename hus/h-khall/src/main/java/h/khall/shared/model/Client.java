@@ -3,10 +3,10 @@ package h.khall.shared.model;
 import java.util.List;
 
 import h.model.shared.Tag;
-import h.model.shared.khall.AssignPart;
 import h.model.shared.khall.Assignment;
 import h.model.shared.khall.Meeting;
 import h.model.shared.khall.Part;
+import h.model.shared.khall.PartInfo;
 import h.model.shared.khall.Person;
 import h.model.shared.khall.Persons;
 import h.style.g.shared.chart.Chart;
@@ -54,10 +54,10 @@ public class Client extends h.model.shared.Client
         inAssignment.getStudyPoint());
   }
 
-  public AssignPart gAssignPart(Part inPart)
+  public PartInfo gPartInfo(Part inPart, Long inParticipantId)
   {
-    AssignPart ret = new AssignPart(inPart);
-    for (Person value : mPersons.gAvailable(inPart))
+    PartInfo ret = new PartInfo(inPart);
+    for (Person value : mPersons.gAvailable(inPart, inParticipantId))
     {
       ret.add(value, mMeeting.gHistory(mPersons, value.getIdLong()));
     }

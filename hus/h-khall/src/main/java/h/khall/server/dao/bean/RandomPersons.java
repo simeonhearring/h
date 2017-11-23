@@ -11,7 +11,6 @@ import h.model.shared.khall.Person;
 import h.model.shared.khall.Persons;
 import h.model.shared.khall.Roles;
 import h.model.shared.khall.Roles.Role;
-import h.model.shared.khall.Student;
 
 public class RandomPersons
 {
@@ -40,7 +39,6 @@ public class RandomPersons
       person.setZip(String.valueOf(randomNumbers(5)));
 
       person.setFsgId(random(fsg));
-      person.setStudent(student());
       person.setRoles(roles());
 
       person.normalize();
@@ -67,13 +65,6 @@ public class RandomPersons
     {
       ret.add(Role.REGULAR_PIONEER);
     }
-    return ret;
-  }
-
-  private static Student student()
-  {
-    Student ret = new Student();
-    ret.normalize();
     return ret;
   }
 

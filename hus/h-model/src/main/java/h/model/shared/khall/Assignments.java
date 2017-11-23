@@ -20,12 +20,12 @@ public class Assignments implements Serializable
     mAssignments = inAssignments;
   }
 
-  public List<String> gHistory(Persons inPersons, Long inId, int inLast)
+  public List<Assignment> gHistory(Persons inPersons, Long inId, int inLast)
   {
-    List<String> ret = new ArrayList<>();
+    List<Assignment> ret = new ArrayList<>();
     for (Assignment value : subReverse(gAssignedTo(inId), inLast))
     {
-      ret.add(value.gHistoryLine(inPersons, inId));
+      ret.add(value);
     }
     return ret;
   }

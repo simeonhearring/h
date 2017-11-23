@@ -6,8 +6,8 @@ import h.model.shared.khall.Charts;
 import h.model.shared.khall.Meeting;
 import h.model.shared.khall.Persons;
 import h.model.shared.khall.Profile;
+import h.model.shared.util.RandomUtil;
 import h.style.g.shared.chart.Chart;
-import h.tool.util.RandomUtil;
 
 public class JavaBeanDaoImpl implements Dao
 {
@@ -60,30 +60,19 @@ public class JavaBeanDaoImpl implements Dao
     };
     ret.addLabel(months);
 
-    dataset(ret.createDataset("Hearring"), random(months.length));
-    dataset(ret.createDataset("Humphrey"), random(months.length));
-    dataset(ret.createDataset("Tunstill"), random(months.length));
-    dataset(ret.createDataset("Kerstner"), random(months.length));
-
+    ret.format(ret.createDataset("Hearring", random(months.length)));
+    ret.format(ret.createDataset("Humphrey", random(months.length)));
+    ret.format(ret.createDataset("Tunstill", random(months.length)));
+    ret.format(ret.createDataset("Kerstner", random(months.length)));
     return ret;
   }
 
-  private static void dataset(Chart.Dataset inSet, double[] inData)
+  private static Double[] random(int inLength)
   {
-    String c1 = "hsla(" + RandomUtil.randomInt(360) + ",90%,90%,";
-    inSet.setBackgroundColor(c1 + "0." + RandomUtil.randomInt(9) + ")");
-    inSet.setBorderColor(c1 + "0." + RandomUtil.randomInt(9) + ")");
-    inSet.setPointBackgroundColor(c1 + "0." + RandomUtil.randomInt(9) + ")");
-    inSet.setPointBorderColor("#fff");
-    inSet.addData(inData);
-  }
-
-  private static double[] random(int inLength)
-  {
-    double[] ret = new double[inLength];
+    Double[] ret = new Double[inLength];
     for (int i = 0; i < ret.length; i++)
     {
-      ret[i] = RandomUtil.randomInt(100);
+      ret[i] = (double) RandomUtil.randomInt(100);
     }
     return ret;
   }

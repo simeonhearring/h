@@ -1,13 +1,28 @@
 package h.khall.client.model;
 
+import h.khall.client.ui.event.AssignmentSavedEvent;
+import h.model.shared.khall.Charts;
 import h.model.shared.khall.Meeting;
+import h.model.shared.khall.Meeting.Month;
+import h.model.shared.khall.Meeting.Year;
+import h.style.g.client.ui.event.ChartEvent;
 import h.style.g.client.ui.event.RefreshEvent;
+import h.style.g.shared.chart.Chart;
+import h.style.g.shared.chart.Chart.Dataset;
 
 public class MidweekPresenter extends AbstractPresenter<MidweekPresenter.Display>
-  implements RefreshEvent.Handler
+  implements RefreshEvent.Handler, AssignmentSavedEvent.Handler
 {
-  private int[][] mRange = {{0,1,2}, {3,4,5}, {6,7,8}, {9,10,11}};
+  private enum V
+  {
+    Assignments,
+    Assigned;
+  }
+
+  private static String[] sMonthNames = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+  private static int[][] sRange = {{0,1,2}, {3,4,5}, {6,7,8}, {9,10,11}};
   private int mPageIndex = 0;
+  private Chart mChart = chart();
 
   public MidweekPresenter(Display inDisplay)
   {
@@ -17,19 +32,20 @@ public class MidweekPresenter extends AbstractPresenter<MidweekPresenter.Display
 
   public MidweekPresenter handlers()
   {
-    addHandler(RefreshEvent.TYPE, this);
+    register(addHandler(RefreshEvent.TYPE, this));
+    register(addHandler(AssignmentSavedEvent.TYPE, this));
     return this;
   }
 
   public void previous()
   {
-    mPageIndex = mPageIndex == 0 ? mRange.length - 1 : mPageIndex - 1;
+    mPageIndex = mPageIndex == 0 ? sRange.length - 1 : mPageIndex - 1;
     addMonths();
   }
 
   public void next()
   {
-    mPageIndex = mPageIndex == mRange.length - 1 ? 0 : mPageIndex + 1;
+    mPageIndex = mPageIndex == sRange.length - 1 ? 0 : mPageIndex + 1;
     addMonths();
   }
 
@@ -37,6 +53,13 @@ public class MidweekPresenter extends AbstractPresenter<MidweekPresenter.Display
   public void dispatch(RefreshEvent inEvent)
   {
     addMonths();
+    addYearChart();
+  }
+
+  @Override
+  public void dispatch(AssignmentSavedEvent inEvent)
+  {
+    addYearChart();
   }
 
   private void addMonths()
@@ -49,13 +72,30 @@ public class MidweekPresenter extends AbstractPresenter<MidweekPresenter.Display
 
     int yr = mProfile.getYear();
 
-    int mo0 = mRange[mPageIndex][0];
-    int mo1 = mRange[mPageIndex][1];
-    int mo2 = mRange[mPageIndex][2];
+    int mn0 = sRange[mPageIndex][0];
+    int mn1 = sRange[mPageIndex][1];
+    int mn2 = sRange[mPageIndex][2];
 
-    mDisplay.getMonth0().setMonth(yr, mo0, meeting.getMonth(yr, mo0));
-    mDisplay.getMonth1().setMonth(yr, mo1, meeting.getMonth(yr, mo1));
-    mDisplay.getMonth2().setMonth(yr, mo2, meeting.getMonth(yr, mo2));
+    Month mo0 = meeting.getMonth(yr, mn0);
+    Month mo1 = meeting.getMonth(yr, mn1);
+    Month mo2 = meeting.getMonth(yr, mn2);
+
+    mDisplay.getMonth0().setMonth(yr, mn0, mo0);
+    mDisplay.getMonth1().setMonth(yr, mn1, mo1);
+    mDisplay.getMonth2().setMonth(yr, mn2, mo2);
+  }
+
+  private void addYearChart()
+  {
+    int yr = mProfile.getYear();
+
+    Year year = mClient.getMeeting().getYear(yr);
+
+    mChart.update(sMonthNames);
+    mChart.update(V.Assignments.name(), year.gCountM());
+    mChart.update(V.Assigned.name(), year.gAssignedM());
+
+    fire(new ChartEvent(mChart));
   }
 
   private int currentIndex()
@@ -85,5 +125,31 @@ public class MidweekPresenter extends AbstractPresenter<MidweekPresenter.Display
     MonthPresenter.Display getMonth1();
 
     MonthPresenter.Display getMonth2();
+  }
+
+  private static Chart chart()
+  {
+    Chart ret = new Chart(Chart.Type.LINE);
+
+    ret.setDataType(Charts.OCLM);
+
+    ret.setResponsive(true);
+
+    ret.addLabel(sMonthNames[0], sMonthNames[1], sMonthNames[2]);
+
+    format(ret.createDataset(V.Assignments.name(), 0.0, 0.0, 0.0), 254);
+    format(ret.createDataset(V.Assigned.name(), 0.0, 0.0, 0.0), 352);
+
+    return ret;
+  }
+
+  private static void format(Dataset inSet, int inColor)
+  {
+    // http://standardista.com/webkit/ch7/hsla.html
+    String c1 = "hsla(" + inColor + ",67%,51%,";
+    inSet.setBorderColor(c1 + "0." + 9 + ")");
+    // inSet.setBackgroundColor(c1 + "0." + RandomUtil.randomInt(9) + ")");
+    // inSet.setPointBackgroundColor(c1 + "0." + RandomUtil.randomInt(9) + ")");
+    inSet.setPointBorderColor("#fff");
   }
 }

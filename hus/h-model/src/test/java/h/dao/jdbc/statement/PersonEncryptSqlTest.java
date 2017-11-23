@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import h.dao.jdbc.MySqlBaseDaoTest;
 import h.json.PersonCreate;
+import h.model.shared.khall.Part;
 import h.model.shared.khall.Person;
 
 public class PersonEncryptSqlTest extends MySqlBaseDaoTest
@@ -26,9 +27,8 @@ public class PersonEncryptSqlTest extends MySqlBaseDaoTest
     List<Person> list = PersonCreate.create();
     for (Person value : list)
     {
-      System.out.println(System.currentTimeMillis() + "|START");
+      value.getParts().addAll(Part.parts(value));
       mSql.update("9M1})6Y]ibnxrp^zSQz@*BAc[Cn+Ub1R", value);
-      System.out.println(System.currentTimeMillis() + "|END");
     }
   }
 

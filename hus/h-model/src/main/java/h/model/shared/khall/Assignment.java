@@ -38,6 +38,41 @@ public class Assignment extends Schedule implements Serializable
     mStudyPoint = inStudyPoint;
   }
 
+  public boolean isStudent()
+  {
+    return getPart().isStudyPoint();
+  }
+
+  public boolean isAssigned()
+  {
+    return isParticipant() && isAssistant() && isStudyPoint();
+  }
+
+  public boolean isParticipant()
+  {
+    return mParticipantId != null;
+  }
+
+  public boolean isAssistant()
+  {
+    boolean ret = true;
+    if (getPart().isAssisted())
+    {
+      ret = mAssistantId != null;
+    }
+    return ret;
+  }
+
+  public boolean isStudyPoint()
+  {
+    boolean ret = true;
+    if (getPart().isStudyPoint())
+    {
+      ret = mStudyPoint != null;
+    }
+    return ret;
+  }
+
   @Override
   public String toString()
   {

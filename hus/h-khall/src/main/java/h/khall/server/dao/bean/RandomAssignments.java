@@ -64,6 +64,8 @@ public class RandomAssignments
       PARTSA, PARTSB, PARTSC, PARTSD
   };
 
+  public static final long JAN_2_2017 = 1483336800000L;
+
   private static class PartSort
   {
     Part mPart;
@@ -79,7 +81,7 @@ public class RandomAssignments
   public static List<Assignment> assigns(List<Person> inPersons)
   {
     List<Assignment> ret = new ArrayList<>();
-    long date = 1483336800000L; // January 2, 2017
+    long date = JAN_2_2017;
     for (int i = 0; i < 55; i++)
     {
       date += 604800 * 1000;
@@ -111,16 +113,16 @@ public class RandomAssignments
   private static void assign(List<Assignment> inList, Date inWeekOf, List<Person> inPersons,
       Part inPart, int inSort)
   {
-    inList.add(assignment(inWeekOf, inPart, Hall.MAIN, inPersons, inSort));
+    inList.add(assignment(inWeekOf, inPart, Hall.MAIN, inSort, inPersons));
 
     if (inPart.isStudyPoint())
     {
-      inList.add(assignment(inWeekOf, inPart, Hall.SECOND, inPersons, inSort));
+      inList.add(assignment(inWeekOf, inPart, Hall.SECOND, inSort, inPersons));
     }
   }
 
-  private static Assignment assignment(Date inWeekOf, Part inPart, Hall inHall,
-      List<Person> inPersons, int inSort)
+  public static Assignment assignment(Date inWeekOf, Part inPart, Hall inHall,
+      int inSort, List<Person> inPersons)
   {
     Curriculum curriculum = new Curriculum();
     curriculum.setDate(inWeekOf);
@@ -131,19 +133,22 @@ public class RandomAssignments
     ret.setCurriculum(curriculum);
     ret.setSchool(inHall);
 
-    if (RandomUtil.randomInt(11) % 2 == 0)
+    if (inPersons != null)
     {
-      ret.setParticipantId(RandomUtil.random(inPersons).getIdLong());
+      if (RandomUtil.randomInt(11) % 2 == 0)
+      {
+        ret.setParticipantId(RandomUtil.random(inPersons).getIdLong());
 
-      if (ret.getPart().isAssisted())
-      {
-        ret.setAssistantId(RandomUtil.random(inPersons).getIdLong());
-      }
-      if (ret.getPart().isStudyPoint())
-      {
-        if (RandomUtil.randomInt(11) % 2 == 0)
+        if (ret.getPart().isAssisted())
         {
-          ret.setStudyPoint(RandomUtil.random(StudyPoint.values()));
+          ret.setAssistantId(RandomUtil.random(inPersons).getIdLong());
+        }
+        if (ret.getPart().isStudyPoint())
+        {
+          if (RandomUtil.randomInt(11) % 2 == 0)
+          {
+            ret.setStudyPoint(RandomUtil.random(StudyPoint.values()));
+          }
         }
       }
     }

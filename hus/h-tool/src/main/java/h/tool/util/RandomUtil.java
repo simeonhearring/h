@@ -3,6 +3,7 @@ package h.tool.util;
 import java.util.List;
 import java.util.Random;
 
+@Deprecated
 public final class RandomUtil
 {
   private static final String S123 = "0123456789";

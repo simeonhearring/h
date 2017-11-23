@@ -3,14 +3,16 @@ package h.model.shared.khall;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import com.google.common.annotations.GwtIncompatible;
+
+import h.model.shared.util.MapUtil;
 
 @SuppressWarnings("serial")
 public class Meeting implements Serializable
@@ -38,9 +40,14 @@ public class Meeting implements Serializable
     }
   }
 
-  public List<String> gHistory(Persons inPersons, Long inId)
+  public List<Assignment> gHistory(Persons inPersons, Long inId)
   {
     return mAssignments.gHistory(inPersons, inId, 10);
+  }
+
+  public Year getYear(int inYear)
+  {
+    return mDecade.g(inYear);
   }
 
   /*
@@ -52,7 +59,7 @@ public class Meeting implements Serializable
   }
 
   /*
-   * inWeek = 1,2,3,4,5 (i.e. First week is 1)
+   * inWeek = 0,1,2,3,4 (i.e. First week is 0)
    */
   public Week getWeek(int inYear, int inMonth, int inWeek)
   {
@@ -87,6 +94,26 @@ public class Meeting implements Serializable
       setup(inMonth, inValue.getWeekOf());
       mMap.get(inMonth).add(inWeek, inValue);
     }
+
+    public Double[] gCountM()
+    {
+      Double[] ret = new Double[12];
+      for (int i = 0; i < ret.length; i++)
+      {
+        ret[i] = g(i).gCount();
+      }
+      return ret;
+    }
+
+    public Double[] gAssignedM()
+    {
+      Double[] ret = new Double[12];
+      for (int i = 0; i < ret.length; i++)
+      {
+        ret[i] = g(i).gAssigned();
+      }
+      return ret;
+    }
   }
 
   public static class Month extends Setup<Week> implements Serializable, ISetup, Comparator<Integer>
@@ -105,25 +132,30 @@ public class Meeting implements Serializable
       mMap.get(inWeek).add(inValue);
     }
 
+    public double gAssigned()
+    {
+      int ret = 0;
+      for (Entry<Integer, Week> value : mMap.entrySet())
+      {
+        ret += value.getValue().gAssigned();
+      }
+      return ret;
+    }
+
     private int key(int inKey)
     {
       int ret = -1;
 
       if (mKeys == null)
       {
-        mKeys = new HashMap<>();
-        List<Integer> list = new ArrayList<>(mMap.keySet());
-        Collections.sort(list);
-        for (int i = 0; i < list.size(); i++)
-        {
-          mKeys.put(i, list.get(i));
-        }
+        mKeys = MapUtil.organize(mMap.keySet());
       }
 
       if (mKeys.containsKey(inKey))
       {
         ret = mKeys.get(inKey);
       }
+
       return ret;
     }
 
@@ -138,16 +170,6 @@ public class Meeting implements Serializable
     {
       return inO1.compareTo(inO2);
     }
-
-//    public List<Week> getWeeks()
-//    {
-//      List<Week> ret = new ArrayList<>();
-//      for (int i = 0; i < mMap.size(); i++)
-//      {
-//        ret.add(g(i));
-//      }
-//      return ret;
-//    }
   }
 
   public static class Week implements Serializable, ISetup
@@ -167,6 +189,25 @@ public class Meeting implements Serializable
     public Date getOf()
     {
       return mOf;
+    }
+
+    @Override
+    public double gCount()
+    {
+      return mAssignment.size();
+    }
+
+    public int gAssigned()
+    {
+      int ret = 0;
+      for (Assignment value : mAssignment)
+      {
+        if (value.isAssigned())
+        {
+          ret++;
+        }
+      }
+      return ret;
     }
 
     public void add(Assignment inValue)
@@ -208,6 +249,7 @@ public class Meeting implements Serializable
 
   public interface ISetup
   {
+    double gCount();
   }
 
   public static abstract class Setup<V extends ISetup> implements Serializable
@@ -222,6 +264,16 @@ public class Meeting implements Serializable
       {
         mMap.put(inKey, create(inValue));
       }
+    }
+
+    public double gCount()
+    {
+      int ret = 0;
+      for (Entry<Integer, V> value : mMap.entrySet())
+      {
+        ret += value.getValue().gCount();
+      }
+      return ret;
     }
 
     public boolean empty()

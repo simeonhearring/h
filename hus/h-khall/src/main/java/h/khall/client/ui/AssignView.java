@@ -77,7 +77,7 @@ public class AssignView extends h.style.g.client.ui.AbstractView
   })
   public void onClick(ClickEvent inEvent)
   {
-    fire(new PartInfoEvent(mPart));
+    fire(new PartInfoEvent(mPart, mAssignment.getParticipantId()));
   }
 
   @Override

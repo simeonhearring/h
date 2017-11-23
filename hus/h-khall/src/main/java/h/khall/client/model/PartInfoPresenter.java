@@ -1,0 +1,62 @@
+package h.khall.client.model;
+
+import java.util.List;
+
+import h.khall.client.ui.event.PartInfoEvent;
+import h.model.shared.khall.Part;
+import h.model.shared.khall.PartInfo;
+import h.model.shared.khall.PartInfo.Info;
+
+public class PartInfoPresenter extends AbstractPresenter<PartInfoPresenter.Display>
+  implements PartInfoEvent.Handler
+{
+  private Part mPart;
+  private Long mParticipantId;
+
+  public PartInfoPresenter(Display inDisplay)
+  {
+    initDisplay(inDisplay);
+  }
+
+  public PartInfoPresenter handlers()
+  {
+    register(addHandler(PartInfoEvent.TYPE, this));
+    return this;
+  }
+
+  @Override
+  public void dispatch(PartInfoEvent inEvent)
+  {
+    mPart = inEvent.getPart();
+    mParticipantId = inEvent.getParticipantId();
+    build();
+  }
+
+  private void build()
+  {
+    if (mPart != null)
+    {
+      PartInfo pi = mClient.gPartInfo(mPart, mParticipantId);
+      pi.sort();
+      List<Info> info = pi.getInfo();
+      String name = pi.getPart().getLabel(true);
+
+      mDisplay.setPartName(name);
+      mDisplay.clear();
+      int first = 0;
+      for (Info value : info)
+      {
+        mDisplay.add(value, first++ == 0, value.getArchive(mClient.getPersons()));
+      }
+    }
+  }
+
+  public interface Display extends h.style.g.client.model.Display
+  {
+    void setPartName(String inPart);
+
+    void add(Info inInfo, boolean inFirst, List<String> inContent);
+
+    void clear();
+  }
+}
