@@ -1,6 +1,7 @@
 package h.khall.client.ui;
 
 import org.gwtbootstrap3.client.ui.Heading;
+import org.gwtbootstrap3.client.ui.html.Div;
 import org.gwtbootstrap3.client.ui.html.Span;
 
 import com.google.gwt.core.client.GWT;
@@ -23,6 +24,9 @@ public class StatsView extends AbstractView<StatsPresenter> implements StatsPres
 
   @UiField
   ChartView mChart;
+
+  @UiField
+  Div mDiv;
 
   @UiField
   Heading mHead, mSubHead;

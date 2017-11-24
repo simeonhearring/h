@@ -13,7 +13,7 @@ public class Assignments implements Serializable
   {
     ALL,
     STUDENT,
-    NSTUDENT;
+    NON_STUDENT;
   }
 
   private List<Assignment> mAssignments = new ArrayList<>();
@@ -33,7 +33,7 @@ public class Assignments implements Serializable
       case STUDENT:
         ret = gStudentCount();
         break;
-      case NSTUDENT:
+      case NON_STUDENT:
         ret = gNStudentCount();
         break;
       default:
@@ -53,7 +53,7 @@ public class Assignments implements Serializable
       case STUDENT:
         ret = gStudentAssigned();
         break;
-      case NSTUDENT:
+      case NON_STUDENT:
         ret = gNStudentAssigned();
         break;
       default:

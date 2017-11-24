@@ -26,10 +26,15 @@ public class MidweekView extends AbstractView<MidweekPresenter> implements Midwe
   @UiField
   MonthView mM0, mM1, mM2;
 
+  @UiField
+  StatsView mStats;
+
   public MidweekView()
   {
     initWidget(BINDER.createAndBindUi(this));
     mPresenter = new MidweekPresenter(this).handlers();
+
+    mStats.mDiv.add(new CountView());
 
     mPager.addNextClickHandler(new ClickHandler()
     {

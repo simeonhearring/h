@@ -12,6 +12,7 @@
 				<div class="ibox-content">
 					<div>
 						<b.html:Span ui:field="mTopRight" addStyleNames="pull-right text-right" />
+						<b.html:Div ui:field="mDiv" addStyleNames="pull-right text-right" marginRight="50" />
 						<b:Heading ui:field="mHead" size="H1" addStyleNames="m-b-xs" />
 						<b:Heading ui:field="mSubHead" size="H3" addStyleNames="font-bold no-margins" />
 					</div>

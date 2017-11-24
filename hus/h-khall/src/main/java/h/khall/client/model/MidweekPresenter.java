@@ -6,6 +6,7 @@ import h.model.shared.khall.Meeting;
 import h.model.shared.khall.Meeting.Month;
 import h.model.shared.khall.Meeting.Year;
 import h.model.shared.khall.Part;
+import h.model.shared.util.TextUtil;
 import h.style.g.client.ui.event.ChartEvent;
 import h.style.g.client.ui.event.RefreshEvent;
 import h.style.g.shared.chart.Chart;
@@ -115,6 +116,7 @@ public class MidweekPresenter extends AbstractPresenter<MidweekPresenter.Display
 
     Year year = meeting.getYear(mYears[mYearIndex]);
 
+    mChart.getStat().setSubHead(TextUtil.toText(mProfile.getCount()) + " Parts");
     mChart.update(sMonthNames);
     mChart.update(V.Assignments.name(), year.gCountM());
     mChart.update(V.Assigned.name(), year.gAssignedM());

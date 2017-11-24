@@ -8,7 +8,7 @@
 	
 	</ui:style>
 	<b.gwt:HTMLPanel addStyleNames="wrapper wrapper-content animated fadeInRight">
-		<k:StatsView dataType="OCLM" />
+		<k:StatsView ui:field="mStats" dataType="OCLM" />
 		<div class="row">
 			<div class="col-sm-9">
 				<div class="ibox">
