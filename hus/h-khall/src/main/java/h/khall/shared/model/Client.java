@@ -2,6 +2,7 @@ package h.khall.shared.model;
 
 import java.util.List;
 
+import h.model.shared.Person.Gender;
 import h.model.shared.Tag;
 import h.model.shared.khall.Assignment;
 import h.model.shared.khall.Meeting;
@@ -50,16 +51,16 @@ public class Client extends h.model.shared.Client
 
   public List<Tag> getTags(Assignment inAssignment)
   {
-    return mPersons.getTags(inAssignment.getParticipantId(), inAssignment.getAssistantId(),
+    return mPersons.gTags(inAssignment.getParticipantId(), inAssignment.getAssistantId(),
         inAssignment.getStudyPoint());
   }
 
-  public PartInfo gPartInfo(Part inPart, Long inParticipantId)
+  public PartInfo gPartInfo(Part inPart, Long inParticipantId, Gender inGender)
   {
     PartInfo ret = new PartInfo(inPart);
-    for (Person value : mPersons.gAvailable(inPart, inParticipantId))
+    for (Person value : mPersons.gAvailable(inPart, inParticipantId, inGender))
     {
-      ret.add(value, mMeeting.gHistory(mPersons, value.getIdLong()));
+      ret.add(value, mMeeting.gHistory(value.getIdLong()));
     }
     return ret;
   }

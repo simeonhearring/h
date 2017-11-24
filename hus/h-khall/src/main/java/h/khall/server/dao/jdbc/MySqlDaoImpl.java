@@ -31,10 +31,11 @@ public class MySqlDaoImpl extends JavaBeanDaoImpl implements Dao
   }
 
   @Override
-  public Meeting selectMonthly(Profile inProfile)
+  public Meeting selectMeeting(Profile inProfile)
   {
     Meeting ret = new Meeting();
     ret.setCount(inProfile.getCount());
+    ret.setAssignments(mScheduleSql.select(inProfile.getCongId(), inProfile.getYear() - 1));
     ret.setAssignments(mScheduleSql.select(inProfile.getCongId(), inProfile.getYear()));
     return ret;
   }

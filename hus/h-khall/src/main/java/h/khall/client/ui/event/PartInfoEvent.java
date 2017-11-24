@@ -1,5 +1,6 @@
 package h.khall.client.ui.event;
 
+import h.model.shared.Person.Gender;
 import h.model.shared.khall.Part;
 import h.style.g.client.ui.event.Event;
 import h.style.g.client.ui.event.EventHandler;
@@ -16,11 +17,17 @@ public class PartInfoEvent extends Event<PartInfoEvent.Handler>
 
   private Part mPart;
   private Long mParticipantId;
+  private Gender mGender;
 
   public PartInfoEvent(Part inPart, Long inParticipantId)
   {
     mPart = inPart;
     mParticipantId = inParticipantId;
+  }
+
+  public PartInfoEvent(Gender inGender)
+  {
+    mGender = inGender;
   }
 
   @Override
@@ -44,5 +51,10 @@ public class PartInfoEvent extends Event<PartInfoEvent.Handler>
   public Long getParticipantId()
   {
     return mParticipantId;
+  }
+
+  public Gender getGender()
+  {
+    return mGender;
   }
 }

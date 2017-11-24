@@ -9,6 +9,7 @@ import h.model.shared.khall.Persons;
 import h.model.shared.khall.Profile;
 import h.model.shared.util.RandomUtil;
 import h.style.g.shared.chart.Chart;
+import h.style.g.shared.chart.Chart.Stat;
 
 public class JavaBeanDaoImpl implements Dao
 {
@@ -35,7 +36,7 @@ public class JavaBeanDaoImpl implements Dao
   }
 
   @Override
-  public Meeting selectMonthly(Profile inProfile)
+  public Meeting selectMeeting(Profile inProfile)
   {
     Meeting ret = new Meeting();
     ret.setAssignments(RandomAssignments.assigns(selectPersons(inProfile).getPersons()));
@@ -55,6 +56,13 @@ public class JavaBeanDaoImpl implements Dao
     ret.setDataType(Charts.FSG);
 
     ret.setResponsive(true);
+
+    Stat stat = new Stat();
+    stat.setHead("$ 50,992");
+    stat.setSubHead("Half-year revenue margin");
+    stat.setTopRight("<small>Average value of sales in the past month in:<strong>United states</strong></small><br />All sales: 162,862");
+    stat.setFooter("<strong>Analysis of sales:</strong>The value has been changed over time, and last month reached a level over $50,000.");
+    ret.setStat(stat);
 
     String[] months =
     {

@@ -3,6 +3,7 @@ package h.khall.client.model;
 import java.util.List;
 
 import h.khall.client.ui.event.PartInfoEvent;
+import h.model.shared.Person.Gender;
 import h.model.shared.khall.Part;
 import h.model.shared.khall.PartInfo;
 import h.model.shared.khall.PartInfo.Info;
@@ -12,6 +13,7 @@ public class PartInfoPresenter extends AbstractPresenter<PartInfoPresenter.Displ
 {
   private Part mPart;
   private Long mParticipantId;
+  private Gender mGender;
 
   public PartInfoPresenter(Display inDisplay)
   {
@@ -27,8 +29,15 @@ public class PartInfoPresenter extends AbstractPresenter<PartInfoPresenter.Displ
   @Override
   public void dispatch(PartInfoEvent inEvent)
   {
-    mPart = inEvent.getPart();
-    mParticipantId = inEvent.getParticipantId();
+    if (inEvent.getPart() != null)
+    {
+      mPart = inEvent.getPart();
+      mParticipantId = inEvent.getParticipantId();
+    }
+    else
+    {
+      mGender = inEvent.getGender();
+    }
     build();
   }
 
@@ -36,7 +45,7 @@ public class PartInfoPresenter extends AbstractPresenter<PartInfoPresenter.Displ
   {
     if (mPart != null)
     {
-      PartInfo pi = mClient.gPartInfo(mPart, mParticipantId);
+      PartInfo pi = mClient.gPartInfo(mPart, mParticipantId, mGender);
       pi.sort();
       List<Info> info = pi.getInfo();
       String name = pi.getPart().getLabel(true);

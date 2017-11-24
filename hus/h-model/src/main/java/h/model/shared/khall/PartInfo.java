@@ -7,6 +7,8 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
+import h.model.shared.Person.Gender;
+
 @SuppressWarnings("serial")
 public class PartInfo implements Serializable, Comparator<PartInfo.Info>
 {
@@ -88,6 +90,13 @@ public class PartInfo implements Serializable, Comparator<PartInfo.Info>
     d2 = d2 == null ? new Date(1L) : d2;
 
     int ret = d1.compareTo(d2);
+
+    if (ret == 0)
+    {
+      Gender g1 = inO1.getPerson().getGender();
+      Gender g2 = inO2.getPerson().getGender();
+      ret = g1.compareTo(g2);
+    }
 
     if (ret == 0)
     {

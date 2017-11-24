@@ -20,32 +20,39 @@ public class ScheduleSqlTest extends MySqlBaseDaoTest
   }
 
   // this is the procedure for adding new schedules from curriculum.
-  // @Test
+  @Test
   public void test()
   {
     int congId = 59;
-    int mo = 1; // 1=Jan, 2=Feb
-    mSql.upsert(congId, Hall.MAIN, 2018, mo);
-
-    for (Part value : Part.student())
+    int[] mos =
     {
-      mSql.upsert(congId, Hall.SECOND, 2018, mo, value);
+        2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
+    }; // 1=Jan, 2=Feb
+
+    for (int mo : mos)
+    {
+      mSql.upsert(congId, Hall.MAIN, 2017, mo);
+
+      for (Part value : Part.student())
+      {
+        mSql.upsert(congId, Hall.SECOND, 2017, mo, value);
+      }
     }
   }
 
-  @Test
+  // @Test
   public void canSelectByYear()
   {
     Assert.assertEquals(133, mSql.select(1, 2018).size());
   }
 
-  @Test
+  // @Test
   public void canSelectByYearMonth()
   {
     Assert.assertEquals(73, mSql.select(1, 2018, 1).size());
   }
 
-  @Test
+  // @Test
   public void canAssign()
   {
     Assert.assertEquals(1, mSql.update(3L, 4L, StudyPoint.SP_10, 4178L));

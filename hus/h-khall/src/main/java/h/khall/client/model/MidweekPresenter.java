@@ -5,10 +5,12 @@ import h.model.shared.khall.Charts;
 import h.model.shared.khall.Meeting;
 import h.model.shared.khall.Meeting.Month;
 import h.model.shared.khall.Meeting.Year;
+import h.model.shared.khall.Part;
 import h.style.g.client.ui.event.ChartEvent;
 import h.style.g.client.ui.event.RefreshEvent;
 import h.style.g.shared.chart.Chart;
 import h.style.g.shared.chart.Chart.Dataset;
+import h.style.g.shared.chart.Chart.Stat;
 
 public class MidweekPresenter extends AbstractPresenter<MidweekPresenter.Display>
   implements RefreshEvent.Handler, AssignmentSavedEvent.Handler
@@ -95,6 +97,7 @@ public class MidweekPresenter extends AbstractPresenter<MidweekPresenter.Display
     mChart.update(sMonthNames);
     mChart.update(V.Assignments.name(), year.gCountM());
     mChart.update(V.Assigned.name(), year.gAssignedM());
+    mChart.getStat().setTopRight("Year: " + mProfile.getYear());
 
     fire(new ChartEvent(mChart));
   }
@@ -131,6 +134,13 @@ public class MidweekPresenter extends AbstractPresenter<MidweekPresenter.Display
   private static Chart chart()
   {
     Chart ret = new Chart(Chart.Type.LINE);
+
+    Stat stat = new Stat();
+    stat.setHead("Assignment Summary");
+    stat.setSubHead("Student Parts");
+    stat.setTopRight(null);
+    stat.setFooter(Part.labels(true, " ", Part.student()));
+    ret.setStat(stat);
 
     ret.setDataType(Charts.OCLM);
 

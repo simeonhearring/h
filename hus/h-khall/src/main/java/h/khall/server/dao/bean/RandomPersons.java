@@ -1,7 +1,7 @@
 package h.khall.server.dao.bean;
 
-import static h.tool.util.RandomUtil.random;
-import static h.tool.util.RandomUtil.randomNumbers;
+import static h.model.shared.util.RandomUtil.random;
+import static h.model.shared.util.RandomUtil.randomNumbers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,29 +24,38 @@ public class RandomPersons
     List<Person> list = new ArrayList<>();
     for (int i = 0; i < 150; i++)
     {
-      Person person = new Person();
-      person.setId(Long.valueOf(i));
-      person.setLast(random(LAST));
-      person.setFirst(random(FIRST));
-      person.setEmail(person.getName().replaceAll(",", "").replaceAll(" ", "_").toLowerCase() + "@gmail.com");
-      person.setMobile(randomNumbers(3) + "-" + randomNumbers(3) + "-" + randomNumbers(4));
-      person.setHome(randomNumbers(3) + "-" + randomNumbers(3) + "-" + randomNumbers(4));
-      person.setGender(random(Gender.values()));
-      person.setAddress1(randomNumbers(random(2, 3, 4, 5)) + random(STREET));
-      String[] city = random(CITY);
-      person.setCity(city[0]);
-      person.setState(city[1]);
-      person.setZip(String.valueOf(randomNumbers(5)));
-
-      person.setFsgId(random(fsg));
-      person.setRoles(roles());
-
-      person.normalize();
+      Person person = person(i, fsg);
 
       list.add(person);
     }
     ret.setPersons(list);
     return ret;
+  }
+
+  public static Person person(long inId, int[] inFsg)
+  {
+    Person person = new Person();
+    person.setId(Long.valueOf(inId));
+    person.setLast(random(LAST));
+    person.setFirst(random(FIRST));
+    person.setEmail(person.getName().replaceAll(",", "").replaceAll(" ", "_").toLowerCase() + "@gmail.com");
+    person.setMobile(randomNumbers(3) + "-" + randomNumbers(3) + "-" + randomNumbers(4));
+    person.setHome(randomNumbers(3) + "-" + randomNumbers(3) + "-" + randomNumbers(4));
+    person.setGender(random(Gender.values()));
+    person.setAddress1(randomNumbers(random(2, 3, 4, 5)) + random(STREET));
+    String[] city = random(CITY);
+    person.setCity(city[0]);
+    person.setState(city[1]);
+    person.setZip(String.valueOf(randomNumbers(5)));
+
+    if (inFsg != null)
+    {
+      person.setFsgId(random(inFsg));
+    }
+    person.setRoles(roles());
+
+    person.normalize();
+    return person;
   }
 
   private static Roles roles()
@@ -109,5 +118,4 @@ public class RandomPersons
           "Maywood", "IL"
       }
   };
-
 }

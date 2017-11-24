@@ -87,7 +87,7 @@ public class Persons implements Serializable
     }
   }
 
-  public Person get(Long inId)
+  public Person gPerson(Long inId)
   {
     if (inId == null)
     {
@@ -99,25 +99,25 @@ public class Persons implements Serializable
 
   public String gName(Long inId)
   {
-    Person person = get(inId);
+    Person person = gPerson(inId);
     return person != null ? person.getName() : null;
   }
 
   public Gender gGender(Long inId)
   {
-    Person person = get(inId);
+    Person person = gPerson(inId);
     return person != null ? person.getGender() : null;
   }
 
-  public List<Tag> getTags(Long inParticipantId, Long inAssistantId, StudyPoint inStudyPoint)
+  public List<Tag> gTags(Long inParticipantId, Long inAssistantId, StudyPoint inStudyPoint)
   {
     List<Tag> ret = new ArrayList<>();
     if (inParticipantId != null)
     {
-      ret.add(get(inParticipantId));
+      ret.add(gPerson(inParticipantId));
       if (inAssistantId != null)
       {
-        ret.add(get(inAssistantId));
+        ret.add(gPerson(inAssistantId));
       }
       if (inStudyPoint != null)
       {
@@ -127,13 +127,13 @@ public class Persons implements Serializable
     return ret;
   }
 
-  public List<Person> gAvailable(Part inPart, Long inParticipantId)
+  public List<Person> gAvailable(Part inPart, Long inPersonId, Gender inGender)
   {
     List<Person> ret = new ArrayList<>();
-    Gender gender = gGender(inParticipantId);
+    Gender gender = gGender(inPersonId);
     for (Person value : mPersons)
     {
-      if (value.isAvailable(inPart, gender))
+      if (value.isAvailable(inPart, gender) && value.isGender(inGender))
       {
         ret.add(value);
       }

@@ -41,9 +41,10 @@ public class MeetingTest
   }
 
   @Test
-  public void test3()
+  public void whenCountIsAllAllPartsAreIncluded()
   {
     Meeting model = new Meeting();
+    model.setCount(Count.ALL);
 
     List<Assignment> assigns = new ArrayList<>();
     Date d = new Date(RandomAssignments.JAN_2_2017);
@@ -73,7 +74,8 @@ public class MeetingTest
     Assert.assertArrayEquals(expect2, model.getYear(2017).gAssignedM());
   }
 
-  public void test4()
+  @Test
+  public void whenCountIsStudentNonStudentPartsAreExcluded()
   {
     Meeting model = new Meeting();
     model.setCount(Count.STUDENT);
@@ -104,5 +106,39 @@ public class MeetingTest
     Double[] expect2 = {0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0};
     Assert.assertArrayEquals(expect1 , model.getYear(2017).gCountM());
     Assert.assertArrayEquals(expect2, model.getYear(2017).gAssignedM());
+  }
+
+  @Test
+  public void canGetAssignmentHistory()
+  {
+    Meeting model = new Meeting();
+    model.setCount(Count.STUDENT);
+
+    List<Assignment> y2017 = new ArrayList<>();
+    Date d2017 = new Date(RandomAssignments.JAN_2_2017);
+    y2017.add(assignment(d2017, Part.CHAIRMAN, Hall.MAIN, 9, 1L));
+    y2017.add(assignment(d2017, Part.TREASURES, Hall.MAIN, 10, 1L));
+    y2017.add(assignment(d2017, Part.F_RETURN_VISIT, Hall.MAIN, 11, 1L));
+    y2017.add(assignment(d2017, Part.TALK, Hall.MAIN, 12, 1L));
+    model.setAssignments(y2017);
+
+    List<Assignment> y2018 = new ArrayList<>();
+    Date d2018 = new Date(RandomAssignments.JAN_1_2018);
+    y2018.add(assignment(d2018, Part.CHAIRMAN, Hall.MAIN, 9, 1L));
+    y2018.add(assignment(d2018, Part.TREASURES, Hall.MAIN, 10, 1L));
+    y2018.add(assignment(d2018, Part.F_RETURN_VISIT, Hall.MAIN, 11, 1L));
+    y2018.add(assignment(d2018, Part.TALK, Hall.MAIN, 12, 1L));
+    model.setAssignments(y2018);
+
+    List<Assignment> history = model.gHistory(1L);
+    Assert.assertEquals(8, history.size());
+  }
+
+  private static Assignment assignment(Date inWeekOf, Part inPart, Hall inHall, int inSort,
+      long inPersonId)
+  {
+    Assignment ret = RandomAssignments.assignment(inWeekOf, inPart, inHall, inSort, null);
+    ret.setParticipantId(inPersonId);
+    return ret;
   }
 }

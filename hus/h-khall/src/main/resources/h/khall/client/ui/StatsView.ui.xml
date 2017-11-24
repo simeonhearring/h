@@ -11,35 +11,21 @@
 			<div class="ibox float-e-margins">
 				<div class="ibox-content">
 					<div>
-						<span class="pull-right text-right">
-							<small>
-								Average value of sales in the past month in:
-								<strong>United states</strong>
-							</small>
-							<br />
-							All sales: 162,862
-						</span>
-						<h1 class="m-b-xs">$ 50,992</h1>
-						<h3 class="font-bold no-margins">
-							Half-year revenue margin
-						</h3>
-						<small>Sales marketing.</small>
+						<b.html:Span ui:field="mTopRight" addStyleNames="pull-right text-right" />
+						<b:Heading ui:field="mHead" size="H1" addStyleNames="m-b-xs" />
+						<b:Heading ui:field="mSubHead" size="H3" addStyleNames="font-bold no-margins" />
 					</div>
-
 					<k:ChartView ui:field="mChart" />
-
 					<div class="m-t-md">
 						<small class="pull-right">
-							<i class="fa fa-clock-o">
-							</i>
-							Update on 16.07.2015
+							<i class="fa fa-clock-o"></i>
+							Updated at
+							<b.html:Span ui:field="mTime" />
 						</small>
 						<small>
-							<strong>Analysis of sales:</strong>
-							The value has been changed over time, and last month reached a level over $50,000.
+							<g:HTML ui:field="mFooter" />
 						</small>
 					</div>
-
 				</div>
 			</div>
 		</div>

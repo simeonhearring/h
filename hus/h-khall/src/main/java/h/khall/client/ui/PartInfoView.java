@@ -6,16 +6,23 @@ import org.gwtbootstrap3.client.ui.AnchorListItem;
 import org.gwtbootstrap3.client.ui.Heading;
 import org.gwtbootstrap3.client.ui.Popover;
 import org.gwtbootstrap3.client.ui.constants.BadgePosition;
+import org.gwtbootstrap3.client.ui.constants.IconPosition;
+import org.gwtbootstrap3.client.ui.constants.IconType;
 import org.gwtbootstrap3.client.ui.constants.Placement;
 import org.gwtbootstrap3.client.ui.constants.Trigger;
 import org.gwtbootstrap3.client.ui.html.UnorderedList;
+import org.gwtbootstrap3.extras.toggleswitch.client.ui.ToggleSwitchRadio;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Widget;
 
 import h.khall.client.model.PartInfoPresenter;
+import h.khall.client.ui.event.PartInfoEvent;
+import h.model.shared.Person.Gender;
 import h.model.shared.khall.PartInfo.Info;
 
 public class PartInfoView extends AbstractView<PartInfoPresenter>
@@ -33,10 +40,23 @@ public class PartInfoView extends AbstractView<PartInfoPresenter>
   @UiField
   Heading mName;
 
+  @UiField
+  ToggleSwitchRadio mMale, mFemale;
+
   public PartInfoView()
   {
     initWidget(BINDER.createAndBindUi(this));
     mPresenter = new PartInfoPresenter(this).handlers();
+  }
+
+  @UiHandler(
+  {
+      "mMale", "mFemale"
+  })
+  public void onValueChange(ValueChangeEvent<Boolean> inEvent)
+  {
+    Gender gender = mMale.getValue() ? Gender.Male : mFemale.getValue() ? Gender.Female : null;
+    fire(new PartInfoEvent(gender));
   }
 
   @Override
@@ -59,6 +79,8 @@ public class PartInfoView extends AbstractView<PartInfoPresenter>
     item.setStyleName("list-group-item kh_list" + (inFirst ? " fist-item" : ""));
     item.setBadgePosition(BadgePosition.RIGHT);
     item.setBadgeText(format("MM/yy", inInfo.getLast()));
+    item.setIcon(inInfo.getPerson().isMale() ? IconType.MALE : IconType.FEMALE);
+    item.setIconPosition(IconPosition.RIGHT);
 
     Popover pop = new Popover(item);
     pop.setIsHtml(true);

@@ -67,6 +67,24 @@ public enum Part
     };
   }
 
+  public static Part[] nonstudent()
+  {
+    return new Part[]
+    {
+        CHAIRMAN, SONG_1, TREASURES, DIGGING, LIVING_1, LIVING_2, C_BIBLE_STUDY, SONG_3
+    };
+  }
+
+  public static String labels(boolean inShort, String inDelim, Part... inParts)
+  {
+    StringBuilder sb = new StringBuilder();
+    for (Part value : inParts)
+    {
+      sb.append(value.getLabel(inShort)).append(inDelim);
+    }
+    return sb.toString();
+  }
+
   public boolean isAssisted()
   {
     return getParticipants() > 1;

@@ -12,7 +12,7 @@ public interface Dao
 
   Chart selectChart(Profile inProfile);
 
-  Meeting selectMonthly(Profile inProfile);
+  Meeting selectMeeting(Profile inProfile);
 
   Persons selectPersons(Profile inProfile);
 

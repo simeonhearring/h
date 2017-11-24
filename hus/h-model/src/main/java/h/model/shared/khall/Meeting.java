@@ -1,7 +1,6 @@
 package h.model.shared.khall;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Comparator;
 import java.util.Date;
@@ -19,8 +18,8 @@ public class Meeting implements Serializable
 {
   private static Assignments.Count sCount = Assignments.Count.ALL;
 
-  private Assignments mAssignments;
-  private Decade mDecade;
+  private Assignments mAll = new Assignments();
+  private Decade mByYear = new Decade();
 
   public void setCount(Assignments.Count inCount)
   {
@@ -30,31 +29,29 @@ public class Meeting implements Serializable
   @GwtIncompatible(value = "uses java.util.Calendar - server only!")
   public void setAssignments(List<Assignment> inAssignments)
   {
-    mAssignments = new Assignments(inAssignments);
-    mDecade = new Decade();
     for (Assignment value : inAssignments)
     {
-      Date d = value.getWeekOf();
       Calendar c = Calendar.getInstance();
-      c.setTime(d);
+      c.setTime(value.getWeekOf());
       c.setFirstDayOfWeek(Calendar.MONDAY);
 
       int year = c.get(Calendar.YEAR);
       int month = c.get(Calendar.MONTH);
       int week = c.get(Calendar.WEEK_OF_MONTH);
 
-      mDecade.addAssignment(year, month, week, value);
+      mByYear.add(year, month, week, value);
+      mAll.add(value);
     }
   }
 
-  public List<Assignment> gHistory(Persons inPersons, Long inId)
+  public List<Assignment> gHistory(Long inPersonId)
   {
-    return mAssignments.gHistory(inPersons, inId, 10);
+    return mAll.gHistory(inPersonId, 10);
   }
 
   public Year getYear(int inYear)
   {
-    return mDecade.g(inYear);
+    return mByYear.g(inYear);
   }
 
   /*
@@ -62,7 +59,7 @@ public class Meeting implements Serializable
    */
   public Month getMonth(int inYear, int inMonth)
   {
-    return mDecade.g(inYear).g(inMonth);
+    return mByYear.g(inYear).g(inMonth);
   }
 
   /*
@@ -81,7 +78,7 @@ public class Meeting implements Serializable
       return new Year();
     }
 
-    public void addAssignment(int inYear, int inMonth, int inWeek, Assignment inValue)
+    public void add(int inYear, int inMonth, int inWeek, Assignment inValue)
     {
       setup(inYear, inValue.getWeekOf());
       mMap.get(inYear).add(inMonth, inWeek, inValue);
@@ -182,7 +179,7 @@ public class Meeting implements Serializable
   public static class Week implements Serializable, ISetup
   {
     private Date mOf;
-    private Assignments mAssignment = new Assignments(new ArrayList<Assignment>());
+    private Assignments mAssignment = new Assignments();
 
     Week()
     {

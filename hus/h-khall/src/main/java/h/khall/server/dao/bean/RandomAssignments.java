@@ -15,6 +15,8 @@ import static h.model.shared.khall.Part.S_RETURN_VISIT;
 import static h.model.shared.khall.Part.TALK;
 import static h.model.shared.khall.Part.TREASURES;
 import static h.model.shared.khall.Part.T_RETURN_VISIT;
+import static h.model.shared.util.RandomUtil.random;
+import static h.model.shared.util.RandomUtil.randomInt;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -26,7 +28,6 @@ import h.model.shared.khall.Hall;
 import h.model.shared.khall.Part;
 import h.model.shared.khall.Person;
 import h.model.shared.khall.StudyPoint;
-import h.tool.util.RandomUtil;
 
 public class RandomAssignments
 {
@@ -65,6 +66,7 @@ public class RandomAssignments
   };
 
   public static final long JAN_2_2017 = 1483336800000L;
+  public static final long JAN_1_2018 = 1514786400000L;
 
   private static class PartSort
   {
@@ -104,7 +106,7 @@ public class RandomAssignments
       assign(ret, inWeekOf, inPersons, value, getSortId(value));
     }
 
-    for (PartSort value : RandomUtil.random(PARTSE))
+    for (PartSort value : random(PARTSE))
     {
       assign(ret, inWeekOf, inPersons, value.mPart, value.mSort);
     }
@@ -135,19 +137,19 @@ public class RandomAssignments
 
     if (inPersons != null)
     {
-      if (RandomUtil.randomInt(11) % 2 == 0)
+      if (randomInt(11) % 2 == 0)
       {
-        ret.setParticipantId(RandomUtil.random(inPersons).getIdLong());
+        ret.setParticipantId(random(inPersons).getIdLong());
 
         if (ret.getPart().isAssisted())
         {
-          ret.setAssistantId(RandomUtil.random(inPersons).getIdLong());
+          ret.setAssistantId(random(inPersons).getIdLong());
         }
         if (ret.getPart().isStudyPoint())
         {
-          if (RandomUtil.randomInt(11) % 2 == 0)
+          if (randomInt(11) % 2 == 0)
           {
-            ret.setStudyPoint(RandomUtil.random(StudyPoint.values()));
+            ret.setStudyPoint(random(StudyPoint.values()));
           }
         }
       }

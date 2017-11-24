@@ -13,18 +13,13 @@ public class Assignments implements Serializable
   {
     ALL,
     STUDENT,
-    NONSTUDENT;
+    NSTUDENT;
   }
 
-  private List<Assignment> mAssignments;
+  private List<Assignment> mAssignments = new ArrayList<>();
 
   Assignments()
   {
-  }
-
-  public Assignments(List<Assignment> inAssignments)
-  {
-    mAssignments = inAssignments;
   }
 
   public double gCount(Count inCount)
@@ -38,7 +33,7 @@ public class Assignments implements Serializable
       case STUDENT:
         ret = gStudentCount();
         break;
-      case NONSTUDENT:
+      case NSTUDENT:
         ret = gNStudentCount();
         break;
       default:
@@ -58,7 +53,7 @@ public class Assignments implements Serializable
       case STUDENT:
         ret = gStudentAssigned();
         break;
-      case NONSTUDENT:
+      case NSTUDENT:
         ret = gNStudentAssigned();
         break;
       default:
@@ -77,22 +72,22 @@ public class Assignments implements Serializable
     return mAssignments;
   }
 
-  public List<Assignment> gHistory(Persons inPersons, Long inId, int inLast)
+  public List<Assignment> gHistory(long inPersonId, int inMax)
   {
     List<Assignment> ret = new ArrayList<>();
-    for (Assignment value : subReverse(gAssignedTo(inId), inLast))
+    for (Assignment value : subReverse(gAssignedTo(inPersonId), inMax))
     {
       ret.add(value);
     }
     return ret;
   }
 
-  public List<Assignment> gAssignedTo(Long inId)
+  public List<Assignment> gAssignedTo(long inPersonId)
   {
     List<Assignment> ret = new ArrayList<>();
     for (Assignment value : mAssignments)
     {
-      if (value.isAssignedTo(inId))
+      if (value.isAssignedTo(inPersonId))
       {
         ret.add(value);
       }
@@ -183,5 +178,4 @@ public class Assignments implements Serializable
     }
     return ret;
   }
-
 }

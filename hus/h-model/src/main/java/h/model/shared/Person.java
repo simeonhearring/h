@@ -107,6 +107,12 @@ public class Person implements Serializable, Tag
   }
 
   @JsonIgnore
+  public boolean isGender(Gender inGender)
+  {
+    return inGender == null || inGender.equals(mGender);
+  }
+
+  @JsonIgnore
   public boolean isMale()
   {
     return Gender.Male.equals(mGender);

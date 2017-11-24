@@ -8,30 +8,22 @@
 	
 	</ui:style>
 	<b.gwt:HTMLPanel addStyleNames="wrapper wrapper-content animated fadeInRight">
-
 		<k:StatsView dataType="OCLM" />
-
 		<div class="row">
 			<div class="col-sm-9">
 				<div class="ibox">
-
 					<b.gwt:HTMLPanel addStyleNames="ibox-content marginB25">
 						<b:Heading size="H2" text="Quarterly Assignments" alignment="CENTER" />
 						<b:Pager ui:field="mPager" previousText="Previous" previousIcon="ANGLE_LEFT" nextText="Next" nextIcon="ANGLE_RIGHT" alignToSides="true" />
 					</b.gwt:HTMLPanel>
-
 					<k:MonthView ui:field="mM0" />
 					<k:MonthView ui:field="mM1" />
 					<k:MonthView ui:field="mM2" />
-
 				</div>
 			</div>
 			<div class="col-sm-3">
-				<div class="ibox ">
-					<k:PartInfoView />
-				</div>
+				<k:PartInfoView />
 			</div>
 		</div>
-
 	</b.gwt:HTMLPanel>
 </ui:UiBinder>

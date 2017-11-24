@@ -37,6 +37,7 @@ public class Chart implements Serializable
   private Type mType;
   private Data mData;
   private Options mOptions;
+  private Stat mStat;
 
   private Chart()
   {
@@ -123,6 +124,16 @@ public class Chart implements Serializable
     inSet.setBorderColor(c1 + "0." + RandomUtil.randomInt(9) + ")");
     // inSet.setPointBackgroundColor(c1 + "0." + RandomUtil.randomInt(9) + ")");
     inSet.setPointBorderColor("#fff");
+  }
+
+  public Stat getStat()
+  {
+    return mStat;
+  }
+
+  public void setStat(Stat inStat)
+  {
+    mStat = inStat;
   }
 
   public static class Data implements Serializable
@@ -269,5 +280,53 @@ public class Chart implements Serializable
 
   public static class Datasets extends ArrayList<Dataset> implements Serializable
   {
+  }
+
+  public static class Stat implements Serializable
+  {
+    private String mHead;
+    private String mSubHead;
+    private String mFooter;
+    private String mTopRight;
+
+    public String getHead()
+    {
+      return mHead;
+    }
+
+    public void setHead(String inHead)
+    {
+      mHead = inHead;
+    }
+
+    public String getSubHead()
+    {
+      return mSubHead;
+    }
+
+    public void setSubHead(String inSubHead)
+    {
+      mSubHead = inSubHead;
+    }
+
+    public String getFooter()
+    {
+      return mFooter;
+    }
+
+    public void setFooter(String inFooter)
+    {
+      mFooter = inFooter;
+    }
+
+    public String getTopRight()
+    {
+      return mTopRight;
+    }
+
+    public void setTopRight(String inTopRight)
+    {
+      mTopRight = inTopRight;
+    }
   }
 }
