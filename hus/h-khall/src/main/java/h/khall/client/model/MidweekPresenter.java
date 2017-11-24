@@ -22,14 +22,16 @@ public class MidweekPresenter extends AbstractPresenter<MidweekPresenter.Display
   }
 
   private static String[] sMonthNames = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
-  private static int[][] sRange = {{0,1,2}, {3,4,5}, {6,7,8}, {9,10,11}};
-  private int mPageIndex = 0;
+  private static int[][] sMonths = {{0,1,2}, {3,4,5}, {6,7,8}, {9,10,11}};
+  private int[] mYears;
+  private int mYearIndex = 0;
+  private int mMonthIndex = 0;
   private Chart mChart = chart();
 
   public MidweekPresenter(Display inDisplay)
   {
     initDisplay(inDisplay);
-    mPageIndex = currentIndex();
+    mMonthIndex = currentIndex();
   }
 
   public MidweekPresenter handlers()
@@ -41,30 +43,44 @@ public class MidweekPresenter extends AbstractPresenter<MidweekPresenter.Display
 
   public void previous()
   {
-    mPageIndex = mPageIndex == 0 ? sRange.length - 1 : mPageIndex - 1;
-    addMonths();
+    boolean yearChg = mMonthIndex == 0;
+    mMonthIndex = yearChg ? ending() : mMonthIndex - 1;
+    addMonths(yearChg);
+  }
+
+  private int ending()
+  {
+    mYearIndex = mYearIndex == 0 ? mYears.length - 1 : mYearIndex - 1;
+    return sMonths.length - 1;
   }
 
   public void next()
   {
-    mPageIndex = mPageIndex == sRange.length - 1 ? 0 : mPageIndex + 1;
-    addMonths();
+    boolean yearChg = mMonthIndex == sMonths.length - 1;
+    mMonthIndex = yearChg ? beginning() : mMonthIndex + 1;
+    addMonths(yearChg);
+  }
+
+  private int beginning()
+  {
+    mYearIndex = mYearIndex == mYears.length - 1 ? 0 : mYearIndex + 1;
+    return 0;
   }
 
   @Override
   public void dispatch(RefreshEvent inEvent)
   {
-    addMonths();
-    addYearChart();
+    mYears = mProfile.gYears();
+    addMonths(true);
   }
 
   @Override
   public void dispatch(AssignmentSavedEvent inEvent)
   {
-    addYearChart();
+    updateChart();
   }
 
-  private void addMonths()
+  private void addMonths(boolean inUpdateChart)
   {
     mDisplay.getMonth0().reset();
     mDisplay.getMonth1().reset();
@@ -72,11 +88,11 @@ public class MidweekPresenter extends AbstractPresenter<MidweekPresenter.Display
 
     Meeting meeting = mClient.getMeeting();
 
-    int yr = mProfile.getYear();
+    int yr = mYears[mYearIndex];
 
-    int mn0 = sRange[mPageIndex][0];
-    int mn1 = sRange[mPageIndex][1];
-    int mn2 = sRange[mPageIndex][2];
+    int mn0 = sMonths[mMonthIndex][0];
+    int mn1 = sMonths[mMonthIndex][1];
+    int mn2 = sMonths[mMonthIndex][2];
 
     Month mo0 = meeting.getMonth(yr, mn0);
     Month mo1 = meeting.getMonth(yr, mn1);
@@ -85,19 +101,24 @@ public class MidweekPresenter extends AbstractPresenter<MidweekPresenter.Display
     mDisplay.getMonth0().setMonth(yr, mn0, mo0);
     mDisplay.getMonth1().setMonth(yr, mn1, mo1);
     mDisplay.getMonth2().setMonth(yr, mn2, mo2);
+
+    if (inUpdateChart)
+    {
+      updateChart();
+    }
   }
 
-  private void addYearChart()
+  private void updateChart()
   {
     Meeting meeting = mClient.getMeeting();
     meeting.setCount(mProfile.getCount());
 
-    Year year = meeting.getYear(mProfile.getYear());
+    Year year = meeting.getYear(mYears[mYearIndex]);
 
     mChart.update(sMonthNames);
     mChart.update(V.Assignments.name(), year.gCountM());
     mChart.update(V.Assigned.name(), year.gAssignedM());
-    mChart.getStat().setTopRight("Year: " + mProfile.getYear());
+    mChart.getStat().setTopRight("Year: " + mYears[mYearIndex]);
 
     fire(new ChartEvent(mChart));
   }

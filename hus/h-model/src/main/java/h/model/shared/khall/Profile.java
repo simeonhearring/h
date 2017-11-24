@@ -50,6 +50,14 @@ public class Profile extends h.model.shared.Profile
     mCongId = inCongId;
   }
 
+  public int[] gYears()
+  {
+    return new int[]
+    {
+        mYear, mYear - 1
+    };
+  }
+
   public Integer getYear()
   {
     return mYear;
