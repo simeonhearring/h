@@ -50,7 +50,7 @@ public class TableSortView extends AbstractView
         {
           update : function(event, ui)
           {
-            that.@vanderbilt.mc.style.client.ui.TableSortView::updated()();
+            that.@h.style.g.client.ui.TableSortView::updated()();
           }
         });
   }-*/;

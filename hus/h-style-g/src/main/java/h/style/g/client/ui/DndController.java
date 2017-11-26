@@ -250,7 +250,7 @@ public class DndController<I extends IsWidget> extends DndDelegateNoop<I>
             }
           }
           catch(err) {}
-          that.@vanderbilt.mc.style.client.ui.DndController::onMouseMove(I)(inPos);
+          that.@h.style.g.client.ui.DndController::onMouseMove(I)(inPos);
         });
   }-*/;
 
@@ -259,7 +259,7 @@ public class DndController<I extends IsWidget> extends DndDelegateNoop<I>
         var that = this;
         $wnd.onDrop = $entry(function(inEvent, inPos)
         {
-          that.@vanderbilt.mc.style.client.ui.DndController::onDrop(I)(inPos);
+          that.@h.style.g.client.ui.DndController::onDrop(I)(inPos);
         });
   }-*/;
 

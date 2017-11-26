@@ -60,7 +60,7 @@ public class ListGroupView extends AbstractView implements ListGroupDisplay
           update : function(event, ui)
           {
             var ids = $wnd.$("#" + inId).sortable("toArray");
-            that.@vanderbilt.mc.style.client.ui.ListGroupView::updated([Ljava/lang/String;)(ids);
+            that.@h.style.g.client.ui.ListGroupView::updated([Ljava/lang/String;)(ids);
           }
         });
   }-*/;
