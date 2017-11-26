@@ -22,8 +22,9 @@
 		<jar.scope>provided</jar.scope>
 
 		<gwt.style>OBF</gwt.style>
-		<gwt.version>2.8.2</gwt.version>
+		<!-- <gwt.version>2.7.0</gwt.version> <gwtmavenplugin.version>2.7.0</gwtmavenplugin.version> -->
 
+		<gwt.version>2.8.2</gwt.version>
 		<gwtmavenplugin.version>2.8.2</gwtmavenplugin.version>
 
 		<gwtbootstrap.version>0.9.4</gwtbootstrap.version>
@@ -221,6 +222,11 @@
 			<version>${junit.version}</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>xml-apis</groupId>
+			<artifactId>xml-apis</artifactId>
+			<version>1.4.01</version>
+		</dependency>
 
 		<!-- GWT -->
 
@@ -255,12 +261,6 @@
 			<version>${gwt.version}</version>
 			<scope>${jar.scope}</scope>
 		</dependency>
-<!-- 		<dependency>
-			<groupId>com.google.gwt</groupId>
-			<artifactId>gwt-dev</artifactId>
-			<version>${gwt.version}</version>
-			<scope>${jar.scope}</scope>
-		</dependency>
- -->
+		<!-- <dependency> <groupId>com.google.gwt</groupId> <artifactId>gwt-dev</artifactId> <version>${gwt.version}</version> <scope>${jar.scope}</scope> </dependency> -->
 	</dependencies>
 </project>
