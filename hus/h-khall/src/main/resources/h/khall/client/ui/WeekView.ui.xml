@@ -5,18 +5,7 @@
 	<ui:with field="msg" type="h.khall.client.resource.Messages" />
 	<ui:with field="res" type="h.khall.client.resource.Resource" />
 	<ui:style>
-	.color {
-		border-top-color: #2f4050;
-		border-right-color: #2f4050;
-	}
 	
-	.margin {
-		margin-bottom: 110px;
-	}
-	
-	.height {
-		height: 300px;
-	}
 	</ui:style>
 	<b.gwt:HTMLPanel addStyleNames="ibox-content">
 		<div class="row">
@@ -26,19 +15,19 @@
 				</div>
 			</div>
 		</div>
-		<b.html:Hr addStyleNames="{style.color}" />
+		<b.html:Hr addStyleNames="kh_color" />
 		<div class="row">
-			<div class="col-md-4 b-r {style.color}">
+			<div class="col-md-4 b-r kh_color">
 				<form role="form">
 					<k:AssignView ui:field="mChairman" part="CHAIRMAN" />
 					<k:AssignView ui:field="mPrayer1" part="SONG_1" />
 					<k:AssignView ui:field="mPrayer2" part="SONG_3" />
-					<b.html:Hr addStyleNames="{style.color}" />
+					<b.html:Hr addStyleNames="kh_color" />
 					<k:AssignView ui:field="mTreasures" part="TREASURES" />
-					<k:AssignView ui:field="mDigging" part="DIGGING" addStyleNames="{style.margin}" />
+					<k:AssignView ui:field="mDigging" part="DIGGING" addStyleNames="kh_margin" />
 				</form>
 			</div>
-			<div class="col-md-8" style="{style.height}">
+			<div class="col-md-8" style="kh_height">
 				<div class="row">
 					<div class="col-md-6">
 						<k:AssignView ui:field="mLiving1" part="LIVING_1" />
@@ -48,8 +37,8 @@
 					</div>
 				</div>
 				<k:AssignView ui:field="mCStudy" part="C_BIBLE_STUDY" />
-				<b.html:Hr addStyleNames="{style.color}" />
-				<div class="row" style="{style.height}">
+				<b.html:Hr addStyleNames="kh_color" />
+				<div class="row" style="kh_height">
 					<div class="col-md-12">
 						<b.card:Card>
 							<b.card:Front>

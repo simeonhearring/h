@@ -8,14 +8,31 @@
 	
 	</ui:style>
 	<k:CloseableView ui:field="mHead">
-		<b.gwt:HTMLPanel ui:field="mScroll" addStyleNames="full-height-scroll kh_scroll">
-			<b.gwt:HTMLPanel>
-				<k:WeekView ui:field="mW0" />
-				<k:WeekView ui:field="mW1" />
-				<k:WeekView ui:field="mW2" />
-				<k:WeekView ui:field="mW3" />
-				<k:WeekView ui:field="mW4" />
-			</b.gwt:HTMLPanel>
+		<b.gwt:HTMLPanel ui:field="mTop">
+			<b:NavTabs>
+				<b:TabListItem ui:field="mT1" active="true" text="Week #1" />
+				<b:TabListItem ui:field="mT2" text="Week #2" />
+				<b:TabListItem ui:field="mT3" text="Week #3" />
+				<b:TabListItem ui:field="mT4" text="Week #4" />
+				<b:TabListItem ui:field="mT5" text="Week #5" />
+			</b:NavTabs>
+			<b:TabContent>
+				<b:TabPane ui:field="mC1" fade="true" in="true" active="true">
+					<k:WeekView ui:field="mW0" />
+				</b:TabPane>
+				<b:TabPane ui:field="mC2" fade="true">
+					<k:WeekView ui:field="mW1" />
+				</b:TabPane>
+				<b:TabPane ui:field="mC3" fade="true">
+					<k:WeekView ui:field="mW2" />
+				</b:TabPane>
+				<b:TabPane ui:field="mC4" fade="true">
+					<k:WeekView ui:field="mW3" />
+				</b:TabPane>
+				<b:TabPane ui:field="mC5" fade="true">
+					<k:WeekView ui:field="mW4" />
+				</b:TabPane>
+			</b:TabContent>
 		</b.gwt:HTMLPanel>
 	</k:CloseableView>
 </ui:UiBinder>

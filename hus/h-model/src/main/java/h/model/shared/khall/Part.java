@@ -96,6 +96,7 @@ public enum Part
     switch (this)
     {
       case C_BIBLE_STUDY:
+      case RETURN_VISIT:
       case INITIAL_CALL:
       case F_RETURN_VISIT:
       case S_RETURN_VISIT:

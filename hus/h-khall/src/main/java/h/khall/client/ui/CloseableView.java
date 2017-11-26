@@ -47,9 +47,9 @@ public class CloseableView extends AbstractView implements HasWidgets
   }
 
   @UiHandler(
-      {
-        "mRemove", "mCollaspe"
-      })
+  {
+      "mRemove", "mCollaspe"
+  })
   public void onClick(ClickEvent inEvent)
   {
     Object source = inEvent.getSource();

@@ -20,6 +20,7 @@ public class Curriculum implements Serializable
     switch (mPart)
     {
       case INITIAL_CALL:
+      case RETURN_VISIT:
       case F_RETURN_VISIT:
       case S_RETURN_VISIT:
       case T_RETURN_VISIT:

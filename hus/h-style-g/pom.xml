@@ -6,12 +6,6 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>h-style-g</artifactId>
-	<properties>
-		<gwt.style>OBF</gwt.style>
-		<gwt.version>2.7.0</gwt.version>
-		<gwtmavenplugin.version>2.7.0</gwtmavenplugin.version>
-		<gwtbootstrap.version>0.9.4</gwtbootstrap.version>
-	</properties>
 	<build>
 		<resources>
 			<resource>

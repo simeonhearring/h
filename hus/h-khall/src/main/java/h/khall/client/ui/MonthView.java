@@ -1,5 +1,7 @@
 package h.khall.client.ui;
 
+import org.gwtbootstrap3.client.ui.TabListItem;
+import org.gwtbootstrap3.client.ui.TabPane;
 import org.gwtbootstrap3.client.ui.gwt.HTMLPanel;
 
 import com.google.gwt.core.client.GWT;
@@ -24,15 +26,32 @@ public class MonthView extends AbstractView<MonthPresenter>
   CloseableView mHead;
 
   @UiField
-  HTMLPanel mScroll;
+  HTMLPanel mTop;
 
   @UiField
   WeekView mW0, mW1, mW2, mW3, mW4;
+
+  @UiField
+  TabListItem mT1, mT2, mT3, mT4, mT5;
+
+  @UiField
+  TabPane mC1, mC2, mC3, mC4, mC5;
 
   public MonthView()
   {
     initWidget(BINDER.createAndBindUi(this));
     mPresenter = new MonthPresenter(this);
+    id(generateId(), mT1, mC1);
+    id(generateId(), mT2, mC2);
+    id(generateId(), mT3, mC3);
+    id(generateId(), mT4, mC4);
+    id(generateId(), mT5, mC5);
+  }
+
+  private static void id(String inId, TabListItem inItem, TabPane inPane)
+  {
+    inItem.setDataTarget("#" + inId);
+    inPane.setId(inId);
   }
 
   @Override
@@ -50,7 +69,7 @@ public class MonthView extends AbstractView<MonthPresenter>
   @Override
   public void setVisible(boolean inVisible)
   {
-    mScroll.setVisible(inVisible);
+    mTop.setVisible(inVisible);
   }
 
   @Override

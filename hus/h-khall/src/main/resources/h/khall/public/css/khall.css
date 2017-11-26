@@ -41,3 +41,16 @@
 .marginB25 {
 	margin-bottom: 25px;
 }
+
+.kh_color {
+	border-top-color: #2f4050;
+	border-right-color: #2f4050;
+}
+
+.kh_margin {
+	margin-bottom: 110px;
+}
+
+.kh_height {
+	height: 300px;
+}
