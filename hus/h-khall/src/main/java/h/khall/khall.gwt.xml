@@ -5,6 +5,8 @@
 
 	<inherits name='h.style.g.styleg' />
 
+	<inherits name='com.googlecode.gwt.crypto.Crypto' />
+
 	<entry-point class='h.khall.client.KhallEntryPoint' />
 
 	<stylesheet src='css/bootstrap.min.css' />

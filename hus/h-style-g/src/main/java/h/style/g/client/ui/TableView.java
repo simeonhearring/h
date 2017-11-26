@@ -288,16 +288,16 @@ public class TableView extends AbstractView implements TableDisplay
 
   private native void sortable(String inId)
   /*-{
-		$wnd.$("#" + inId).sortable({
-			placeholder : "sortplaceholder"
-		});
-
-		var that = this;
-		$wnd.$("#" + inId).sortable({
-			update : function(event, ui) {
-				that.@hus.gwt.client.ui.TableView::updated()();
-			}
-		});
+  	$wnd.$("#" + inId).sortable({
+  		placeholder : "sortplaceholder"
+  	});
+  
+  	var that = this;
+  	$wnd.$("#" + inId).sortable({
+  		update : function(event, ui) {
+  			that.@h.style.g.client.ui.TableView::updated()();
+  		}
+  	});
   }-*/;
 
   private native void unsortable(String inId)

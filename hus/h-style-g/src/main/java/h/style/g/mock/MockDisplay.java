@@ -8,6 +8,7 @@ import org.gwtbootstrap3.extras.bootbox.client.callback.ConfirmCallback;
 import org.gwtbootstrap3.extras.bootbox.client.callback.PromptCallback;
 import org.gwtbootstrap3.extras.bootbox.client.callback.SimpleCallback;
 
+import com.google.common.annotations.GwtIncompatible;
 import com.google.gwt.event.dom.client.HumanInputEvent;
 import com.google.gwt.event.dom.client.KeyCodeEvent;
 import com.google.gwt.user.client.ui.IsWidget;
@@ -65,6 +66,12 @@ public class MockDisplay implements Display, IsWidget
   @Override
   public String format(String inPattern, Date inDate)
   {
+    return null; // formatS(inPattern, inDate);
+  }
+
+  @GwtIncompatible(value = "")
+  private static String formatS(String inPattern, Date inDate)
+  {
     if (inDate == null)
     {
       return "";
@@ -80,6 +87,12 @@ public class MockDisplay implements Display, IsWidget
 
   @Override
   public Date parse(String inPattern, String inDate)
+  {
+    return null; // parseS(inPattern, inDate);
+  }
+
+  @GwtIncompatible(value = "")
+  private static Date parseS(String inPattern, String inDate)
   {
     if (inDate == null)
     {
