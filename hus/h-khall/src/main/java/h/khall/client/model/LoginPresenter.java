@@ -31,16 +31,7 @@ public class LoginPresenter extends AbstractPresenter<LoginPresenter.Display>
     profile.setCongNum(mDisplay.encrypt(inCongNum));
     profile.setEncrypt(mDisplay.encrypt(inEncrypt));
 
-    fire(new LoginCommand(profile), new RpcCallback<LoginCommand>()
-    {
-      @Override
-      public void onRpcSuccess(LoginCommand inCommand)
-      {
-        Login login = inCommand.getData();
-        fire(new AttachEvent(TypeA.MIDWEEK), new ProfileEvent(login.getProfile()),
-            new ClientEvent(login.getClient()), new RefreshEvent());
-      }
-    });
+    fire(new LoginCommand(profile), new LoginCallback());
   }
 
   public void forgotPassword()
@@ -55,5 +46,16 @@ public class LoginPresenter extends AbstractPresenter<LoginPresenter.Display>
 
   public interface Display extends Attach
   {
+  }
+
+  private class LoginCallback extends RpcCallback<LoginCommand>
+  {
+    @Override
+    public void onRpcSuccess(LoginCommand inCommand)
+    {
+      Login login = inCommand.getData();
+      fire(new AttachEvent(TypeA.MIDWEEK), new ProfileEvent(login.getProfile()),
+          new ClientEvent(login.getClient()), new RefreshEvent());
+    }
   }
 }
