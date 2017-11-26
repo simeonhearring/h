@@ -45,6 +45,16 @@
 			<artifactId>jasperreports</artifactId>
 			<version>5.0.1</version>
 			<!-- <version>6.4.3</version> -->
+			<exclusions>
+				<exclusion>
+					<artifactId>jdtcore</artifactId>
+					<groupId>eclipse</groupId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.lowagie</groupId>
+					<artifactId>itext</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>
