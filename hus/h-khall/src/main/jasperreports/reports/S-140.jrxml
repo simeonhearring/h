@@ -4,33 +4,12 @@
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
-	<background>
-		<band splitType="Stretch"/>
-	</background>
-	<title>
-		<band height="79" splitType="Stretch">
+	<detail>
+		<band height="125" splitType="Stretch">
 			<staticText>
-				<reportElement x="40" y="25" width="100" height="30" uuid="99940864-7cc3-40b1-aaf7-3874ef453412"/>
+				<reportElement x="60" y="55" width="100" height="30" uuid="99940864-7cc3-40b1-aaf7-3874ef453412"/>
 				<text><![CDATA[Heading of Static Text]]></text>
 			</staticText>
 		</band>
-	</title>
-	<pageHeader>
-		<band height="35" splitType="Stretch"/>
-	</pageHeader>
-	<columnHeader>
-		<band height="61" splitType="Stretch"/>
-	</columnHeader>
-	<detail>
-		<band height="125" splitType="Stretch"/>
 	</detail>
-	<columnFooter>
-		<band height="45" splitType="Stretch"/>
-	</columnFooter>
-	<pageFooter>
-		<band height="54" splitType="Stretch"/>
-	</pageFooter>
-	<summary>
-		<band height="42" splitType="Stretch"/>
-	</summary>
 </jasperReport>

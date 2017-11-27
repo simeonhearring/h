@@ -26,10 +26,24 @@
 		<servlet-class>h.style.g.server.rpc.RpcServiceImpl</servlet-class>
 	</servlet>
 
+	<servlet>
+		<servlet-name>reportServlet</servlet-name>
+		<servlet-class>h.service.http.ServiceServlet</servlet-class>
+		<init-param>
+			<param-name>serviceName</param-name>
+			<param-value>ReportService</param-value>
+		</init-param>
+	</servlet>
+
 	<!-- mapping -->
 	<servlet-mapping>
 		<servlet-name>rpcServlet</servlet-name>
 		<url-pattern>/khall/rpcservlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>reportServlet</servlet-name>
+		<url-pattern>/report</url-pattern>
 	</servlet-mapping>
 
 	<!-- Default page to serve -->

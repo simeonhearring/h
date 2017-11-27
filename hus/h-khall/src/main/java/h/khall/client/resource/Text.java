@@ -5,4 +5,6 @@ public interface Text
   String monogram();
 
   String domain();
+
+  String rptS140();
 }

@@ -2,6 +2,7 @@ package h.model.shared;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -80,6 +81,15 @@ public abstract class SessionInfo implements Serializable
   public Map<String, String> getProperties()
   {
     return mProperties;
+  }
+
+  public void add(String inKey, String inValue)
+  {
+    if (mProperties == null)
+    {
+      mProperties = new HashMap<>();
+    }
+    mProperties.put(inKey, inValue);
   }
 
   public void setProperties(Map<String, String> inProperties)

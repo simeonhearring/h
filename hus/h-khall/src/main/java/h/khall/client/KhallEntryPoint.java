@@ -33,4 +33,10 @@ public class KhallEntryPoint extends AbstractEntryPoint
   {
     setProfile(inEvent.getProfile());
   }
+
+  @Override
+  public String getEncrypt()
+  {
+    return "&pEncrypt=" + Global.info().get("congEnc");
+  }
 }

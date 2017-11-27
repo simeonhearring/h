@@ -52,4 +52,6 @@ public interface Display extends IsWidget, HasVisibility
   boolean isAltKeyDown(KeyCodeEvent<?> inEvent);
 
   int getNativeKeyCode(KeyCodeEvent<?> inEvent);
+
+  void addSessionValue(String inKey, String inValue);
 }

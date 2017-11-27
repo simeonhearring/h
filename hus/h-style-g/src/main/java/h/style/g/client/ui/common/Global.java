@@ -340,4 +340,12 @@ public class Global implements HasFire
     return JsniUtil.isChrome() || JsniUtil.isIE9() || JsniUtil.isIE10() || JsniUtil.isIE11()
         || JsniUtil.isFirefox() || JsniUtil.isiPad() || JsniUtil.isiPhone() || JsniUtil.isSafari();
   }
+
+  public static void addSessionValue(String inKey, String inValue)
+  {
+    if (info() != null)
+    {
+      info().add(inKey, inValue);
+    }
+  }
 }

@@ -50,6 +50,9 @@ import com.google.gwt.event.logical.shared.HasValueChangeHandlers;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.i18n.client.DateTimeFormat;
+import com.google.gwt.json.client.JSONObject;
+import com.google.gwt.json.client.JSONString;
+import com.google.gwt.storage.client.Storage;
 import com.google.gwt.user.client.Random;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
@@ -64,6 +67,8 @@ import h.style.g.client.model.CallBack;
 import h.style.g.client.model.ModalDisplay;
 import h.style.g.client.ui.common.Global;
 import h.style.g.client.ui.event.Event;
+import h.style.g.client.ui.util.JsniUtil;
+import h.style.g.client.ui.util.StorageUtil;
 
 public abstract class AbstractView extends Composite
 {
@@ -113,6 +118,11 @@ public abstract class AbstractView extends Composite
   {
     inPanel.clear();
     inPanel.add(this);
+  }
+
+  public void addSessionValue(String inKey, String inValue)
+  {
+    Global.addSessionValue(inKey, inValue);
   }
 
   public void setAnimateObject(UIObject inUiObject)
@@ -724,4 +734,26 @@ public abstract class AbstractView extends Composite
         $wnd.jQuery('body').toggleClass('mini-navbar');
         $wnd.SmoothlyMenu();
   }-*/;
+
+  public static boolean addStorageValue(String inKey, String inValue)
+  {
+    Storage storage = Storage.getLocalStorageIfSupported();
+    boolean canStore = storage != null && inValue != null;
+    if (canStore)
+    {
+      if (StorageUtil.hasEncrypt())
+      {
+        JSONObject o = StorageUtil.get();
+        o.put(inKey, new JSONString(inValue));
+        storage.setItem(StorageUtil.EKEY, JsniUtil.stringify(o.getJavaScriptObject()));
+      }
+      else
+      {
+        JSONObject o = new JSONObject();
+        o.put(inKey, new JSONString(inValue));
+        storage.setItem(StorageUtil.EKEY, JsniUtil.stringify(o.getJavaScriptObject()));
+      }
+    }
+    return canStore;
+  }
 }

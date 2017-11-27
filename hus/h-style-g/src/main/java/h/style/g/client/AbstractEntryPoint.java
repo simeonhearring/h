@@ -1,5 +1,7 @@
 package h.style.g.client;
 
+import java.util.Date;
+
 import org.gwtbootstrap3.extras.notify.client.ui.Notify;
 
 import com.google.gwt.core.client.EntryPoint;
@@ -12,6 +14,7 @@ import com.google.gwt.user.client.Window;
 
 import h.model.shared.Profile;
 import h.model.shared.SessionInfo;
+import h.model.shared.util.EncryptUtil;
 import h.style.g.client.model.CallBack;
 import h.style.g.client.service.rpc.RpcService;
 import h.style.g.client.service.rpc.RpcServiceAsync;
@@ -20,13 +23,14 @@ import h.style.g.client.ui.common.RpcCallback;
 import h.style.g.client.ui.event.AlertEvent;
 import h.style.g.client.ui.event.Event;
 import h.style.g.client.ui.event.LoadMainEvent;
+import h.style.g.client.ui.event.ReportEvent;
 import h.style.g.client.ui.service.bus.GwtEventBus;
 import h.style.g.client.ui.util.JsniUtil;
 import h.style.g.shared.command.LoggerCommand.Level;
 import h.style.g.shared.command.SessionInfoCommand;
 
 public abstract class AbstractEntryPoint
-    implements EntryPoint, AlertEvent.Handler, LoadMainEvent.Handler
+  implements EntryPoint, AlertEvent.Handler, LoadMainEvent.Handler, ReportEvent.Handler
 {
   @Override
   public void onModuleLoad()
@@ -45,6 +49,7 @@ public abstract class AbstractEntryPoint
     Global.setEventBus(new GwtEventBus());
     Global.getInstance().addHandler(AlertEvent.TYPE, this);
     Global.getInstance().addHandler(LoadMainEvent.TYPE, this);
+    Global.getInstance().addHandler(ReportEvent.TYPE, this);
     Global.exportNativeDebug();
     Global.log(Level.INFO, "Started... " + JsniUtil.getBrowserInfo(), null);
     fire(new LoadMainEvent());
@@ -66,6 +71,15 @@ public abstract class AbstractEntryPoint
     Notify.notify(inEvent.getMessage());
   }
 
+  @Override
+  public void dispatch(ReportEvent inEvent)
+  {
+    String params =
+        EncryptUtil.encrypt(inEvent.getName() + "&date=" + new Date().getTime() + getEncrypt());
+    String url = GWT.getHostPageBaseURL() + "report?params=" + params;
+    Window.open(url, "_blank", null);
+  }
+
   public void disableBrowserBack()
   {
     History.newItem("x");
@@ -81,6 +95,11 @@ public abstract class AbstractEntryPoint
         }
       }
     });
+  }
+
+  public String getEncrypt()
+  {
+    return "";
   }
 
   public void sessionInfo(final CallBack<SessionInfo> inCallback)

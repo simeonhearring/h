@@ -220,4 +220,9 @@ public class MockDisplay implements Display, IsWidget
   public void console(String inAction, String inMessage)
   {
   }
+
+  @Override
+  public void addSessionValue(String inKey, String inValue)
+  {
+  }
 }

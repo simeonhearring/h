@@ -16,12 +16,13 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
 import h.model.shared.util.EncryptUtil;
+import h.service.http.Service;
 import h.util.DecryptUtil;
 import h.util.HostUtil;
 
 import net.sf.jasperreports.engine.JRParameter;
 
-public class ReportService implements ApplicationContextAware
+public class ReportService implements ApplicationContextAware, Service
 {
   private static final Logger LOGGER = Logger.getLogger(ReportService.class);
 
@@ -29,6 +30,7 @@ public class ReportService implements ApplicationContextAware
 
   private ReportRunner mReportRunner;
 
+  @Override
   public void execute(Map<String, String> inParams, HttpServletResponse inResponse)
   {
     LOGGER.info("execute ... [" + inParams + "]");
@@ -53,7 +55,7 @@ public class ReportService implements ApplicationContextAware
         ReportType type = getReportType(params);
         byte[] b = generate(reportname, params, type);
 
-        inResponse.setHeader("Content-Disposition", "attachment; filename=report." + type.name());
+        inResponse.setHeader("Content-Disposition", "inline; filename=report." + type.name());
         inResponse.setContentType("application/" + type.name());
         inResponse.setContentLength(b.length);
 

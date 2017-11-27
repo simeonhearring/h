@@ -16,15 +16,17 @@ public class JavaBeanDaoImpl implements Dao
   private static final Persons PERSONS = RandomPersons.persons();
 
   @Override
-  public Profile selectProfile(h.model.shared.Profile inProfile)
+  public Profile selectProfile(Profile inProfile)
   {
     Profile ret = new Profile();
-    ret.setUserId("simeonlhearring@gmail.com");
+    ret.setUserId(inProfile.getUserId());
+    ret.setCongNum(inProfile.getCongNum());
+    ret.setEncrypt(inProfile.getEncrypt());
+
     ret.setUserTitle("Owner");
     ret.setUserName("Simeon L Hearring");
     ret.setCongId(59);
     ret.setYear(2018);
-    ret.setEncrypt("9M1})6Y]ibnxrp^zSQz@*BAc[Cn+Ub1R");
     ret.setCount(Count.STUDENT);
     return ret;
   }

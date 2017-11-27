@@ -9,9 +9,22 @@
 		<property name="DataSource" ref="Khall" />
 	</bean>
 
+	<!-- REPORTS -->
+
+	<bean id="ReportRunner" class="h.service.report.JasperReportRunner">
+		<property name="DataSource" ref="Khall" />
+	</bean>
+
+	<bean id="S-140" class="h.khall.server.reports.S140_Report" />
+
 	<!-- SERVICES -->
 
+	<bean id="ReportService" class="h.service.report.ReportService">
+		<property name="ReportRunner" ref="ReportRunner" />
+	</bean>
+
 	<!-- COMMANDS -->
+
 	<bean id="LoggerCommand" class="h.style.g.server.command.LoggerCommandBean" />
 
 	<bean id="SessionInfoCommand" class="h.khall.server.command.SessionInfoCommandBean" />

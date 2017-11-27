@@ -128,7 +128,6 @@ public class MidweekPresenter extends AbstractPresenter<MidweekPresenter.Display
   private int currentIndex()
   {
     int ret = 0;
-    // TODO
     // @SuppressWarnings("deprecation")
     // int mo = new Date().getMonth();
     // for (int i = 0; i < mRange.length; i++)

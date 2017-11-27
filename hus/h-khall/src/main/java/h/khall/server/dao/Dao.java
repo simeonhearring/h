@@ -8,7 +8,7 @@ import h.style.g.shared.chart.Chart;
 
 public interface Dao
 {
-  Profile selectProfile(h.model.shared.Profile inProfile);
+  Profile selectProfile(Profile inProfile);
 
   Chart selectChart(Profile inProfile);
 
