@@ -3,6 +3,7 @@ package h.khall.client.model;
 import h.khall.client.ui.event.AttachEvent;
 import h.khall.client.ui.event.AttachEvent.TypeA;
 import h.style.g.client.model.Attach;
+import h.style.g.shared.command.ForgotCommand;
 
 public class ForgotPresenter extends AbstractPresenter<ForgotPresenter.Display>
 {
@@ -16,7 +17,7 @@ public class ForgotPresenter extends AbstractPresenter<ForgotPresenter.Display>
     if (isEmail(inEmail))
     {
       mDisplay.notify("Password reset sent to... " + inEmail);
-      fire(new AttachEvent(TypeA.LOGIN));
+      fire(new ForgotCommand(inEmail), new AttachEvent(TypeA.LOGIN));
     }
     else
     {
