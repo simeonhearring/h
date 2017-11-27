@@ -8,16 +8,14 @@ import java.util.Map;
 import javax.sql.DataSource;
 
 import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JRExporter;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperRunManager;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.export.HtmlExporter;
 import net.sf.jasperreports.engine.export.JRCsvExporter;
-import net.sf.jasperreports.engine.export.JRHtmlExporter;
-import net.sf.jasperreports.engine.export.JRHtmlExporterParameter;
 import net.sf.jasperreports.engine.export.JRXlsExporter;
-import net.sf.jasperreports.engine.export.JRXlsExporterParameter;
+import net.sf.jasperreports.export.Exporter;
 
 public class JasperReportRunner implements ReportRunner
 {
@@ -134,21 +132,26 @@ public class JasperReportRunner implements ReportRunner
     }
   }
 
-  private byte[] runReport(JasperPrint inPrint, JRExporter inExport) throws JRException
+  private byte[] runReport(JasperPrint inPrint, Exporter inExport) throws JRException
   {
     ByteArrayOutputStream output = new ByteArrayOutputStream();
-    inExport.setParameter(JRXlsExporterParameter.JASPER_PRINT, inPrint);
-    inExport.setParameter(JRXlsExporterParameter.OUTPUT_STREAM, output);
-    inExport.setParameter(JRXlsExporterParameter.IS_ONE_PAGE_PER_SHEET, Boolean.FALSE);
-    inExport.setParameter(JRXlsExporterParameter.IS_DETECT_CELL_TYPE, Boolean.TRUE);
-    inExport.setParameter(JRXlsExporterParameter.IS_WHITE_PAGE_BACKGROUND, Boolean.FALSE);
-    inExport.setParameter(JRXlsExporterParameter.IS_REMOVE_EMPTY_SPACE_BETWEEN_ROWS, Boolean.TRUE);
-    inExport.setParameter(JRXlsExporterParameter.IS_REMOVE_EMPTY_SPACE_BETWEEN_COLUMNS,
-        Boolean.TRUE);
-    if (inExport instanceof JRHtmlExporter)
-    {
-      inExport.setParameter(JRHtmlExporterParameter.IS_USING_IMAGES_TO_ALIGN, false);
-    }
+    // inExport.setParameter(JRXlsExporterParameter.JASPER_PRINT, inPrint);
+    // inExport.setParameter(JRXlsExporterParameter.OUTPUT_STREAM, output);
+    // inExport.setParameter(JRXlsExporterParameter.IS_ONE_PAGE_PER_SHEET,
+    // Boolean.FALSE);
+    // inExport.setParameter(JRXlsExporterParameter.IS_DETECT_CELL_TYPE,
+    // Boolean.TRUE);
+    // inExport.setParameter(JRXlsExporterParameter.IS_WHITE_PAGE_BACKGROUND,
+    // Boolean.FALSE);
+    // inExport.setParameter(JRXlsExporterParameter.IS_REMOVE_EMPTY_SPACE_BETWEEN_ROWS,
+    // Boolean.TRUE);
+    // inExport.setParameter(JRXlsExporterParameter.IS_REMOVE_EMPTY_SPACE_BETWEEN_COLUMNS,
+    // Boolean.TRUE);
+    // if (inExport instanceof HtmlExporter)
+    // {
+    // inExport.setParameter(JRHtmlExporterParameter.IS_USING_IMAGES_TO_ALIGN,
+    // false);
+    // }
     inExport.exportReport();
     return output.toByteArray();
   }
@@ -173,7 +176,7 @@ public class JasperReportRunner implements ReportRunner
     {
       connection = mDataSource.getConnection();
       JasperPrint print = JasperFillManager.fillReport(inReport, inParameters, connection);
-      return runReport(print, new JRHtmlExporter());
+      return runReport(print, new HtmlExporter());
     }
     catch (Exception e)
     {
@@ -193,7 +196,7 @@ public class JasperReportRunner implements ReportRunner
     {
       JRBeanCollectionDataSource jrDataSource = new JRBeanCollectionDataSource(inCollection);
       JasperPrint print = JasperFillManager.fillReport(inReport, inParameters, jrDataSource);
-      return runReport(print, new JRHtmlExporter());
+      return runReport(print, new HtmlExporter());
     }
     catch (JRException e)
     {

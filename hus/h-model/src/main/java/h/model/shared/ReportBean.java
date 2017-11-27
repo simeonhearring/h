@@ -13,6 +13,58 @@ public class ReportBean
   private String mColumnNine;
   private String mColumnTen;
 
+
+  public ReportBean()
+  {
+  }
+
+  public ReportBean(String inDateChapters, Enum<?> inPart, String inTime, String inTalkName,
+      Enum<?> inSchool, Enum<?> inStudyPoint, String inParticipants, String inStudent,
+      String inAssistants, String inDate)
+  {
+    // mSchool = inSchool;
+    // mPart = inPart;
+    // mStudyPoint = inStudyPoint;
+
+    mColumnOne = inDateChapters;
+    mColumnTwo = null; // inPart.getMeeting().showHead();
+    mColumnThree = inTime;
+    mColumnFour = inTalkName;
+    mColumnFive = null; // School.display(inSchool);
+    mColumnSix = null; // StudyPoint.display(inStudyPoint);
+    mColumnSeven = inParticipants;
+    mColumnEight = inStudent;
+    mColumnNine = inAssistants;
+    mColumnTen = inDate;
+  }
+
+  public ReportBean(String inDate, Enum<?> inSchool, Enum<?> inPart, Enum<?> inStudyPoint,
+      String inStudent, String inAssistants, String inNote)
+  {
+    // mSchool = inSchool;
+    // mPart = inPart;
+    // mStudyPoint = inStudyPoint;
+
+    mColumnOne = inDate;
+    mColumnTwo = inStudent;
+    mColumnThree = inAssistants;
+    mColumnFour = inNote;
+    mColumnFive = null;
+    mColumnSix = null;
+    mColumnSeven = null;
+    mColumnEight = null;
+    mColumnNine = null;
+    mColumnTen = null;
+  }
+
+  public ReportBean(Enum<?> inPart, String inDate, String inDisplay)
+  {
+    // mSchool = School.MAIN;
+    // mPart = inPart;
+    mColumnOne = inDate;
+    mColumnFour = inDisplay;
+  }
+
   public String getColumnOne()
   {
     return mColumnOne;

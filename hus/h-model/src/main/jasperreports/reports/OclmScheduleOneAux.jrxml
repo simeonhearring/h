@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.4.3.final using JasperReports Library version 6.4.3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Oclm" pageWidth="612" pageHeight="792" columnWidth="584" leftMargin="14" rightMargin="14" topMargin="14" bottomMargin="14" uuid="b22e06ca-ea7a-4375-97b3-6a7f1ebd0c94">
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="OclmGenerator"/>
+	<parameter name="pCongregationName" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["English-Gallatin TN"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="pPrintWeeks" class="java.lang.Boolean" isForPrompting="false">
+		<defaultValueExpression><![CDATA[false]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="date" class="java.lang.String">
+		<fieldDescription><![CDATA[date]]></fieldDescription>
+	</field>
+	<field name="columnTwo" class="java.lang.String">
+		<fieldDescription><![CDATA[columnTwo]]></fieldDescription>
+	</field>
+	<field name="columnOne" class="java.lang.String">
+		<fieldDescription><![CDATA[columnOne]]></fieldDescription>
+	</field>
+	<field name="columnFour" class="java.lang.String">
+		<fieldDescription><![CDATA[columnFour]]></fieldDescription>
+	</field>
+	<field name="columnEight" class="java.lang.String">
+		<fieldDescription><![CDATA[columnEight]]></fieldDescription>
+	</field>
+	<field name="columnFive" class="java.lang.String">
+		<fieldDescription><![CDATA[columnFive]]></fieldDescription>
+	</field>
+	<field name="columnTen" class="java.lang.String">
+		<fieldDescription><![CDATA[columnTen]]></fieldDescription>
+	</field>
+	<field name="columnNine" class="java.lang.String">
+		<fieldDescription><![CDATA[columnNine]]></fieldDescription>
+	</field>
+	<field name="columnThree" class="java.lang.String">
+		<fieldDescription><![CDATA[columnThree]]></fieldDescription>
+	</field>
+	<field name="columnSeven" class="java.lang.String">
+		<fieldDescription><![CDATA[columnSeven]]></fieldDescription>
+	</field>
+	<field name="columnSix" class="java.lang.String">
+		<fieldDescription><![CDATA[columnSix]]></fieldDescription>
+	</field>
+	<field name="meeting" class="java.lang.String">
+		<fieldDescription><![CDATA[meeting]]></fieldDescription>
+	</field>
+	<field name="printLine" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[printLine]]></fieldDescription>
+	</field>
+	<group name="Date" keepTogether="true">
+		<groupExpression><![CDATA[$F{date}]]></groupExpression>
+		<groupHeader>
+			<band height="10">
+				<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				<line>
+					<reportElement key="" positionType="FixRelativeToBottom" x="1" y="4" width="583" height="1" uuid="ad16d5bd-180f-4ab9-a95a-652b41d3649e">
+						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					</reportElement>
+					<graphicElement>
+						<pen lineWidth="3.0" lineStyle="Solid"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement key="" positionType="FixRelativeToBottom" x="1" y="7" width="583" height="1" uuid="a1f88bcb-9af0-4c6e-9e36-65b199ce3ec7">
+						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					</reportElement>
+					<graphicElement>
+						<pen lineWidth="0.5" lineStyle="Solid"/>
+					</graphicElement>
+				</line>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="Meeting">
+		<groupExpression><![CDATA[$F{meeting}]]></groupExpression>
+		<groupHeader>
+			<band height="21">
+				<printWhenExpression><![CDATA[!"INTRO".equals($F{meeting})]]></printWhenExpression>
+				<textField>
+					<reportElement x="0" y="3" width="390" height="15" uuid="ff8ff5af-1cb1-4318-8755-39f7848b9507">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA["DATE | WEEKLY BIBLE READING - " + $F{columnSix}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Opaque" x="0" y="3" width="250" height="15" forecolor="#FFFFFF" backcolor="#961526" uuid="9b4ea041-b24b-48ec-96bf-2f7fe19360e4">
+						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						<printWhenExpression><![CDATA["LIVING".equals($F{meeting})]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="SansSerif" size="10" isBold="true"/>
+						<paragraph leftIndent="10"/>
+					</textElement>
+					<text><![CDATA[LIVING AS CHRISTIANS]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="0" y="3" width="250" height="15" forecolor="#FFFFFF" backcolor="#606A70" uuid="f3d1cccc-dee3-4301-89f3-9259d8799bff">
+						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						<printWhenExpression><![CDATA["TREASURES".equals($F{meeting})]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="SansSerif" size="10" isBold="true"/>
+						<paragraph leftIndent="10"/>
+					</textElement>
+					<text><![CDATA[TREASURES FROM GOD’S WORD]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="0" y="3" width="250" height="15" forecolor="#FFFFFF" backcolor="#C18626" uuid="8d2c18d0-9c86-4ae2-8e8c-0ea4a88ba450">
+						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+						<printWhenExpression><![CDATA["APPLY".equals($F{meeting})]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="SansSerif" size="10" isBold="true"/>
+						<paragraph leftIndent="10"/>
+					</textElement>
+					<text><![CDATA[APPLY YOURSELF TO THE FIELD MINISTRY]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+	</group>
+	<columnHeader>
+		<band height="15">
+			<textField>
+				<reportElement x="7" y="0" width="290" height="15" uuid="5f3a942e-086d-4d5d-9f22-ae3a9fcc750e">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{pCongregationName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="323" y="0" width="254" height="15" uuid="66ce7052-1873-49fa-9455-06e95bbe7b54"/>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Midweek Meeting Schedule"]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<textField>
+				<reportElement key="" isPrintRepeatedValues="false" x="0" y="0" width="400" height="15" printWhenGroupChanges="Date" uuid="ce432ff9-9aa9-4e7f-84ca-2eca0bb03a6e">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font size="9" isBold="true" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{date} + " | " + $F{columnSix}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="5" y="0" width="30" height="15" uuid="e2c93407-966a-4d86-820b-5da84d4dac17">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{columnOne}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="25" y="0" width="400" height="15" uuid="b397c945-b5d0-446a-99d9-ab838bce5fbd">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textElement markup="styled"/>
+				<textFieldExpression><![CDATA[$F{columnTwo} + " <style size='6'>" + $F{columnThree} + "</style>"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="273" y="0" width="150" height="15" uuid="f4d31e84-050a-49e1-b28f-3f8258409e00"/>
+				<box bottomPadding="2"/>
+				<textElement textAlignment="Right" markup="styled">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{columnFive}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="424" y="0" width="150" height="15" uuid="3ad83b3f-4531-4a66-bdda-f4a12a9a4367"/>
+				<box bottomPadding="2"/>
+				<textElement textAlignment="Right" markup="styled">
+					<paragraph lineSpacing="Single" spacingAfter="0"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{columnFour}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement key="" positionType="FixRelativeToBottom" x="1" y="13" width="583" height="1" uuid="f5b0c1fb-7283-459f-81cc-af8c3eb92b88">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<printWhenExpression><![CDATA[$F{printLine}]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.5" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="20">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<textField evaluationTime="Report">
+				<reportElement x="80" y="5" width="40" height="15" uuid="330cab21-853c-42a0-b08d-4c941b3ead59">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="yyyy.MM.dd G &apos;at&apos; HH:mm:ss z">
+				<reportElement x="274" y="5" width="310" height="15" uuid="f4075b3d-7b64-49ba-a834-290448cef706"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="5" width="80" height="15" uuid="af152b7d-dbac-43d3-b3c9-e22bdc3837d5"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER} + " of"]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement key="" positionType="FixRelativeToBottom" x="0" y="0" width="583" height="1" uuid="852a18cc-be57-4876-9e4c-08aaf5428f30">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.5" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="136" y="5" width="143" height="15" uuid="237e8868-ff9e-4a31-b433-26a6fa0f7b20">
+					<printWhenExpression><![CDATA[$P{pPrintWeeks}]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA["Week" + ($V{PAGE_NUMBER}.equals(1) ? "s 1 & 2" : ($V{PAGE_NUMBER}.equals(2) ? "s 3 & 4" : ($V{PAGE_NUMBER}.equals(3) ? " 5" : "")))]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="124" y="0" width="1" height="20" uuid="f2c5bd16-c74d-47b7-b20d-e948e1a572ce">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+			</line>
+		</band>
+	</columnFooter>
+</jasperReport>

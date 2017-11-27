@@ -7,6 +7,10 @@ import h.model.shared.util.StringUtil;
 
 public enum Part
 {
+  EVENT,
+  OPEN,
+  SONG_2,
+  REVIEW,
   READER,
   RETURN_VISIT,
   ASSISTANT,
