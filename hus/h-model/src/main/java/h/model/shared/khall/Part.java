@@ -7,6 +7,7 @@ import h.model.shared.util.StringUtil;
 
 public enum Part
 {
+  CO_TALK,
   EVENT,
   OPEN,
   SONG_2,
@@ -37,7 +38,7 @@ public enum Part
   LIVING_1,
   LIVING_2,
   C_BIBLE_STUDY,
-  SONG_3,;
+  SONG_3;
 
   public Part getParent()
   {
@@ -55,6 +56,38 @@ public enum Part
         break;
     }
     return ret;
+  }
+
+  public boolean isChairmanPart()
+  {
+    return CHAIRMAN.equals(this) || OPEN.equals(this) || SONG_2.equals(this) || I_VIDEO.equals(this)
+        || F_RETURN_VISIT_VIDEO.equals(this) || S_RETURN_VISIT_VIDEO.equals(this)
+        || T_RETURN_VISIT_VIDEO.equals(this) || B_VIDEO.equals(this) || REVIEW.equals(this);
+  }
+
+  public boolean isSelfThemed()
+  {
+    return DIGGING.equals(this) || BIBLE_READING.equals(this) || INITIAL_CALL.equals(this)
+        || F_RETURN_VISIT.equals(this) || S_RETURN_VISIT.equals(this) || T_RETURN_VISIT.equals(this)
+        || TALK.equals(this) || BIBLE_STUDY.equals(this) || I_VIDEO.equals(this)
+        || F_RETURN_VISIT_VIDEO.equals(this) || S_RETURN_VISIT_VIDEO.equals(this)
+        || T_RETURN_VISIT_VIDEO.equals(this) || B_VIDEO.equals(this) || C_BIBLE_STUDY.equals(this)
+        || REVIEW.equals(this);
+  }
+
+  public boolean isSong()
+  {
+    return SONG_1.equals(this) || SONG_2.equals(this) || SONG_3.equals(this);
+  }
+
+  public boolean isPrayer()
+  {
+    return SONG_1.equals(this) || SONG_3.equals(this);
+  }
+
+  public boolean isOrless()
+  {
+    return isStudyPoint() || OPEN.equals(this) || REVIEW.equals(this);
   }
 
   public static Part[] student()
@@ -149,7 +182,7 @@ public enum Part
         ret = inShort ? "Treasures" : "Treasures From God's Word";
         break;
       case DIGGING:
-        ret = inShort ? "Digging" : "Digging For Spiritual Gems";
+        ret = inShort ? "Digging" : "Digging for Spiritual Gems";
         break;
       case F_RETURN_VISIT:
         ret = "First Return Visit";
@@ -162,6 +195,12 @@ public enum Part
         break;
       case C_BIBLE_STUDY:
         ret = "Congregation Bible Study";
+        break;
+      case OPEN:
+        ret = "Opening Comments";
+        break;
+      case REVIEW:
+        ret = inShort ? "Review" : "Review/Preview/Announcements";
         break;
 
       default:
@@ -265,6 +304,112 @@ public enum Part
     else
     {
       ret = Part.everyone();
+    }
+    return ret;
+  }
+
+  public static List<Part> schedule(boolean inCovisit)
+  {
+    List<Part> ret = new ArrayList<>();
+    ret.add(Part.CHAIRMAN);
+    ret.add(Part.SONG_1);
+    ret.add(Part.OPEN);
+    ret.add(Part.TREASURES);
+    ret.add(Part.DIGGING);
+    ret.add(Part.BIBLE_READING);
+    ret.add(Part.APPLY1);
+    ret.add(Part.APPLY2);
+    ret.add(Part.APPLY3);
+    ret.add(Part.SONG_2);
+    ret.add(Part.LIVING_1);
+    ret.add(Part.LIVING_2);
+    if (inCovisit)
+    {
+      ret.add(Part.REVIEW);
+      ret.add(Part.CO_TALK);
+    }
+    else
+    {
+      ret.add(Part.C_BIBLE_STUDY);
+      ret.add(Part.REVIEW);
+    }
+    ret.add(Part.SONG_3);
+    return ret;
+  }
+
+  public static String meeting(Part inPart)
+  {
+    String ret = null;
+    switch (inPart)
+    {
+      case OPEN:
+      case CHAIRMAN:
+      case SONG_1:
+      case EVENT:
+        ret = "INTRO";
+        break;
+      case TREASURES:
+      case DIGGING:
+      case BIBLE_READING:
+        ret = "TREASURES";
+        break;
+      case INITIAL_CALL:
+      case APPLY1:
+      case APPLY2:
+      case APPLY3:
+      case RETURN_VISIT:
+      case F_RETURN_VISIT:
+      case S_RETURN_VISIT:
+      case T_RETURN_VISIT:
+      case BIBLE_STUDY:
+      case TALK:
+      case ASSISTANT:
+      case F_RETURN_VISIT_VIDEO:
+      case S_RETURN_VISIT_VIDEO:
+      case T_RETURN_VISIT_VIDEO:
+      case I_VIDEO:
+      case B_VIDEO:
+        ret = "APPLY";
+        break;
+      case C_BIBLE_STUDY:
+      case CO_TALK:
+      case SONG_2:
+      case READER:
+      case LIVING_1:
+      case LIVING_2:
+      case REVIEW:
+      case SONG_3:
+        ret = "LIVING";
+        break;
+    }
+    return ret;
+  }
+
+  public Integer gDuration()
+  {
+    Integer ret = null;
+    switch (this)
+    {
+      case SONG_1:
+      case SONG_2:
+      case SONG_3:
+        ret = 5;
+        break;
+      case OPEN:
+      case REVIEW:
+        ret = 3;
+        break;
+      case DIGGING:
+        ret = 8;
+        break;
+      case TREASURES:
+        ret = 10;
+        break;
+      case C_BIBLE_STUDY:
+        ret = 30;
+        break;
+      default:
+        break;
     }
     return ret;
   }

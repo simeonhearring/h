@@ -95,9 +95,9 @@ public class MidweekPresenter extends AbstractPresenter<MidweekPresenter.Display
     int mn1 = sMonths[mMonthIndex][1];
     int mn2 = sMonths[mMonthIndex][2];
 
-    Month mo0 = meeting.getMonth(yr, mn0);
-    Month mo1 = meeting.getMonth(yr, mn1);
-    Month mo2 = meeting.getMonth(yr, mn2);
+    Month mo0 = meeting.gMonth(yr, mn0);
+    Month mo1 = meeting.gMonth(yr, mn1);
+    Month mo2 = meeting.gMonth(yr, mn2);
 
     mDisplay.getMonth0().setMonth(yr, mn0, mo0);
     mDisplay.getMonth1().setMonth(yr, mn1, mo1);
@@ -114,7 +114,7 @@ public class MidweekPresenter extends AbstractPresenter<MidweekPresenter.Display
     Meeting meeting = mClient.getMeeting();
     meeting.setCount(mProfile.getCount());
 
-    Year year = meeting.getYear(mYears[mYearIndex]);
+    Year year = meeting.gYear(mYears[mYearIndex]);
 
     mChart.getStat().setSubHead(TextUtil.toText(mProfile.getCount()) + " Parts");
     mChart.update(sMonthNames);

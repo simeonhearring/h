@@ -92,7 +92,6 @@ public class Curriculum implements Serializable
     mSource = inSource;
   }
 
-  // @com.fasterxml.jackson.annotation.JsonIgnore
   public Integer getDurationMinutes()
   {
     return mDurationMinutes;
@@ -121,5 +120,24 @@ public class Curriculum implements Serializable
   public void setId(Long inId)
   {
     mId = inId;
+  }
+
+  public long gElapse()
+  {
+    long ret = 0;
+
+    if (mDurationMinutes != null)
+    {
+      if (mPart.isStudyPoint())
+      {
+        ret = mDurationMinutes + 1;
+      }
+      else
+      {
+        ret = mDurationMinutes;
+      }
+    }
+
+    return ret * 60000;
   }
 }

@@ -139,4 +139,11 @@ public final class TimeUtil
   {
     return inYear % 400 == 0 || inYear % 4 == 0 && inYear % 100 != 0;
   }
+
+  public static String dateRange(Date inValue)
+  {
+    Date end = new Date(inValue.getTime() + 518400000); // 6 days
+    String pattern = inValue.getMonth() == end.getMonth() ? "dd" : "MMMM dd";
+    return (format("MMMM dd-", inValue) + format(pattern, end)).toUpperCase();
+  }
 }

@@ -1,6 +1,7 @@
 package h.model.shared.khall;
 
 import java.io.Serializable;
+import java.util.Date;
 
 @SuppressWarnings("serial")
 public class Schedule implements Serializable
@@ -50,5 +51,40 @@ public class Schedule implements Serializable
   public void setId(Long inId)
   {
     mId = inId;
+  }
+
+  public Part getPpart()
+  {
+    return mCurriculum.getPpart();
+  }
+
+  public Date getDate()
+  {
+    return mCurriculum.getDate();
+  }
+
+  public Part getPart()
+  {
+    return mCurriculum.getPart();
+  }
+
+  public String getTheme()
+  {
+    return mCurriculum.getTheme();
+  }
+
+  public String getSource()
+  {
+    return mCurriculum.getSource();
+  }
+
+  public Integer getDurationMinutes()
+  {
+    return mCurriculum.getDurationMinutes();
+  }
+
+  public Integer getSort()
+  {
+    return mCurriculum.getSort();
   }
 }

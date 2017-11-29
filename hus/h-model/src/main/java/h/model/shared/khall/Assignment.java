@@ -18,6 +18,7 @@ public class Assignment extends Schedule implements Serializable
     return getCurriculum().getDate();
   }
 
+  @Override
   public Part getPart()
   {
     return getCurriculum().getPart();
@@ -137,5 +138,16 @@ public class Assignment extends Schedule implements Serializable
   public boolean isAssignedTo(Long inId)
   {
     return inId.equals(mParticipantId) || inId.equals(mAssistantId);
+  }
+
+  public String gTiming()
+  {
+    Integer min = getDurationMinutes();
+    if (min == null || getPart().isSong())
+    {
+      return null;
+    }
+
+    return min + " min." + (getPart().isOrless() ? " or less" : "");
   }
 }

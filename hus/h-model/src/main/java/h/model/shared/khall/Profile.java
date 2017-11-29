@@ -1,5 +1,7 @@
 package h.model.shared.khall;
 
+import h.model.shared.util.TimeUtil;
+
 @SuppressWarnings("serial")
 public class Profile extends h.model.shared.Profile
 {
@@ -7,7 +9,7 @@ public class Profile extends h.model.shared.Profile
   private String mCongNme;
   private String mCongNum;
   private String mEncrypt;
-  private Integer mYear, mMonth;
+  private Integer mYear = TimeUtil.currentYear();
   private Assignments.Count mCount;
 
   public String getCongNum()
@@ -58,24 +60,9 @@ public class Profile extends h.model.shared.Profile
     };
   }
 
-  public Integer getYear()
-  {
-    return mYear;
-  }
-
   public void setYear(Integer inYear)
   {
     mYear = inYear;
-  }
-
-  public Integer getMonth()
-  {
-    return mMonth;
-  }
-
-  public void setMonth(Integer inMonth)
-  {
-    mMonth = inMonth;
   }
 
   public Assignments.Count getCount()

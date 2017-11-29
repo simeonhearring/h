@@ -35,8 +35,8 @@ public class MySqlDaoImpl extends JavaBeanDaoImpl implements Dao
   {
     Meeting ret = new Meeting();
     ret.setCount(inProfile.getCount());
-    ret.setAssignments(mScheduleSql.select(inProfile.getCongId(), inProfile.getYear() - 1));
-    ret.setAssignments(mScheduleSql.select(inProfile.getCongId(), inProfile.getYear()));
+    ret.addAssignments(mScheduleSql.select(inProfile.getCongId(), inProfile.gYears()[1]));
+    ret.addAssignments(mScheduleSql.select(inProfile.getCongId(), inProfile.gYears()[0]));
     return ret;
   }
 

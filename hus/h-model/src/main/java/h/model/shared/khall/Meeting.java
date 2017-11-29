@@ -27,7 +27,7 @@ public class Meeting implements Serializable
   }
 
   @GwtIncompatible(value = "uses java.util.Calendar - server only!")
-  public void setAssignments(List<Assignment> inAssignments)
+  public void addAssignments(List<Assignment> inAssignments)
   {
     for (Assignment value : inAssignments)
     {
@@ -49,7 +49,7 @@ public class Meeting implements Serializable
     return mAll.gHistory(inPersonId, 10);
   }
 
-  public Year getYear(int inYear)
+  public Year gYear(int inYear)
   {
     return mByYear.g(inYear);
   }
@@ -57,7 +57,7 @@ public class Meeting implements Serializable
   /*
    * inMonth = 0 - 11 (i.e. January is 0)
    */
-  public Month getMonth(int inYear, int inMonth)
+  public Month gMonth(int inYear, int inMonth)
   {
     return mByYear.g(inYear).g(inMonth);
   }
@@ -65,9 +65,9 @@ public class Meeting implements Serializable
   /*
    * inWeek = 0,1,2,3,4 (i.e. First week is 0)
    */
-  public Week getWeek(int inYear, int inMonth, int inWeek)
+  public Week gWeek(int inYear, int inMonth, int inWeek)
   {
-    return getMonth(inYear, inMonth).g(inWeek);
+    return gMonth(inYear, inMonth).g(inWeek);
   }
 
   public static class Decade extends Setup<Year> implements Serializable, ISetup
@@ -174,6 +174,16 @@ public class Meeting implements Serializable
     {
       return inO1.compareTo(inO2);
     }
+
+    public Assignments gAssignments()
+    {
+      Assignments ret = new Assignments();
+      for (Week value : mMap.values())
+      {
+        ret.add(value.gAssignments());
+      }
+      return ret;
+    }
   }
 
   public static class Week implements Serializable, ISetup
@@ -211,14 +221,37 @@ public class Meeting implements Serializable
       mAssignment.add(inValue);
     }
 
-    public List<Assignment> gAssignment()
+    public List<Assignment> gAssignments()
     {
       return mAssignment.gAssignments();
     }
 
-    public Assignment get(Part inPpart, Hall inHall)
+    public Assignment gAssignment(Part inPpart, Hall inHall)
     {
       return mAssignment.gAssignment(inPpart, inHall);
+    }
+
+    public Assignment gAssignmentE(Part inPpart, Hall inHall)
+    {
+      Assignment ret = gAssignment(inPpart, inHall);
+
+      if (ret == null)
+      {
+        Curriculum curr = new Curriculum();
+        ret = new Assignment();
+        ret.setCurriculum(curr);
+        curr.setDate(mOf);
+        curr.setPart(inPpart);
+        curr.setTheme(inPpart.getLabel(false));
+        curr.setDurationMinutes(inPpart.gDuration());
+        if (inPpart.isChairmanPart())
+        {
+          Assignment c = gAssignment(Part.CHAIRMAN, Hall.MAIN);
+          ret.setParticipantId(c.getParticipantId());
+        }
+      }
+
+      return ret;
     }
 
     @Override

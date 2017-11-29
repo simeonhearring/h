@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.4.3.final using JasperReports Library version 6.4.3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="S-140" pageWidth="612" pageHeight="792" columnWidth="576" leftMargin="18" rightMargin="18" topMargin="18" bottomMargin="18" uuid="91fad911-5d21-4c6e-b2f5-854cfc05e8c1">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="S140Generator"/>
+	<property name="com.jaspersoft.studio.unit." value="inch"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="inch"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="inch"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="inch"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="inch"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="inch"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="inch"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="inch"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="inch"/>
+	<parameter name="pCongNme" class="java.lang.String" isForPrompting="false"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="week" class="java.lang.String">
+		<fieldDescription><![CDATA[week]]></fieldDescription>
+	</field>
+	<field name="chairman" class="java.lang.String">
+		<fieldDescription><![CDATA[chairman]]></fieldDescription>
+	</field>
+	<field name="theme" class="java.lang.String">
+		<fieldDescription><![CDATA[theme]]></fieldDescription>
+	</field>
+	<field name="time" class="java.lang.String">
+		<fieldDescription><![CDATA[time]]></fieldDescription>
+	</field>
+	<field name="participantsB" class="java.lang.String">
+		<fieldDescription><![CDATA[participantsB]]></fieldDescription>
+	</field>
+	<field name="meeting" class="java.lang.String">
+		<fieldDescription><![CDATA[meeting]]></fieldDescription>
+	</field>
+	<field name="participantsA" class="java.lang.String">
+		<fieldDescription><![CDATA[participantsA]]></fieldDescription>
+	</field>
+	<group name="Week">
+		<groupExpression><![CDATA[$F{week}]]></groupExpression>
+		<groupHeader>
+			<band height="30">
+				<textField>
+					<reportElement x="0" y="0" width="380" height="30" uuid="cb4966cf-46c0-49e0-9724-439e5d4c6bc7"/>
+					<box topPadding="10">
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{week}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="390" y="0" width="186" height="30" uuid="ee6668bd-c53d-41da-8011-f24d7aaac022">
+						<property name="com.jaspersoft.studio.unit.height" value="inch"/>
+					</reportElement>
+					<box topPadding="10"/>
+					<textElement textAlignment="Right" markup="html"/>
+					<textFieldExpression><![CDATA[$F{chairman}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="0" y="0" width="576" height="1" uuid="a546319d-51a2-4794-83db-de30d9664fd0">
+						<property name="com.jaspersoft.studio.unit.x" value="inch"/>
+						<property name="com.jaspersoft.studio.unit.y" value="inch"/>
+						<property name="com.jaspersoft.studio.unit.width" value="inch"/>
+					</reportElement>
+					<graphicElement>
+						<pen lineWidth="2.0" lineStyle="Double"/>
+					</graphicElement>
+				</line>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="Meeting">
+		<groupExpression><![CDATA[$F{meeting}]]></groupExpression>
+		<groupHeader>
+			<band height="18">
+				<staticText>
+					<reportElement mode="Opaque" x="0" y="3" width="250" height="15" forecolor="#FFFFFF" backcolor="#961526" uuid="b4a01d38-a16a-440b-856c-dae3e5c51a44">
+						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						<printWhenExpression><![CDATA["LIVING".equals($F{meeting})]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="SansSerif" size="10" isBold="true"/>
+						<paragraph leftIndent="10"/>
+					</textElement>
+					<text><![CDATA[LIVING AS CHRISTIANS]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="0" y="3" width="250" height="15" forecolor="#FFFFFF" backcolor="#606A70" uuid="5f2612ea-eea9-4ccd-9a2b-f9f02209f70e">
+						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						<printWhenExpression><![CDATA["TREASURES".equals($F{meeting})]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="SansSerif" size="10" isBold="true"/>
+						<paragraph leftIndent="10"/>
+					</textElement>
+					<text><![CDATA[TREASURES FROM GOD’S WORD]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="0" y="3" width="250" height="15" forecolor="#FFFFFF" backcolor="#C18626" uuid="ecdb50e8-560b-402c-934a-8110efe42ba7">
+						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+						<printWhenExpression><![CDATA["APPLY".equals($F{meeting})]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="SansSerif" size="10" isBold="true"/>
+						<paragraph leftIndent="10"/>
+					</textElement>
+					<text><![CDATA[APPLY YOURSELF TO THE FIELD MINISTRY]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+	</group>
+	<columnHeader>
+		<band height="26">
+			<staticText>
+				<reportElement x="390" y="0" width="186" height="20" uuid="99940864-7cc3-40b1-aaf7-3874ef453412"/>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Midweek Meeting Schedule]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="0" width="290" height="20" uuid="e0252a85-dffc-4639-a2f5-e94f225756ba"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{pCongNme}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="18" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="36" height="18" uuid="2a9332ed-b717-4698-9087-cadab883d002">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="270c8bf3-c171-4da5-a7e2-ee5cf2b0bf68"/>
+					<property name="com.jaspersoft.studio.unit.height" value="inch"/>
+					<property name="com.jaspersoft.studio.unit.width" value="inch"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{time}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="36" y="0" width="254" height="18" uuid="80aeaa96-abe9-46cb-807c-5a2a8899c877">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="78cc8af1-b49d-471f-bd92-b920c3a1769b"/>
+					<property name="com.jaspersoft.studio.unit.height" value="inch"/>
+					<property name="com.jaspersoft.studio.unit.x" value="inch"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{theme}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement key="" x="432" y="0" width="144" height="18" uuid="5d52104a-e747-4a8f-8fb4-daa8b3c4a9ab">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c59db2be-b445-4238-ab14-e24d0402c53f"/>
+					<property name="com.jaspersoft.studio.unit.height" value="inch"/>
+					<property name="com.jaspersoft.studio.unit.width" value="inch"/>
+				</reportElement>
+				<box bottomPadding="10">
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement markup="html">
+					<paragraph lineSpacing="Single" lineSpacingSize="0.0"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{participantsA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="285" y="0" width="144" height="18" uuid="dc64ad54-2bd4-40e7-b005-91f6f6c5463d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c59db2be-b445-4238-ab14-e24d0402c53f"/>
+					<property name="com.jaspersoft.studio.unit.height" value="inch"/>
+					<property name="com.jaspersoft.studio.unit.width" value="inch"/>
+				</reportElement>
+				<box bottomPadding="10"/>
+				<textElement textAlignment="Right">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{participantsB}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="0" width="576" height="1" uuid="b15bee8b-44ad-4c45-8676-db65bde50321">
+					<property name="com.jaspersoft.studio.unit.x" value="inch"/>
+					<property name="com.jaspersoft.studio.unit.width" value="inch"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+</jasperReport>

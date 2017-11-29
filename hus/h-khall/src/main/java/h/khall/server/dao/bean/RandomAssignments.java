@@ -10,6 +10,7 @@ import static h.model.shared.khall.Part.INITIAL_CALL;
 import static h.model.shared.khall.Part.LIVING_1;
 import static h.model.shared.khall.Part.LIVING_2;
 import static h.model.shared.khall.Part.SONG_1;
+import static h.model.shared.khall.Part.SONG_2;
 import static h.model.shared.khall.Part.SONG_3;
 import static h.model.shared.khall.Part.S_RETURN_VISIT;
 import static h.model.shared.khall.Part.TALK;
@@ -60,6 +61,15 @@ public class RandomAssignments
       new PartSort(INITIAL_CALL, 8), new PartSort(BIBLE_STUDY, 10),
   };
 
+  private static PartSort[] PARTSF =
+  {
+      new PartSort(SONG_2, getSortId(SONG_2)),
+      new PartSort(INITIAL_CALL, 8),
+      new PartSort(T_RETURN_VISIT, 9),
+      new PartSort(BIBLE_STUDY, 10),
+      new PartSort(LIVING_2, getSortId(LIVING_2))
+  };
+
   private static PartSort[][] PARTSE =
   {
       PARTSA, PARTSB, PARTSC, PARTSD
@@ -72,64 +82,93 @@ public class RandomAssignments
   {
     Part mPart;
     int mSort;
+    int mDuration;
 
     public PartSort(Part inPart, int inSort)
     {
       mPart = inPart;
       mSort = inSort;
     }
+
+    public PartSort(Part inPart, int inSort, int inDuration)
+    {
+      mPart = inPart;
+      mSort = inSort;
+      mDuration = inDuration;
+    }
   }
 
-  public static List<Assignment> assigns(List<Person> inPersons)
+  public static List<Assignment> assignments(List<Person> inPersons, boolean inForceAssign)
   {
     List<Assignment> ret = new ArrayList<>();
     long date = JAN_2_2017;
     for (int i = 0; i < 55; i++)
     {
       date += 604800 * 1000;
-      assigns(ret, new Date(date), inPersons);
+      assigns(ret, new Date(date), inPersons, inForceAssign);
     }
     return ret;
   }
 
-  public static List<Assignment> assigns(Date inWeekOf, List<Person> inPersons)
+  public static List<Assignment> assigns(Date inWeekOf, List<Person> inPersons,
+      boolean inForceAssign)
   {
     List<Assignment> ret = new ArrayList<>();
-    assigns(ret, inWeekOf, inPersons);
+    assigns(ret, inWeekOf, inPersons, inForceAssign);
     return ret;
   }
 
-  public static void assigns(List<Assignment> ret, Date inWeekOf, List<Person> inPersons)
+  public static void assigns(List<Assignment> ret, Date inWeekOf, List<Person> inPersons,
+      boolean inForceAssign)
   {
     for (Part value : PARTS)
     {
-      assign(ret, inWeekOf, inPersons, value, getSortId(value));
+      assign(ret, inWeekOf, inPersons, value, getSortId(value), inForceAssign);
     }
 
-    for (PartSort value : random(PARTSE))
+    if (inForceAssign)
     {
-      assign(ret, inWeekOf, inPersons, value.mPart, value.mSort);
+      for (PartSort value : PARTSF)
+      {
+        assign(ret, inWeekOf, inPersons, value.mPart, value.mSort, inForceAssign);
+      }
+    }
+    else
+    {
+      for (PartSort value : random(PARTSE))
+      {
+        assign(ret, inWeekOf, inPersons, value.mPart, value.mSort, inForceAssign);
+      }
     }
   }
 
   private static void assign(List<Assignment> inList, Date inWeekOf, List<Person> inPersons,
-      Part inPart, int inSort)
+      Part inPart, int inSort, boolean inForceAssign)
   {
-    inList.add(assignment(inWeekOf, inPart, Hall.MAIN, inSort, inPersons));
+    inList.add(assignment(inWeekOf, inPart, Hall.MAIN, inSort, inPersons, inForceAssign));
 
     if (inPart.isStudyPoint())
     {
-      inList.add(assignment(inWeekOf, inPart, Hall.SECOND, inSort, inPersons));
+      inList.add(assignment(inWeekOf, inPart, Hall.SECOND, inSort, inPersons, inForceAssign));
     }
   }
 
   public static Assignment assignment(Date inWeekOf, Part inPart, Hall inHall,
       int inSort, List<Person> inPersons)
   {
+    return assignment(inWeekOf, inPart, inHall, inSort, inPersons, false);
+  }
+
+  public static Assignment assignment(Date inWeekOf, Part inPart, Hall inHall,
+      int inSort, List<Person> inPersons, boolean inForceAssign)
+  {
     Curriculum curriculum = new Curriculum();
     curriculum.setDate(inWeekOf);
     curriculum.setPart(inPart);
     curriculum.setSort(inSort);
+    curriculum.setTheme(theme(inPart));
+    curriculum.setSource(source(inPart));
+    curriculum.setDurationMinutes(inPart.gDuration());
 
     Assignment ret = new Assignment();
     ret.setCurriculum(curriculum);
@@ -137,7 +176,7 @@ public class RandomAssignments
 
     if (inPersons != null)
     {
-      if (randomInt(11) % 2 == 0)
+      if (inForceAssign || randomInt(11) % 2 == 0)
       {
         ret.setParticipantId(random(inPersons).getIdLong());
 
@@ -153,6 +192,45 @@ public class RandomAssignments
           }
         }
       }
+    }
+    return ret;
+  }
+
+  private static String source(Part inPart)
+  {
+    String ret = null;
+    switch (inPart)
+    {
+      case SONG_1:
+      case SONG_2:
+      case SONG_3:
+        ret = "77";
+        break;
+      case CHAIRMAN:
+        ret = "JEREMIAH 51-52";
+        break;
+      default:
+        break;
+    }
+    return ret;
+  }
+
+  private static String theme(Part inPart)
+  {
+    String ret = null;
+    switch (inPart)
+    {
+      case TREASURES:
+        ret = "“Jehovah’s Word Comes True in Every Detail”";
+        break;
+      case LIVING_2:
+        ret = "Local Needs";
+        break;
+      case LIVING_1:
+        ret = "“How Strong Is Your Faith in Jehovah’s Promises?”";
+        break;
+      default:
+        break;
     }
     return ret;
   }
@@ -185,7 +263,8 @@ public class RandomAssignments
         ret = 9;
       case APPLY3:
         ret = 10;
-        // SONG2 = 11
+      case SONG_2:
+        ret = 11;
       case LIVING_1:
         ret = 12;
         break;

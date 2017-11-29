@@ -6,5 +6,5 @@ public interface Text
 
   String domain();
 
-  String rptS140();
+  String rptS140(int inCongId, int inYear, int inMonth);
 }
