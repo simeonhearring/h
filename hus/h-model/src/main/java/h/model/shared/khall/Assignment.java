@@ -13,11 +13,6 @@ public class Assignment extends Schedule implements Serializable
   private Long mAssistantId;
   private StudyPoint mStudyPoint;
 
-  public Date getWeekOf()
-  {
-    return getCurriculum().getDate();
-  }
-
   @Override
   public Part getPart()
   {
@@ -79,7 +74,7 @@ public class Assignment extends Schedule implements Serializable
   {
     StringBuilder builder = new StringBuilder();
     builder.append("Assignment [mWeekOf=");
-    builder.append(getWeekOf());
+    builder.append(getDate());
     builder.append(", mPart=");
     builder.append(getPart());
     builder.append(", mHall=");
@@ -114,7 +109,7 @@ public class Assignment extends Schedule implements Serializable
 
   public String gHistoryLine(Persons inPersons, Long inParticipantId)
   {
-    Date wo = getWeekOf();
+    Date wo = getDate();
     String sp = mStudyPoint != null ? mStudyPoint.item() : "";
     String pt = getPart().getLabel(true);
     String at = inPersons.gName(mAssistantId);

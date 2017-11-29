@@ -308,31 +308,39 @@ public enum Part
     return ret;
   }
 
-  public static List<Part> schedule(boolean inCovisit)
+  public static List<Part> schedule(boolean inCovisit, boolean inSlips)
   {
     List<Part> ret = new ArrayList<>();
-    ret.add(Part.SONG_1);
-    ret.add(Part.OPEN);
-    ret.add(Part.TREASURES);
-    ret.add(Part.DIGGING);
+    if (!inSlips)
+    {
+      ret.add(Part.SONG_1);
+      ret.add(Part.OPEN);
+      ret.add(Part.TREASURES);
+      ret.add(Part.DIGGING);
+    }
+
     ret.add(Part.BIBLE_READING);
     ret.add(Part.APPLY1);
     ret.add(Part.APPLY2);
     ret.add(Part.APPLY3);
-    ret.add(Part.SONG_2);
-    ret.add(Part.LIVING_1);
-    ret.add(Part.LIVING_2);
-    if (inCovisit)
+
+    if (!inSlips)
     {
-      ret.add(Part.REVIEW);
-      ret.add(Part.CO_TALK);
+      ret.add(Part.SONG_2);
+      ret.add(Part.LIVING_1);
+      ret.add(Part.LIVING_2);
+      if (inCovisit)
+      {
+        ret.add(Part.REVIEW);
+        ret.add(Part.CO_TALK);
+      }
+      else
+      {
+        ret.add(Part.C_BIBLE_STUDY);
+        ret.add(Part.REVIEW);
+      }
+      ret.add(Part.SONG_3);
     }
-    else
-    {
-      ret.add(Part.C_BIBLE_STUDY);
-      ret.add(Part.REVIEW);
-    }
-    ret.add(Part.SONG_3);
     return ret;
   }
 

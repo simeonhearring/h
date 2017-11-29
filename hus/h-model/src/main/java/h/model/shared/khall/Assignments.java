@@ -187,24 +187,23 @@ public class Assignments implements Serializable
 
   public static class Report implements Serializable
   {
-    public enum Meet
-    {
-      INTRO,
-      TREASURES,
-      APPLY,
-      LIVING;
-    }
-
     private String mWeek;
     private String mMeeting;
+    private String mChairman;
 
     private String mTime;
     private String mTheme;
 
-    private String mParticipantsA;
-    private String mParticipantsB;
-
+    private String mDate;
     private String mPart;
+    private String mHall;
+
+    private String mParticipantsA;
+    private String mParticipantsB; // for Aux. Class.
+
+    private String mParticipant;
+    private String mAssistant;
+    private String mStudyPoint;
 
     public String getWeek()
     {
@@ -243,12 +242,34 @@ public class Assignments implements Serializable
 
     public String getChairman()
     {
-      return mParticipantsA;
+      return mChairman;
     }
 
-    public void setWeek(String inWeek, String inReading)
+    public String getParticipant()
     {
-      mWeek = inWeek + ensure(inReading, " | ");
+      return mParticipant;
+    }
+
+    public String getAssistant()
+    {
+      return mAssistant;
+    }
+
+    public String getStudyPoint()
+    {
+      return mStudyPoint;
+    }
+
+    public String getDate()
+    {
+      return mDate;
+    }
+
+    public void setWeek(String inDate, String inReading, String inChairman)
+    {
+      mDate = inDate;
+      mWeek = mDate + ensure(inReading, " | ");
+      mChairman = ensure(inChairman, "<sup>Chairman: </sup>");
     }
 
     public void setSongPrayer(String inSong)
@@ -294,20 +315,18 @@ public class Assignments implements Serializable
       mTheme = ensure(inTheme) + ensure(inTiming, "<style size='6'> (", ")</style>");
     }
 
-    public void setChairman(String inChairman)
-    {
-      mParticipantsA = ensure(mParticipantsA, "<sup>Chairman: </sup>");
-    }
-
     public void setParticipantsA(String inParticipant, String inAssistant, String inStudyPoint)
     {
       mParticipantsA = ensure(inParticipant, ensure(inStudyPoint, "<sup>", "</sup> "))
           + ensure(inAssistant, "<br/>");
+      mParticipant = ensure(inParticipant);
+      mAssistant = ensure(inAssistant);
+      mStudyPoint = ensure(inStudyPoint);
     }
 
     public void setParticipantsB(String inParticipant, String inAssistant, String inStudyPoint)
     {
-      mParticipantsA = ensure(inParticipant, ensure(inStudyPoint, "<sup>", "</sup> "))
+      mParticipantsB = ensure(inParticipant, ensure(inStudyPoint, "<sup>", "</sup> "))
           + ensure(inAssistant, "<br/>");
     }
 
@@ -319,6 +338,40 @@ public class Assignments implements Serializable
     public void setPart(String inPart)
     {
       mPart = inPart;
+    }
+
+    public String getHall()
+    {
+      return mHall;
+    }
+
+    public void setHall(String inHall)
+    {
+      mHall = inHall;
+    }
+
+    public Report copy()
+    {
+      Report ret = new Report();
+      ret.mChairman = mChairman;
+      ret.mWeek = mWeek;
+      ret.mMeeting = mMeeting;
+      ret.mChairman = mChairman;
+
+      ret.mDate = mDate;
+      ret.mPart = mPart;
+      ret.mHall = mHall;
+
+      ret.mTime = mTime;
+      ret.mTheme = mTheme;
+
+      ret.mParticipantsA = mParticipantsA;
+      ret.mParticipantsB = mParticipantsB;
+
+      ret.mParticipant = mParticipant;
+      ret.mAssistant = mAssistant;
+      ret.mStudyPoint = mStudyPoint;
+      return ret;
     }
   }
 }

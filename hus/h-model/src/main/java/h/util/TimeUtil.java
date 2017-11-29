@@ -81,6 +81,11 @@ public class TimeUtil
 
   public static String format(String inPattern, Date inDate)
   {
+    if (inDate == null)
+    {
+      return null;
+    }
+
     String ret = null;
 
     try
@@ -112,6 +117,13 @@ public class TimeUtil
   {
     String d1 = format("yyyy-MM-dd", inDate1);
     String d2 = format("yyyy-MM-dd", inDate2);
+    return d1.equals(d2);
+  }
+
+  public static boolean isSameMonth(Date inDate1, Date inDate2)
+  {
+    String d1 = format("yyyy-MM", inDate1);
+    String d2 = format("yyyy-MM", inDate2);
     return d1.equals(d2);
   }
 }

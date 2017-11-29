@@ -15,7 +15,7 @@
 		<property name="DataSource" ref="Khall" />
 	</bean>
 
-	<bean id="S_140" class="h.khall.server.reports.S_140Report" />
+	<bean id="S_140" class="h.khall.server.reports.OclmReport" />
 
 	<!-- SERVICES -->
 

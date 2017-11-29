@@ -6,7 +6,6 @@ import h.model.shared.util.TimeUtil;
 public class Profile extends h.model.shared.Profile
 {
   private Integer mCongId;
-  private String mCongNme;
   private String mCongNum;
   private String mEncrypt;
   private Integer mYear = TimeUtil.currentYear();
@@ -30,16 +29,6 @@ public class Profile extends h.model.shared.Profile
   public void setEncrypt(String inEncrypt)
   {
     mEncrypt = inEncrypt;
-  }
-
-  public String getCongNme()
-  {
-    return mCongNme;
-  }
-
-  public void setCongNme(String inCongNme)
-  {
-    mCongNme = inCongNme;
   }
 
   public Integer getCongId()

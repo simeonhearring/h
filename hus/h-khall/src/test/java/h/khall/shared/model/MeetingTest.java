@@ -47,7 +47,7 @@ public class MeetingTest
     model.setCount(Count.ALL);
 
     List<Assignment> assigns = new ArrayList<>();
-    Date d = new Date(RandomAssignments.JAN_2_2017);
+    Date d = new Date(RandomAssignments.MON_JAN_2_2017);
     assigns.add(RandomAssignments.assignment(d, Part.CHAIRMAN, Hall.MAIN, 9, null));
     assigns.add(RandomAssignments.assignment(d, Part.TREASURES, Hall.MAIN, 10, null));
     assigns.add(RandomAssignments.assignment(d, Part.F_RETURN_VISIT, Hall.MAIN, 11, null));
@@ -81,7 +81,7 @@ public class MeetingTest
     model.setCount(Count.STUDENT);
 
     List<Assignment> assigns = new ArrayList<>();
-    Date d = new Date(RandomAssignments.JAN_2_2017);
+    Date d = new Date(RandomAssignments.MON_JAN_2_2017);
     assigns.add(RandomAssignments.assignment(d, Part.CHAIRMAN, Hall.MAIN, 9, null));
     assigns.add(RandomAssignments.assignment(d, Part.TREASURES, Hall.MAIN, 10, null));
     assigns.add(RandomAssignments.assignment(d, Part.F_RETURN_VISIT, Hall.MAIN, 11, null));
@@ -115,7 +115,7 @@ public class MeetingTest
     model.setCount(Count.STUDENT);
 
     List<Assignment> y2017 = new ArrayList<>();
-    Date d2017 = new Date(RandomAssignments.JAN_2_2017);
+    Date d2017 = new Date(RandomAssignments.MON_JAN_2_2017);
     y2017.add(assignment(d2017, Part.CHAIRMAN, Hall.MAIN, 9, 1L));
     y2017.add(assignment(d2017, Part.TREASURES, Hall.MAIN, 10, 1L));
     y2017.add(assignment(d2017, Part.F_RETURN_VISIT, Hall.MAIN, 11, 1L));
@@ -123,7 +123,7 @@ public class MeetingTest
     model.addAssignments(y2017);
 
     List<Assignment> y2018 = new ArrayList<>();
-    Date d2018 = new Date(RandomAssignments.JAN_1_2018);
+    Date d2018 = new Date(RandomAssignments.MON_JAN_1_2018);
     y2018.add(assignment(d2018, Part.CHAIRMAN, Hall.MAIN, 9, 1L));
     y2018.add(assignment(d2018, Part.TREASURES, Hall.MAIN, 10, 1L));
     y2018.add(assignment(d2018, Part.F_RETURN_VISIT, Hall.MAIN, 11, 1L));

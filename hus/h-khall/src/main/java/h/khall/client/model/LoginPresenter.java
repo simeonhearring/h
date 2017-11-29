@@ -59,7 +59,6 @@ public class LoginPresenter extends AbstractPresenter<LoginPresenter.Display>
       Login login = inCommand.getData();
       fire(new AttachEvent(TypeA.MIDWEEK), new ProfileEvent(login.getProfile()),
           new ClientEvent(login.getClient()), new RefreshEvent());
-      mDisplay.addSessionValue("congNme", login.getProfile().getCongNme());
     }
   }
 }

@@ -70,8 +70,8 @@ public class LoginView extends AbstractView<LoginPresenter> implements LoginPres
     }
     else if (mForgot.equals(source))
     {
-     // fire(new ReportEvent(MESSAGE.rptS140(59, 2018, 1)));
-       mPresenter.forgotPassword();
+      fire(new ReportEvent(MESSAGE.rptS140(59, 2018, 0)));
+      // mPresenter.forgotPassword();
     }
     else if (mCreate.equals(source))
     {

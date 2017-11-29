@@ -1,6 +1,7 @@
 package h.khall.server.dao;
 
 import h.model.shared.khall.Assignment;
+import h.model.shared.khall.Congregation;
 import h.model.shared.khall.Meeting;
 import h.model.shared.khall.Persons;
 import h.model.shared.khall.Profile;
@@ -17,4 +18,6 @@ public interface Dao
   Persons selectPersons(Profile inProfile);
 
   void update(Assignment inAssignment);
+
+  Congregation selectCong(Profile inProfile);
 }

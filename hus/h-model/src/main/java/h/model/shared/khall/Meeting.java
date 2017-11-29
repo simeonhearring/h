@@ -32,7 +32,7 @@ public class Meeting implements Serializable
     for (Assignment value : inAssignments)
     {
       Calendar c = Calendar.getInstance();
-      c.setTime(value.getWeekOf());
+      c.setTime(value.getDate());
       c.setFirstDayOfWeek(Calendar.MONDAY);
 
       int year = c.get(Calendar.YEAR);
@@ -80,7 +80,7 @@ public class Meeting implements Serializable
 
     public void add(int inYear, int inMonth, int inWeek, Assignment inValue)
     {
-      setup(inYear, inValue.getWeekOf());
+      setup(inYear, inValue.getDate());
       mMap.get(inYear).add(inMonth, inWeek, inValue);
     }
   }
@@ -95,7 +95,7 @@ public class Meeting implements Serializable
 
     public void add(int inMonth, int inWeek, Assignment inValue)
     {
-      setup(inMonth, inValue.getWeekOf());
+      setup(inMonth, inValue.getDate());
       mMap.get(inMonth).add(inWeek, inValue);
     }
 
@@ -132,7 +132,7 @@ public class Meeting implements Serializable
 
     public void add(int inWeek, Assignment inValue)
     {
-      setup(inWeek, inValue.getWeekOf());
+      setup(inWeek, inValue.getDate());
       mMap.get(inWeek).add(inValue);
     }
 
@@ -231,24 +231,31 @@ public class Meeting implements Serializable
       return mAssignment.gAssignment(inPpart, inHall);
     }
 
-    public Assignment gAssignmentE(Part inPpart, Hall inHall)
+    public Map<Hall, Assignment> gAssignmentE(Part inPpart, Hall... inHalls)
     {
-      Assignment ret = gAssignment(inPpart, inHall);
+      Map<Hall, Assignment> ret = new HashMap<>();
 
-      if (ret == null)
+      for (Hall value : inHalls)
       {
-        Curriculum curr = new Curriculum();
-        ret = new Assignment();
-        ret.setCurriculum(curr);
-        curr.setDate(mOf);
-        curr.setPart(inPpart);
-        curr.setTheme(inPpart.getLabel(false));
-        curr.setDurationMinutes(inPpart.gDuration());
-        if (inPpart.isChairmanPart())
+        Assignment assignment = gAssignment(inPpart, value);
+
+        if (assignment == null)
         {
-          Assignment c = gAssignment(Part.CHAIRMAN, Hall.MAIN);
-          ret.setParticipantId(c.getParticipantId());
+          Curriculum curr = new Curriculum();
+          assignment = new Assignment();
+          assignment.setSchool(value);
+          assignment.setCurriculum(curr);
+          curr.setDate(mOf);
+          curr.setPart(inPpart);
+          curr.setTheme(inPpart.getLabel(false));
+          curr.setDurationMinutes(inPpart.gDuration());
+          if (inPpart.isChairmanPart())
+          {
+            Assignment c = gAssignment(Part.CHAIRMAN, Hall.MAIN);
+            assignment.setParticipantId(c.getParticipantId());
+          }
         }
+        ret.put(value, assignment);
       }
 
       return ret;
@@ -264,6 +271,12 @@ public class Meeting implements Serializable
       builder.append(mAssignment);
       builder.append("]");
       return builder.toString();
+    }
+
+    public boolean isCoWeek()
+    {
+      // TODO Auto-generated method stub
+      return false;
     }
   }
 

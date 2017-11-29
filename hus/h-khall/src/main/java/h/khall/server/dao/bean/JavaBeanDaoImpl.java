@@ -1,9 +1,13 @@
 package h.khall.server.dao.bean;
 
+import java.util.Date;
+
 import h.khall.server.dao.Dao;
 import h.model.shared.khall.Assignment;
 import h.model.shared.khall.Assignments.Count;
 import h.model.shared.khall.Charts;
+import h.model.shared.khall.Congregation;
+import h.model.shared.khall.Hall;
 import h.model.shared.khall.Meeting;
 import h.model.shared.khall.Persons;
 import h.model.shared.khall.Profile;
@@ -23,11 +27,26 @@ public class JavaBeanDaoImpl implements Dao
     ret.setCongNum(inProfile.getCongNum());
     ret.setEncrypt(inProfile.getEncrypt());
 
+    // TODO authenticate password
+
     ret.setUserTitle("Owner");
     ret.setUserName("Simeon L Hearring");
     ret.setCongId(59);
-    ret.setCongNme("English - Gallatin, TN");
     ret.setCount(Count.STUDENT);
+
+    return ret;
+  }
+
+  @Override
+  public Congregation selectCong(Profile inProfile)
+  {
+    Congregation ret = new Congregation();
+    ret.setId(inProfile.getCongId());
+    ret.setNumber(inProfile.getCongNum());
+
+    ret.setMidweekOn(new Date(RandomAssignments.THU_JAN_7_2016_1930));
+    ret.setName("English - Gallatin, TN");
+    ret.setHalls(Hall.MAIN);
     return ret;
   }
 

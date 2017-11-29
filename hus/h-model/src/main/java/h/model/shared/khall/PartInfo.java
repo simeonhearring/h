@@ -76,7 +76,7 @@ public class PartInfo implements Serializable, Comparator<PartInfo.Info>
 
     public Date getLast()
     {
-      return mArchive.size() > 0 ? mArchive.get(0).getWeekOf() : null;
+      return mArchive.size() > 0 ? mArchive.get(0).getDate() : null;
     }
   }
 
