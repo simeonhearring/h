@@ -26,6 +26,7 @@ public class JavaBeanDaoImpl implements Dao
     ret.setUserTitle("Owner");
     ret.setUserName("Simeon L Hearring");
     ret.setCongId(59);
+    ret.setCongNme("English - Gallatin, TN");
     ret.setCount(Count.STUDENT);
     return ret;
   }

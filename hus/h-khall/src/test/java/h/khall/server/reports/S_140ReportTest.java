@@ -22,16 +22,6 @@ public class S_140ReportTest
     List<Report> reports = s140.report(RandomPersons.persons(), meeting.gMonth(2017, 0));
 
     Report report = reports.get(0);
-    Assert.assertEquals("CHAIRMAN", report.getPart());
-    Assert.assertEquals("JANUARY 09-15 | JEREMIAH 51-52", report.getWeek());
-    Assert.assertEquals("INTRO", report.getMeeting());
-    Assert.assertEquals("7:00", report.getTime());
-    Assert.assertEquals("", report.getTheme());
-    String chairman = report.getParticipantsA();
-    Assert.assertNotNull(chairman);
-    Assert.assertNull(report.getParticipantsB());
-
-    report = reports.get(1);
     Assert.assertEquals("SONG_1", report.getPart());
     Assert.assertEquals("JANUARY 09-15 | JEREMIAH 51-52", report.getWeek());
     Assert.assertEquals("INTRO", report.getMeeting());
@@ -40,16 +30,16 @@ public class S_140ReportTest
     Assert.assertNotEquals("", report.getParticipantsA());
     Assert.assertNull(report.getParticipantsB());
 
-    report = reports.get(2);
+    report = reports.get(1);
     Assert.assertEquals("OPEN", report.getPart());
     Assert.assertEquals("JANUARY 09-15 | JEREMIAH 51-52", report.getWeek());
     Assert.assertEquals("INTRO", report.getMeeting());
     Assert.assertEquals("7:05", report.getTime());
     Assert.assertEquals("Opening Comments<style size='6'> (3 min. or less)</style>", report.getTheme());
-    Assert.assertEquals(chairman, report.getParticipantsA());
+    Assert.assertNotEquals("", report.getParticipantsA());
     Assert.assertNull(report.getParticipantsB());
 
-    report = reports.get(3);
+    report = reports.get(2);
     Assert.assertEquals("TREASURES", report.getPart());
     Assert.assertEquals("JANUARY 09-15 | JEREMIAH 51-52", report.getWeek());
     Assert.assertEquals("TREASURES", report.getMeeting());
@@ -58,7 +48,7 @@ public class S_140ReportTest
     Assert.assertNotEquals("", report.getParticipantsA());
     Assert.assertNull(report.getParticipantsB());
 
-    report = reports.get(4);
+    report = reports.get(3);
     Assert.assertEquals("DIGGING", report.getPart());
     Assert.assertEquals("JANUARY 09-15 | JEREMIAH 51-52", report.getWeek());
     Assert.assertEquals("TREASURES", report.getMeeting());
@@ -67,7 +57,7 @@ public class S_140ReportTest
     Assert.assertNotEquals("", report.getParticipantsA());
     Assert.assertNull(report.getParticipantsB());
 
-    report = reports.get(5);
+    report = reports.get(4);
     Assert.assertEquals("BIBLE_READING", report.getPart());
     Assert.assertEquals("JANUARY 09-15 | JEREMIAH 51-52", report.getWeek());
     Assert.assertEquals("TREASURES", report.getMeeting());
@@ -76,7 +66,7 @@ public class S_140ReportTest
     Assert.assertNotEquals("", report.getParticipantsA());
     Assert.assertNull(report.getParticipantsB());
 
-    report = reports.get(6);
+    report = reports.get(5);
     Assert.assertEquals("APPLY1", report.getPart());
     Assert.assertEquals("JANUARY 09-15 | JEREMIAH 51-52", report.getWeek());
     Assert.assertEquals("APPLY", report.getMeeting());
@@ -85,7 +75,7 @@ public class S_140ReportTest
     Assert.assertNotEquals("", report.getParticipantsA());
     Assert.assertNull(report.getParticipantsB());
 
-    report = reports.get(7);
+    report = reports.get(6);
     Assert.assertEquals("APPLY2", report.getPart());
     Assert.assertEquals("JANUARY 09-15 | JEREMIAH 51-52", report.getWeek());
     Assert.assertEquals("APPLY", report.getMeeting());
@@ -94,7 +84,7 @@ public class S_140ReportTest
     Assert.assertNotEquals("", report.getParticipantsA());
     Assert.assertNull(report.getParticipantsB());
 
-    report = reports.get(8);
+    report = reports.get(7);
     Assert.assertEquals("APPLY3", report.getPart());
     Assert.assertEquals("JANUARY 09-15 | JEREMIAH 51-52", report.getWeek());
     Assert.assertEquals("APPLY", report.getMeeting());
@@ -103,7 +93,7 @@ public class S_140ReportTest
     Assert.assertNotEquals("", report.getParticipantsA());
     Assert.assertNull(report.getParticipantsB());
 
-    report = reports.get(9);
+    report = reports.get(8);
     Assert.assertEquals("SONG_2", report.getPart());
     Assert.assertEquals("JANUARY 09-15 | JEREMIAH 51-52", report.getWeek());
     Assert.assertEquals("LIVING", report.getMeeting());
@@ -112,7 +102,7 @@ public class S_140ReportTest
     Assert.assertNotEquals("", report.getParticipantsA());
     Assert.assertNull(report.getParticipantsB());
 
-    report = reports.get(10);
+    report = reports.get(9);
     Assert.assertEquals("LIVING_1", report.getPart());
     Assert.assertEquals("JANUARY 09-15 | JEREMIAH 51-52", report.getWeek());
     Assert.assertEquals("LIVING", report.getMeeting());
@@ -121,7 +111,7 @@ public class S_140ReportTest
     Assert.assertNotEquals("", report.getParticipantsA());
     Assert.assertNull(report.getParticipantsB());
 
-    report = reports.get(11);
+    report = reports.get(10);
     Assert.assertEquals("LIVING_2", report.getPart());
     Assert.assertEquals("JANUARY 09-15 | JEREMIAH 51-52", report.getWeek());
     Assert.assertEquals("LIVING", report.getMeeting());
@@ -130,7 +120,7 @@ public class S_140ReportTest
     Assert.assertNotEquals("", report.getParticipantsA());
     Assert.assertNull(report.getParticipantsB());
 
-    report = reports.get(12);
+    report = reports.get(11);
     Assert.assertEquals("C_BIBLE_STUDY", report.getPart());
     Assert.assertEquals("JANUARY 09-15 | JEREMIAH 51-52", report.getWeek());
     Assert.assertEquals("LIVING", report.getMeeting());
@@ -139,7 +129,7 @@ public class S_140ReportTest
     Assert.assertNotEquals("", report.getParticipantsA());
     Assert.assertNull(report.getParticipantsB());
 
-    report = reports.get(13);
+    report = reports.get(12);
     Assert.assertEquals("REVIEW", report.getPart());
     Assert.assertEquals("JANUARY 09-15 | JEREMIAH 51-52", report.getWeek());
     Assert.assertEquals("LIVING", report.getMeeting());
@@ -148,7 +138,7 @@ public class S_140ReportTest
     Assert.assertNotEquals("", report.getParticipantsA());
     Assert.assertNull(report.getParticipantsB());
 
-    report = reports.get(14);
+    report = reports.get(13);
     Assert.assertEquals("SONG_3", report.getPart());
     Assert.assertEquals("JANUARY 09-15 | JEREMIAH 51-52", report.getWeek());
     Assert.assertEquals("LIVING", report.getMeeting());
@@ -157,15 +147,15 @@ public class S_140ReportTest
     Assert.assertNotEquals("", report.getParticipantsA());
     Assert.assertNull(report.getParticipantsB());
 
-    report = reports.get(15);
-    Assert.assertEquals("CHAIRMAN", report.getPart());
+    report = reports.get(14);
+    Assert.assertEquals("SONG_1", report.getPart());
     Assert.assertEquals("JANUARY 16-22 | JEREMIAH 51-52", report.getWeek());
     Assert.assertEquals("INTRO", report.getMeeting());
     Assert.assertEquals("7:00", report.getTime());
-    Assert.assertEquals("", report.getTheme());
+    Assert.assertEquals("Song 77 and prayer", report.getTheme());
     Assert.assertNotEquals("", report.getParticipantsA());
     Assert.assertNull(report.getParticipantsB());
 
-    Assert.assertEquals(60, reports.size());
+    Assert.assertEquals(56, reports.size());
   }
 }

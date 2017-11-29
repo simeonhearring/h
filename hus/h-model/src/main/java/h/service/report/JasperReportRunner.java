@@ -1,7 +1,6 @@
 package h.service.report;
 
 import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
 import java.sql.Connection;
 import java.util.Collection;
 import java.util.Map;
@@ -33,10 +32,11 @@ public class JasperReportRunner implements ReportRunner
   {
     try
     {
-      InputStream is = this.getClass().getResourceAsStream("reports/S_140.jasper");
+      // InputStream is =
+      // this.getClass().getResourceAsStream("reports/S_140.jasper");
 
       JRBeanCollectionDataSource jrDataSource = new JRBeanCollectionDataSource(inCollection);
-      return JasperRunManager.runReportToPdf(is, inParameters, jrDataSource);
+      return JasperRunManager.runReportToPdf(inReport, inParameters, jrDataSource);
     }
     catch (JRException e)
     {

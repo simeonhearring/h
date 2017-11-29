@@ -37,6 +37,6 @@ public class KhallEntryPoint extends AbstractEntryPoint
   @Override
   public String getEncrypt()
   {
-    return "&pEncrypt=" + Global.info().get("congEnc");
+    return "&pEncrypt=" + Global.info().get("congEnc") + "&pCongNme=" + Global.info().get("congNme");
   }
 }

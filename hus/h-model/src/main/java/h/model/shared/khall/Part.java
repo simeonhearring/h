@@ -311,7 +311,6 @@ public enum Part
   public static List<Part> schedule(boolean inCovisit)
   {
     List<Part> ret = new ArrayList<>();
-    ret.add(Part.CHAIRMAN);
     ret.add(Part.SONG_1);
     ret.add(Part.OPEN);
     ret.add(Part.TREASURES);
