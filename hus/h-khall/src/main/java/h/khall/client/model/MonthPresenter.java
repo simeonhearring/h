@@ -6,6 +6,8 @@ import h.model.shared.khall.Meeting.Month;
 
 public class MonthPresenter extends AbstractPresenter<MonthPresenter.Display>
 {
+  private int mYear, mMonth;
+
   public MonthPresenter(Display inDisplay)
   {
     initDisplay(inDisplay);
@@ -22,10 +24,27 @@ public class MonthPresenter extends AbstractPresenter<MonthPresenter.Display>
     mDisplay.getWeek4().reset();
   }
 
+  public int getCongId()
+  {
+    return mProfile.getCongId();
+  }
+
+  public int getYear()
+  {
+    return mYear;
+  }
+
+  public int getMonth()
+  {
+    return mMonth;
+  }
+
   public void setMonth(int inYear, int inMo, Month inMonth)
   {
+    mYear = inYear;
+    mMonth = inMo;
     @SuppressWarnings("deprecation")
-    Date d = new Date(inYear - 1900, inMo, 1);
+    Date d = new Date(mYear - 1900, mMonth, 1);
     mDisplay.setMonth(format("MMMM yyyy", d).toUpperCase());
 
     if (!inMonth.empty())

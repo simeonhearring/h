@@ -11,6 +11,8 @@ import org.springframework.web.context.WebApplicationContext;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import h.model.shared.exception.NotifyException;
+import h.model.shared.util.TimeUtil;
+import h.model.shared.util.TimeUtil.FormatServer;
 import h.style.g.client.service.rpc.RpcService;
 import h.style.g.server.command.CommandBean;
 import h.style.g.server.util.HostUtil;
@@ -34,6 +36,8 @@ public class RpcServiceImpl extends RemoteServiceServlet implements RpcService
   public void init(ServletConfig inConfig) throws ServletException
   {
     super.init(inConfig);
+
+    TimeUtil.setFormat(new FormatServer());
 
     mAppContext = (ApplicationContext) inConfig.getServletContext()
         .getAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE);

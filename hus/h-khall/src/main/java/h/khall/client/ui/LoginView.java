@@ -15,7 +15,6 @@ import com.google.gwt.user.client.ui.UIObject;
 import com.google.gwt.user.client.ui.Widget;
 
 import h.khall.client.model.LoginPresenter;
-import h.style.g.client.ui.event.ReportEvent;
 import h.style.g.client.ui.util.StorageUtil;
 
 public class LoginView extends AbstractView<LoginPresenter> implements LoginPresenter.Display
@@ -70,8 +69,7 @@ public class LoginView extends AbstractView<LoginPresenter> implements LoginPres
     }
     else if (mForgot.equals(source))
     {
-      fire(new ReportEvent(MESSAGE.rptS140(59, 2018, 0)));
-      // mPresenter.forgotPassword();
+      mPresenter.forgotPassword();
     }
     else if (mCreate.equals(source))
     {

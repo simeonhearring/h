@@ -1,12 +1,22 @@
 package h.model.shared.util;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import com.google.common.annotations.GwtIncompatible;
 import com.google.gwt.i18n.client.DateTimeFormat;
 
 @SuppressWarnings("deprecation")
 public final class TimeUtil
 {
+  private static FormatDate sFormat;
+
+  public static void setFormat(FormatDate inFormat)
+  {
+    sFormat = inFormat;
+  }
+
   public static Date getFirstOfMonth(int inYear, int inMonth)
   {
     return new Date(inYear - 1900, inMonth - 1, 1);
@@ -102,12 +112,12 @@ public final class TimeUtil
 
   public static String format(String inPattern, Date inValue)
   {
-    return DateTimeFormat.getFormat(inPattern).format(inValue);
+    return sFormat.format(inPattern, inValue);
   }
 
   public static Date parse(String inPattern, String inValue)
   {
-    return DateTimeFormat.getFormat(inPattern).parse(inValue);
+    return sFormat.parse(inPattern, inValue);
   }
 
   public static Date getEndOfMonth(int inYear, int inMonth)
@@ -145,5 +155,46 @@ public final class TimeUtil
     Date end = new Date(inValue.getTime() + 518400000); // 6 days
     String pattern = inValue.getMonth() == end.getMonth() ? "dd" : "MMMM dd";
     return (format("MMMM dd-", inValue) + format(pattern, end)).toUpperCase();
+  }
+
+  @GwtIncompatible(value = "")
+  public static class FormatServer implements FormatDate
+  {
+    @GwtIncompatible(value = "use SimpleDateFormat")
+    @Override
+    public String format(String inPattern, Date inValue)
+    {
+      return new SimpleDateFormat(inPattern).format(inValue);
+    }
+
+    @GwtIncompatible(value = "use SimpleDateFormat")
+    @Override
+    public Date parse(String inPattern, String inValue)
+    {
+      try
+      {
+        return new SimpleDateFormat(inPattern).parse(inValue);
+      }
+      catch (ParseException e)
+      {
+        // do nothing
+      }
+      return null;
+    }
+  }
+
+  public static class FormatClient implements FormatDate
+  {
+    @Override
+    public String format(String inPattern, Date inValue)
+    {
+      return DateTimeFormat.getFormat(inPattern).format(inValue);
+    }
+
+    @Override
+    public Date parse(String inPattern, String inValue)
+    {
+      return DateTimeFormat.getFormat(inPattern).parse(inValue);
+    }
   }
 }

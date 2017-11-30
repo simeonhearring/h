@@ -110,6 +110,11 @@ public enum StudyPoint implements Tag
     return inStudyPoint != null ? "#" + inStudyPoint.getId() : "";
   }
 
+  public static String display3(StudyPoint inStudyPoint)
+  {
+    return inStudyPoint != null ? inStudyPoint.item() : "";
+  }
+
   public boolean isValid(Part inPart)
   {
     boolean ret = false;

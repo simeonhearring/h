@@ -5,6 +5,8 @@ import h.khall.client.ui.event.AttachEvent;
 import h.khall.client.ui.event.AttachEvent.TypeA;
 import h.khall.client.ui.event.ProfileEvent;
 import h.model.shared.SessionInfo;
+import h.model.shared.util.TimeUtil;
+import h.model.shared.util.TimeUtil.FormatClient;
 import h.style.g.client.AbstractEntryPoint;
 import h.style.g.client.model.CallBack;
 import h.style.g.client.ui.common.Global;
@@ -17,6 +19,7 @@ public class KhallEntryPoint extends AbstractEntryPoint
   public void dispatch(LoadMainEvent inEvent)
   {
     Global.getInstance().addHandler(ProfileEvent.TYPE, this);
+    TimeUtil.setFormat(new FormatClient());
     new MainView();
     sessionInfo(this);
   }

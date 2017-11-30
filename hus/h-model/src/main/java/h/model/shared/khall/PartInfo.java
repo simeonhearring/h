@@ -66,12 +66,7 @@ public class PartInfo implements Serializable, Comparator<PartInfo.Info>
 
     public List<String> getArchive(Persons inPersons)
     {
-      List<String> ret = new ArrayList<>();
-      for (Assignment value : mArchive)
-      {
-        ret.add(value.gHistoryLine(inPersons, mPerson.getIdLong()));
-      }
-      return ret;
+      return Assignment.getArchive(inPersons, mArchive, mPerson.getIdLong());
     }
 
     public Date getLast()

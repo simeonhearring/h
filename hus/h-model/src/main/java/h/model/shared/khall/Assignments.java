@@ -205,6 +205,8 @@ public class Assignments implements Serializable
     private String mAssistant;
     private String mStudyPoint;
 
+    private String mHistory;
+
     public String getWeek()
     {
       return mWeek;
@@ -330,6 +332,11 @@ public class Assignments implements Serializable
           + ensure(inAssistant, "<br/>");
     }
 
+    public void setStudyPoint(String inStudyPoint)
+    {
+      mStudyPoint = inStudyPoint;
+    }
+
     public String getPart()
     {
       return mPart;
@@ -365,13 +372,23 @@ public class Assignments implements Serializable
       ret.mTime = mTime;
       ret.mTheme = mTheme;
 
-      ret.mParticipantsA = mParticipantsA;
-      ret.mParticipantsB = mParticipantsB;
-
-      ret.mParticipant = mParticipant;
-      ret.mAssistant = mAssistant;
-      ret.mStudyPoint = mStudyPoint;
+      // ret.mParticipantsA = mParticipantsA;
+      // ret.mParticipantsB = mParticipantsB;
+      //
+      // ret.mParticipant = mParticipant;
+      // ret.mAssistant = mAssistant;
+      // ret.mStudyPoint = mStudyPoint;
       return ret;
+    }
+
+    public String getHistory()
+    {
+      return mHistory;
+    }
+
+    public void setHistory(String inHistory)
+    {
+      mHistory = inHistory;
     }
   }
 }

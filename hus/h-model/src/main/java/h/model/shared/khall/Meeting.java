@@ -14,7 +14,7 @@ import com.google.common.annotations.GwtIncompatible;
 import h.model.shared.util.MapUtil;
 
 @SuppressWarnings("serial")
-public class Meeting implements Serializable
+public class Meeting implements Serializable, IHistory
 {
   private static Assignments.Count sCount = Assignments.Count.ALL;
 
@@ -29,6 +29,7 @@ public class Meeting implements Serializable
   @GwtIncompatible(value = "uses java.util.Calendar - server only!")
   public void addAssignments(List<Assignment> inAssignments)
   {
+    mByYear.setMeeting(this);
     for (Assignment value : inAssignments)
     {
       Calendar c = Calendar.getInstance();
@@ -44,6 +45,7 @@ public class Meeting implements Serializable
     }
   }
 
+  @Override
   public List<Assignment> gHistory(Long inPersonId)
   {
     return mAll.gHistory(inPersonId, 10);
@@ -211,6 +213,11 @@ public class Meeting implements Serializable
       return mAssignment.gCount(sCount);
     }
 
+    @Override
+    public void setMeeting(IHistory inMeeting)
+    {
+    }
+
     public int gAssigned()
     {
       return mAssignment.gAssigned(sCount);
@@ -231,7 +238,7 @@ public class Meeting implements Serializable
       return mAssignment.gAssignment(inPpart, inHall);
     }
 
-    public Map<Hall, Assignment> gAssignmentE(Part inPpart, Hall... inHalls)
+    public Map<Hall, Assignment> gAssignments(Part inPpart, Hall... inHalls)
     {
       Map<Hall, Assignment> ret = new HashMap<>();
 
@@ -252,7 +259,10 @@ public class Meeting implements Serializable
           if (inPpart.isChairmanPart())
           {
             Assignment c = gAssignment(Part.CHAIRMAN, Hall.MAIN);
-            assignment.setParticipantId(c.getParticipantId());
+            if (c != null)
+            {
+              assignment.setParticipantId(c.getParticipantId());
+            }
           }
         }
         ret.put(value, assignment);
@@ -283,19 +293,34 @@ public class Meeting implements Serializable
   public interface ISetup
   {
     double gCount();
+
+    void setMeeting(IHistory inMeeting);
   }
 
   public static abstract class Setup<V extends ISetup> implements Serializable
   {
     protected Map<Integer, V> mMap = new HashMap<>();
+    private IHistory mMeeting;
+
+    public void setMeeting(IHistory inMeeting)
+    {
+      mMeeting = inMeeting;
+    }
 
     public abstract V create(Date inWeekOf);
+
+    public List<Assignment> gHistory(Long inPersonId)
+    {
+      return mMeeting.gHistory(inPersonId);
+    }
 
     public void setup(int inKey, Date inValue)
     {
       if (!mMap.containsKey(inKey))
       {
-        mMap.put(inKey, create(inValue));
+        V create = create(inValue);
+        create.setMeeting(mMeeting);
+        mMap.put(inKey, create);
       }
     }
 

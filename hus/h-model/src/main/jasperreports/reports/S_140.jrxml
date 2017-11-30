@@ -205,9 +205,50 @@
 					<property name="com.jaspersoft.studio.unit.width" value="inch"/>
 				</reportElement>
 				<graphicElement>
-					<pen lineStyle="Dotted"/>
+					<pen lineStyle="Solid" lineColor="rgba(199, 195, 195, 0.78431374)"/>
 				</graphicElement>
 			</line>
 		</band>
 	</detail>
+	<columnFooter>
+		<band height="20">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<textField evaluationTime="Report">
+				<reportElement x="80" y="5" width="40" height="15" uuid="68ae1555-286c-4fc5-b785-b5740361c600">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="yyyy.MM.dd G &apos;at&apos; HH:mm:ss z">
+				<reportElement x="274" y="5" width="301" height="15" uuid="b62a8462-334f-49a7-b171-4dadb709faf3"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="5" width="80" height="15" uuid="d0c7b2e7-af08-42ef-bded-cee67cec7bdb"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER} + " of"]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement key="" positionType="FixRelativeToBottom" x="0" y="0" width="576" height="1" uuid="f9811e4f-61c4-4682-9bf0-f6f6cace3971">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.5" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="136" y="5" width="143" height="15" uuid="9a2526cc-5dbb-43ce-87a1-de0b41453ad2"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA["Week" + ($V{PAGE_NUMBER}.equals(1) ? "s 1 & 2" : ($V{PAGE_NUMBER}.equals(2) ? "s 3 & 4" : ($V{PAGE_NUMBER}.equals(3) ? " 5" : "")))]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="124" y="0" width="1" height="20" uuid="2ce46635-1adf-4bc3-9282-504cd0c2debe">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+			</line>
+		</band>
+	</columnFooter>
 </jasperReport>

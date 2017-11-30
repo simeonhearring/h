@@ -87,15 +87,15 @@ public class OclmReport extends AbstractReportDefault<Report>
 
       TimeKeeper keeper = new TimeKeeper(meetingDate(inCong.getMidweekOn(), week.getOf()));
 
-      Assignment chairman = week.gAssignmentE(Part.CHAIRMAN, Hall.MAIN).get(Hall.MAIN);
+      Assignment chairman = week.gAssignments(Part.CHAIRMAN, Hall.MAIN).get(Hall.MAIN);
       String csource = chairman.getSource();
       String cname = ensure(inPersons.gName(chairman.getParticipantId()));
 
       for (Part value : Part.schedule(week.isCoWeek(), isStudent()))
       {
-        Map<Hall, Assignment> assignment = week.gAssignmentE(value, inCong.getHalls());
+        Map<Hall, Assignment> assignment = week.gAssignments(value, inCong.getHalls());
         Report r = newReport(keeper, csource, cname, assignment.get(Hall.MAIN));
-        addReport(ret, inPersons, assignment, r.copy());
+        addReports(ret, inPersons, inMonth, assignment, r.copy());
       }
     }
 
@@ -112,20 +112,21 @@ public class OclmReport extends AbstractReportDefault<Report>
     return false;
   }
 
-  protected void addReport(List<Report> inList, Persons inPersons, Map<Hall, Assignment> inA, Report inR)
+  protected void addReports(List<Report> inList, Persons inPersons, Month inMonth,
+      Map<Hall, Assignment> inAssignments, Report inReport)
   {
-    inR.setHall(Hall.MAIN.name());
+    inReport.setHall(Hall.MAIN.name());
 
-    String[] main = assign(inPersons, inA.get(Hall.MAIN));
-    inR.setParticipantsA(main[0], main[1], main[2]);
+    String[] main = assign(inPersons, inAssignments.get(Hall.MAIN));
+    inReport.setParticipantsA(main[0], main[1], main[2]);
 
-    String[] aux = assign(inPersons, inA.get(Hall.SECOND));
-    inR.setParticipantsB(aux[0], aux[1], aux[2]);
+    String[] aux = assign(inPersons, inAssignments.get(Hall.SECOND));
+    inReport.setParticipantsB(aux[0], aux[1], aux[2]);
 
-    inList.add(inR);
+    inList.add(inReport);
   }
 
-  private String[] assign(Persons inPersons, Assignment inAssignment)
+  protected final String[] assign(Persons inPersons, Assignment inAssignment)
   {
     String participant = null, assistant = null, studypoint = null;
     if (inAssignment != null)

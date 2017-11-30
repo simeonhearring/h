@@ -26,6 +26,7 @@ public class JavaBeanDaoImpl implements Dao
     ret.setUserId(inProfile.getUserId());
     ret.setCongNum(inProfile.getCongNum());
     ret.setEncrypt(inProfile.getEncrypt());
+    ret.setYear(2018);
 
     // TODO authenticate password
 

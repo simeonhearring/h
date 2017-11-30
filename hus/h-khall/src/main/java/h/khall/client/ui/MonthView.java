@@ -1,17 +1,21 @@
 package h.khall.client.ui;
 
+import org.gwtbootstrap3.client.ui.Anchor;
 import org.gwtbootstrap3.client.ui.TabListItem;
 import org.gwtbootstrap3.client.ui.TabPane;
 import org.gwtbootstrap3.client.ui.gwt.HTMLPanel;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Widget;
 
 import h.khall.client.model.MonthPresenter;
 import h.khall.client.model.WeekPresenter.Display;
 import h.model.shared.khall.Meeting.Month;
+import h.style.g.client.ui.event.ReportEvent;
 
 public class MonthView extends AbstractView<MonthPresenter>
   implements MonthPresenter.Display
@@ -37,6 +41,9 @@ public class MonthView extends AbstractView<MonthPresenter>
   @UiField
   TabPane mC1, mC2, mC3, mC4, mC5;
 
+  @UiField
+  Anchor mSchedule, mSlips, mWorksheet;
+
   public MonthView()
   {
     initWidget(BINDER.createAndBindUi(this));
@@ -52,6 +59,31 @@ public class MonthView extends AbstractView<MonthPresenter>
   {
     inItem.setDataTarget("#" + inId);
     inPane.setId(inId);
+  }
+
+  @UiHandler(
+  {
+      "mSchedule", "mSlips", "mWorksheet"
+  })
+  public void onClick(ClickEvent inEvent)
+  {
+    int congId = mPresenter.getCongId();
+    int year = mPresenter.getYear();
+    int month = mPresenter.getMonth();
+
+    Object source = inEvent.getSource();
+    if (mSchedule.equals(source))
+    {
+      fire(new ReportEvent(MESSAGE.rptS140(congId, year, month)));
+    }
+    else if (mSlips.equals(source))
+    {
+      fire(new ReportEvent(MESSAGE.rptS89(congId, year, month)));
+    }
+    else if (mWorksheet.equals(source))
+    {
+      fire(new ReportEvent(MESSAGE.rptOclmWork(congId, year, month)));
+    }
   }
 
   @Override

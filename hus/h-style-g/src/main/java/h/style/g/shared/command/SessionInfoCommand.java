@@ -35,7 +35,9 @@ public class SessionInfoCommand extends AbstractDataCommand<SessionInfo> impleme
   @Override
   public String getMessagePath()
   {
-    // move string here.
-    return getData().getMessagePath();
+    String name = "h/khall/client/resource/Messages";
+    return name;
+    // // move string here.
+    // return getData().getMessagePath();
   }
 }

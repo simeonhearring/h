@@ -15,6 +15,11 @@
 				<b:TabListItem ui:field="mT3" text="Week #3" />
 				<b:TabListItem ui:field="mT4" text="Week #4" />
 				<b:TabListItem ui:field="mT5" text="Week #5" />
+				<b.html:Div addStyleNames="pull-right marginR25">
+					<b:Anchor ui:field="mSchedule" icon="PRINT" text="Schedule" marginRight="10" />
+					<b:Anchor ui:field="mSlips" icon="PRINT" text="Slips" marginRight="10" />
+					<b:Anchor ui:field="mWorksheet" icon="PRINT" text="Worksheet" />
+				</b.html:Div>
 			</b:NavTabs>
 			<b:TabContent>
 				<b:TabPane ui:field="mC1" fade="true" in="true" active="true">

@@ -1,7 +1,9 @@
 package h.model.shared.khall;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import h.model.shared.util.StringUtil;
 import h.model.shared.util.TimeUtil;
@@ -105,6 +107,17 @@ public class Assignment extends Schedule implements Serializable
   public void setAssistantId(Long inAssistantId)
   {
     mAssistantId = inAssistantId;
+  }
+
+  public static List<String> getArchive(Persons inPersons, List<Assignment> inArchive,
+      Long inParticipantId)
+  {
+    List<String> ret = new ArrayList<>();
+    for (Assignment value : inArchive)
+    {
+      ret.add(value.gHistoryLine(inPersons, inParticipantId));
+    }
+    return ret;
   }
 
   public String gHistoryLine(Persons inPersons, Long inParticipantId)

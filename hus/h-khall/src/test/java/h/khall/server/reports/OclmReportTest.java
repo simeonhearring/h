@@ -35,8 +35,9 @@ public class OclmReportTest
     Congregation meetOn = newCong(Hall.MAIN);
 
     List<Report> reports = oclm.report(RandomPersons.persons(), meeting.gMonth(2017, 0), meetOn);
+    int pos = 0;
 
-    Report report = reports.get(0);
+    Report report = reports.get(pos++);
     Assert.assertEquals("SONG_1", report.getPart());
     Assert.assertEquals("JANUARY 09-15 | JEREMIAH 51-52", report.getWeek());
     Assert.assertEquals("INTRO", report.getMeeting());
@@ -46,7 +47,7 @@ public class OclmReportTest
     Assert.assertNotEquals("Value is... [" + report.getParticipantsA() + "]", "", report.getParticipantsA());
     Assert.assertEquals("", report.getParticipantsB());
 
-    report = reports.get(1);
+    report = reports.get(pos++);
     Assert.assertEquals("OPEN", report.getPart());
     Assert.assertEquals("JANUARY 09-15 | JEREMIAH 51-52", report.getWeek());
     Assert.assertEquals("INTRO", report.getMeeting());
@@ -55,7 +56,7 @@ public class OclmReportTest
     Assert.assertNotEquals("", report.getParticipantsA());
     Assert.assertEquals("", report.getParticipantsB());
 
-    report = reports.get(2);
+    report = reports.get(pos++);
     Assert.assertEquals("TREASURES", report.getPart());
     Assert.assertEquals("JANUARY 09-15 | JEREMIAH 51-52", report.getWeek());
     Assert.assertEquals("TREASURES", report.getMeeting());
@@ -64,7 +65,7 @@ public class OclmReportTest
     Assert.assertNotEquals("", report.getParticipantsA());
     Assert.assertEquals("", report.getParticipantsB());
 
-    report = reports.get(3);
+    report = reports.get(pos++);
     Assert.assertEquals("DIGGING", report.getPart());
     Assert.assertEquals("JANUARY 09-15 | JEREMIAH 51-52", report.getWeek());
     Assert.assertEquals("TREASURES", report.getMeeting());
@@ -73,7 +74,7 @@ public class OclmReportTest
     Assert.assertNotEquals("", report.getParticipantsA());
     Assert.assertEquals("", report.getParticipantsB());
 
-    report = reports.get(4);
+    report = reports.get(pos++);
     Assert.assertEquals("BIBLE_READING", report.getPart());
     Assert.assertEquals("JANUARY 09-15 | JEREMIAH 51-52", report.getWeek());
     Assert.assertEquals("TREASURES", report.getMeeting());
@@ -82,7 +83,7 @@ public class OclmReportTest
     Assert.assertNotEquals("", report.getParticipantsA());
     Assert.assertEquals("", report.getParticipantsB());
 
-    report = reports.get(5);
+    report = reports.get(pos++);
     Assert.assertEquals("INITIAL_CALL", report.getPart());
     Assert.assertEquals("JANUARY 09-15 | JEREMIAH 51-52", report.getWeek());
     Assert.assertEquals("APPLY", report.getMeeting());
@@ -91,7 +92,7 @@ public class OclmReportTest
     Assert.assertNotEquals("", report.getParticipantsA());
     Assert.assertEquals("", report.getParticipantsB());
 
-    report = reports.get(6);
+    report = reports.get(pos++);
     Assert.assertEquals("T_RETURN_VISIT", report.getPart());
     Assert.assertEquals("JANUARY 09-15 | JEREMIAH 51-52", report.getWeek());
     Assert.assertEquals("APPLY", report.getMeeting());
@@ -100,7 +101,7 @@ public class OclmReportTest
     Assert.assertNotEquals("", report.getParticipantsA());
     Assert.assertEquals("", report.getParticipantsB());
 
-    report = reports.get(7);
+    report = reports.get(pos++);
     Assert.assertEquals("BIBLE_STUDY", report.getPart());
     Assert.assertEquals("JANUARY 09-15 | JEREMIAH 51-52", report.getWeek());
     Assert.assertEquals("APPLY", report.getMeeting());
@@ -109,7 +110,7 @@ public class OclmReportTest
     Assert.assertNotEquals("", report.getParticipantsA());
     Assert.assertEquals("", report.getParticipantsB());
 
-    report = reports.get(8);
+    report = reports.get(pos++);
     Assert.assertEquals("SONG_2", report.getPart());
     Assert.assertEquals("JANUARY 09-15 | JEREMIAH 51-52", report.getWeek());
     Assert.assertEquals("LIVING", report.getMeeting());
@@ -118,7 +119,7 @@ public class OclmReportTest
     Assert.assertNotEquals("", report.getParticipantsA());
     Assert.assertEquals("", report.getParticipantsB());
 
-    report = reports.get(9);
+    report = reports.get(pos++);
     Assert.assertEquals("LIVING_1", report.getPart());
     Assert.assertEquals("JANUARY 09-15 | JEREMIAH 51-52", report.getWeek());
     Assert.assertEquals("LIVING", report.getMeeting());
@@ -127,7 +128,7 @@ public class OclmReportTest
     Assert.assertNotEquals("", report.getParticipantsA());
     Assert.assertEquals("", report.getParticipantsB());
 
-    report = reports.get(10);
+    report = reports.get(pos++);
     Assert.assertEquals("LIVING_2", report.getPart());
     Assert.assertEquals("JANUARY 09-15 | JEREMIAH 51-52", report.getWeek());
     Assert.assertEquals("LIVING", report.getMeeting());
@@ -136,7 +137,7 @@ public class OclmReportTest
     Assert.assertNotEquals("", report.getParticipantsA());
     Assert.assertEquals("", report.getParticipantsB());
 
-    report = reports.get(11);
+    report = reports.get(pos++);
     Assert.assertEquals("C_BIBLE_STUDY", report.getPart());
     Assert.assertEquals("JANUARY 09-15 | JEREMIAH 51-52", report.getWeek());
     Assert.assertEquals("LIVING", report.getMeeting());
@@ -145,7 +146,7 @@ public class OclmReportTest
     Assert.assertNotEquals("", report.getParticipantsA());
     Assert.assertEquals("", report.getParticipantsB());
 
-    report = reports.get(12);
+    report = reports.get(pos++);
     Assert.assertEquals("REVIEW", report.getPart());
     Assert.assertEquals("JANUARY 09-15 | JEREMIAH 51-52", report.getWeek());
     Assert.assertEquals("LIVING", report.getMeeting());
@@ -154,7 +155,7 @@ public class OclmReportTest
     Assert.assertNotEquals("", report.getParticipantsA());
     Assert.assertEquals("", report.getParticipantsB());
 
-    report = reports.get(13);
+    report = reports.get(pos++);
     Assert.assertEquals("SONG_3", report.getPart());
     Assert.assertEquals("JANUARY 09-15 | JEREMIAH 51-52", report.getWeek());
     Assert.assertEquals("LIVING", report.getMeeting());
@@ -163,7 +164,7 @@ public class OclmReportTest
     Assert.assertNotEquals("", report.getParticipantsA());
     Assert.assertEquals("", report.getParticipantsB());
 
-    report = reports.get(14);
+    report = reports.get(pos++);
     Assert.assertEquals("SONG_1", report.getPart());
     Assert.assertEquals("JANUARY 16-22 | JEREMIAH 51-52", report.getWeek());
     Assert.assertEquals("INTRO", report.getMeeting());
