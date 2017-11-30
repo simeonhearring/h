@@ -246,7 +246,7 @@ public class Meeting implements Serializable, IHistory
       {
         Assignment assignment = gAssignment(inPpart, value);
 
-        if (assignment == null)
+        if (assignment == null && (Hall.MAIN.equals(value) || inPpart.isStudyPoint()))
         {
           Curriculum curr = new Curriculum();
           assignment = new Assignment();
@@ -265,7 +265,11 @@ public class Meeting implements Serializable, IHistory
             }
           }
         }
-        ret.put(value, assignment);
+
+        if (assignment != null)
+        {
+          ret.put(value, assignment);
+        }
       }
 
       return ret;

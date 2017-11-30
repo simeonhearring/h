@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.4.3.final using JasperReports Library version 6.4.3  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="S-140" pageWidth="612" pageHeight="792" columnWidth="576" leftMargin="18" rightMargin="18" topMargin="18" bottomMargin="18" uuid="91fad911-5d21-4c6e-b2f5-854cfc05e8c1">
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="S_140Generator"/>
 	<property name="com.jaspersoft.studio.unit." value="inch"/>
 	<property name="com.jaspersoft.studio.unit.pageHeight" value="inch"/>
 	<property name="com.jaspersoft.studio.unit.pageWidth" value="inch"/>
@@ -11,6 +10,7 @@
 	<property name="com.jaspersoft.studio.unit.rightMargin" value="inch"/>
 	<property name="com.jaspersoft.studio.unit.columnWidth" value="inch"/>
 	<property name="com.jaspersoft.studio.unit.columnSpacing" value="inch"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="S_140Generator"/>
 	<parameter name="pCongNme" class="java.lang.String" isForPrompting="false"/>
 	<queryString>
 		<![CDATA[]]>
@@ -39,8 +39,7 @@
 	<group name="Week" keepTogether="true">
 		<groupExpression><![CDATA[$F{week}]]></groupExpression>
 		<groupHeader>
-			<band height="15">
-				<property name="com.jaspersoft.studio.unit.height" value="inch"/>
+			<band height="18">
 				<textField>
 					<reportElement x="0" y="0" width="380" height="15" uuid="cb4966cf-46c0-49e0-9724-439e5d4c6bc7">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -84,6 +83,7 @@
 		<groupHeader>
 			<band height="15">
 				<property name="com.jaspersoft.studio.unit.height" value="inch"/>
+				<printWhenExpression><![CDATA["TREASURES".equals($F{meeting}) || "APPLY".equals($F{meeting}) || "LIVING".equals($F{meeting})]]></printWhenExpression>
 				<staticText>
 					<reportElement mode="Opaque" x="0" y="0" width="324" height="15" forecolor="#FFFFFF" backcolor="#961526" uuid="b4a01d38-a16a-440b-856c-dae3e5c51a44">
 						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
@@ -148,7 +148,7 @@
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="15" splitType="Stretch">
+		<band height="20" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<textField>
 				<reportElement x="0" y="0" width="25" height="15" uuid="2a9332ed-b717-4698-9087-cadab883d002">
@@ -156,7 +156,8 @@
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="inch"/>
 				</reportElement>
-				<textElement verticalAlignment="Middle">
+				<box topPadding="2" bottomPadding="2"/>
+				<textElement verticalAlignment="Top">
 					<font size="8" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{time}]]></textFieldExpression>
@@ -167,6 +168,7 @@
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="inch"/>
 				</reportElement>
+				<box topPadding="5" bottomPadding="5"/>
 				<textElement markup="styled"/>
 				<textFieldExpression><![CDATA[$F{theme}]]></textFieldExpression>
 			</textField>
@@ -175,8 +177,9 @@
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c59db2be-b445-4238-ab14-e24d0402c53f"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="inch"/>
+					<property name="com.jaspersoft.studio.unit.spacingAfter" value="inch"/>
 				</reportElement>
-				<box bottomPadding="10">
+				<box topPadding="5" bottomPadding="5">
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -187,18 +190,6 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{participantsA}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="323" y="0" width="126" height="15" uuid="dc64ad54-2bd4-40e7-b005-91f6f6c5463d">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c59db2be-b445-4238-ab14-e24d0402c53f"/>
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="inch"/>
-				</reportElement>
-				<box bottomPadding="10"/>
-				<textElement textAlignment="Right">
-					<font isBold="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{participantsB}]]></textFieldExpression>
-			</textField>
 			<line>
 				<reportElement x="0" y="0" width="576" height="1" uuid="b15bee8b-44ad-4c45-8676-db65bde50321">
 					<property name="com.jaspersoft.studio.unit.x" value="inch"/>
@@ -208,6 +199,24 @@
 					<pen lineStyle="Solid" lineColor="rgba(199, 195, 195, 0.78431374)"/>
 				</graphicElement>
 			</line>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement key="" x="323" y="0" width="126" height="15" uuid="e8f51c5e-6b74-4ee5-a5f6-05f3141f1923">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c59db2be-b445-4238-ab14-e24d0402c53f"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="inch"/>
+					<property name="com.jaspersoft.studio.unit.spacingAfter" value="inch"/>
+				</reportElement>
+				<box topPadding="5" bottomPadding="5">
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" markup="html">
+					<paragraph lineSpacing="Single" lineSpacingSize="0.0"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{participantsB}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<columnFooter>

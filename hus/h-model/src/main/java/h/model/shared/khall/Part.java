@@ -173,10 +173,10 @@ public enum Part
     switch (this)
     {
       case SONG_1:
-        ret = "Opening Prayer";
+        ret = "Song and prayer";
         break;
       case SONG_3:
-        ret = "Closing Prayer";
+        ret = "Song and prayer";
         break;
       case TREASURES:
         ret = inShort ? "Treasures" : "Treasures From God's Word";

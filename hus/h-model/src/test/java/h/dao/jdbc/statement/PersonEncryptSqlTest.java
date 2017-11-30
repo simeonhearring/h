@@ -1,5 +1,6 @@
 package h.dao.jdbc.statement;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Assert;
@@ -21,7 +22,7 @@ public class PersonEncryptSqlTest extends MySqlBaseDaoTest
     mSql = new PersonEncryptSql(mDataSource);
   }
 
-  @Test
+  // @Test
   public void addPersons()
   {
     List<Person> list = PersonCreate.create();
@@ -29,6 +30,55 @@ public class PersonEncryptSqlTest extends MySqlBaseDaoTest
     {
       value.getParts().addAll(Part.parts(value));
       mSql.update("9M1})6Y]ibnxrp^zSQz@*BAc[Cn+Ub1R", value);
+    }
+  }
+
+  @Test
+  public void update2()
+  {
+    List<String> names = new ArrayList<>();
+    names.add("Ackerman, Leslie");
+    names.add("Clay, Ray");
+    names.add("Daniel, Casey");
+    names.add("Davis, Antonia");
+    names.add("Ewing, Pauline");
+    names.add("Ferrell, Michelle");
+    names.add("Fleming, Linda");
+    names.add("Giles, Teresa");
+    names.add("Hatch, Branden");
+    names.add("Hatch, Mikale");
+    names.add("Heggie, Sue");
+    names.add("Hooper, Ray");
+    names.add("Hudson, Debi");
+    names.add("Hudson, Mike");
+    names.add("Jones, Bessie");
+    names.add("Kemmeries, Janice");
+    names.add("Kimmons, Tyler");
+    names.add("Loewen, Marilyn");
+    names.add("Martin, Dorris Fay");
+    names.add("McClanahan, Quentin");
+    names.add("Minor, Nadine");
+    names.add("Nelson, Austin");
+    names.add("Nimrod, Shadrach");
+    names.add("Ogletree, Sandra");
+    names.add("Ryan, Bill");
+    names.add("Ryan, Pat");
+    names.add("Saxton, Sherita");
+    names.add("Scott, Crystal");
+    names.add("Smith, Paul");
+    names.add("Stewart, Bruce");
+    names.add("Stewart, Patsy");
+    names.add("Sutton, Belinda");
+    names.add("Walker, Joe Jr");
+
+    List<Person> list = mSql.selectByCongId("9M1})6Y]ibnxrp^zSQz@*BAc[Cn+Ub1R", 59);
+    for (Person value : list)
+    {
+      if (names.contains(value.getName()))
+      {
+        value.getParts().clear();
+        mSql.update("9M1})6Y]ibnxrp^zSQz@*BAc[Cn+Ub1R", value);
+      }
     }
   }
 

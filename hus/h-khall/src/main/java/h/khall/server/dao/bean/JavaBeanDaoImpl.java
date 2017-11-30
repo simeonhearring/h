@@ -47,7 +47,7 @@ public class JavaBeanDaoImpl implements Dao
 
     ret.setMidweekOn(new Date(RandomAssignments.THU_JAN_7_2016_1930));
     ret.setName("English - Gallatin, TN");
-    ret.setHalls(Hall.MAIN);
+    ret.setHalls(Hall.MAIN, Hall.SECOND);
     return ret;
   }
 

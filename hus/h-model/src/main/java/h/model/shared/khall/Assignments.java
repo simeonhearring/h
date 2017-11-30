@@ -276,12 +276,14 @@ public class Assignments implements Serializable
 
     public void setSongPrayer(String inSong)
     {
-      setTheme(ensure(inSong, "Song ", " and prayer"), null);
+      String ensure = "Song" + ensure(inSong, " ") + " and prayer";
+      setTheme(ensure, null);
     }
 
     public void setSong(String inSong)
     {
-      setTheme(ensure(inSong, "Song "), null);
+      String ensure = "Song" + ensure(inSong, " ");
+      setTheme(ensure, null);
     }
 
     public void setTime(String inTime)

@@ -52,7 +52,8 @@ public class S_140Generator extends JRDefaultScriptlet
   private static Report student(Report inAssign)
   {
     inAssign.setTheme("Initial Call", "2 min. or less");
-    inAssign.setParticipantsA("Hearring, Nadia", "Hearring, Alania", "9");
+    inAssign.setParticipantsA("Hearring, Jathen", "Hearring, Aidan", "9");
+    inAssign.setParticipantsB("Hearring, Nadia", "Hearring, Alania", "9");
     return inAssign;
   }
 
