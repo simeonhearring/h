@@ -9,13 +9,14 @@
 	</ui:style>
 	<b.gwt:HTMLPanel addStyleNames="ibox">
 		<b.gwt:HTMLPanel addStyleNames="ibox-content marginB25">
-			<div class="row m-b-lg">
+			<div class="row m-b-lg text-center">
 				<div class="col-lg-12 text-center">
 					<b:Heading size="H2" text="Part Canidates" />
 					<b:Heading ui:field="mName" size="H5" />
 					<b.toggle:ToggleSwitchRadio ui:field="mMale" name="gender" onIcon="MALE" offIcon="MALE" title="Male Only" size="MINI" radioAllOff="true" />
 					<b.toggle:ToggleSwitchRadio ui:field="mFemale" name="gender" onIcon="FEMALE" offIcon="FEMALE" title="Female Only" size="MINI" radioAllOff="true" />
 				</div>
+				<b:Button ui:field="mRecommend" size="EXTRA_SMALL" text="Recommendation" marginTop="20" />
 			</div>
 			<div class="client-detail">
 				<div class="full-height-scroll">
@@ -25,16 +26,6 @@
 				</div>
 			</div>
 		</b.gwt:HTMLPanel>
-		<b.gwt:HTMLPanel addStyleNames="ibox-content">
-			<div class="row m-b-lg">
-				<div class="col-lg-12 text-center">
-					<b:Heading size="H2" text="Participant Info" />
-				</div>
-			</div>
-			<div class="client-detail">
-				<div class="full-height-scroll">
-				</div>
-			</div>
-		</b.gwt:HTMLPanel>
+		<k:ParticipantInfoView />
 	</b.gwt:HTMLPanel>
 </ui:UiBinder>

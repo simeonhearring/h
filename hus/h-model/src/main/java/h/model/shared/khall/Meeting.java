@@ -245,23 +245,25 @@ public class Meeting implements Serializable, IHistory
       for (Hall value : inHalls)
       {
         Assignment assignment = gAssignment(inPpart, value);
-
-        if (assignment == null && (Hall.MAIN.equals(value) || inPpart.isStudyPoint()))
+        if (assignment == null)
         {
-          Curriculum curr = new Curriculum();
-          assignment = new Assignment();
-          assignment.setSchool(value);
-          assignment.setCurriculum(curr);
-          curr.setDate(mOf);
-          curr.setPart(inPpart);
-          curr.setTheme(inPpart.getLabel(false));
-          curr.setDurationMinutes(inPpart.gDuration());
-          if (inPpart.isChairmanPart())
+          if (Hall.MAIN.equals(value) || inPpart.isStudyPoint())
           {
-            Assignment c = gAssignment(Part.CHAIRMAN, Hall.MAIN);
-            if (c != null)
+            Curriculum curr = new Curriculum();
+            assignment = new Assignment();
+            assignment.setSchool(value);
+            assignment.setCurriculum(curr);
+            curr.setDate(mOf);
+            curr.setPart(inPpart);
+            curr.setTheme(inPpart.getLabel(false));
+            curr.setDurationMinutes(inPpart.gDuration());
+            if (inPpart.isChairmanPart())
             {
-              assignment.setParticipantId(c.getParticipantId());
+              Assignment c = gAssignment(Part.CHAIRMAN, Hall.MAIN);
+              if (c != null)
+              {
+                assignment.setParticipantId(c.getParticipantId());
+              }
             }
           }
         }
@@ -269,6 +271,10 @@ public class Meeting implements Serializable, IHistory
         if (assignment != null)
         {
           ret.put(value, assignment);
+        }
+        else
+        {
+          System.out.println("No assignment for part: " + inPpart + " hall: " + value);
         }
       }
 

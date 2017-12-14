@@ -7,6 +7,7 @@ import h.model.shared.Person.Gender;
 import h.model.shared.khall.Part;
 import h.model.shared.khall.PartInfo;
 import h.model.shared.khall.PartInfo.Info;
+import h.model.shared.khall.Person;
 
 public class PartInfoPresenter extends AbstractPresenter<PartInfoPresenter.Display>
   implements PartInfoEvent.Handler
@@ -58,6 +59,13 @@ public class PartInfoPresenter extends AbstractPresenter<PartInfoPresenter.Displ
         mDisplay.add(value, first++ == 0, value.getArchive(mClient.getPersons()));
       }
     }
+  }
+
+  public void recommend()
+  {
+    PartInfo pi = mClient.gPartInfo(mPart, mParticipantId, mGender);
+    Person rec = pi.gRecomendation();
+    mDisplay.notify(rec.getName());
   }
 
   public interface Display extends h.style.g.client.model.Display

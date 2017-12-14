@@ -44,6 +44,11 @@ public class Client extends h.model.shared.Client
     return mPersons;
   }
 
+  public Person gPerson(Long inId)
+  {
+    return mPersons.gPerson(inId);
+  }
+
   public void setPersons(Persons inPersons)
   {
     mPersons = inPersons;
@@ -57,7 +62,7 @@ public class Client extends h.model.shared.Client
 
   public PartInfo gPartInfo(Part inPart, Long inParticipantId, Gender inGender)
   {
-    PartInfo ret = new PartInfo(inPart);
+    PartInfo ret = new PartInfo(inPart, inParticipantId);
     for (Person value : mPersons.gAvailable(inPart, inParticipantId, inGender))
     {
       ret.add(value, mMeeting.gHistory(value.getIdLong()));

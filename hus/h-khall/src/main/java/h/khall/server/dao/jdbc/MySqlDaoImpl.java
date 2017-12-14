@@ -8,6 +8,7 @@ import h.khall.server.dao.Dao;
 import h.khall.server.dao.bean.JavaBeanDaoImpl;
 import h.model.shared.khall.Assignment;
 import h.model.shared.khall.Meeting;
+import h.model.shared.khall.Person;
 import h.model.shared.khall.Persons;
 import h.model.shared.khall.Profile;
 
@@ -44,5 +45,11 @@ public class MySqlDaoImpl extends JavaBeanDaoImpl implements Dao
   public void update(Assignment inAssignment)
   {
     mScheduleSql.update(inAssignment);
+  }
+
+  @Override
+  public void update(String inKey, Person inPerson)
+  {
+    mPersonSql.update(inKey, inPerson);
   }
 }

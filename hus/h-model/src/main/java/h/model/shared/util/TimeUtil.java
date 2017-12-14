@@ -197,4 +197,9 @@ public final class TimeUtil
       return DateTimeFormat.getFormat(inPattern).parse(inValue);
     }
   }
+
+  public static int toDays(long inMilliseconds)
+  {
+    return (int) (inMilliseconds / (1000 * 60 * 60 * 24));
+  }
 }

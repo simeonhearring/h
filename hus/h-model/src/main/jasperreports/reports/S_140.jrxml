@@ -148,8 +148,7 @@
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="20" splitType="Stretch">
-			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		<band height="15" splitType="Stretch">
 			<textField>
 				<reportElement x="0" y="0" width="25" height="15" uuid="2a9332ed-b717-4698-9087-cadab883d002">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="270c8bf3-c171-4da5-a7e2-ee5cf2b0bf68"/>
@@ -168,7 +167,7 @@
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="inch"/>
 				</reportElement>
-				<box topPadding="5" bottomPadding="5"/>
+				<box topPadding="1" bottomPadding="2"/>
 				<textElement markup="styled"/>
 				<textFieldExpression><![CDATA[$F{theme}]]></textFieldExpression>
 			</textField>
@@ -179,7 +178,7 @@
 					<property name="com.jaspersoft.studio.unit.width" value="inch"/>
 					<property name="com.jaspersoft.studio.unit.spacingAfter" value="inch"/>
 				</reportElement>
-				<box topPadding="5" bottomPadding="5">
+				<box topPadding="1" bottomPadding="2">
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -206,7 +205,7 @@
 					<property name="com.jaspersoft.studio.unit.width" value="inch"/>
 					<property name="com.jaspersoft.studio.unit.spacingAfter" value="inch"/>
 				</reportElement>
-				<box topPadding="5" bottomPadding="5">
+				<box topPadding="1" bottomPadding="2">
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>

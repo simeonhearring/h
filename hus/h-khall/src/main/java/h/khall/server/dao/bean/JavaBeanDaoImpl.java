@@ -9,6 +9,7 @@ import h.model.shared.khall.Charts;
 import h.model.shared.khall.Congregation;
 import h.model.shared.khall.Hall;
 import h.model.shared.khall.Meeting;
+import h.model.shared.khall.Person;
 import h.model.shared.khall.Persons;
 import h.model.shared.khall.Profile;
 import h.model.shared.util.RandomUtil;
@@ -111,6 +112,11 @@ public class JavaBeanDaoImpl implements Dao
 
   @Override
   public void update(Assignment inAssignment)
+  {
+  }
+
+  @Override
+  public void update(String inKey, Person inPerson)
   {
   }
 }

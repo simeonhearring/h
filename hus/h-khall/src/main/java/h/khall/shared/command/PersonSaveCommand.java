@@ -1,20 +1,20 @@
 package h.khall.shared.command;
 
-import h.model.shared.Person;
+import h.model.shared.khall.Person;
 import h.style.g.shared.command.AbstractCommand;
 import h.style.g.shared.rpc.CommandName;
 
 @SuppressWarnings("serial")
-@CommandName("SavePersonCommand")
-public class SavePersonCommand extends AbstractCommand
+@CommandName("PersonSaveCommand")
+public class PersonSaveCommand extends AbstractCommand
 {
   private Person mPerson;
 
-  SavePersonCommand()
+  PersonSaveCommand()
   {
   }
 
-  public SavePersonCommand(Person inPerson)
+  public PersonSaveCommand(Person inPerson)
   {
     mPerson = inPerson;
   }

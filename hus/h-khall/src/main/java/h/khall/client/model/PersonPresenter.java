@@ -2,7 +2,7 @@ package h.khall.client.model;
 
 import java.util.Date;
 
-import h.khall.shared.command.SavePersonCommand;
+import h.khall.shared.command.PersonSaveCommand;
 import h.model.shared.Person.Gender;
 import h.model.shared.khall.Person;
 import h.style.g.client.model.AbstractPresenter;
@@ -51,7 +51,7 @@ public class PersonPresenter extends AbstractPresenter<PersonPresenter.Display>
 
   public void save()
   {
-    fire(new SavePersonCommand(mPerson));
+    fire(new PersonSaveCommand(mPerson));
   }
 
   public void chgFirst(String inValue)

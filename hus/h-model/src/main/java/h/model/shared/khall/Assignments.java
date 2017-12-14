@@ -321,7 +321,7 @@ public class Assignments implements Serializable
 
     public void setParticipantsA(String inParticipant, String inAssistant, String inStudyPoint)
     {
-      mParticipantsA = ensure(inParticipant, ensure(inStudyPoint, "<sup>", "</sup> "))
+      mParticipantsA = ensure(inParticipant, ensure(inStudyPoint, "<style size='6'>", "</style> "))
           + ensure(inAssistant, "<br/>");
       mParticipant = ensure(inParticipant);
       mAssistant = ensure(inAssistant);
@@ -330,7 +330,7 @@ public class Assignments implements Serializable
 
     public void setParticipantsB(String inParticipant, String inAssistant, String inStudyPoint)
     {
-      mParticipantsB = ensure(inParticipant, ensure(inStudyPoint, "<sup>", "</sup> "))
+      mParticipantsB = ensure(inParticipant, ensure(inStudyPoint, "<style size='6'>", "</style> "))
           + ensure(inAssistant, "<br/>");
     }
 

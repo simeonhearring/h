@@ -87,19 +87,34 @@ public class OclmReport extends AbstractReportDefault<Report>
 
       TimeKeeper keeper = new TimeKeeper(meetingDate(inCong.getMidweekOn(), week.getOf()));
 
-      Assignment chairman = week.gAssignments(Part.CHAIRMAN, Hall.MAIN).get(Hall.MAIN);
-      String csource = chairman.getSource();
-      String cname = ensure(inPersons.gName(chairman.getParticipantId()));
+      String[] chairman =
+          chairman(inPersons, week.gAssignments(Part.CHAIRMAN, Hall.MAIN).get(Hall.MAIN));
 
       for (Part value : Part.schedule(week.isCoWeek(), isStudent()))
       {
         Map<Hall, Assignment> assignment = week.gAssignments(value, inCong.getHalls());
-        Report r = newReport(keeper, csource, cname, assignment.get(Hall.MAIN));
+        Report r = newReport(keeper, chairman[0], chairman[1], assignment.get(Hall.MAIN));
         addReports(ret, inPersons, inMonth, assignment, r.copy());
       }
     }
 
     return ret;
+  }
+
+  private String[] chairman(Persons inPersons, Assignment inChairman)
+  {
+    String csource = null;
+    String cname = null;
+
+    if (inChairman != null)
+    {
+      csource = inChairman.getSource();
+      cname = ensure(inPersons.gName(inChairman.getParticipantId()));
+    }
+    return new String[]
+    {
+        csource, cname
+    };
   }
 
   protected boolean isStudent()
