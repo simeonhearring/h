@@ -64,7 +64,14 @@ public class OclmReport extends AbstractReportDefault<Report>
     inParameters.put(sCongNme, cong.getName());
 
     List<Report> ret = report(persons, meeting.gMonth(yr, mo), cong);
+
+    sort(ret);
+
     return ret;
+  }
+
+  protected void sort(List<Report> inRet)
+  {
   }
 
   private static Profile profile(Map<String, Object> inParameters)
@@ -93,7 +100,7 @@ public class OclmReport extends AbstractReportDefault<Report>
       for (Part value : Part.schedule(week.isCoWeek(), isStudent()))
       {
         Map<Hall, Assignment> assignment = week.gAssignments(value, inCong.getHalls());
-        Report r = newReport(keeper, chairman[0], chairman[1], assignment.get(Hall.MAIN));
+        Report r = newReport(keeper, chairman[0], chairman[1], assignment.get(Hall.MAIN), week.getOf());
         addReports(ret, inPersons, inMonth, assignment, r.copy());
       }
     }
@@ -158,7 +165,7 @@ public class OclmReport extends AbstractReportDefault<Report>
     };
   }
 
-  private Report newReport(TimeKeeper inT, String inReading, String inChairman, Assignment inA)
+  private Report newReport(TimeKeeper inT, String inReading, String inChairman, Assignment inA, Date inWeekOf)
   {
     Report ret = new Report();
 
@@ -166,7 +173,7 @@ public class OclmReport extends AbstractReportDefault<Report>
 
     ret.setTime(format("h:mm", date));
 
-    ret.setWeek(date(date), inReading, inChairman);
+    ret.setWeek(date(date, inWeekOf), inReading, inChairman);
 
     ret.setMeeting(Part.meeting(inA.getPart()));
     ret.setPart(inA.getPart().name());
@@ -176,18 +183,18 @@ public class OclmReport extends AbstractReportDefault<Report>
     return ret;
   }
 
-  private String date(Date inValue)
+  private String date(Date inDate, Date inWeekOf)
   {
     String ret = null;
     if (isStudent())
     {
-      ret = isWorksheet() ? "Week of: " + format("MM/dd/yy", inValue) : format("EEE MM/dd/yy", inValue);
+      ret = isWorksheet() ? "Week of: " + format("MM/dd/yy", inWeekOf) : format("EEE MM/dd/yy", inDate);
     }
     else
     {
-      Date end = new Date(inValue.getTime() + 518400000); // +6 days
-      String pattern = TimeUtil.isSameMonth(inValue, end) ? "dd" : "MMMM dd";
-      ret = (format("MMMM dd-", inValue) + format(pattern, end)).toUpperCase();
+      Date end = new Date(inWeekOf.getTime() + 518400000); // +6 days
+      String pattern = TimeUtil.isSameMonth(inWeekOf, end) ? "dd" : "MMMM dd";
+      ret = (format("MMMM dd-", inWeekOf) + format(pattern, end)).toUpperCase();
     }
     return ret;
   }

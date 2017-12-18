@@ -40,6 +40,32 @@ public enum Part
   C_BIBLE_STUDY,
   SONG_3;
 
+  public static Part[] assignable()
+  {
+    return new Part[]
+    {
+        CHAIRMAN,
+        TREASURES,
+        DIGGING,
+        SONG_1,
+        SONG_3,
+
+        BIBLE_READING,
+        INITIAL_CALL,
+        F_RETURN_VISIT,
+        S_RETURN_VISIT,
+        T_RETURN_VISIT,
+        BIBLE_STUDY,
+        ASSISTANT,
+        TALK,
+
+        LIVING_1,
+        LIVING_2,
+        C_BIBLE_STUDY,
+        READER,
+    };
+  }
+
   public Part getParent()
   {
     Part ret = this;

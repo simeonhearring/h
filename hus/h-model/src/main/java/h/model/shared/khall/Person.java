@@ -7,6 +7,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import h.model.shared.khall.Roles.Role;
+import h.model.shared.util.TimeUtil;
 
 @SuppressWarnings("serial")
 public class Person extends h.model.shared.Person
@@ -21,10 +22,11 @@ public class Person extends h.model.shared.Person
   private Long mHead;
   private String mFamily;
 
-  private Ministry mMinistry;
+  private Date mPublishing;
 
   private List<Part> mParts;
   private List<Hall> mHalls;
+  private List<Comment> mComments;
 
   public String gLocater()
   {
@@ -36,11 +38,6 @@ public class Person extends h.model.shared.Person
 
   public void normalize()
   {
-    if (mMinistry == null)
-    {
-      mMinistry = new Ministry();
-      mMinistry.normalize();
-    }
     if (mRoles == null)
     {
       mRoles = new Roles();
@@ -59,6 +56,13 @@ public class Person extends h.model.shared.Person
     {
       mHalls = new ArrayList<>();
     }
+  }
+
+  @Override
+  public String gNameAge()
+  {
+    int age = TimeUtil.getAge(mBaptized);
+    return super.gNameAge() + (age == 0 ? "" : " / " + age);
   }
 
   public List<Part> getParts()
@@ -183,6 +187,16 @@ public class Person extends h.model.shared.Person
     mFamily = inFamily;
   }
 
+  public List<Comment> getComments()
+  {
+    return mComments;
+  }
+
+  public void setComments(List<Comment> inComments)
+  {
+    mComments = inComments;
+  }
+
   @JsonIgnore
   public boolean isStudent()
   {
@@ -213,25 +227,14 @@ public class Person extends h.model.shared.Person
     return mRoles.contains(Roles.Role.ANOITED);
   }
 
-  public Ministry getMinistry()
-  {
-    return mMinistry;
-  }
-
-  public void setMinistry(Ministry inMinistry)
-  {
-    mMinistry = inMinistry;
-  }
-
-  @JsonIgnore
   public Date getPublishing()
   {
-    return mMinistry.getPublishing();
+    return mPublishing;
   }
 
-  public void setPublishing(Date inValue)
+  public void setPublishing(Date inPublishing)
   {
-    mMinistry.setPublishing(inValue);
+    mPublishing = inPublishing;
   }
 
   @Override

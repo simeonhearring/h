@@ -4,6 +4,7 @@ import java.util.List;
 
 import h.khall.client.ui.event.ParticipantInfoEvent;
 import h.khall.shared.command.PersonSaveCommand;
+import h.model.shared.khall.Hall;
 import h.model.shared.khall.Part;
 import h.model.shared.khall.Person;
 
@@ -30,17 +31,40 @@ public class ParticipantInfoPresenter extends AbstractPresenter<ParticipantInfoP
 
     Person p = mClient.getPersons().gPerson(mParticipantId);
     mDisplay.setName(p.getName());
-    mDisplay.check(p.getParts());
+    mDisplay.check(p.getParts(), p.getHalls());
   }
 
-  public void clicked(Part inPart, Boolean inValue)
+  public void check(Hall inHall, Boolean inChecked)
+  {
+    if (mParticipantId != null)
+    {
+      Person person = mClient.gPerson(mParticipantId);
+      List<Hall> halls = person.getHalls();
+
+      if (inChecked)
+      {
+        if (!halls.contains(inHall))
+        {
+          halls.add(inHall);
+        }
+      }
+      else
+      {
+        halls.remove(inHall);
+      }
+
+      fire(new PersonSaveCommand(person));
+    }
+  }
+
+  public void check(Part inPart, Boolean inChecked)
   {
     if (mParticipantId != null)
     {
       Person person = mClient.gPerson(mParticipantId);
       List<Part> parts = person.getParts();
 
-      if (inValue)
+      if (inChecked)
       {
         if (!parts.contains(inPart))
         {
@@ -60,6 +84,6 @@ public class ParticipantInfoPresenter extends AbstractPresenter<ParticipantInfoP
   {
     void setName(String inName);
 
-    void check(List<Part> inParts);
+    void check(List<Part> inParts, List<Hall> inHalls);
   }
 }

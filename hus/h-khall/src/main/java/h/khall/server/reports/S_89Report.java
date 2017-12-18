@@ -29,17 +29,21 @@ public class S_89Report extends OclmReport
 
     for (Hall value : list)
     {
-      Report report = inReport.copy();
-      report.setHall(value.name());
-
       Assignment assignment = inAssignments.get(value);
-      String studyPoint = StudyPoint.display2(assignment.getStudyPoint());
-      String[] assigns = assign(inPersons, assignment);
-      report.setParticipantsA(assigns[0], assigns[1], studyPoint);
 
-      addHistory(inPersons, inMonth, assignment, report);
+      if (assignment.isParticipant())
+      {
+        Report report = inReport.copy();
+        report.setHall(value.name());
 
-      inList.add(report);
+        String studyPoint = StudyPoint.display2(assignment.getStudyPoint());
+        String[] assigns = assign(inPersons, assignment);
+        report.setParticipantsA(assigns[0], assigns[1], studyPoint);
+
+        addHistory(inPersons, inMonth, assignment, report);
+
+        inList.add(report);
+      }
     }
   }
 

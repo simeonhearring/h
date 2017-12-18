@@ -12,7 +12,6 @@ import org.gwtbootstrap3.client.ui.constants.IconType;
 import org.gwtbootstrap3.client.ui.constants.Placement;
 import org.gwtbootstrap3.client.ui.constants.Trigger;
 import org.gwtbootstrap3.client.ui.html.UnorderedList;
-import org.gwtbootstrap3.extras.notify.client.ui.Notify;
 import org.gwtbootstrap3.extras.toggleswitch.client.ui.ToggleSwitchRadio;
 
 import com.google.gwt.core.client.GWT;

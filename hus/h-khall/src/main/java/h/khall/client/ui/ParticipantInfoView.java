@@ -15,6 +15,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Widget;
 
 import h.khall.client.model.ParticipantInfoPresenter;
+import h.model.shared.khall.Hall;
 import h.model.shared.khall.Part;
 
 public class ParticipantInfoView extends AbstractView<ParticipantInfoPresenter>
@@ -30,19 +31,19 @@ public class ParticipantInfoView extends AbstractView<ParticipantInfoPresenter>
   Label mName;
 
   @UiField
-  HTMLPanel mParts;
+  HTMLPanel mParts, mHalls;
 
   public ParticipantInfoView()
   {
     initWidget(BINDER.createAndBindUi(this));
     mPresenter = new ParticipantInfoPresenter(this).handlers();
 
-    addCheckBoxes();
+    checkboxes();
   }
 
-  private void addCheckBoxes()
+  private void checkboxes()
   {
-    for (final Part value : Part.values())
+    for (final Part value : Part.assignable())
     {
       final CheckBox check = new CheckBox(value.getLabel(true));
       check.setId(value.name());
@@ -51,10 +52,25 @@ public class ParticipantInfoView extends AbstractView<ParticipantInfoPresenter>
         @Override
         public void onClick(ClickEvent inEvent)
         {
-          mPresenter.clicked(value, check.getValue());
+          mPresenter.check(value, check.getValue());
         }
       });
       mParts.add(check);
+    }
+
+    for (final Hall value : Hall.values())
+    {
+      final CheckBox check = new CheckBox(value.getLabel());
+      check.setId(value.name());
+      check.addClickHandler(new ClickHandler()
+      {
+        @Override
+        public void onClick(ClickEvent inEvent)
+        {
+          mPresenter.check(value, check.getValue());
+        }
+      });
+      mHalls.add(check);
     }
   }
 
@@ -65,18 +81,28 @@ public class ParticipantInfoView extends AbstractView<ParticipantInfoPresenter>
   }
 
   @Override
-  public void check(List<Part> inParts)
+  public void check(List<Part> inParts, List<Hall> inHalls)
   {
-    List<String> keys = new ArrayList<>();
-    for (Part value : inParts)
-    {
-      keys.add(value.name());
-    }
+    check(keys(inParts), mParts);
+    check(keys(inHalls), mHalls);
+  }
 
-    for (int i = 0; i < mParts.getWidgetCount(); i++)
+  private static <T extends Enum<?>> List<String> keys(List<T> inEnums)
+  {
+    List<String> ret = new ArrayList<>();
+    for (Enum<?> value : inEnums)
     {
-      CheckBox check = (CheckBox) mParts.getWidget(i);
-      check.setValue(keys.contains(check.getId()));
+      ret.add(value.name());
+    }
+    return ret;
+  }
+
+  private static void check(List<String> inKeys, HTMLPanel inPanel)
+  {
+    for (int i = 0; i < inPanel.getWidgetCount(); i++)
+    {
+      CheckBox check = (CheckBox) inPanel.getWidget(i);
+      check.setValue(inKeys.contains(check.getId()));
     }
   }
 }

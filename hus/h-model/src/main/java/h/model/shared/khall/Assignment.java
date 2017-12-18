@@ -127,11 +127,11 @@ public class Assignment extends Schedule implements Serializable
     String pt = getPart().getLabel(true);
     String at = inPersons.gName(mAssistantId);
 
-    if (inParticipantId == mAssistantId)
+    if (inParticipantId.equals(mAssistantId))
     {
       pt = getPart().assistant().getLabel(true);
       sp = "";
-      at = "";
+      at = inPersons.gName(mParticipantId);
     }
 
     StringBuilder sb = new StringBuilder();

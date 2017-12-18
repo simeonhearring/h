@@ -12,7 +12,18 @@
 			<div class="col-lg-12 text-center">
 				<b:Heading size="H2" text="Participant Info" />
 				<b:Label ui:field="mName" />
+			</div>
+		</div>
+		<div class="client-detail">
+			<div class="full-height-scroll">
+				<b:Heading size="H4" text="Assignable Parts" />
 				<b.gwt:HTMLPanel ui:field="mParts" />
+			</div>
+		</div>
+		<div class="client-detail">
+			<div class="full-height-scroll">
+				<b:Heading size="H4" text="Assignable Halls" />
+				<b.gwt:HTMLPanel ui:field="mHalls" />
 			</div>
 		</div>
 	</b.gwt:HTMLPanel>
