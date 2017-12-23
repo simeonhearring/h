@@ -35,10 +35,10 @@ public class PartInfoTest
     int[] results = model.score(Part.BIBLE_READING, null);
 
     Assert.assertEquals(0, results[0]);
-    Assert.assertEquals(0, results[1]);
+    Assert.assertEquals(12, results[1]);
     Assert.assertEquals(5, results[2]);
     Assert.assertEquals(0, results[3]);
-    Assert.assertEquals(5, model.getScore());
+    Assert.assertEquals(17, model.getScore());
   }
 
   private List<Assignment> assignments(Person inPerson, int... inIs)

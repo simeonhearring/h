@@ -12,6 +12,7 @@ import h.model.shared.khall.Meeting;
 import h.model.shared.khall.Person;
 import h.model.shared.khall.Persons;
 import h.model.shared.khall.Profile;
+import h.model.shared.khall.Report;
 import h.model.shared.util.RandomUtil;
 import h.style.g.shared.chart.Chart;
 import h.style.g.shared.chart.Chart.Stat;
@@ -33,7 +34,7 @@ public class JavaBeanDaoImpl implements Dao
 
     ret.setUserTitle("Owner");
     ret.setUserName("Simeon L Hearring");
-    ret.setCongId(59);
+    ret.setCongId("58966".equals(inProfile.getCongNum()) ? 59 : 60);
     ret.setCount(Count.STUDENT);
 
     return ret;
@@ -46,9 +47,19 @@ public class JavaBeanDaoImpl implements Dao
     ret.setId(inProfile.getCongId());
     ret.setNumber(inProfile.getCongNum());
 
-    ret.setMidweekOn(new Date(RandomAssignments.THU_JAN_7_2016_1930));
-    ret.setName("English - Gallatin, TN");
-    ret.setHalls(Hall.MAIN, Hall.SECOND);
+    if (inProfile.getCongId().equals(59))
+    {
+      ret.setMidweekOn(new Date(RandomAssignments.THU_JAN_7_2016_1930));
+      ret.setName("English - Gallatin, TN");
+      ret.setHalls(Hall.MAIN);
+    }
+    else
+    {
+      ret.setMidweekOn(new Date(RandomAssignments.TUE_JAN_5_2016_19));
+      ret.setName("Triple Creek - Gallatin, TN");
+      ret.setHalls(Hall.MAIN);
+    }
+
     return ret;
   }
 
@@ -117,6 +128,11 @@ public class JavaBeanDaoImpl implements Dao
 
   @Override
   public void update(String inKey, Person inPerson)
+  {
+  }
+
+  @Override
+  public void update(Report inReport)
   {
   }
 }

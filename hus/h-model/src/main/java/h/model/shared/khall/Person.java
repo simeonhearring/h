@@ -88,7 +88,7 @@ public class Person extends h.model.shared.Person
   @JsonIgnore
   public boolean isAvailable(Part inPart, Gender inGender)
   {
-    return mParts.contains(inPart) && (inGender == null || inGender.equals(getGender()));
+    return isMember() && mParts.contains(inPart) && (inGender == null || inGender.equals(getGender()));
   }
 
   public Integer getFsgId()
@@ -245,5 +245,10 @@ public class Person extends h.model.shared.Person
     builder.append(" ");
     builder.append(getRole()); // expand and include category
     return builder.toString();
+  }
+
+  public boolean isMember()
+  {
+    return mFsgId != null && !mFsgId.equals(0);
   }
 }

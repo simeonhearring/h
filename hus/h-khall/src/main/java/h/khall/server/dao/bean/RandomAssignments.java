@@ -78,6 +78,7 @@ public class RandomAssignments
   public static final long MON_JAN_2_2017 = 1483336800000L;
   public static final long MON_JAN_1_2018 = 1514786400000L;
   public static final long MON_JAN_4_2016_19 = 1451955600000L;
+  public static final long TUE_JAN_5_2016_19 = 1452042000000L;
   public static final long THU_JAN_7_2016_1930 = 1452216600000L;
 
   private static class PartSort

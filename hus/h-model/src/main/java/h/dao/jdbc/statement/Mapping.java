@@ -9,6 +9,8 @@ import h.model.shared.khall.Assignment;
 import h.model.shared.khall.Curriculum;
 import h.model.shared.khall.Hall;
 import h.model.shared.khall.Part;
+import h.model.shared.khall.Report;
+import h.model.shared.khall.Roles.Role;
 import h.model.shared.khall.StudyPoint;
 import h.model.shared.util.NumberUtil;
 
@@ -127,34 +129,31 @@ public class Mapping
   // Part.values()));
   // return ret;
   // }
-  //
-  // public static Report mapReport(ResultSet inRs, String inPrefix) throws
-  // SQLException
-  // {
-  // Report ret = new Report();
-  //
-  // mapAbstractModel(inRs, inPrefix, ret);
-  // ret.setYear(inRs.getInt(inPrefix + ".mYear"));
-  // ret.setBibleStudies(inRs.getInt(inPrefix + ".mBibleStudies"));
-  // ret.setPlacements(inRs.getInt(inPrefix + ".mPlacements"));
-  // ret.setVideoShowings(inRs.getInt(inPrefix + ".mVideoShowings"));
-  // ret.setBooks(inRs.getInt(inPrefix + ".mBooks"));
-  // ret.setBrochures(inRs.getInt(inPrefix + ".mBrochures"));
-  // ret.setHours(inRs.getInt(inPrefix + ".mHours"));
-  // ret.setMagazines(inRs.getInt(inPrefix + ".mMagazines"));
-  // ret.setMonth(inRs.getInt(inPrefix + ".mMonth"));
-  // ret.setRbcHours(inRs.getInt(inPrefix + ".mRbcHours"));
-  // ret.setPartialHours(NumberUtil.toDouble(inRs.getBigDecimal(inPrefix +
-  // ".mPartialHours")));
-  // ret.setNoActivity(inRs.getBoolean(inPrefix + ".mNoActivity"));
-  // ret.setIncludeAllHours(inRs.getBoolean(inPrefix + ".mIncludeAllHours"));
-  // ret.setRemarks(inRs.getString(inPrefix + ".mRemarks"));
-  // ret.setReturnVisits(inRs.getInt(inPrefix + ".mReturnVisits"));
-  // ret.setType(valueOf(inRs.getString(inPrefix + ".mType"), Type.values()));
-  // ret.setSendDate(inRs.getDate(inPrefix + ".mSendDate"));
-  // return ret;
-  // }
-  //
+
+  public static Report mapReport(ResultSet inRs) throws SQLException
+  {
+    Report ret = new Report();
+
+    ret.setCongId(inRs.getInt("mCongregation"));
+    ret.setPubId(inRs.getInt("mPublisher"));
+    ret.setYear(inRs.getInt("mYear"));
+    ret.setMonth(inRs.getInt("mMonth"));
+    ret.setSendDate(inRs.getDate("mSendDate"));
+    ret.setNoActivity(inRs.getBoolean("mNoActivity"));
+    ret.setPlacements(inRs.getInt("mPlacements"));
+    ret.setVideoShowings(inRs.getInt("mVideoShowings"));
+    ret.setHours(inRs.getInt("mHours"));
+    ret.setReturnVisits(inRs.getInt("mReturnVisits"));
+    ret.setBibleStudies(inRs.getInt("mBibleStudies"));
+    ret.setCreditHours(inRs.getInt("mRbcHours"));
+    ret.setIncludeAllHours(inRs.getBoolean("mIncludeAllHours"));
+    ret.setRemarks(inRs.getString("mRemarks"));
+    ret.setType(AbstractSql.valueOf(inRs.getString("mType"), Role.values()));
+    ret.setPartialHours(NumberUtil.toDouble(inRs.getBigDecimal("mPartialHours")));
+
+    return ret;
+  }
+
   // public static FieldServiceGroup mapFieldServiceGroup(ResultSet inRs, String
   // inFsg, String inC)
   // throws SQLException

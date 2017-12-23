@@ -13,8 +13,8 @@
 	</Statement>
 	<Statement>
 		<Key>UPDATE_PE</Key>
-		<Types>VARCHAR,NUMERIC</Types>
-		<Sql>update PERSON set mProfile=AES_ENCRYPT(?,@key) where mId=?</Sql>
+		<Types>VARCHAR,VARCHAR,NUMERIC</Types>
+		<Sql>update PERSON set mProfile=AES_ENCRYPT(?,@key),mLocater=? where mId=?</Sql>
 	</Statement>
 	<Statement>
 		<Key>INSERT_PE</Key>

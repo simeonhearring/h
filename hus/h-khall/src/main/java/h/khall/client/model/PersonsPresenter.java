@@ -40,8 +40,8 @@ public class PersonsPresenter extends AbstractPresenter<PersonsPresenter.Display
 
   public void search(String inText)
   {
-    mDisplay.setAll(filter(mClient.getPersons().getPersons(), inText));
-    mDisplay.setElders(filter(mClient.getPersons().getElders(), inText));
-    mDisplay.setRegular(filter(mClient.getPersons().getRegular(), inText));
+    mDisplay.setAll(filter(mClient.getPersons().getPersons(), inText, false));
+    mDisplay.setElders(filter(mClient.getPersons().getElders(), inText, true));
+    mDisplay.setRegular(filter(mClient.getPersons().getRegular(), inText, true));
   }
 }

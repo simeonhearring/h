@@ -1,7 +1,9 @@
 package h.dao.jdbc.statement;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -33,7 +35,7 @@ public class PersonEncryptSqlTest extends MySqlBaseDaoTest
     }
   }
 
-  @Test
+  // @Test
   public void update2()
   {
     List<String> names = new ArrayList<>();
@@ -94,6 +96,32 @@ public class PersonEncryptSqlTest extends MySqlBaseDaoTest
     model.setLast("Roe");
 
     mSql.insert("1234567890", model);
+  }
+
+  @Test
+  public void addTripleCreek()
+  {
+    Map<Integer, Integer> map = new HashMap<>();
+    map.put(79, 86);
+    map.put(80, 88);
+    map.put(82, 87);
+    map.put(83, 85);
+    map.put(0, 0);
+
+    List<Person> model = mSql.selectByCongId("9M1})6Y]ibnxrp^zSQz@*BAc[Cn+Ub1R", 59);
+    for (Person value : model)
+    {
+      if (map.containsKey(value.getFsgId()))
+      {
+        System.out.println(value.gNameAge());
+
+        // value.setCongId(60);
+        value.setFsgId(0);
+
+        mSql.update("9M1})6Y]ibnxrp^zSQz@*BAc[Cn+Ub1R", value);
+        // mSql.insert("NBgh(epoT(MSkV77kFaCE~cC_SSf7c7o", value);
+      }
+    }
   }
 
   // @Test

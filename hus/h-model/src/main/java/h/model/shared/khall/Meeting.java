@@ -244,7 +244,8 @@ public class Meeting implements Serializable, IHistory
 
       for (Hall value : inHalls)
       {
-        Assignment assignment = gAssignment(inPpart, value);
+        Assignment assignment = gAssignment(inPpart, value); // TODO
+
         if (assignment == null)
         {
           if (Hall.MAIN.equals(value) || inPpart.isStudyPoint())
@@ -257,6 +258,7 @@ public class Meeting implements Serializable, IHistory
             curr.setPart(inPpart);
             curr.setTheme(inPpart.getLabel(false));
             curr.setDurationMinutes(inPpart.gDuration());
+
             if (inPpart.isChairmanPart())
             {
               Assignment c = gAssignment(Part.CHAIRMAN, Hall.MAIN);

@@ -61,13 +61,13 @@ public class Persons implements Serializable
     return ret;
   }
 
-  public static List<Person> filter(List<Person> inList, String inQuery)
+  public static List<Person> filter(List<Person> inList, String inQuery, boolean inMember)
   {
     List<Person> ret = new ArrayList<>();
     inQuery = inQuery.toLowerCase();
     for (Person value : inList)
     {
-      if (value.toQuery().toLowerCase().contains(inQuery))
+      if (memberCheck(inMember, value.isMember()) && value.toQuery().toLowerCase().contains(inQuery))
       {
         ret.add(value);
       }
@@ -75,12 +75,17 @@ public class Persons implements Serializable
     return ret;
   }
 
+  private static boolean memberCheck(boolean inInclude, boolean inMember)
+  {
+    return inInclude ? inMember : true;
+  }
+
   public void filterName(List<Tag> inData, String inName)
   {
     inName = inName.toLowerCase();
     for (Person value : mPersons)
     {
-      if (value.getName().toLowerCase().contains(inName))
+      if (value.isMember() && value.getName().toLowerCase().contains(inName))
       {
         inData.add(value);
       }

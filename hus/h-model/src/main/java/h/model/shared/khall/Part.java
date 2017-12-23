@@ -193,6 +193,24 @@ public enum Part
     return ret;
   }
 
+  public boolean isVideo()
+  {
+    boolean ret = false;
+    switch (this)
+    {
+      case I_VIDEO:
+      case F_RETURN_VISIT_VIDEO:
+      case S_RETURN_VISIT_VIDEO:
+      case T_RETURN_VISIT_VIDEO:
+      case B_VIDEO:
+        ret = true;
+        break;
+      default:
+        break;
+    }
+    return ret;
+  }
+
   public String getLabel(boolean inShort)
   {
     String ret = null;
@@ -218,6 +236,21 @@ public enum Part
         break;
       case T_RETURN_VISIT:
         ret = "Third Return Visit";
+        break;
+      case I_VIDEO:
+        ret = "Initial Call Video";
+        break;
+      case F_RETURN_VISIT_VIDEO:
+        ret = "First Return Visit Video";
+        break;
+      case S_RETURN_VISIT_VIDEO:
+        ret = "Second Return Visit Video";
+        break;
+      case T_RETURN_VISIT_VIDEO:
+        ret = "Third Return Visit Video";
+        break;
+      case B_VIDEO:
+        ret = "Bible Study Video";
         break;
       case C_BIBLE_STUDY:
         ret = "Congregation Bible Study";
@@ -334,7 +367,7 @@ public enum Part
     return ret;
   }
 
-  public static List<Part> schedule(boolean inCovisit, boolean inSlips)
+  public static List<Part> schedule(boolean inCovisit, boolean inSlips, boolean inLiving2)
   {
     List<Part> ret = new ArrayList<>();
     if (!inSlips)
@@ -354,7 +387,12 @@ public enum Part
     {
       ret.add(Part.SONG_2);
       ret.add(Part.LIVING_1);
-      ret.add(Part.LIVING_2);
+
+      if (inLiving2)
+      {
+        ret.add(Part.LIVING_2);
+      }
+
       if (inCovisit)
       {
         ret.add(Part.REVIEW);
@@ -365,6 +403,7 @@ public enum Part
         ret.add(Part.C_BIBLE_STUDY);
         ret.add(Part.REVIEW);
       }
+
       ret.add(Part.SONG_3);
     }
     return ret;

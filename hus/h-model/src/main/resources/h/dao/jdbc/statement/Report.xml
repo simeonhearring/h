@@ -1,0 +1,34 @@
+<Statements>
+	<Statement>
+		<Key>UPSERT</Key>
+		<Types>NUMERIC,NUMERIC,NUMERIC,NUMERIC,DATE,DATE,NUMERIC,NUMERIC,NUMERIC,NUMERIC,NUMERIC,NUMERIC,NUMERIC,NUMERIC,VARCHAR,VARCHAR,NUMERIC,DATE,NUMERIC,NUMERIC,NUMERIC,NUMERIC,NUMERIC,NUMERIC,NUMERIC,NUMERIC,VARCHAR,VARCHAR,NUMERIC</Types>
+		<Sql>INSERT INTO
+			REPORT(mCongregation,mPublisher,mYear,mMonth,mDate,
+			mSendDate,mNoActivity,mPlacements,mVideoShowings,mHours,
+			mReturnVisits,mBibleStudies,mRbcHours,mIncludeAllHours,mRemarks,
+			mType,mPartialHours)
+			VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ON DUPLICATE KEY UPDATE
+			mSendDate=?,mNoActivity=?,mPlacements=?,mVideoShowings=?,mHours=?,mReturnVisits=?,mBibleStudies=?,mRbcHours=?,mIncludeAllHours=?,mRemarks=?,mType=?,mPartialHours=?
+		</Sql>
+	</Statement>
+	<Statement>
+		<Key>SELECT</Key>
+		<Types>VARCHAR,NUMERIC</Types>
+		<Sql>SELECT r.* FROM PERSON p, REPORT r where mLocater like ? and mLocater not like "%f0,%" and p.mId=r.mPublisher and r.mCongregation=?</Sql>
+	</Statement>
+	<Statement>
+		<Key>SELECT_CP</Key>
+		<Types>NUMERIC,NUMERIC</Types>
+		<Sql>SELECT * FROM REPORT where mCongregation=? and mPublisher=?</Sql>
+	</Statement>
+	<Statement>
+		<Key>SELECT_CR</Key>
+		<Types>NUMERIC,DATE,DATE</Types>
+		<Sql>SELECT * FROM REPORT where mCongregation=? and mDate between ? and ?</Sql>
+	</Statement>
+	<Statement>
+		<Key>SELECT_CPR</Key>
+		<Types>NUMERIC,NUMERIC,DATE,DATE</Types>
+		<Sql>SELECT * FROM REPORT where mCongregation=? and mPublisher=? and mDate between ? and ?</Sql>
+	</Statement>
+</Statements> 

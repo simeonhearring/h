@@ -11,6 +11,22 @@ import h.model.shared.khall.Part;
 
 public class CurriculumCreate
 {
+  public static List<Curriculum> create3()
+  {
+    List<Curriculum> ret = new ArrayList<>();
+
+    Curriculum a1W1 = new Curriculum();
+    a1W1.setDate(newDate("2018-01-15"));
+    a1W1.setPart(Part.S_RETURN_VISIT_VIDEO);
+    a1W1.setTheme(null);
+    a1W1.setSource(null);
+    a1W1.setDurationMinutes(5);
+    a1W1.setSort(10);
+    ret.add(a1W1);
+
+    return ret;
+  }
+
   public static List<Curriculum> create()
   {
     List<Curriculum> ret = new ArrayList<>();

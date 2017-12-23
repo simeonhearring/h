@@ -26,6 +26,15 @@
 	<detail>
 		<band height="400" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<rectangle>
+				<reportElement mode="Transparent" x="0" y="0" width="270" height="390" uuid="6623f2bd-9ee0-484c-8524-b1b24312f968">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
+			</rectangle>
 			<staticText>
 				<reportElement x="10" y="42" width="100" height="30" uuid="c883f43c-0b14-471b-b0ef-ccb2f2c19ca3"/>
 				<textElement verticalAlignment="Bottom">
@@ -63,7 +72,7 @@
 MEETING ASSIGNMENT]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="10" y="316" width="250" height="76" uuid="745fe5eb-6d16-413a-8e08-03fad025b4fe"/>
+				<reportElement x="10" y="316" width="250" height="64" uuid="745fe5eb-6d16-413a-8e08-03fad025b4fe"/>
 				<box padding="0" topPadding="3" leftPadding="3" bottomPadding="3" rightPadding="3"/>
 				<textElement textAlignment="Justified" markup="html">
 					<font size="8"/>

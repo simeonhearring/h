@@ -22,7 +22,7 @@ public class S_89Report extends OclmReport
 
   @Override
   protected void addReports(List<Report> inList, Persons inPersons, Month inMonth,
-      Map<Hall, Assignment> inAssignments, Report inReport)
+      Map<Hall, Assignment> inAssignments, Report inReport, String[] inChairman)
   {
     List<Hall> list = new ArrayList<>(inAssignments.keySet());
     Collections.sort(list);
@@ -37,7 +37,7 @@ public class S_89Report extends OclmReport
         report.setHall(value.name());
 
         String studyPoint = StudyPoint.display2(assignment.getStudyPoint());
-        String[] assigns = assign(inPersons, assignment);
+        String[] assigns = assign(inPersons, assignment, inChairman);
         report.setParticipantsA(assigns[0], assigns[1], studyPoint);
 
         addHistory(inPersons, inMonth, assignment, report);

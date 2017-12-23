@@ -6,7 +6,6 @@ import org.junit.Test;
 
 import h.dao.jdbc.MySqlBaseDaoTest;
 import h.model.shared.khall.Hall;
-import h.model.shared.khall.Part;
 import h.model.shared.khall.StudyPoint;
 
 public class ScheduleSqlTest extends MySqlBaseDaoTest
@@ -23,20 +22,20 @@ public class ScheduleSqlTest extends MySqlBaseDaoTest
   @Test
   public void test()
   {
-    int congId = 59;
+    int congId = 60;
     int[] mos =
     {
-        3
+        1, 2, 3
     }; // 1=Jan, 2=Feb
 
     for (int mo : mos)
     {
       mSql.upsert(congId, Hall.MAIN, 2018, mo);
 
-      for (Part value : Part.student())
-      {
-        mSql.upsert(congId, Hall.SECOND, 2018, mo, value);
-      }
+      // for (Part value : Part.student())
+      // {
+      // mSql.upsert(congId, Hall.SECOND, 2018, mo, value);
+      // }
     }
   }
 

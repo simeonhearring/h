@@ -184,7 +184,8 @@
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement textAlignment="Right" markup="html">
+				<textElement textAlignment="Right" markup="styled">
+					<font size="9"/>
 					<paragraph lineSpacing="Single" lineSpacingSize="0.0"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{participantsA}]]></textFieldExpression>
@@ -211,7 +212,8 @@
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement textAlignment="Right" markup="html">
+				<textElement textAlignment="Right" markup="styled">
+					<font size="9"/>
 					<paragraph lineSpacing="Single" lineSpacingSize="0.0"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{participantsB}]]></textFieldExpression>

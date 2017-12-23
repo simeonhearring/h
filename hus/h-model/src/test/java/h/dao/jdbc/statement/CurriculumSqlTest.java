@@ -23,7 +23,7 @@ public class CurriculumSqlTest extends MySqlBaseDaoTest
   }
 
   // this is the procedure for adding curriculum
-  // @Test
+  @Test
   public void test()
   {
     Curriculums curr = new Curriculums();

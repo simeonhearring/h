@@ -19,6 +19,11 @@ public class Curriculum implements Serializable
     Part ret = mPart;
     switch (mPart)
     {
+      case I_VIDEO:
+      case F_RETURN_VISIT_VIDEO:
+      case S_RETURN_VISIT_VIDEO:
+      case T_RETURN_VISIT_VIDEO:
+      case B_VIDEO:
       case INITIAL_CALL:
       case RETURN_VISIT:
       case F_RETURN_VISIT:

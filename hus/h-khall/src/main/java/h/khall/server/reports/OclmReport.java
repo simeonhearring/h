@@ -97,11 +97,13 @@ public class OclmReport extends AbstractReportDefault<Report>
       String[] chairman =
           chairman(inPersons, week.gAssignments(Part.CHAIRMAN, Hall.MAIN).get(Hall.MAIN));
 
-      for (Part value : Part.schedule(week.isCoWeek(), isStudent()))
+      boolean isLiving2 = week.gAssignment(Part.LIVING_2, Hall.MAIN) != null;
+
+      for (Part value : Part.schedule(week.isCoWeek(), isStudent(), isLiving2))
       {
         Map<Hall, Assignment> assignment = week.gAssignments(value, inCong.getHalls());
         Report r = newReport(keeper, chairman[0], chairman[1], assignment.get(Hall.MAIN), week.getOf());
-        addReports(ret, inPersons, inMonth, assignment, r.copy());
+        addReports(ret, inPersons, inMonth, assignment, r.copy(), chairman);
       }
     }
 
@@ -135,20 +137,20 @@ public class OclmReport extends AbstractReportDefault<Report>
   }
 
   protected void addReports(List<Report> inList, Persons inPersons, Month inMonth,
-      Map<Hall, Assignment> inAssignments, Report inReport)
+      Map<Hall, Assignment> inAssignments, Report inReport, String[] inChairman)
   {
     inReport.setHall(Hall.MAIN.name());
 
-    String[] main = assign(inPersons, inAssignments.get(Hall.MAIN));
+    String[] main = assign(inPersons, inAssignments.get(Hall.MAIN), inChairman);
     inReport.setParticipantsA(main[0], main[1], main[2]);
 
-    String[] aux = assign(inPersons, inAssignments.get(Hall.SECOND));
+    String[] aux = assign(inPersons, inAssignments.get(Hall.SECOND), inChairman);
     inReport.setParticipantsB(aux[0], aux[1], aux[2]);
 
     inList.add(inReport);
   }
 
-  protected final String[] assign(Persons inPersons, Assignment inAssignment)
+  protected final String[] assign(Persons inPersons, Assignment inAssignment, String[] inChairman)
   {
     String participant = null, assistant = null, studypoint = null;
     if (inAssignment != null)
@@ -156,6 +158,11 @@ public class OclmReport extends AbstractReportDefault<Report>
       participant = ensure(inPersons.gName(inAssignment.getParticipantId()));
       assistant = ensure(inPersons.gName(inAssignment.getAssistantId()));
       studypoint = StudyPoint.display(inAssignment.getStudyPoint());
+
+      if (inAssignment.getPart().isVideo())
+      {
+        participant = inChairman[1];
+      }
     }
     return new String[]
     {

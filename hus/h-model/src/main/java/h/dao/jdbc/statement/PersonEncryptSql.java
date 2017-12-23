@@ -64,7 +64,7 @@ public class PersonEncryptSql extends AbstractSql
       public Object[] params(Person inModel)
       {
         String value = writeValue(inModel);
-        return PersonEncryptSql.params(value, inModel.getIdLong());
+        return PersonEncryptSql.params(value, inModel.gLocater(), inModel.getIdLong());
       }
     };
    }
