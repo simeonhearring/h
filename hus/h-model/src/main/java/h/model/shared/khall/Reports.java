@@ -1,18 +1,83 @@
 package h.model.shared.khall;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public class Reports
+import h.model.shared.khall.Report.Total;
+
+@SuppressWarnings("serial")
+public class Reports implements Serializable
 {
-  private List<Report> mReports;
+  private Map<Long, List<Report>> mReports;
 
-  public List<Report> getReports()
+  public void addReports(List<Report> inReports)
   {
-    return mReports;
+    mReports = new HashMap<>();
+    for (Report value : inReports)
+    {
+      if (!mReports.containsKey(value.getPubId()))
+      {
+        mReports.put(value.getPubId(), new ArrayList<Report>());
+      }
+      mReports.get(value.getPubId()).add(value);
+    }
   }
 
-  public void setReports(List<Report> inReports)
+  public Total gTotal(List<Report> inReports)
   {
-    mReports = inReports;
+    Total ret = new Total();
+    for (Report value : inReports)
+    {
+      ret.add(value);
+    }
+    return ret;
+  }
+
+  public List<Total> gAnnual(int inYear)
+  {
+    List<Total> ret = new ArrayList<>();
+    return ret;
+  }
+
+  public Report gReport(int inCongId, long inPubId, int inYear, int inMonth)
+  {
+    return find(inCongId, inPubId, inYear, inMonth);
+  }
+
+  private Report find(int inCongId, long inPubId, int inYear, int inMonth)
+  {
+    Report ret = null;
+
+    if (!mReports.containsKey(inPubId))
+    {
+      mReports.put(inPubId, new ArrayList<Report>());
+    }
+
+    List<Report> list = mReports.get(inPubId);
+
+    for (Report value : list)
+    {
+      if (value.getYear().equals(inYear) && value.getMonth().equals(inMonth))
+      {
+        ret = value;
+        break;
+      }
+    }
+
+    if (ret == null)
+    {
+      ret = new Report();
+      ret.setCongId(inCongId);
+      ret.setPubId(inPubId);
+      ret.setYear(inYear);
+      ret.setMonth(inMonth);
+
+      list.add(ret);
+    }
+
+    return ret;
   }
 }

@@ -10,6 +10,7 @@ import h.model.shared.khall.Part;
 import h.model.shared.khall.PartInfo;
 import h.model.shared.khall.Person;
 import h.model.shared.khall.Persons;
+import h.model.shared.khall.Reports;
 import h.style.g.shared.chart.Chart;
 
 @SuppressWarnings("serial")
@@ -17,6 +18,7 @@ public class Client extends h.model.shared.Client
 {
   private Persons mPersons;
   private Meeting mMeeting;
+  private Reports mReports;
   private Chart mChart;
 
   public Chart getChart()
@@ -68,5 +70,15 @@ public class Client extends h.model.shared.Client
       ret.add(value, mMeeting.gHistory(value.getIdLong()));
     }
     return ret;
+  }
+
+  public Reports getReports()
+  {
+    return mReports;
+  }
+
+  public void setReports(Reports inReports)
+  {
+    mReports = inReports;
   }
 }

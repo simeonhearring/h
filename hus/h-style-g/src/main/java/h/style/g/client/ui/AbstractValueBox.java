@@ -16,11 +16,11 @@ import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.web.bindery.event.shared.Event;
 
-abstract class AbstractValueBox extends AbstractView
+abstract class AbstractValueBox<T> extends AbstractView
 {
-  protected ValueBoxBase<String> mValueBox;
+  protected ValueBoxBase<T> mValueBox;
 
-  public void setTextBox(ValueBoxBase<String> inTextBox)
+  public void setTextBox(ValueBoxBase<T> inTextBox)
   {
     mValueBox = inTextBox;
   }
@@ -59,12 +59,12 @@ abstract class AbstractValueBox extends AbstractView
     return mValueBox.equals(inEvent.getSource());
   }
 
-  public String getValue()
+  public T getValue()
   {
     return mValueBox.getValue();
   }
 
-  public void setValue(String inValue)
+  public void setValue(T inValue)
   {
     mValueBox.setValue(inValue);
   }
@@ -114,7 +114,7 @@ abstract class AbstractValueBox extends AbstractView
         setFocus(true);
         if (inAtEnd)
         {
-          mValueBox.setCursorPos(mValueBox.getValue().length());
+          // TODO mValueBox.setCursorPos(mValueBox.getValue().length());
         }
       }
     });
@@ -132,7 +132,7 @@ abstract class AbstractValueBox extends AbstractView
           setFocus(true);
           if (inAtEnd)
           {
-            mValueBox.setCursorPos(mValueBox.getValue().length());
+            // TODO mValueBox.setCursorPos(mValueBox.getValue().length());
           }
           return false;
         }
@@ -151,7 +151,7 @@ abstract class AbstractValueBox extends AbstractView
     }
   }
 
-  public HandlerRegistration addValueChangeHandler(ValueChangeHandler<String> inHandler)
+  public HandlerRegistration addValueChangeHandler(ValueChangeHandler<T> inHandler)
   {
     return register(mValueBox.addValueChangeHandler(inHandler));
   }

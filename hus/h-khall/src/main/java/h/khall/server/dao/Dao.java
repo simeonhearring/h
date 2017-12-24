@@ -7,6 +7,7 @@ import h.model.shared.khall.Person;
 import h.model.shared.khall.Persons;
 import h.model.shared.khall.Profile;
 import h.model.shared.khall.Report;
+import h.model.shared.khall.Reports;
 import h.style.g.shared.chart.Chart;
 
 public interface Dao
@@ -26,4 +27,6 @@ public interface Dao
   void update(Report inReport);
 
   Congregation selectCong(Profile inProfile);
+
+  Reports selectReports(Profile inProfile);
 }

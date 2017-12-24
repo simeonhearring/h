@@ -26,7 +26,7 @@ public class ReportSqlTest extends MySqlBaseDaoTest
   {
     Report r = new Report();
     r.setCongId(-1);
-    r.setPubId(1);
+    r.setPubId(1L);
     r.setYear(2000);
     r.setMonth(1);
     r.setHours(15);

@@ -9,6 +9,7 @@ public class Profile extends h.model.shared.Profile
   private String mCongNum;
   private String mEncrypt;
   private Integer mYear = TimeUtil.currentYear();
+  // private Integer mMonth = TimeUtil.getCurrentMonth();
   private Assignments.Count mCount;
 
   public String getCongNum()
@@ -53,6 +54,11 @@ public class Profile extends h.model.shared.Profile
   {
     mYear = inYear;
   }
+
+  // public Integer getMonth()
+  // {
+  // return mMonth;
+  // }
 
   public Assignments.Count getCount()
   {

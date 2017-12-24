@@ -16,6 +16,7 @@ import h.model.shared.util.EnumUtil;
 public class ReportSql extends AbstractSql
 {
   private final SqlUpdate mUpsert;
+  private final MapReport mSelect0;
   private final MapReport mSelect1;
   private final MapReport mSelect2;
   private final MapReport mSelect3;
@@ -26,6 +27,7 @@ public class ReportSql extends AbstractSql
 
     Statement upsert = mStmts.getStatement("UPSERT");
     mUpsert = newSqlUpdate(inDataSource, upsert.getSql(), upsert.types());
+    mSelect0 = new MapReport(inDataSource, mStmts.getStatement("SELECT_C"));
     mSelect1 = new MapReport(inDataSource, mStmts.getStatement("SELECT_CP"));
     mSelect2 = new MapReport(inDataSource, mStmts.getStatement("SELECT_CR"));
     mSelect3 = new MapReport(inDataSource, mStmts.getStatement("SELECT_CPR"));
@@ -43,6 +45,11 @@ public class ReportSql extends AbstractSql
         inReport.getHours(), inReport.getReturnVisits(), inReport.getBibleStudies(),
         inReport.getCreditHours(), inReport.getIncludeAllHours(), inReport.getRemarks(),
         EnumUtil.name(inReport.getType()), inReport.getPartialHours()));
+  }
+
+  public List<Report> select(int inCongId)
+  {
+    return mSelect0.execute(params(inCongId));
   }
 
   public List<Report> select(int inCongId, int inPubId)

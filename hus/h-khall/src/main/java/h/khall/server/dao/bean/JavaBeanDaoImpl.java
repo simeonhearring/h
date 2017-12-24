@@ -13,6 +13,7 @@ import h.model.shared.khall.Person;
 import h.model.shared.khall.Persons;
 import h.model.shared.khall.Profile;
 import h.model.shared.khall.Report;
+import h.model.shared.khall.Reports;
 import h.model.shared.util.RandomUtil;
 import h.style.g.shared.chart.Chart;
 import h.style.g.shared.chart.Chart.Stat;
@@ -134,5 +135,11 @@ public class JavaBeanDaoImpl implements Dao
   @Override
   public void update(Report inReport)
   {
+  }
+
+  @Override
+  public Reports selectReports(Profile inProfile)
+  {
+    return null;
   }
 }

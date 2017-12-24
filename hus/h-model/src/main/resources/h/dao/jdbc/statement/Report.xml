@@ -17,6 +17,11 @@
 		<Sql>SELECT r.* FROM PERSON p, REPORT r where mLocater like ? and mLocater not like "%f0,%" and p.mId=r.mPublisher and r.mCongregation=?</Sql>
 	</Statement>
 	<Statement>
+		<Key>SELECT_C</Key>
+		<Types>NUMERIC</Types>
+		<Sql>SELECT * FROM REPORT where mCongregation=?</Sql>
+	</Statement>
+	<Statement>
 		<Key>SELECT_CP</Key>
 		<Types>NUMERIC,NUMERIC</Types>
 		<Sql>SELECT * FROM REPORT where mCongregation=? and mPublisher=?</Sql>

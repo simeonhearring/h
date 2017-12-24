@@ -13,6 +13,7 @@ import h.model.shared.khall.Person;
 import h.model.shared.khall.Persons;
 import h.model.shared.khall.Profile;
 import h.model.shared.khall.Report;
+import h.model.shared.khall.Reports;
 
 public class MySqlDaoImpl extends JavaBeanDaoImpl implements Dao
 {
@@ -32,6 +33,14 @@ public class MySqlDaoImpl extends JavaBeanDaoImpl implements Dao
   {
     Persons ret = new Persons();
     ret.setPersons(mPersonSql.selectByCongId(inProfile.getEncrypt(), inProfile.getCongId()));
+    return ret;
+  }
+
+  @Override
+  public Reports selectReports(Profile inProfile)
+  {
+    Reports ret = new Reports();
+    ret.addReports(mReportSql.select(inProfile.getCongId()));
     return ret;
   }
 

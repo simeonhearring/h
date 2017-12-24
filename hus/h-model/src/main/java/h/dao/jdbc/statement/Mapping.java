@@ -135,7 +135,7 @@ public class Mapping
     Report ret = new Report();
 
     ret.setCongId(inRs.getInt("mCongregation"));
-    ret.setPubId(inRs.getInt("mPublisher"));
+    ret.setPubId(inRs.getLong("mPublisher"));
     ret.setYear(inRs.getInt("mYear"));
     ret.setMonth(inRs.getInt("mMonth"));
     ret.setSendDate(inRs.getDate("mSendDate"));

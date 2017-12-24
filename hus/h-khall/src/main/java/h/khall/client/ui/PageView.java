@@ -41,6 +41,15 @@ public class PageView extends AbstractView<PagePresenter> implements PagePresent
   }
 
   @Override
+  public void ministry()
+  {
+    clear();
+    mWrapper.setStyleName("gray-bg");
+    mSideBar.setVisible(false);
+    mBody.add(new MinistryView());
+  }
+
+  @Override
   public void midweek()
   {
     clear();

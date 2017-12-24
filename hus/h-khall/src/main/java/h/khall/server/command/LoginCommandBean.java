@@ -28,6 +28,8 @@ public class LoginCommandBean extends AbstractDaoCommandBean<Dao, LoginCommand>
 
     client.setPersons(mDao.selectPersons(profile));
 
+    client.setReports(mDao.selectReports(profile));
+
     return inCommand;
   }
 }
