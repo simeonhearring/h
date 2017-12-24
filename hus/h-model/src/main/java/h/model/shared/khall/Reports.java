@@ -75,7 +75,10 @@ public class Reports implements Serializable
       ret.setYear(inYear);
       ret.setMonth(inMonth);
 
-      list.add(ret);
+      if (inPubId > 0)
+      {
+        list.add(ret);
+      }
     }
 
     return ret;
