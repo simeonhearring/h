@@ -42,28 +42,33 @@ public class Reports implements Serializable
     return ret;
   }
 
-  public Report gReport(int inCongId, long inPubId, int inYear, int inMonth)
+  public Report gReport(int inCongId, Long inPubId, int inYear, int inMonth)
   {
     return find(inCongId, inPubId, inYear, inMonth);
   }
 
-  private Report find(int inCongId, long inPubId, int inYear, int inMonth)
+  private Report find(int inCongId, Long inPubId, int inYear, int inMonth)
   {
     Report ret = null;
 
-    if (!mReports.containsKey(inPubId))
-    {
-      mReports.put(inPubId, new ArrayList<Report>());
-    }
+    List<Report> list = null;
 
-    List<Report> list = mReports.get(inPubId);
-
-    for (Report value : list)
+    if (inPubId != null && inPubId.intValue() != 0)
     {
-      if (value.getYear().equals(inYear) && value.getMonth().equals(inMonth))
+      if (!mReports.containsKey(inPubId))
       {
-        ret = value;
-        break;
+        mReports.put(inPubId, new ArrayList<Report>());
+      }
+
+      list = mReports.get(inPubId);
+
+      for (Report value : list)
+      {
+        if (value.getYear().equals(inYear) && value.getMonth().equals(inMonth))
+        {
+          ret = value;
+          break;
+        }
       }
     }
 
@@ -75,7 +80,7 @@ public class Reports implements Serializable
       ret.setYear(inYear);
       ret.setMonth(inMonth);
 
-      if (inPubId > 0)
+      if (list != null)
       {
         list.add(ret);
       }
