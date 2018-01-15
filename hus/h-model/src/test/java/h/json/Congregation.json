@@ -1,0 +1,34 @@
+{
+	"name": "Triple Creek - Gallatin, TN",
+	"id": 60,
+	"number": "952267",
+	"halls": [
+		"MAIN"
+	],
+	"events": {
+		"2016-01-06T01:00:00.000+0000": {
+			"type": "WEEKMID",
+			"theme": null
+		},
+		"2018-07-31T05:00:00.000+0000": {
+			"type": "CO_VISIT",
+			"theme": "We Must Run With Endurance!"
+		},
+		"2018-02-19T06:00:00.000+0000": {
+			"type": "CO_VISIT",
+			"theme": "Let Endurance Complete Its Work"
+		},
+		"2018-06-11T05:00:00.000+0000": {
+			"type": "REGIONAL",
+			"theme": "'Be Courageous'!"
+		},
+		"2018-04-07T05:00:00.000+0000": {
+			"type": "CACO",
+			"theme": "Don't Give Up In Doing What Is Fine!"
+		},
+		"2018-01-06T06:00:00.000+0000": {
+			"type": "WEEKEND",
+			"theme": null
+		}
+	}
+}

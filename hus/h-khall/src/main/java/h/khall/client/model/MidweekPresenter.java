@@ -22,7 +22,6 @@ public class MidweekPresenter extends AbstractPresenter<MidweekPresenter.Display
     Assigned;
   }
 
-  private static String[] sMonthNames = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
   private static int[][] sMonths = {{0,1,2}, {3,4,5}, {6,7,8}, {9,10,11}};
   private int[] mYears;
   private int mYearIndex = 0;

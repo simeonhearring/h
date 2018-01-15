@@ -48,4 +48,9 @@ public class InputView extends AbstractValueBox<String>
   {
     mInput.addStyleName(inName);
   }
+
+  public Input getInput()
+  {
+    return mInput;
+  }
 }

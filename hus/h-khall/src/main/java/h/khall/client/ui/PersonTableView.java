@@ -100,7 +100,7 @@ public class PersonTableView extends AbstractView
   {
     Anchor ret = new Anchor();
     ret.addStyleName("client-link");
-    ret.setText(inPerson.getName());
+    ret.setText(inPerson.getName() + " " + inPerson.getId());
 
     ret.setIcon(inPerson.isMale() ? IconType.MALE : IconType.FEMALE);
     ret.setIconPosition(IconPosition.RIGHT);

@@ -17,6 +17,7 @@ import h.model.shared.khall.Assignments.Count;
 import h.model.shared.khall.Assignments.Report;
 import h.model.shared.khall.Congregation;
 import h.model.shared.khall.Curriculum;
+import h.model.shared.khall.Event;
 import h.model.shared.khall.Hall;
 import h.model.shared.khall.Meeting;
 import h.model.shared.khall.Meeting.Month;
@@ -25,6 +26,7 @@ import h.model.shared.khall.Part;
 import h.model.shared.khall.Persons;
 import h.model.shared.khall.Profile;
 import h.model.shared.khall.StudyPoint;
+import h.model.shared.util.StringUtil;
 import h.util.TimeUtil;
 
 public class OclmReport extends AbstractReportDefault<Report>
@@ -92,22 +94,38 @@ public class OclmReport extends AbstractReportDefault<Report>
     {
       Week week = inMonth.g(i);
 
-      TimeKeeper keeper = new TimeKeeper(meetingDate(inCong.getMidweekOn(), week.getOf()));
+      TimeKeeper keeper = new TimeKeeper(meetingDate(inCong.gMidweekOn(), week.getOf()));
 
       String[] chairman =
           chairman(inPersons, week.gAssignments(Part.CHAIRMAN, Hall.MAIN).get(Hall.MAIN));
 
       boolean isLiving2 = week.gAssignment(Part.LIVING_2, Hall.MAIN) != null;
 
-      for (Part value : Part.schedule(week.isCoWeek(), isStudent(), isLiving2))
+      Event event = inCong.gEvent(week.getOf());
+      boolean coVisit = event != null && event.isCoVisit();
+
+      for (Part value : Part.schedule(coVisit, isStudent(), isLiving2))
       {
         Map<Hall, Assignment> assignment = week.gAssignments(value, inCong.getHalls());
+        eventAssignment(value, assignment, event);
         Report r = newReport(keeper, chairman[0], chairman[1], assignment.get(Hall.MAIN), week.getOf());
         addReports(ret, inPersons, inMonth, assignment, r.copy(), chairman);
       }
     }
 
     return ret;
+  }
+
+  private void eventAssignment(Part inPart, Map<Hall, Assignment> inAssignment, Event inEvent)
+  {
+    if (Part.CO_TALK.equals(inPart))
+    {
+      for (Assignment value : inAssignment.values())
+      {
+        value.getCurriculum()
+            .setTheme(inPart.getLabel(true) + StringUtil.ensure(inEvent.getTheme(), ": "));
+      }
+    }
   }
 
   private String[] chairman(Persons inPersons, Assignment inChairman)
@@ -163,6 +181,11 @@ public class OclmReport extends AbstractReportDefault<Report>
       {
         participant = inChairman[1];
       }
+
+      if (inAssignment.getPart().isCoTalk())
+      {
+        participant = "Circuit Overseer";
+      }
     }
     return new String[]
     {
@@ -172,7 +195,8 @@ public class OclmReport extends AbstractReportDefault<Report>
     };
   }
 
-  private Report newReport(TimeKeeper inT, String inReading, String inChairman, Assignment inA, Date inWeekOf)
+  private Report newReport(TimeKeeper inT, String inReading, String inChairman, Assignment inA,
+      Date inWeekOf)
   {
     Report ret = new Report();
 

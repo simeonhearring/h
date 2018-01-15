@@ -2,7 +2,10 @@ package h.khall.client.model;
 
 import java.util.Date;
 
+import com.google.gwt.event.dom.client.ChangeEvent;
+import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.user.client.TakesValue;
+import com.google.gwt.user.client.ui.HasText;
 
 import h.khall.shared.command.ReportSaveCommand;
 import h.model.shared.khall.Report;
@@ -10,9 +13,11 @@ import h.model.shared.khall.Roles.Role;
 import h.style.g.client.model.InputDisplay;
 
 public class MinistryMonthPresenter extends AbstractPresenter<MinistryMonthPresenter.Display>
+  implements ChangeHandler
 {
   private Long mPubId;
   private int[] mYearMonth;
+  private boolean mDirty;
 
   public MinistryMonthPresenter(Display inDisplay)
   {
@@ -24,7 +29,7 @@ public class MinistryMonthPresenter extends AbstractPresenter<MinistryMonthPrese
     return this;
   }
 
-  private void report(Report inReport)
+  public void report(Report inReport)
   {
     inReport.setPlacements(noZero(mDisplay.getPlacement().getValue()));
     inReport.setVideoShowings(noZero(mDisplay.getVideo().getValue()));
@@ -50,7 +55,7 @@ public class MinistryMonthPresenter extends AbstractPresenter<MinistryMonthPrese
     return inPubId == null ? null : inSendDate;
   }
 
-  private void display(Report inReport)
+  public void display(Report inReport)
   {
     mDisplay.getPlacement().setValue(inReport.getPlacements());
     mDisplay.getVideo().setValue(inReport.getVideoShowings());
@@ -64,6 +69,8 @@ public class MinistryMonthPresenter extends AbstractPresenter<MinistryMonthPrese
     mDisplay.getInclude().setValue(inReport.getIncludeAllHours());
     mDisplay.getPioneer().setValue(inReport.getType());
     mDisplay.getSend().setValue(checkPubId(inReport.getPubId(), inReport.gSendDate()));
+    mDisplay.getMonth().setText(mDisplay.format("MMM yy", inReport.gDate()));
+    mDirty = false;
   }
 
   public interface Display extends h.style.g.client.model.Display
@@ -92,11 +99,25 @@ public class MinistryMonthPresenter extends AbstractPresenter<MinistryMonthPrese
 
     TakesValue<Role> getPioneer();
 
+    HasText getMonth();
+
+    void report(Report inReport);
+
+    void display(Report inReport);
+
     void changePub(Long inPubId, int[] inYearMonth);
 
     void changeMonth(int[] inYearMonth);
 
     void save();
+
+    boolean isDirty();
+
+    int[] getYearMonth();
+
+    void setYearMonth(int... inYearMonth);
+
+    void setDirty(boolean inDirty);
   }
 
   public void changePub(Long inPubId, int[] inYearMonth)
@@ -133,5 +154,31 @@ public class MinistryMonthPresenter extends AbstractPresenter<MinistryMonthPrese
   private Report gReport()
   {
     return mClient.getReports().gReport(mProfile.getCongId(), mPubId, mYearMonth[0], mYearMonth[1]);
+  }
+
+  @Override
+  public void onChange(ChangeEvent inEvent)
+  {
+    mDirty = true;
+  }
+
+  public void setDirty(boolean inDirty)
+  {
+    mDirty = inDirty;
+  }
+
+  public boolean isDirty()
+  {
+    return mDirty;
+  }
+
+  public int[] getYearMonth()
+  {
+    return mYearMonth;
+  }
+
+  public void setYearMonth(int... inYearMonth)
+  {
+    mYearMonth = inYearMonth;
   }
 }

@@ -26,4 +26,10 @@ public class Login implements Serializable
   {
     mClient = inClient;
   }
+
+  public boolean isAuthenticated(Profile inProfile)
+  {
+    // TODO
+    return true;
+  }
 }

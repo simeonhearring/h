@@ -7,11 +7,19 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import h.model.shared.khall.Roles.Role;
+import h.model.shared.util.EnumUtil;
 import h.model.shared.util.TimeUtil;
 
 @SuppressWarnings("serial")
 public class Person extends h.model.shared.Person
 {
+  public enum Status
+  {
+    RE,
+    IR,
+    IA
+  }
+
   private Integer mCongId;
   private Integer mFsgId;
   private Date mBaptized;
@@ -227,6 +235,36 @@ public class Person extends h.model.shared.Person
     return mRoles.contains(Roles.Role.ANOITED);
   }
 
+  @JsonIgnore
+  public boolean isPublisher()
+  {
+    return mRoles.contains(Roles.Role.PUBLISHER);
+  }
+
+  @JsonIgnore
+  public boolean isOn15MinuteIncrement()
+  {
+    return mCategories.contains(Categories.Category.FIFTEEN_MINUTE_INCREMENT);
+  }
+
+  @JsonIgnore
+  public boolean isInfirmRegularPioneer()
+  {
+    return mCategories.contains(Categories.Category.INFIRM_REGULAR_PIONEER);
+  }
+
+  @JsonIgnore
+  public boolean isDeaf()
+  {
+    return mCategories.contains(Categories.Category.DEAF);
+  }
+
+  @JsonIgnore
+  public boolean isBlind()
+  {
+    return mCategories.contains(Categories.Category.BLIND);
+  }
+
   public Date getPublishing()
   {
     return mPublishing;
@@ -250,5 +288,20 @@ public class Person extends h.model.shared.Person
   public boolean isMember()
   {
     return mFsgId != null && !mFsgId.equals(0);
+  }
+
+  public boolean isBaptized()
+  {
+    return mBaptized != null;
+  }
+
+  public String gGenderName()
+  {
+    return EnumUtil.name(getGender());
+  }
+
+  public boolean isFsg(Integer inId)
+  {
+    return mFsgId.equals(inId);
   }
 }

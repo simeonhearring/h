@@ -244,6 +244,11 @@ public class Person implements Serializable, Tag
   @JsonIgnore
   public String getName()
   {
+    return gName();
+  }
+
+  public String gName()
+  {
     return StringUtil.ensure(mLast, "", ", ") + StringUtil.ensure(mFirst)
         + StringUtil.ensure(mSuffix, " ");
   }

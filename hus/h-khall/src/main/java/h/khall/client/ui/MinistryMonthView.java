@@ -3,9 +3,8 @@ package h.khall.client.ui;
 import java.util.Date;
 
 import org.gwtbootstrap3.client.ui.Button;
-import org.gwtbootstrap3.client.ui.CheckBox;
 import org.gwtbootstrap3.client.ui.Input;
-import org.gwtbootstrap3.client.ui.ListBox;
+import org.gwtbootstrap3.client.ui.Label;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -13,9 +12,11 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.TakesValue;
+import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.Widget;
 
 import h.khall.client.model.MinistryMonthPresenter;
+import h.model.shared.khall.Report;
 import h.model.shared.khall.Roles.Role;
 import h.style.g.client.model.InputDisplay;
 import h.style.g.client.ui.InputView;
@@ -31,16 +32,19 @@ public class MinistryMonthView extends AbstractView<MinistryMonthPresenter>
   }
 
   @UiField
-  NumberView mPlacement, mVideo, mHour, mRv, mStudy, mCredit;
+  NumberView mPlacement, mVideo, mRv, mStudy;
 
   @UiField
-  CheckBox mNoActivity, mInclude;
+  HoursView mHour, mOther;
 
   @UiField
   InputView mComment;
 
   @UiField
-  ListBox mPartial, mPioneer;
+  TakesPartial mPartial;
+
+  @UiField
+  TakesPioneer mPioneer;
 
   @UiField
   Input mSend;
@@ -48,30 +52,16 @@ public class MinistryMonthView extends AbstractView<MinistryMonthPresenter>
   @UiField
   Button mSave;
 
+  @UiField
+  Label mMonth;
+
   private TakesDate mSendV;
-  private TakesPartial mPartialV;
-  private TakesEnum<Role> mPioneerV;
 
   public MinistryMonthView()
   {
     initWidget(BINDER.createAndBindUi(this));
     mPresenter = new MinistryMonthPresenter(this).handlers();
-
     mSendV = new TakesDate(mSend);
-    mPartialV = new TakesPartial(mPartial);
-
-    mPartial.addItem("-Select-");
-    mPartial.addItem("15 min.");
-    mPartial.addItem("30 min.");
-    mPartial.addItem("45 min.");
-
-    mPioneer.addItem("-Select-", "");
-    mPioneer.addItem("Auxiliary 30", Role.AUXILIARY_PIONEER_30.name());
-    mPioneer.addItem("Auxiliary", Role.AUXILIARY_PIONEER.name());
-    mPioneer.addItem("Regular", Role.REGULAR_PIONEER.name());
-
-    mPioneerV = new TakesEnum<>(mPioneer);
-    mPioneerV.setEnums(Role.AUXILIARY_PIONEER_30, Role.AUXILIARY_PIONEER, Role.REGULAR_PIONEER);
   }
 
   @UiHandler(
@@ -96,9 +86,25 @@ public class MinistryMonthView extends AbstractView<MinistryMonthPresenter>
   }
 
   @Override
-  public InputDisplay<Integer> getHour()
+  public HasText getMonth()
+  {
+    return mMonth;
+  }
+
+  public Label getLabel()
+  {
+    return mMonth;
+  }
+
+  public HoursView getHours()
   {
     return mHour;
+  }
+
+  @Override
+  public InputDisplay<Integer> getHour()
+  {
+    return mHour.getBox();
   }
 
   @Override
@@ -122,7 +128,7 @@ public class MinistryMonthView extends AbstractView<MinistryMonthPresenter>
   @Override
   public TakesValue<Boolean> getNoActivity()
   {
-    return mNoActivity;
+    return mHour.getCheck();
   }
 
   @Override
@@ -134,25 +140,25 @@ public class MinistryMonthView extends AbstractView<MinistryMonthPresenter>
   @Override
   public TakesValue<Double> getPartial()
   {
-    return mPartialV;
+    return mPartial;
   }
 
   @Override
   public InputDisplay<Integer> getCredit()
   {
-    return mCredit;
+    return mOther.getBox();
   }
 
   @Override
   public TakesValue<Boolean> getInclude()
   {
-    return mInclude;
+    return mOther.getCheck();
   }
 
   @Override
   public TakesValue<Role> getPioneer()
   {
-    return mPioneerV;
+    return mPioneer;
   }
 
   @Override
@@ -171,5 +177,55 @@ public class MinistryMonthView extends AbstractView<MinistryMonthPresenter>
   public void save()
   {
     mPresenter.save();
+  }
+
+  @Override
+  public void report(Report inReport)
+  {
+    mPresenter.report(inReport);
+  }
+
+  @Override
+  public void display(Report inReport)
+  {
+    mPresenter.display(inReport);
+  }
+
+  public void addChangeHandler()
+  {
+    mPlacement.addChangeHandler(mPresenter);
+    mVideo.addChangeHandler(mPresenter);
+    mRv.addChangeHandler(mPresenter);
+    mStudy.addChangeHandler(mPresenter);
+    mHour.addChangeHandler(mPresenter);
+    mOther.addChangeHandler(mPresenter);
+    mPartial.addChangeHandler(mPresenter);
+    mPioneer.addChangeHandler(mPresenter);
+    mSend.addChangeHandler(mPresenter);
+    mComment.addChangeHandler(mPresenter);
+  }
+
+  @Override
+  public boolean isDirty()
+  {
+    return mPresenter.isDirty();
+  }
+
+  @Override
+  public int[] getYearMonth()
+  {
+    return mPresenter.getYearMonth();
+  }
+
+  @Override
+  public void setDirty(boolean inDirty)
+  {
+    mPresenter.setDirty(inDirty);
+  }
+
+  @Override
+  public void setYearMonth(int... inYearMonth)
+  {
+    mPresenter.setYearMonth(inYearMonth);
   }
 }

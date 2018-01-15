@@ -2,6 +2,7 @@ package h.dao.jdbc.statement;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -52,7 +53,7 @@ public class ReportSql extends AbstractSql
     return mSelect0.execute(params(inCongId));
   }
 
-  public List<Report> select(int inCongId, int inPubId)
+  public List<Report> select(int inCongId, long inPubId)
   {
     return mSelect1.execute(params(inCongId, inPubId));
   }
@@ -60,6 +61,14 @@ public class ReportSql extends AbstractSql
   public List<Report> select(int inCongId, Date inBegin, Date inEnd)
   {
     return mSelect2.execute(params(inCongId, inBegin, inEnd));
+  }
+
+  public List<Report> select(int inCongId, int inPastMonths)
+  {
+    Calendar start = Calendar.getInstance();
+    start.set(Calendar.MONTH, -inPastMonths);
+    Calendar end = Calendar.getInstance();
+    return select(inCongId, start.getTime(), end.getTime());
   }
 
   public List<Report> select(int inCongId, long inPubId, Date inBegin, Date inEnd)

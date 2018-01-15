@@ -6,12 +6,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import h.model.shared.khall.Person.Status;
 import h.model.shared.khall.Report.Total;
+import h.model.shared.util.NumberUtil;
 
 @SuppressWarnings("serial")
 public class Reports implements Serializable
 {
-  private Map<Long, List<Report>> mReports;
+  private Map<Long, List<Report>> mReports; // key=mPubId
 
   public void addReports(List<Report> inReports)
   {
@@ -45,6 +47,28 @@ public class Reports implements Serializable
   public Report gReport(int inCongId, Long inPubId, int inYear, int inMonth)
   {
     return find(inCongId, inPubId, inYear, inMonth);
+  }
+
+  public List<Report> gReports(int inCongId, Long inPubId, int inYear, int inMonth)
+  {
+    List<Report> ret = new ArrayList<>();
+
+    int year = YearMonthRange.yearOfServiceYear(inYear, inMonth);
+
+    int[] months =
+    {
+        9, 10, 11, 12, 1, 2, 3, 4, 5, 6, 7, 8
+    };
+    for (int month : months)
+    {
+      if (month == 1)
+      {
+        year++;
+      }
+      ret.add(find(inCongId, inPubId, year, month));
+    }
+
+    return ret;
   }
 
   private Report find(int inCongId, Long inPubId, int inYear, int inMonth)
@@ -84,6 +108,87 @@ public class Reports implements Serializable
       {
         list.add(ret);
       }
+    }
+
+    return ret;
+  }
+
+  public Map<String, Report> gReportByMonth(long inPubId)
+  {
+    Map<String, Report> ret = new HashMap<>();
+    for (Report value : mReports.get(inPubId))
+    {
+      ret.put(value.getKey(), value);
+    }
+    return ret;
+  }
+
+  public Status getStatus(long inPubId, int inFromYear, int inFromMonth, int inToYear,
+      int inToMonth)
+  {
+    // SHOULD NOT BE IR WHEN START EXISTS?
+    Status ret = Status.RE;
+
+    List<String> range = getRange(inFromYear, inFromMonth, inToYear, inToMonth);
+
+    int last = range.size();
+    int lastminussix = last - 6;
+
+    Map<String, Report> table = gReportByMonth(inPubId);
+
+    if (lastminussix >= 1)
+    {
+      Report.Total reports = new Report.Total();
+      for (String value : range.subList(lastminussix, last))
+      {
+        reports.add(table.get(value));
+      }
+
+      if (reports.getActiveCount() != 6)
+      {
+        ret = reports.getActiveCount() == 0 ? Status.IA : Status.IR;
+      }
+    }
+
+    return ret;
+  }
+
+  public static List<String> getRange(int inFromYear, int inFromMonth, int inToYear, int inToMonth)
+  {
+    List<String> ret = new ArrayList<>();
+
+    for (int y = inFromYear; y <= inToYear; y++)
+    {
+      if (y != inToYear)
+      {
+        for (int m = inFromMonth; m <= 12; m++)
+        {
+          ret.add(y + "-" + m);
+        }
+        inFromMonth = 1;
+      }
+      else
+      {
+        for (int m = inFromMonth; m <= inToMonth; m++)
+        {
+          ret.add(y + "-" + m);
+        }
+      }
+    }
+
+    return ret;
+  }
+
+  public Report find(String inKey, Map<String, Report> inReports)
+  {
+    Report ret = inReports.get(inKey);
+
+    if (ret == null)
+    {
+      ret = new Report();
+      String[] ym = inKey.split("-");
+      ret.setYear(NumberUtil.toInt(ym[0], 0));
+      ret.setMonth(NumberUtil.toInt(ym[1], 0));
     }
 
     return ret;

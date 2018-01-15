@@ -1,27 +1,15 @@
 package h.khall.server.dao.bean;
 
-import java.util.Date;
-
 import h.khall.server.dao.Dao;
-import h.model.shared.khall.Assignment;
 import h.model.shared.khall.Assignments.Count;
 import h.model.shared.khall.Charts;
-import h.model.shared.khall.Congregation;
-import h.model.shared.khall.Hall;
-import h.model.shared.khall.Meeting;
-import h.model.shared.khall.Person;
-import h.model.shared.khall.Persons;
 import h.model.shared.khall.Profile;
-import h.model.shared.khall.Report;
-import h.model.shared.khall.Reports;
 import h.model.shared.util.RandomUtil;
 import h.style.g.shared.chart.Chart;
 import h.style.g.shared.chart.Chart.Stat;
 
-public class JavaBeanDaoImpl implements Dao
+public abstract class JavaBeanDaoImpl implements Dao
 {
-  private static final Persons PERSONS = RandomPersons.persons();
-
   @Override
   public Profile selectProfile(Profile inProfile)
   {
@@ -32,6 +20,7 @@ public class JavaBeanDaoImpl implements Dao
     ret.setYear(2018);
 
     // TODO authenticate password
+    inProfile.getPassword();
 
     ret.setUserTitle("Owner");
     ret.setUserName("Simeon L Hearring");
@@ -42,46 +31,9 @@ public class JavaBeanDaoImpl implements Dao
   }
 
   @Override
-  public Congregation selectCong(Profile inProfile)
-  {
-    Congregation ret = new Congregation();
-    ret.setId(inProfile.getCongId());
-    ret.setNumber(inProfile.getCongNum());
-
-    if (inProfile.getCongId().equals(59))
-    {
-      ret.setMidweekOn(new Date(RandomAssignments.THU_JAN_7_2016_1930));
-      ret.setName("English - Gallatin, TN");
-      ret.setHalls(Hall.MAIN);
-    }
-    else
-    {
-      ret.setMidweekOn(new Date(RandomAssignments.TUE_JAN_5_2016_19));
-      ret.setName("Triple Creek - Gallatin, TN");
-      ret.setHalls(Hall.MAIN);
-    }
-
-    return ret;
-  }
-
-  @Override
   public Chart selectChart(Profile inProfile)
   {
     return chart();
-  }
-
-  @Override
-  public Meeting selectMeeting(Profile inProfile)
-  {
-    Meeting ret = new Meeting();
-    ret.addAssignments(RandomAssignments.assignments(selectPersons(inProfile).getPersons(), false));
-    return ret;
-  }
-
-  @Override
-  public Persons selectPersons(Profile inProfile)
-  {
-    return PERSONS;
   }
 
   private static Chart chart()
@@ -120,26 +72,5 @@ public class JavaBeanDaoImpl implements Dao
       ret[i] = (double) RandomUtil.randomInt(100);
     }
     return ret;
-  }
-
-  @Override
-  public void update(Assignment inAssignment)
-  {
-  }
-
-  @Override
-  public void update(String inKey, Person inPerson)
-  {
-  }
-
-  @Override
-  public void update(Report inReport)
-  {
-  }
-
-  @Override
-  public Reports selectReports(Profile inProfile)
-  {
-    return null;
   }
 }

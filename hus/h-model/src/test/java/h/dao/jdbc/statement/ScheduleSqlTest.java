@@ -18,14 +18,14 @@ public class ScheduleSqlTest extends MySqlBaseDaoTest
     mSql = new ScheduleSql(mDataSource);
   }
 
-  // this is the procedure for adding new schedules from curriculum.
+  // this is the procedure for upserting schedules from curriculum.
   @Test
   public void test()
   {
     int congId = 60;
     int[] mos =
     {
-        1, 2, 3
+        4
     }; // 1=Jan, 2=Feb
 
     for (int mo : mos)

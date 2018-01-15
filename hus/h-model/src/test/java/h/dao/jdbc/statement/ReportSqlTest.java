@@ -21,6 +21,25 @@ public class ReportSqlTest extends MySqlBaseDaoTest
     mSql = new ReportSql(mDataSource);
   }
 
+  @Override
+  protected String getDataSourceBeanName()
+  {
+    return "Secretary";
+  }
+
+  @Test
+  public void cleanComments()
+  {
+    List<Report> reports = mSql.select(60, 12);
+    for (Report value : reports)
+    {
+      if (value.cleanRemarks())
+      {
+        mSql.upsert(value);
+      }
+    }
+  }
+
   @Test
   public void canUpsert()
   {

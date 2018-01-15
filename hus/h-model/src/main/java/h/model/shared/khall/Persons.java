@@ -48,12 +48,38 @@ public class Persons implements Serializable
     return ret;
   }
 
+  public List<Person> getPublishers()
+  {
+    List<Person> ret = new ArrayList<>();
+    for (Person value : mPersons)
+    {
+      if (value.isPublisher())
+      {
+        ret.add(value);
+      }
+    }
+    return ret;
+  }
+
   public List<Person> getRegular()
   {
     List<Person> ret = new ArrayList<>();
     for (Person value : mPersons)
     {
       if (value.isRegular())
+      {
+        ret.add(value);
+      }
+    }
+    return ret;
+  }
+
+  public List<Person> getFsg(Integer inId)
+  {
+    List<Person> ret = new ArrayList<>();
+    for (Person value : mPersons)
+    {
+      if (value.isFsg(inId))
       {
         ret.add(value);
       }

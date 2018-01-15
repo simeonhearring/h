@@ -7,6 +7,7 @@ import h.khall.client.ui.event.AssignmentSavedEvent;
 import h.khall.shared.command.AssignmentSaveCommand;
 import h.model.shared.Tag;
 import h.model.shared.khall.Assignment;
+import h.model.shared.khall.Event;
 import h.model.shared.khall.Hall;
 import h.model.shared.khall.Meeting.Week;
 import h.model.shared.khall.Part;
@@ -31,6 +32,7 @@ public class WeekPresenter extends AbstractPresenter<WeekPresenter.Display>
       value.setVisible(false);
       value.removeAll();
     }
+    mDisplay.clearEvents();
   }
 
   public void setWeek(Week inWeek)
@@ -41,6 +43,11 @@ public class WeekPresenter extends AbstractPresenter<WeekPresenter.Display>
     if (validWeek)
     {
       mDisplay.setWeekOf(dateRange(of));
+
+      for (Event value : mClient.gEvents(of))
+      {
+        mDisplay.addEvent(value.getDisplay());
+      }
 
       for (AssignDisplay value : mDisplay.getAssignDisplay())
       {
@@ -170,10 +177,14 @@ public class WeekPresenter extends AbstractPresenter<WeekPresenter.Display>
   {
     AssignDisplay[] getAssignDisplay();
 
+    void addEvent(String inDisplay);
+
     void setWeekOf(String inText);
 
     void setWeek(Week inWeek);
 
     void reset();
+
+    void clearEvents();
   }
 }

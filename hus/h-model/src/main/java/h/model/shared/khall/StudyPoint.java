@@ -7,6 +7,7 @@ import h.model.shared.util.EnumUtil;
 
 public enum StudyPoint implements Tag
 {
+  SP_0(0, "Substitute Part", Type.READ, Type.DEMO, Type.TALK),
   SP_1(1, "Accurate Reading", Type.READ, Type.DEMO, Type.TALK),
   SP_2(2, "Words Clearly Spoken", Type.READ, Type.DEMO, Type.TALK),
   SP_3(3, "Correct Pronunciation", Type.READ, Type.DEMO, Type.TALK),

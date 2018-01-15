@@ -9,6 +9,8 @@ import h.style.g.client.model.Display;
 public class AbstractPresenter<D extends Display> extends
   h.style.g.client.model.AbstractPresenter<D> implements ProfileEvent.Handler, ClientEvent.Handler
 {
+  protected static String[] sMonthNames = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+
   protected Profile mProfile;
   protected Client mClient;
 

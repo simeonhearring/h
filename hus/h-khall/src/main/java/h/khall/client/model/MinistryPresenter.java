@@ -2,6 +2,10 @@ package h.khall.client.model;
 
 import h.model.shared.khall.Charts;
 import h.model.shared.khall.Part;
+import h.model.shared.khall.Persons;
+import h.model.shared.khall.Reports;
+import h.model.shared.util.TextUtil;
+import h.style.g.client.ui.event.ChartEvent;
 import h.style.g.client.ui.event.RefreshEvent;
 import h.style.g.shared.chart.Chart;
 import h.style.g.shared.chart.Chart.Dataset;
@@ -15,6 +19,8 @@ public class MinistryPresenter extends AbstractPresenter<MinistryPresenter.Displ
     Assignments,
     Assigned;
   }
+
+  private Chart mChart = chart();
 
   public MinistryPresenter(Display inDisplay)
   {
@@ -30,6 +36,28 @@ public class MinistryPresenter extends AbstractPresenter<MinistryPresenter.Displ
   @Override
   public void dispatch(RefreshEvent inEvent)
   {
+    updateChart();
+  }
+
+  private void updateChart()
+  {
+    // Meeting meeting = mClient.getMeeting();
+    // meeting.setCount(mProfile.getCount());
+
+    Persons persons = mClient.getPersons();
+    Reports reports = mClient.getReports();
+
+//    Year year = meeting.gYear(mYears[mYearIndex]);
+    Double[] gCountM = {10.0, 20.0, 30.0};// year.gCountM();
+    Double[] gAssignedM = {40.0, 50.0, 60.0}; //year.gAssignedM();
+
+    mChart.getStat().setSubHead(TextUtil.toText(mProfile.getCount()) + " Parts");
+    mChart.update(sMonthNames);
+    mChart.update(V.Assignments.name(), gCountM);
+    mChart.update(V.Assigned.name(), gAssignedM);
+    mChart.getStat().setTopRight("Publisher Count: " + persons.getPublishers().size());
+
+    fire(new ChartEvent(mChart));
   }
 
   public interface Display extends h.style.g.client.model.Display
@@ -47,7 +75,7 @@ public class MinistryPresenter extends AbstractPresenter<MinistryPresenter.Displ
     stat.setFooter(Part.labels(true, " ", Part.student()));
     ret.setStat(stat);
 
-    ret.setDataType(Charts.REPORT);
+    ret.setDataType(Charts.MINISTRY);
 
     ret.setResponsive(true);
 

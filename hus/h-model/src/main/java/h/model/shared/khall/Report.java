@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 import h.model.shared.khall.Roles.Role;
+import h.model.shared.util.StringUtil;
 import h.model.shared.util.TimeUtil;
 
 @SuppressWarnings("serial")
@@ -223,9 +224,32 @@ public class Report implements Serializable
     return ensure(inInteger) + ensure(inDouble);
   }
 
+  public String getServiceYear()
+  {
+    return getServiceYear(mYear, mMonth);
+  }
+
+  public static String getServiceYear(int inYear, int inMonth)
+  {
+    String ret = null;
+    switch (inMonth)
+    {
+      case 9:
+      case 10:
+      case 11:
+      case 12:
+        ret = inYear + "/" + (inYear + 1);
+        break;
+      default:
+        ret = inYear - 1 + "/" + inYear;
+        break;
+    }
+    return ret;
+  }
+
   public static class Total implements Serializable
   {
-    private int mCount;
+    private int mActiveCount;
     private int mPlacements;
     private int mVideoShowings;
     private double mHours;
@@ -243,13 +267,13 @@ public class Report implements Serializable
       mCreditHours += ensure(inReport.getCreditHours());
       if (mHours > 0.0)
       {
-        mCount++;
+        mActiveCount++;
       }
     }
 
-    public int getCount()
+    public int getActiveCount()
     {
-      return mCount;
+      return mActiveCount;
     }
 
     public int getPlacements()
@@ -284,32 +308,32 @@ public class Report implements Serializable
 
     public double gPlacementsAvg()
     {
-      return gPlacementsAvg(mCount);
+      return gPlacementsAvg(mActiveCount);
     }
 
     public double gVideoShowingsAvg()
     {
-      return gVideoShowingsAvg(mCount);
+      return gVideoShowingsAvg(mActiveCount);
     }
 
     public double gHoursAvg()
     {
-      return gHoursAvg(mCount);
+      return gHoursAvg(mActiveCount);
     }
 
     public double gReturnVisitsAvg()
     {
-      return gReturnVisitsAvg(mCount);
+      return gReturnVisitsAvg(mActiveCount);
     }
 
     public double gBibleStudiesAvg()
     {
-      return gBibleStudiesAvg(mCount);
+      return gBibleStudiesAvg(mActiveCount);
     }
 
     public double gCreditHoursAvg()
     {
-      return gCreditHoursAvg(mCount);
+      return gCreditHoursAvg(mActiveCount);
     }
 
     public double gPlacementsAvg(int inCount)
@@ -341,5 +365,21 @@ public class Report implements Serializable
     {
       return mCreditHours / inCount;
     }
+  }
+
+  public boolean cleanRemarks()
+  {
+    boolean ret = mRemarks != null && mRemarks.startsWith("[web saved on");
+    if (ret)
+    {
+      int index = mRemarks.indexOf("]");
+      mRemarks = StringUtil.emptyToNull(mRemarks.substring(index + 1, mRemarks.length()).trim());
+    }
+    return ret;
+  }
+
+  public String getKey()
+  {
+    return mYear + "-" + mMonth;
   }
 }

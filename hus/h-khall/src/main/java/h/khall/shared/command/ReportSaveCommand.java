@@ -1,5 +1,8 @@
 package h.khall.shared.command;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import h.model.shared.khall.Report;
 import h.style.g.shared.command.AbstractCommand;
 import h.style.g.shared.rpc.CommandName;
@@ -8,19 +11,25 @@ import h.style.g.shared.rpc.CommandName;
 @CommandName("ReportSaveCommand")
 public class ReportSaveCommand extends AbstractCommand
 {
-  private Report mReport;
+  private List<Report> mReports;
 
   ReportSaveCommand()
   {
   }
 
-  public ReportSaveCommand(Report inReport)
+  public ReportSaveCommand(Report inReports)
   {
-    mReport = inReport;
+    mReports = new ArrayList<>();
+    mReports.add(inReports);
   }
 
-  public Report getReport()
+  public ReportSaveCommand(List<Report> inReports)
   {
-    return mReport;
+    mReports = inReports;
+  }
+
+  public List<Report> getReports()
+  {
+    return mReports;
   }
 }

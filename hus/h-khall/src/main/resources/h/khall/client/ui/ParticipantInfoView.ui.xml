@@ -26,5 +26,17 @@
 				<b.gwt:HTMLPanel ui:field="mHalls" />
 			</div>
 		</div>
+		<div class="client-detail">
+			<div class="full-height-scroll">
+				<b:Heading size="H4" text="Roles" />
+				<b.gwt:HTMLPanel ui:field="mRoles" />
+			</div>
+		</div>
+		<div class="client-detail">
+			<div class="full-height-scroll">
+				<b:Heading size="H4" text="Categories" />
+				<b.gwt:HTMLPanel ui:field="mCategories" />
+			</div>
+		</div>
 	</b.gwt:HTMLPanel>
 </ui:UiBinder>

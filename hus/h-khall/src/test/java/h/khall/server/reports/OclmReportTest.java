@@ -1,7 +1,9 @@
 package h.khall.server.reports;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -11,6 +13,8 @@ import h.khall.server.dao.bean.RandomPersons;
 import h.khall.shared.model.MeetingTest;
 import h.model.shared.khall.Assignments.Report;
 import h.model.shared.khall.Congregation;
+import h.model.shared.khall.Event;
+import h.model.shared.khall.Event.Type;
 import h.model.shared.khall.Hall;
 import h.model.shared.khall.Meeting;
 
@@ -179,7 +183,10 @@ public class OclmReportTest
   private Congregation newCong(Hall... inHalls)
   {
     Congregation ret = new Congregation();
-    ret.setMidweekOn(new Date(1451955600000L)); // 1/4/2016 7 pm
+    Map<Date, Event> e = new HashMap<>();
+    ret.setEvents(e);
+    e.put(new Date(1451955600000L), new Event(Type.WEEKMID, null));
+    // ret.setMidweekOn(new Date(1451955600000L)); // 1/4/2016 7 pm
     ret.setHalls(inHalls);
     return ret;
   }

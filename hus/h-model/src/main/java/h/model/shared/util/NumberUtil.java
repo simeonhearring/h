@@ -8,6 +8,11 @@ public final class NumberUtil
   {
   }
 
+  public static int intValue(Integer inValue)
+  {
+    return inValue != null ? inValue.intValue() : 0;
+  }
+
   public static boolean isNumber(String inValue)
   {
     boolean ret = false;

@@ -30,6 +30,13 @@ public abstract class AbstractSql
     return ret;
   }
 
+  public static SqlUpdate newSqlUpdate(DataSource inDataSource, Statement inStmt)
+  {
+    SqlUpdate ret = new SqlUpdate(inDataSource, inStmt.getSql(), inStmt.types());
+    ret.compile();
+    return ret;
+  }
+
   public static String name(Enum<?> inEnum)
   {
     return inEnum != null ? inEnum.name() : null;

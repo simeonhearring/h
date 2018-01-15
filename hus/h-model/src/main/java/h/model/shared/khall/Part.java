@@ -193,6 +193,11 @@ public enum Part
     return ret;
   }
 
+  public boolean isCoTalk()
+  {
+    return CO_TALK.equals(this);
+  }
+
   public boolean isVideo()
   {
     boolean ret = false;
@@ -260,6 +265,9 @@ public enum Part
         break;
       case REVIEW:
         ret = inShort ? "Review" : "Review/Preview/Announcements";
+        break;
+      case CO_TALK:
+        ret = "Service Talk";
         break;
 
       default:
@@ -477,6 +485,7 @@ public enum Part
       case TREASURES:
         ret = 10;
         break;
+      case CO_TALK:
       case C_BIBLE_STUDY:
         ret = 30;
         break;

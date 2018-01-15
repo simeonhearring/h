@@ -14,53 +14,49 @@
 			<div class="col-md-6 b-r">
 				<div class="form-group">
 					<label>Placements (Printed and Electronic)</label>
-					<h:NumberView ui:field="mPlacement" placeholder="Placements" class="form-control" tabindex="1" />
+					<h:NumberView ui:field="mPlacement" placeholder="Placements" class="form-control kh_box" tabindex="1" />
 				</div>
 				<div class="form-group">
 					<label>Video Showings</label>
-					<h:NumberView ui:field="mVideo" placeholder="Video Showings" class="form-control" tabindex="2" />
+					<h:NumberView ui:field="mVideo" placeholder="Video Showings" class="form-control kh_box" tabindex="2" />
 				</div>
 				<div class="form-group">
 					<label>Hours</label>
-					<h:NumberView ui:field="mHour" placeholder="Hours" class="form-control" tabindex="3" />
+					<k:HoursView ui:field="mHour" placeholder="Hours" class="form-control kh_box" tabindex="3" />
 				</div>
 				<div class="form-group">
 					<label>Return Visits</label>
-					<h:NumberView ui:field="mRv" placeholder="Return Visits" class="form-control" tabindex="4" />
+					<h:NumberView ui:field="mRv" placeholder="Return Visits" class="form-control kh_box" tabindex="4" />
 				</div>
 				<div class="form-group">
 					<label>Bible Studies</label>
-					<h:NumberView ui:field="mStudy" placeholder="Bible Studies" class="form-control" tabindex="5" />
+					<h:NumberView ui:field="mStudy" placeholder="Bible Studies" class="form-control kh_box" tabindex="5" />
 				</div>
 				<div class="form-group">
 					<label>Comments</label>
-					<h:InputView ui:field="mComment" placeholder="Comments" class="form-control" tabindex="6" />
+					<h:InputView ui:field="mComment" placeholder="Comments" class="form-control kh_box" tabindex="6" />
 				</div>
 			</div>
 			<div class="col-md-6">
 				<div class="form-group">
-					<label>No Activity</label>
-					<b:CheckBox ui:field="mNoActivity" styleName="form-control" tabIndex="7" />
-				</div>
-				<div class="form-group">
 					<label>Send To Branch Month</label>
-					<b:Input type="MONTH" ui:field="mSend" styleName="form-control" tabIndex="8" />
-				</div>
-				<div class="form-group">
-					<label>Partial Hours</label>
-					<b:ListBox ui:field="mPartial" styleName="form-control" tabIndex="9" />
+					<b:Input type="MONTH" ui:field="mSend" styleName="form-control kh_box" tabIndex="8" />
 				</div>
 				<div class="form-group">
 					<label>Other Hours</label>
-					<h:NumberView ui:field="mCredit" placeholder="Other Hours" class="form-control" tabindex="10" />
+					<k:HoursView ui:field="mOther" placeholder="Other Hours" class="form-control kh_box" tabindex="9" />
 				</div>
 				<div class="form-group">
-					<label>Include ALL 'Other Hours' in goal</label>
-					<b:CheckBox ui:field="mInclude" styleName="form-control" tabIndex="11" />
+					<label>Partial Hours</label>
+					<k:TakesPartial ui:field="mPartial" styleName="form-control kh_box" tabIndex="10" />
 				</div>
 				<div class="form-group">
 					<label>Pioneer</label>
-					<b:ListBox ui:field="mPioneer" styleName="form-control" tabIndex="12" />
+					<k:TakesPioneer ui:field="mPioneer" styleName="form-control kh_box" tabIndex="11" />
+				</div>
+				<div class="form-group">
+					<label>Month</label>
+					<b:Label ui:field="mMonth" />
 				</div>
 			</div>
 		</g:HTMLPanel>

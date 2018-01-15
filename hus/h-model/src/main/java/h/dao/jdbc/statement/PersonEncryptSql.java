@@ -39,9 +39,9 @@ public class PersonEncryptSql extends AbstractSql
     return mUpdate0.execute(inKey, inValue);
   }
 
-  public List<Person> selectById(String inKey, Long inId)
+  public Person selectById(String inKey, Long inId)
   {
-    return mSelect0.select(inKey, params(inId));
+    return only(mSelect0.select(inKey, params(inId)));
   }
 
   public List<Person> selectByCongId(String inKey, Integer inId)

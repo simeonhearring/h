@@ -58,3 +58,14 @@
 .kh_height {
 	height: 300px;
 }
+
+.kh_boxr {
+	font-size: 11px;
+	text-align: right;
+	padding: 6px 6px;
+}
+
+.kh_box {
+	font-size: 11px;
+	padding: 6px 6px;
+}

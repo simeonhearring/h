@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.4.3.final using JasperReports Library version 6.4.3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PublishersRecordCardSub" pageWidth="612" pageHeight="792" columnWidth="612" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="469da019-41d3-4af4-bb79-040ac99b17a1">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="placements" class="java.lang.Integer">
+		<fieldDescription><![CDATA[placements]]></fieldDescription>
+	</field>
+	<field name="videoShowings" class="java.lang.Integer">
+		<fieldDescription><![CDATA[videoShowings]]></fieldDescription>
+	</field>
+	<field name="bibleStudies" class="java.lang.Integer">
+		<fieldDescription><![CDATA[bibleStudies]]></fieldDescription>
+	</field>
+	<field name="books" class="java.lang.Integer">
+		<fieldDescription><![CDATA[books]]></fieldDescription>
+	</field>
+	<field name="brochures" class="java.lang.Integer">
+		<fieldDescription><![CDATA[brochures]]></fieldDescription>
+	</field>
+	<field name="date" class="java.util.Date">
+		<fieldDescription><![CDATA[date]]></fieldDescription>
+	</field>
+	<field name="hours" class="java.lang.Integer">
+		<fieldDescription><![CDATA[hours]]></fieldDescription>
+	</field>
+	<field name="magazines" class="java.lang.Integer">
+		<fieldDescription><![CDATA[magazines]]></fieldDescription>
+	</field>
+	<field name="remarkInfo" class="java.lang.String">
+		<fieldDescription><![CDATA[remarkInfo]]></fieldDescription>
+	</field>
+	<field name="returnVisits" class="java.lang.Integer">
+		<fieldDescription><![CDATA[returnVisits]]></fieldDescription>
+	</field>
+	<field name="serviceYear" class="java.lang.String">
+		<fieldDescription><![CDATA[serviceYear]]></fieldDescription>
+	</field>
+	<variable name="sumBibleStudies" class="java.lang.Integer" resetType="Group" resetGroup="ServiceYear" calculation="Sum">
+		<variableExpression><![CDATA[$F{bibleStudies}]]></variableExpression>
+	</variable>
+	<variable name="sumReturnVisits" class="java.lang.Integer" resetType="Group" resetGroup="ServiceYear" calculation="Sum">
+		<variableExpression><![CDATA[$F{returnVisits}]]></variableExpression>
+	</variable>
+	<variable name="sumMagazines" class="java.lang.Integer" resetType="Group" resetGroup="ServiceYear" calculation="Sum">
+		<variableExpression><![CDATA[$F{magazines}]]></variableExpression>
+	</variable>
+	<variable name="sumHours" class="java.lang.Integer" resetType="Group" resetGroup="ServiceYear" calculation="Sum">
+		<variableExpression><![CDATA[$F{hours}]]></variableExpression>
+	</variable>
+	<variable name="sumBrochures" class="java.lang.Integer" resetType="Group" resetGroup="ServiceYear" calculation="Sum">
+		<variableExpression><![CDATA[$F{brochures}]]></variableExpression>
+	</variable>
+	<variable name="sumBooks" class="java.lang.Integer" resetType="Group" resetGroup="ServiceYear" calculation="Sum">
+		<variableExpression><![CDATA[$F{books}]]></variableExpression>
+	</variable>
+	<variable name="sumPlace" class="java.lang.Integer" resetType="Group" resetGroup="ServiceYear" calculation="Sum">
+		<variableExpression><![CDATA[$F{placements}]]></variableExpression>
+	</variable>
+	<variable name="sumVideo" class="java.lang.Integer" resetType="Group" resetGroup="ServiceYear" calculation="Sum">
+		<variableExpression><![CDATA[$F{videoShowings}]]></variableExpression>
+	</variable>
+	<group name="ServiceYear">
+		<groupExpression><![CDATA[$F{serviceYear}]]></groupExpression>
+		<groupHeader>
+			<band height="20">
+				<staticText>
+					<reportElement x="0" y="0" width="30" height="20" uuid="f96047d2-bd1c-4e7c-ba43-1accb249d791"/>
+					<box>
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="SansSerif" size="7"/>
+					</textElement>
+					<text><![CDATA[MONTH]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="60" y="0" width="30" height="20" uuid="0504ba9b-50f4-4dba-889b-2864faef08ef"/>
+					<box>
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="SansSerif" size="4"/>
+					</textElement>
+					<text><![CDATA[VIDEO SHOWINGS]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="30" y="0" width="30" height="20" uuid="42127fcf-bca0-42f5-8f05-f623efd37822"/>
+					<box>
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="SansSerif" size="7"/>
+					</textElement>
+					<text><![CDATA[PLACE]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="90" y="0" width="30" height="20" uuid="7d2c73c1-a53b-433f-a51b-e1a6a8a379a4"/>
+					<box>
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Serif" size="7"/>
+					</textElement>
+					<text><![CDATA[HOURS]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="120" y="0" width="30" height="20" uuid="5fbe079f-bc91-4598-aa67-65f05b7a3673"/>
+					<box>
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Serif" size="6"/>
+					</textElement>
+					<text><![CDATA[RETURN VISITS]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="180" y="0" width="248" height="20" uuid="614b35b8-4240-41cc-a4a3-b5885d7be8a8"/>
+					<box>
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Serif" size="7"/>
+					</textElement>
+					<text><![CDATA[REMARKS]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="150" y="0" width="30" height="20" uuid="9b827c82-7d2c-4da4-a332-2cafcdb2929f"/>
+					<box>
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Serif" size="6"/>
+					</textElement>
+					<text><![CDATA[BIBLE STUDIES]]></text>
+				</staticText>
+				<line>
+					<reportElement x="0" y="0" width="428" height="1" uuid="87f5923e-b774-42f1-8aab-1df63b51fa3a"/>
+					<graphicElement>
+						<pen lineWidth="2.0"/>
+					</graphicElement>
+				</line>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="35">
+				<textField isBlankWhenNull="true">
+					<reportElement x="150" y="0" width="30" height="10" uuid="1e97456b-4007-4791-a5d8-98f69a0d440e"/>
+					<box topPadding="2">
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="6"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{sumBibleStudies}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="30" y="0" width="30" height="10" uuid="dbfa1b4c-8935-40b2-a7f4-511a834943a4"/>
+					<box topPadding="2">
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="6"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{sumPlace}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="60" y="0" width="30" height="10" uuid="12f945e4-efa6-43cb-9456-67462bd39054"/>
+					<box topPadding="2">
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="6"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{sumVideo}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="90" y="0" width="30" height="10" uuid="c938f147-7a3d-483c-b8bb-f7cb4a8fc6fe"/>
+					<box topPadding="2">
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="6"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{sumHours}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="120" y="0" width="30" height="10" uuid="0bae0f7b-4bbb-4419-9ae8-5c5f30018e7d"/>
+					<box topPadding="2">
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="6"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{sumReturnVisits}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="0" width="30" height="10" uuid="f346d456-3b7d-47ee-b52c-389a67d4cea9"/>
+					<box>
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="SansSerif" size="7"/>
+					</textElement>
+					<text><![CDATA[TOTAL]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="180" y="0" width="248" height="10" uuid="aaac7607-9294-4835-b78f-9ab11a29964a"/>
+					<box>
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="SansSerif" size="7"/>
+					</textElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
+	<detail>
+		<band height="12" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="30" height="12" uuid="bf9ea8e3-a93f-45fd-9c11-afb1fbf276de"/>
+				<box topPadding="2">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("MMM yy").format($F{date})]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="60" y="0" width="30" height="12" uuid="bdf9735b-9689-4baf-8acc-ee1a4133240b"/>
+				<box topPadding="2">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{videoShowings}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="30" y="0" width="30" height="12" uuid="0f6a938f-e9a1-4244-9067-9b58b9458f06"/>
+				<box topPadding="2">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{placements}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="90" y="0" width="30" height="12" uuid="51166feb-55ce-4ba4-b748-87ba56d6cc51"/>
+				<box topPadding="2">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hours}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="120" y="0" width="30" height="12" uuid="13e8fa91-2995-4fdc-849b-17de4841943b"/>
+				<box topPadding="2">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{returnVisits}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="180" y="0" width="248" height="12" uuid="5b5deb58-d2b6-4a5e-b4d6-52cd210af3e6"/>
+				<box topPadding="0" leftPadding="2">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{remarkInfo}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="150" y="0" width="30" height="12" uuid="07c6e730-4ab8-4a4d-b179-19e464679767"/>
+				<box topPadding="2">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bibleStudies}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

@@ -473,4 +473,9 @@ public class StringUtil
     }
     return ret;
   }
+
+  public static String emptyToNull(String inText)
+  {
+    return inText != null && inText.trim().length() == 0 ? null : inText;
+  }
 }

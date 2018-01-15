@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import h.model.shared.util.StringUtil;
+
 @SuppressWarnings("serial")
 public class Roles implements Serializable
 {
@@ -21,10 +23,17 @@ public class Roles implements Serializable
     GROUP_ASSISTANT,
     GROUP_SERVANT,
     GROUP_OVERSEER,
+    LIFE_AND_MINISTRY_OVERSEER,
+    AUXILIARY_COUNSELOR,
     WATCHTOWER_CONDUCTOR,
     SERVICE_OVERSEER,
     SECRETARY,
     COORDINATOR;
+
+    public String getLabel()
+    {
+      return StringUtil.toTitle(name().replaceAll("_", " "));
+    }
   }
 
   private List<Role> mRoles;

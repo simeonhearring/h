@@ -16,12 +16,12 @@ import h.model.shared.khall.Person;
 
 public class PersonEncryptSqlTest extends MySqlBaseDaoTest
 {
-  private PersonEncryptSql mSql;
+  private PersonEncryptSql mNewSql;
 
   @Before
   public void before()
   {
-    mSql = new PersonEncryptSql(mDataSource);
+    mNewSql = new PersonEncryptSql(mDataSource);
   }
 
   // @Test
@@ -31,7 +31,7 @@ public class PersonEncryptSqlTest extends MySqlBaseDaoTest
     for (Person value : list)
     {
       value.getParts().addAll(Part.parts(value));
-      mSql.update("9M1})6Y]ibnxrp^zSQz@*BAc[Cn+Ub1R", value);
+      mNewSql.update("9M1})6Y]ibnxrp^zSQz@*BAc[Cn+Ub1R", value);
     }
   }
 
@@ -73,13 +73,13 @@ public class PersonEncryptSqlTest extends MySqlBaseDaoTest
     names.add("Sutton, Belinda");
     names.add("Walker, Joe Jr");
 
-    List<Person> list = mSql.selectByCongId("9M1})6Y]ibnxrp^zSQz@*BAc[Cn+Ub1R", 59);
+    List<Person> list = mNewSql.selectByCongId("9M1})6Y]ibnxrp^zSQz@*BAc[Cn+Ub1R", 59);
     for (Person value : list)
     {
       if (names.contains(value.getName()))
       {
         value.getParts().clear();
-        mSql.update("9M1})6Y]ibnxrp^zSQz@*BAc[Cn+Ub1R", value);
+        mNewSql.update("9M1})6Y]ibnxrp^zSQz@*BAc[Cn+Ub1R", value);
       }
     }
   }
@@ -95,7 +95,7 @@ public class PersonEncryptSqlTest extends MySqlBaseDaoTest
     model.setFirst("Jane");
     model.setLast("Roe");
 
-    mSql.insert("1234567890", model);
+    mNewSql.insert("1234567890", model);
   }
 
   @Test
@@ -108,7 +108,7 @@ public class PersonEncryptSqlTest extends MySqlBaseDaoTest
     map.put(83, 85);
     map.put(0, 0);
 
-    List<Person> model = mSql.selectByCongId("9M1})6Y]ibnxrp^zSQz@*BAc[Cn+Ub1R", 59);
+    List<Person> model = mNewSql.selectByCongId("9M1})6Y]ibnxrp^zSQz@*BAc[Cn+Ub1R", 59);
     for (Person value : model)
     {
       if (map.containsKey(value.getFsgId()))
@@ -116,9 +116,9 @@ public class PersonEncryptSqlTest extends MySqlBaseDaoTest
         System.out.println(value.gNameAge());
 
         // value.setCongId(60);
-        value.setFsgId(0);
+        // value.setFsgId(0);
 
-        mSql.update("9M1})6Y]ibnxrp^zSQz@*BAc[Cn+Ub1R", value);
+        // mSql.update("9M1})6Y]ibnxrp^zSQz@*BAc[Cn+Ub1R", value);
         // mSql.insert("NBgh(epoT(MSkV77kFaCE~cC_SSf7c7o", value);
       }
     }
@@ -127,24 +127,33 @@ public class PersonEncryptSqlTest extends MySqlBaseDaoTest
   // @Test
   public void select()
   {
-    List<Person> model = mSql.selectById("1234567890", 63L);
-    Assert.assertEquals(1, model.size());
+    Person model = mNewSql.selectById("1234567890", 63L);
+    Assert.assertEquals(true, model != null);
 
-    model = mSql.selectByCongId("1234567890", 1);
-    Assert.assertEquals(1, model.size());
+    List<Person> models = mNewSql.selectByCongId("1234567890", 1);
+    Assert.assertEquals(1, models.size());
 
     // model = mSql.selectByFsgId("1234567890", 3);
     // Assert.assertEquals(2, model.size());
   }
 
+  @Test
+  public void selectCong()
+  {
+    List<Person> model = mNewSql.selectByCongId("NBgh(epoT(MSkV77kFaCE~cC_SSf7c7o", 60);
+
+    for (Person value : model)
+    {
+      System.out.println(value.getId() + " " + value.getName());
+    }
+  }
+
   // @Test
   public void update()
   {
-    List<Person> model = mSql.selectById("1234567890", 63L);
-
-    Person p = model.get(0);
+    Person p = mNewSql.selectById("1234567890", 63L);
     p.setEmail("jane@gmail.com");
 
-    Assert.assertEquals(1, mSql.update("1234567890", p));
+    Assert.assertEquals(1, mNewSql.update("1234567890", p));
   }
 }

@@ -4,13 +4,14 @@ import org.gwtbootstrap3.client.ui.ListBox;
 
 import com.google.gwt.user.client.TakesValue;
 
-class TakesPartial implements TakesValue<Double>
+public class TakesPartial extends ListBox implements TakesValue<Double>
 {
-  private ListBox mPartial;
-
-  public TakesPartial(ListBox inListBox)
+  public TakesPartial()
   {
-    mPartial = inListBox;
+    addItem("-Select-");
+    addItem("15 min.");
+    addItem("30 min.");
+    addItem("45 min.");
   }
 
   @Override
@@ -19,16 +20,16 @@ class TakesPartial implements TakesValue<Double>
     switch (String.valueOf(inValue))
     {
       case "0.25":
-        mPartial.setSelectedIndex(1);
+        setSelectedIndex(1);
         break;
       case "0.5":
-        mPartial.setSelectedIndex(2);
+        setSelectedIndex(2);
         break;
       case "0.75":
-        mPartial.setSelectedIndex(3);
+        setSelectedIndex(3);
         break;
       default:
-        mPartial.setSelectedIndex(0);
+        setSelectedIndex(0);
         break;
     }
   }
@@ -37,13 +38,13 @@ class TakesPartial implements TakesValue<Double>
   public Double getValue()
   {
     Double ret = null;
-    switch (mPartial.getSelectedIndex())
+    switch (getSelectedIndex())
     {
       case 1:
         ret = 0.25;
         break;
       case 2:
-        ret = 0.50;
+        ret = 0.5;
         break;
       case 3:
         ret = 0.75;

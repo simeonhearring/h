@@ -15,6 +15,13 @@
 				</div>
 			</div>
 		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="m-t-md">
+					<b.gwt:FlowPanel ui:field="mEvents" />
+				</div>
+			</div>
+		</div>
 		<b.html:Hr addStyleNames="kh_color" />
 		<div class="row">
 			<div class="col-md-4 b-r kh_color">
@@ -40,20 +47,20 @@
 				<b.html:Hr addStyleNames="kh_color" />
 				<div class="row" style="kh_height">
 					<div class="col-md-12">
-                                <b.gwt:HTMLPanel>
-                                    <label>Main Hall</label>
-                                    <k:AssignView ui:field="mReadingM" part="BIBLE_READING" />
-                                    <k:AssignView ui:field="mApply1M" part="APPLY1" ppart="APPLY1" />
-                                    <k:AssignView ui:field="mApply2M" part="APPLY2" ppart="APPLY2" />
-                                    <k:AssignView ui:field="mApply3M" part="APPLY3" ppart="APPLY3" />
-                                </b.gwt:HTMLPanel>
-                                <b.gwt:HTMLPanel>
-                                    <label>Auxiliary Classroom #1</label>
-                                    <k:AssignView ui:field="mReadingA" part="BIBLE_READING" hall="SECOND" />
-                                    <k:AssignView ui:field="mApply1A" part="APPLY1" ppart="APPLY1" hall="SECOND" />
-                                    <k:AssignView ui:field="mApply2A" part="APPLY2" ppart="APPLY2" hall="SECOND" />
-                                    <k:AssignView ui:field="mApply3A" part="APPLY3" ppart="APPLY3" hall="SECOND" />
-                                </b.gwt:HTMLPanel>
+						<b.gwt:HTMLPanel>
+							<label>Main Hall</label>
+							<k:AssignView ui:field="mReadingM" part="BIBLE_READING" />
+							<k:AssignView ui:field="mApply1M" part="APPLY1" ppart="APPLY1" />
+							<k:AssignView ui:field="mApply2M" part="APPLY2" ppart="APPLY2" />
+							<k:AssignView ui:field="mApply3M" part="APPLY3" ppart="APPLY3" />
+						</b.gwt:HTMLPanel>
+						<b.gwt:HTMLPanel>
+							<label>Auxiliary Classroom #1</label>
+							<k:AssignView ui:field="mReadingA" part="BIBLE_READING" hall="SECOND" />
+							<k:AssignView ui:field="mApply1A" part="APPLY1" ppart="APPLY1" hall="SECOND" />
+							<k:AssignView ui:field="mApply2A" part="APPLY2" ppart="APPLY2" hall="SECOND" />
+							<k:AssignView ui:field="mApply3A" part="APPLY3" ppart="APPLY3" hall="SECOND" />
+						</b.gwt:HTMLPanel>
 						<b.card:Card>
 							<b.card:Front>
 							</b.card:Front>

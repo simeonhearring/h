@@ -1,10 +1,13 @@
 package h.khall.shared.model;
 
+import java.util.Date;
 import java.util.List;
 
 import h.model.shared.Person.Gender;
 import h.model.shared.Tag;
 import h.model.shared.khall.Assignment;
+import h.model.shared.khall.Congregation;
+import h.model.shared.khall.Event;
 import h.model.shared.khall.Meeting;
 import h.model.shared.khall.Part;
 import h.model.shared.khall.PartInfo;
@@ -20,6 +23,7 @@ public class Client extends h.model.shared.Client
   private Meeting mMeeting;
   private Reports mReports;
   private Chart mChart;
+  private Congregation mCong;
 
   public Chart getChart()
   {
@@ -80,5 +84,20 @@ public class Client extends h.model.shared.Client
   public void setReports(Reports inReports)
   {
     mReports = inReports;
+  }
+
+  public void setCong(Congregation inCong)
+  {
+    mCong = inCong;
+  }
+
+  public Congregation getCong()
+  {
+    return mCong;
+  }
+
+  public List<Event> gEvents(Date inOf)
+  {
+    return mCong.gEvents(inOf);
   }
 }

@@ -6,15 +6,9 @@ import com.google.gwt.user.client.TakesValue;
 
 import h.model.shared.util.EnumUtil;
 
-public class TakesEnum<V extends Enum<?>> implements TakesValue<V>
+public class TakesEnum<V extends Enum<?>> extends ListBox implements TakesValue<V>
 {
-  private ListBox mListBox;
   private V[] mEnums;
-
-  public TakesEnum(ListBox inListBox)
-  {
-    mListBox = inListBox;
-  }
 
   @SuppressWarnings("unchecked")
   public void setEnums(V... inEnums)
@@ -29,21 +23,21 @@ public class TakesEnum<V extends Enum<?>> implements TakesValue<V>
     if (inValue != null)
     {
       String name = inValue.name();
-      for (int i = 0; i < mListBox.getItemCount(); i++)
+      for (int i = 0; i < getItemCount(); i++)
       {
-        if (name.equals(mListBox.getValue(i)))
+        if (name.equals(getValue(i)))
         {
           selected = i;
           break;
         }
       }
     }
-    mListBox.setSelectedIndex(selected);
+    setSelectedIndex(selected);
   }
 
   @Override
   public V getValue()
   {
-    return EnumUtil.valueOf(mListBox.getSelectedValue(), mEnums);
+    return EnumUtil.valueOf(getSelectedValue(), mEnums);
   }
 }

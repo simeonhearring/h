@@ -7,6 +7,7 @@
 	<!-- DAOS -->
 	<bean id="Dao" class="h.khall.server.dao.jdbc.MySqlDaoImpl">
 		<property name="DataSource" ref="Khall" />
+		<property name="ReportDataSource" ref="Secretary" />
 	</bean>
 
 	<!-- REPORTS -->
@@ -62,6 +63,10 @@
 	</bean>
 
 	<bean id="ReportSaveCommand" class="h.khall.server.command.ReportSaveCommandBean">
+		<property name="dao" ref="Dao" />
+	</bean>
+
+	<bean id="CongSaveCommand" class="h.khall.server.command.CongSaveCommandBean">
 		<property name="dao" ref="Dao" />
 	</bean>
 

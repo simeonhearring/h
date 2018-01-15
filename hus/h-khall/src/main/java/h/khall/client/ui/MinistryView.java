@@ -43,6 +43,9 @@ public class MinistryView extends AbstractView<MinistryPresenter>
   @UiField
   MinistryMonthView mMMonth;
 
+  @UiField
+  MinistryYearView mMYear;
+
   private PersonSet mDataset;
   private TakesDate mMonthV;
 
@@ -73,6 +76,7 @@ public class MinistryView extends AbstractView<MinistryPresenter>
   public void onChange(ChangeEvent inEvent)
   {
     mMMonth.changeMonth(ym());
+    mMYear.changeMonth(ym());
   }
 
   @Override
@@ -85,13 +89,17 @@ public class MinistryView extends AbstractView<MinistryPresenter>
   public void onItemAdded(ItemAddedEvent<Tag> inEvent)
   {
     Long pubId = Long.valueOf(inEvent.getItem().getId());
-    mMMonth.changePub(pubId, ym());
+    int[] ym = ym();
+    mMMonth.changePub(pubId, ym);
+    mMYear.changePub(pubId, ym);
   }
 
   @Override
   public void onItemRemoved(ItemRemovedEvent<Tag> inEvent)
   {
-    mMMonth.changePub(null, ym());
+    int[] ym = ym();
+    mMMonth.changePub(null, ym);
+    mMYear.changePub(null, ym);
   }
 
   @Override

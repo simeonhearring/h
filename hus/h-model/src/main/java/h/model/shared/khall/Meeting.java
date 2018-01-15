@@ -294,12 +294,6 @@ public class Meeting implements Serializable, IHistory
       builder.append("]");
       return builder.toString();
     }
-
-    public boolean isCoWeek()
-    {
-      // TODO Auto-generated method stub
-      return false;
-    }
   }
 
   public interface ISetup

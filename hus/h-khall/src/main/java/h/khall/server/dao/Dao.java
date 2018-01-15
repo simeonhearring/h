@@ -1,5 +1,7 @@
 package h.khall.server.dao;
 
+import java.util.Date;
+
 import h.model.shared.khall.Assignment;
 import h.model.shared.khall.Congregation;
 import h.model.shared.khall.Meeting;
@@ -20,13 +22,29 @@ public interface Dao
 
   Persons selectPersons(Profile inProfile);
 
+  Persons selectPersons(String inEncrypt, Integer inCongId);
+
+  Person selectPerson(String inEncrypt, long inId);
+
   void update(String inKey, Person inPerson);
 
   void update(Assignment inAssignment);
 
   void update(Report inReport);
 
+  void update(Congregation inCong);
+
   Congregation selectCong(Profile inProfile);
 
   Reports selectReports(Profile inProfile);
+
+  Reports selectReports(Integer inCongId);
+
+  Reports selectReports(Integer inCongId, Date inStart, Date inEnd);
+
+  Reports selectReports(Integer inCongId, int inPastMonths);
+
+  Reports selectReports(Integer inCongId, Date inGreaterThan);
+
+  Reports selectReports(Long inPubId);
 }

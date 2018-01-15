@@ -9,7 +9,7 @@
 	
 	</ui:style>
 	<b.gwt:HTMLPanel addStyleNames="wrapper wrapper-content animated fadeInRight">
-		<k:StatsView ui:field="mStats" dataType="OCLM" />
+		<k:StatsView ui:field="mStats" dataType="MINISTRY" />
 		<div class="row">
 			<div class="col-sm-9">
 				<div class="ibox">
@@ -31,11 +31,8 @@
 					</b.gwt:HTMLPanel>
 
 					<k:MinistryMonthView ui:field="mMMonth" />
+					<k:MinistryYearView ui:field="mMYear" />
 
-					<b.gwt:HTMLPanel addStyleNames="ibox-content marginB25">
-						<b:Heading size="H2" text="Service Year Report" alignment="CENTER" />
-						<g:FlexTable ui:field="mTable" />
-					</b.gwt:HTMLPanel>
 				</div>
 			</div>
 			<div class="col-sm-3">

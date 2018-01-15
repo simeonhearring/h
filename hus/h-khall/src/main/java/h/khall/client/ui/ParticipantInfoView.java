@@ -15,8 +15,12 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Widget;
 
 import h.khall.client.model.ParticipantInfoPresenter;
+import h.model.shared.khall.Categories;
+import h.model.shared.khall.Categories.Category;
 import h.model.shared.khall.Hall;
 import h.model.shared.khall.Part;
+import h.model.shared.khall.Roles;
+import h.model.shared.khall.Roles.Role;
 
 public class ParticipantInfoView extends AbstractView<ParticipantInfoPresenter>
   implements ParticipantInfoPresenter.Display
@@ -31,7 +35,7 @@ public class ParticipantInfoView extends AbstractView<ParticipantInfoPresenter>
   Label mName;
 
   @UiField
-  HTMLPanel mParts, mHalls;
+  HTMLPanel mParts, mHalls, mRoles, mCategories;
 
   public ParticipantInfoView()
   {
@@ -72,6 +76,37 @@ public class ParticipantInfoView extends AbstractView<ParticipantInfoPresenter>
       });
       mHalls.add(check);
     }
+
+    for (final Role value : Roles.Role.values())
+    {
+      final CheckBox check = new CheckBox(value.getLabel());
+      check.setId(value.name());
+      check.addClickHandler(new ClickHandler()
+      {
+        @Override
+        public void onClick(ClickEvent inEvent)
+        {
+          mPresenter.check(value, check.getValue());
+        }
+      });
+      mRoles.add(check);
+    }
+
+    for (final Category value : Categories.Category.values())
+    {
+      final CheckBox check = new CheckBox(value.getLabel());
+      check.setId(value.name());
+      check.addClickHandler(new ClickHandler()
+      {
+        @Override
+        public void onClick(ClickEvent inEvent)
+        {
+          mPresenter.check(value, check.getValue());
+        }
+      });
+      mCategories.add(check);
+    }
+
   }
 
   @Override
@@ -81,10 +116,13 @@ public class ParticipantInfoView extends AbstractView<ParticipantInfoPresenter>
   }
 
   @Override
-  public void check(List<Part> inParts, List<Hall> inHalls)
+  public void check(List<Part> inParts, List<Hall> inHalls, List<Role> inRoles,
+      List<Category> inCategories)
   {
     check(keys(inParts), mParts);
     check(keys(inHalls), mHalls);
+    check(keys(inCategories), mCategories);
+    check(keys(inRoles), mRoles);
   }
 
   private static <T extends Enum<?>> List<String> keys(List<T> inEnums)

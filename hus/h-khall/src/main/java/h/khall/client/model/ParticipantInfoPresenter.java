@@ -4,9 +4,11 @@ import java.util.List;
 
 import h.khall.client.ui.event.ParticipantInfoEvent;
 import h.khall.shared.command.PersonSaveCommand;
+import h.model.shared.khall.Categories.Category;
 import h.model.shared.khall.Hall;
 import h.model.shared.khall.Part;
 import h.model.shared.khall.Person;
+import h.model.shared.khall.Roles.Role;
 
 public class ParticipantInfoPresenter extends AbstractPresenter<ParticipantInfoPresenter.Display>
   implements ParticipantInfoEvent.Handler
@@ -31,7 +33,8 @@ public class ParticipantInfoPresenter extends AbstractPresenter<ParticipantInfoP
 
     Person p = mClient.getPersons().gPerson(mParticipantId);
     mDisplay.setName(p.getName());
-    mDisplay.check(p.getParts(), p.getHalls());
+    mDisplay.check(p.getParts(), p.getHalls(), p.getRoles().getRoles(),
+        p.getCategories().getCategories());
   }
 
   public void check(Hall inHall, Boolean inChecked)
@@ -39,20 +42,7 @@ public class ParticipantInfoPresenter extends AbstractPresenter<ParticipantInfoP
     if (mParticipantId != null)
     {
       Person person = mClient.gPerson(mParticipantId);
-      List<Hall> halls = person.getHalls();
-
-      if (inChecked)
-      {
-        if (!halls.contains(inHall))
-        {
-          halls.add(inHall);
-        }
-      }
-      else
-      {
-        halls.remove(inHall);
-      }
-
+      check(inChecked, person.getHalls(), inHall);
       fire(new PersonSaveCommand(person));
     }
   }
@@ -62,21 +52,43 @@ public class ParticipantInfoPresenter extends AbstractPresenter<ParticipantInfoP
     if (mParticipantId != null)
     {
       Person person = mClient.gPerson(mParticipantId);
-      List<Part> parts = person.getParts();
-
-      if (inChecked)
-      {
-        if (!parts.contains(inPart))
-        {
-          parts.add(inPart);
-        }
-      }
-      else
-      {
-        parts.remove(inPart);
-      }
-
+      check(inChecked, person.getParts(), inPart);
       fire(new PersonSaveCommand(person));
+    }
+  }
+
+  public void check(Role inRole, Boolean inChecked)
+  {
+    if (mParticipantId != null)
+    {
+      Person person = mClient.gPerson(mParticipantId);
+      check(inChecked, person.getRoles().getRoles(), inRole);
+      fire(new PersonSaveCommand(person));
+    }
+  }
+
+  public void check(Category inCategory, Boolean inChecked)
+  {
+    if (mParticipantId != null)
+    {
+      Person person = mClient.gPerson(mParticipantId);
+      check(inChecked, person.getCategories().getCategories(), inCategory);
+      fire(new PersonSaveCommand(person));
+    }
+  }
+
+  private <T extends Enum<?>> void check(Boolean inChecked, List<T> inList, T inValue)
+  {
+    if (inChecked)
+    {
+      if (!inList.contains(inValue))
+      {
+        inList.add(inValue);
+      }
+    }
+    else
+    {
+      inList.remove(inValue);
     }
   }
 
@@ -84,6 +96,7 @@ public class ParticipantInfoPresenter extends AbstractPresenter<ParticipantInfoP
   {
     void setName(String inName);
 
-    void check(List<Part> inParts, List<Hall> inHalls);
+    void check(List<Part> inParts, List<Hall> inHalls, List<Role> inRoles,
+        List<Category> inCategories);
   }
 }

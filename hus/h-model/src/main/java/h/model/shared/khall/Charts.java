@@ -4,5 +4,6 @@ public enum Charts
 {
   FSG,
   OCLM,
-  REPORT;
+  REPORT,
+  MINISTRY;
 }
