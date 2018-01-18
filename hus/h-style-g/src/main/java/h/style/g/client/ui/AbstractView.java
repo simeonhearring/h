@@ -69,6 +69,7 @@ import h.style.g.client.ui.common.Global;
 import h.style.g.client.ui.event.Event;
 import h.style.g.client.ui.util.JsniUtil;
 import h.style.g.client.ui.util.StorageUtil;
+import h.style.g.shared.rpc.common.RpcCommand;
 
 public abstract class AbstractView extends Composite
 {
@@ -623,6 +624,11 @@ public abstract class AbstractView extends Composite
   public void fire(Event<?>... inEvent)
   {
     Global.fireS(inEvent);
+  }
+
+  public void fire(RpcCommand inCommand, Event<?>... inEvent)
+  {
+    Global.fireS(inCommand, inEvent);
   }
 
   public void fire(double inDelaySeconds, final CallBack<?> inCallBack)

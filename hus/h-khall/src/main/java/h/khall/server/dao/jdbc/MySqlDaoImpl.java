@@ -48,6 +48,18 @@ public class MySqlDaoImpl extends JavaBeanDaoImpl implements Dao
   }
 
   @Override
+  public void update(Profile inProfile)
+  {
+    mProfileSql.upsert(inProfile);
+  }
+
+  @Override
+  public void update(String inKey, Profile inProfile)
+  {
+    mProfileSql.upsert(inKey, inProfile);
+  }
+
+  @Override
   public Person selectPerson(String inEncrypt, long inId)
   {
     return mPersonSql.selectById(inEncrypt, inId);

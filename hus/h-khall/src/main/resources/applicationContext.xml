@@ -70,4 +70,7 @@
 		<property name="dao" ref="Dao" />
 	</bean>
 
+	<bean id="ProfileSaveCommand" class="h.khall.server.command.ProfileSaveCommandBean">
+		<property name="dao" ref="Dao" />
+	</bean>
 </beans>

@@ -10,6 +10,7 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Widget;
 
 import h.khall.client.ui.event.AssignmentSavedEvent;
+import h.khall.shared.command.ProfileSaveCommand;
 import h.model.shared.khall.Assignments;
 import h.model.shared.khall.Profile;
 import h.style.g.client.ui.AbstractView;
@@ -44,20 +45,22 @@ public class CountView extends AbstractView
   })
   public void onClick(ClickEvent inEvent)
   {
+    Profile profile = profile();
+
     Object source = inEvent.getSource();
     if (mO1.equals(source))
     {
-      profile().setCount(Assignments.Count.STUDENT);
+      profile.setCount(Assignments.Count.STUDENT);
     }
     else if (mO2.equals(source))
     {
-      profile().setCount(Assignments.Count.NON_STUDENT);
+      profile.setCount(Assignments.Count.NON_STUDENT);
     }
     else if (mO3.equals(source))
     {
-      profile().setCount(Assignments.Count.ALL);
+      profile.setCount(Assignments.Count.ALL);
     }
-    fire(new AssignmentSavedEvent());
+    fire(new ProfileSaveCommand(profile), new AssignmentSavedEvent());
   }
 
   private void active(Assignments.Count inCount)

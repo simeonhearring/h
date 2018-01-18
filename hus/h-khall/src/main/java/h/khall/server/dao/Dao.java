@@ -16,6 +16,10 @@ public interface Dao
 {
   Profile selectProfile(Profile inProfile);
 
+  void update(String inKey, Profile inProfile);
+
+  void update(Profile inProfile);
+
   Chart selectChart(Profile inProfile);
 
   Meeting selectMeeting(Profile inProfile);

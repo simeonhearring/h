@@ -9,6 +9,7 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Widget;
 
+import h.khall.shared.command.ProfileSaveCommand;
 import h.model.shared.khall.Profile;
 import h.style.g.client.ui.AbstractView;
 import h.style.g.client.ui.common.Global;
@@ -36,8 +37,9 @@ public class ThresholdView extends AbstractView
       @Override
       public void onValueChange(ValueChangeEvent<Double> inEvent)
       {
-        profile().setThreshold(mThreshold.getValue());
-        fire(new RefreshEvent());
+        Profile profile = profile();
+        profile.setThreshold(mThreshold.getValue());
+        fire(new ProfileSaveCommand(profile), new RefreshEvent());
       }
     });
   }

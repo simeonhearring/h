@@ -130,14 +130,19 @@ public class Global implements HasFire
   @Override
   public <C extends RpcCommand> void fire(C inCommand, final Event<?>... inEvents)
   {
-    fire(inCommand, new RpcCallback<RpcResponse>()
+    fireS(inCommand, inEvents);
+  }
+
+  public static <C extends RpcCommand> void fireS(C inCommand, final Event<?>... inEvents)
+  {
+    fireS(inCommand, new RpcCallback<RpcResponse>()
     {
       @Override
       public void onRpcSuccess(RpcResponse inResult)
       {
         for (Event<?> value : inEvents)
         {
-          fire(value);
+          fireS(value);
         }
       }
     });
