@@ -113,7 +113,7 @@ public class MinistryView extends AbstractView<MinistryPresenter>
   @Override
   public String getYm()
   {
-    return mYm.getSelectedItemText();
+    return mYm.getSelectedValue();
   }
 
   @Override
@@ -131,7 +131,7 @@ public class MinistryView extends AbstractView<MinistryPresenter>
   @Override
   public String getType()
   {
-    return mType.getSelectedItemText();
+    return mType.getSelectedValue();
   }
 
   @Override

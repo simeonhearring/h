@@ -478,4 +478,9 @@ public class StringUtil
   {
     return inText != null && inText.trim().length() == 0 ? null : inText;
   }
+
+  public static String toTitle(Enum<?> inEnum)
+  {
+    return toTitle(inEnum.name().replaceAll("_", " "));
+  }
 }

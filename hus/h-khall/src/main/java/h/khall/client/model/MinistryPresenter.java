@@ -13,6 +13,7 @@ import h.model.shared.khall.Charts;
 import h.model.shared.khall.Person;
 import h.model.shared.khall.Report;
 import h.model.shared.khall.YrMo;
+import h.model.shared.util.StringUtil;
 import h.style.g.client.ui.event.ChartEvent;
 import h.style.g.client.ui.event.RefreshEvent;
 import h.style.g.shared.chart.Chart;
@@ -27,10 +28,12 @@ public class MinistryPresenter extends AbstractPresenter<MinistryPresenter.Displ
     Inactive,
     Reactivated,
     Irregular,
-    Below_Threshold,
-    Publisher_Average,
-    Auxiliary_Average,
-    Regular_Average;
+    Below_Threshold;
+
+    public String gLabel()
+    {
+      return StringUtil.toTitle(this);
+    }
   }
 
   private Chart mChart = chart();
@@ -53,6 +56,7 @@ public class MinistryPresenter extends AbstractPresenter<MinistryPresenter.Displ
   public void dispatch(RefreshEvent inEvent)
   {
     updateChart();
+    addPubList();
   }
 
   @Override
@@ -70,11 +74,9 @@ public class MinistryPresenter extends AbstractPresenter<MinistryPresenter.Displ
 
   private void updateChart()
   {
-    int yr = 2017; // TODO
-    int mo = 12;
+    int yr = 2017;// TimeUtil.currentYear();
+    int mo = 12; // TimeUtil.currentServiceMonth();
     double th = mProfile.gThreshold();
-
-    addPubList();
 
     List<Person> persons = mClient.getPersons().getPublishers();
 
@@ -92,10 +94,10 @@ public class MinistryPresenter extends AbstractPresenter<MinistryPresenter.Displ
     // mChart.getStat().setSubHead(TextUtil.toText(mProfile.getCount()) + "
     // Parts");
     mChart.update(yma);
-    mChart.update(V.Inactive.name(), stat.getInactive().getValues());
-    mChart.update(V.Irregular.name(), stat.getIrregular().getValues());
-    mChart.update(V.Below_Threshold.name(), stat.getBelowThreshold().getValues());
-    mChart.update(V.Reactivated.name(), stat.getReactivated().getValues());
+    mChart.update(V.Inactive.gLabel(), stat.getInactive().getValues());
+    mChart.update(V.Irregular.gLabel(), stat.getIrregular().getValues());
+    mChart.update(V.Below_Threshold.gLabel(), stat.getBelowThreshold().getValues());
+    mChart.update(V.Reactivated.gLabel(), stat.getReactivated().getValues());
     mChart.getStat().setTopRight("Current publisher count: " + persons.size());
 
     fire(new ChartEvent(mChart));
@@ -109,7 +111,8 @@ public class MinistryPresenter extends AbstractPresenter<MinistryPresenter.Displ
       mNames.put(value + V.Inactive.name(), ensure(inStats.getInactive().getIds(), value));
       mNames.put(value + V.Reactivated.name(), ensure(inStats.getReactivated().getIds(), value));
       mNames.put(value + V.Irregular.name(), ensure(inStats.getIrregular().getIds(), value));
-      mNames.put(value + V.Below_Threshold.name(), ensure(inStats.getBelowThreshold().getIds(), value));
+      mNames.put(value + V.Below_Threshold.name(),
+          ensure(inStats.getBelowThreshold().getIds(), value));
     }
   }
 
@@ -118,7 +121,7 @@ public class MinistryPresenter extends AbstractPresenter<MinistryPresenter.Displ
     mDisplay.clearType();
     for (V value : V.values())
     {
-      mDisplay.addType(value.name(), value.name());
+      mDisplay.addType(value.gLabel(), value.name());
     }
   }
 
@@ -192,10 +195,10 @@ public class MinistryPresenter extends AbstractPresenter<MinistryPresenter.Displ
 
     ret.setResponsive(true);
 
-    format(ret.createDataset(V.Inactive.name(), 0.0, 0.0, 0.0), 254);
-    format(ret.createDataset(V.Irregular.name(), 0.0, 0.0, 0.0), 352);
-    format(ret.createDataset(V.Below_Threshold.name(), 0.0, 0.0, 0.0), 152);
-    format(ret.createDataset(V.Reactivated.name(), 0.0, 0.0, 0.0), 402);
+    format(ret.createDataset(V.Inactive.gLabel(), 0.0, 0.0, 0.0), 254);
+    format(ret.createDataset(V.Irregular.gLabel(), 0.0, 0.0, 0.0), 352);
+    format(ret.createDataset(V.Below_Threshold.gLabel(), 0.0, 0.0, 0.0), 152);
+    format(ret.createDataset(V.Reactivated.gLabel(), 0.0, 0.0, 0.0), 402);
 
     return ret;
   }
