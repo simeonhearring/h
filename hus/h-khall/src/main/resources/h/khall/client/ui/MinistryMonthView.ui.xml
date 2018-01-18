@@ -55,6 +55,10 @@
 					<k:TakesPioneer ui:field="mPioneer" styleName="form-control kh_box" tabIndex="11" />
 				</div>
 				<div class="form-group">
+					<label>Name</label>
+					<b:Label ui:field="mName" />
+				</div>
+				<div class="form-group">
 					<label>Month</label>
 					<b:Label ui:field="mMonth" />
 				</div>

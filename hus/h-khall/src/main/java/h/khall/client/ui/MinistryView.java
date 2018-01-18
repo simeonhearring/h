@@ -2,7 +2,10 @@ package h.khall.client.ui;
 
 import java.util.Date;
 
+import org.gwtbootstrap3.client.ui.AnchorListItem;
 import org.gwtbootstrap3.client.ui.Input;
+import org.gwtbootstrap3.client.ui.ListBox;
+import org.gwtbootstrap3.client.ui.html.OrderedList;
 import org.gwtbootstrap3.extras.tagsinput.client.callback.ItemTextCallback;
 import org.gwtbootstrap3.extras.tagsinput.client.callback.ItemValueCallback;
 import org.gwtbootstrap3.extras.tagsinput.client.callback.OnTagExistsCallback;
@@ -15,6 +18,8 @@ import org.gwtbootstrap3.extras.tagsinput.client.ui.base.MultiValueTagsInput;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.event.dom.client.ChangeEvent;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
@@ -26,13 +31,16 @@ import h.model.shared.util.TimeUtil;
 
 public class MinistryView extends AbstractView<MinistryPresenter>
   implements ItemTextCallback<Tag>, ItemValueCallback<Tag>, ItemAddedHandler<Tag>,
-  ItemRemovedHandler<Tag>, OnTagExistsCallback<Tag>, MinistryPresenter.Display
+  ItemRemovedHandler<Tag>, OnTagExistsCallback<Tag>, MinistryPresenter.Display, ClickHandler
 {
   private static final Binder BINDER = GWT.create(Binder.class);
 
   interface Binder extends UiBinder<Widget, MinistryView>
   {
   }
+
+  @UiField
+  StatsView mStats;
 
   @UiField
   MultiValueTagsInput<Tag> mName;
@@ -46,6 +54,12 @@ public class MinistryView extends AbstractView<MinistryPresenter>
   @UiField
   MinistryYearView mMYear;
 
+  @UiField
+  ListBox mYm, mType;
+
+  @UiField
+  OrderedList mNames, mPublishers;
+
   private PersonSet mDataset;
   private TakesDate mMonthV;
 
@@ -53,6 +67,8 @@ public class MinistryView extends AbstractView<MinistryPresenter>
   {
     initWidget(BINDER.createAndBindUi(this));
     mPresenter = new MinistryPresenter(this).handlers();
+
+    mStats.mDiv.add(new ThresholdView());
 
     mMonthV = new TakesDate(mMonth);
     mMonthV.setValue(TimeUtil.getFirstOfMonth(TimeUtil.currentYear(), TimeUtil.currentServiceMonth()));
@@ -67,6 +83,9 @@ public class MinistryView extends AbstractView<MinistryPresenter>
     mName.addItemRemovedHandler(this);
 
     mName.setDatasets(mDataset);
+
+    mYm.addChangeHandler(mPresenter);
+    mType.addChangeHandler(mPresenter);
   }
 
   @UiHandler(
@@ -80,6 +99,88 @@ public class MinistryView extends AbstractView<MinistryPresenter>
   }
 
   @Override
+  public void clearYm()
+  {
+    mYm.clear();
+  }
+
+  @Override
+  public void addYm(String inItem, String inValue)
+  {
+    mYm.addItem(inItem, inValue);
+  }
+
+  @Override
+  public String getYm()
+  {
+    return mYm.getSelectedItemText();
+  }
+
+  @Override
+  public void clearType()
+  {
+    mType.clear();
+  }
+
+  @Override
+  public void addType(String inItem, String inValue)
+  {
+    mType.addItem(inItem, inValue);
+  }
+
+  @Override
+  public String getType()
+  {
+    return mType.getSelectedItemText();
+  }
+
+  @Override
+  public void clearName()
+  {
+    mNames.clear();
+  }
+
+  @Override
+  public void addName(String inItem, String inValue)
+  {
+    AnchorListItem w = new AnchorListItem(inItem);
+    w.setId(inValue);
+    w.addClickHandler(this);
+    mNames.add(w);
+  }
+
+  @Override
+  public void clearPublisher()
+  {
+    mPublishers.clear();
+  }
+
+  @Override
+  public void addPublishers(String inItem, String inValue)
+  {
+    AnchorListItem w = new AnchorListItem(inItem);
+    w.setId(inValue);
+    w.addClickHandler(this);
+    mPublishers.add(w);
+  }
+
+  @Override
+  public void onClick(ClickEvent inEvent)
+  {
+    AnchorListItem source = (AnchorListItem) ((Widget) inEvent.getSource()).getParent();
+    String id = source.getId();
+    changePub(id);
+  }
+
+  private void changePub(String inPubId)
+  {
+    Long pubId = Long.valueOf(inPubId);
+    int[] ym = ym();
+    mMMonth.changePub(pubId, ym);
+    mMYear.changePub(pubId, ym);
+  }
+
+  @Override
   public void onTagExists(Tag inPerson, Element inTag)
   {
     notify(inPerson.getName() + " exists, no duplicates.");
@@ -88,18 +189,17 @@ public class MinistryView extends AbstractView<MinistryPresenter>
   @Override
   public void onItemAdded(ItemAddedEvent<Tag> inEvent)
   {
-    Long pubId = Long.valueOf(inEvent.getItem().getId());
-    int[] ym = ym();
-    mMMonth.changePub(pubId, ym);
-    mMYear.changePub(pubId, ym);
+    String id = inEvent.getItem().getId();
+    changePub(id);
   }
 
   @Override
   public void onItemRemoved(ItemRemovedEvent<Tag> inEvent)
   {
+    Long pubId = null;
     int[] ym = ym();
-    mMMonth.changePub(null, ym);
-    mMYear.changePub(null, ym);
+    mMMonth.changePub(pubId, ym);
+    mMYear.changePub(pubId, ym);
   }
 
   @Override
@@ -133,5 +233,11 @@ public class MinistryView extends AbstractView<MinistryPresenter>
     {
         year, month
     };
+  }
+
+  @Override
+  protected void onLoad()
+  {
+    slimScroll();
   }
 }

@@ -36,7 +36,47 @@
 				</div>
 			</div>
 			<div class="col-sm-3">
-				<k:PartInfoView />
+
+				<b.gwt:HTMLPanel addStyleNames="ibox">
+					<b.gwt:HTMLPanel addStyleNames="ibox-content marginB25">
+						<div class="row m-b-lg text-center">
+							<div class="col-lg-12 text-center">
+								<b:Heading size="H2" text="Chart Detail" />
+								<div class="row">
+									<div class="col-md-5">
+										<div class="form-group">
+											<label>Month</label>
+											<b:ListBox ui:field="mYm" styleName="form-control kh_box" />
+										</div>
+									</div>
+									<div class="col-md-7">
+										<div class="form-group">
+											<label>Category</label>
+											<b:ListBox ui:field="mType" styleName="form-control kh_box" />
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="client-detail">
+							<div class="full-height-scroll">
+								<b.html:OrderedList ui:field="mNames" />
+							</div>
+						</div>
+					</b.gwt:HTMLPanel>
+				</b.gwt:HTMLPanel>
+
+				<b.gwt:HTMLPanel addStyleNames="ibox">
+					<b.gwt:HTMLPanel addStyleNames="ibox-content marginB25">
+						<b:Heading size="H2" text="Publishers" />
+						<div class="client-detail">
+							<div class="full-height-scroll">
+								<b.html:OrderedList ui:field="mPublishers" />
+							</div>
+						</div>
+					</b.gwt:HTMLPanel>
+				</b.gwt:HTMLPanel>
+
 			</div>
 		</div>
 	</b.gwt:HTMLPanel>

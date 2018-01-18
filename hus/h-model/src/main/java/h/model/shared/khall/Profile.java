@@ -11,6 +11,7 @@ public class Profile extends h.model.shared.Profile
   private Integer mYear = TimeUtil.currentYear();
   // private Integer mMonth = TimeUtil.getCurrentMonth();
   private Assignments.Count mCount;
+  private Double mThreshold;
 
   public String getCongNum()
   {
@@ -68,5 +69,15 @@ public class Profile extends h.model.shared.Profile
   public void setCount(Assignments.Count inCount)
   {
     mCount = inCount;
+  }
+
+  public void setThreshold(double inThreshold)
+  {
+    mThreshold = inThreshold;
+  }
+
+  public double gThreshold()
+  {
+    return mThreshold == null ? 5.0 : mThreshold;
   }
 }

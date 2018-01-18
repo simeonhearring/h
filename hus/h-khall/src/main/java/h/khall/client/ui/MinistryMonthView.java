@@ -53,7 +53,7 @@ public class MinistryMonthView extends AbstractView<MinistryMonthPresenter>
   Button mSave;
 
   @UiField
-  Label mMonth;
+  Label mName, mMonth;
 
   private TakesDate mSendV;
 
@@ -89,6 +89,12 @@ public class MinistryMonthView extends AbstractView<MinistryMonthPresenter>
   public HasText getMonth()
   {
     return mMonth;
+  }
+
+  @Override
+  public HasText getName()
+  {
+    return mName;
   }
 
   public Label getLabel()

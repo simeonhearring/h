@@ -1,7 +1,11 @@
 package h.model.shared.khall;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import h.model.shared.khall.Roles.Role;
 import h.model.shared.util.StringUtil;
@@ -219,6 +223,11 @@ public class Report implements Serializable
     return inValue == null ? 0.0 : inValue;
   }
 
+  private static double ensure(Report inReport)
+  {
+    return ensure(inReport.getHours(), inReport.getPartialHours());
+  }
+
   private static double ensure(Integer inInteger, Double inDouble)
   {
     return ensure(inInteger) + ensure(inDouble);
@@ -247,8 +256,108 @@ public class Report implements Serializable
     return ret;
   }
 
+  public static class Stat implements Serializable
+  {
+    private StatValue mInactive;
+    private StatValue mIrregular;
+    private StatValue mBelowThreshold;
+    private StatValue mReactivated;
+
+    public void setSize(int inSize)
+    {
+      mInactive = new StatValue();
+      mInactive.setSize(inSize);
+
+      mIrregular = new StatValue();
+      mIrregular.setSize(inSize);
+
+      mBelowThreshold = new StatValue();
+      mBelowThreshold.setSize(inSize);
+
+      mReactivated = new StatValue();
+      mReactivated.setSize(inSize);
+    }
+
+    public StatValue getInactive()
+    {
+      return mInactive;
+    }
+
+    public StatValue getIrregular()
+    {
+      return mIrregular;
+    }
+
+    public StatValue getBelowThreshold()
+    {
+      return mBelowThreshold;
+    }
+
+    public StatValue getReactivated()
+    {
+      return mReactivated;
+    }
+
+    public void inactive(YrMo inYm, int inPos, Long inPersonId)
+    {
+      mInactive.add(inPos, inYm, inPersonId);
+    }
+
+    public void irregular(YrMo inYm, int inPos, Long inPersonId)
+    {
+      mIrregular.add(inPos, inYm, inPersonId);
+    }
+
+    public void belowThreshold(YrMo inYm, int inPos, Long inPersonId)
+    {
+      mBelowThreshold.add(inPos, inYm, inPersonId);
+    }
+
+    public void reactivated(YrMo inYm, int inPos, Long inPersonId)
+    {
+      mReactivated.add(inPos, inYm, inPersonId);
+    }
+  }
+
+  public static class StatValue implements Serializable
+  {
+    private Double[] mValues;
+    private Map<String, List<Long>> mIds;
+
+    public void setSize(int inSize)
+    {
+      mIds = new HashMap<>();
+      mValues = new Double[inSize];
+      for (int i = 0; i < mValues.length; i++)
+      {
+        mValues[i] = 0.0;
+      }
+    }
+
+    public Double[] getValues()
+    {
+      return mValues;
+    }
+
+    public Map<String, List<Long>> getIds()
+    {
+      return mIds;
+    }
+
+    public void add(int inPos, YrMo inYm, Long inPersonId)
+    {
+      mValues[inPos] += 1;
+      if (!mIds.containsKey(inYm.getDisplay()))
+      {
+        mIds.put(inYm.getDisplay(), new ArrayList<Long>());
+      }
+      mIds.get(inYm.getDisplay()).add(inPersonId);
+    }
+  }
+
   public static class Total implements Serializable
   {
+    private int mCount;
     private int mActiveCount;
     private int mPlacements;
     private int mVideoShowings;
@@ -256,12 +365,15 @@ public class Report implements Serializable
     private int mReturnVisits;
     private int mBibleStudies;
     private int mCreditHours;
+    private boolean mReactivated;
 
     public void add(Report inReport)
     {
+      mCount++;
       mPlacements += ensure(inReport.getPlacements());
       mVideoShowings += ensure(inReport.getVideoShowings());
-      mHours += ensure(inReport.getHours(), inReport.getPartialHours());
+      double hours = ensure(inReport.getHours(), inReport.getPartialHours());
+      mHours += hours;
       mReturnVisits += ensure(inReport.getReturnVisits());
       mBibleStudies += ensure(inReport.getBibleStudies());
       mCreditHours += ensure(inReport.getCreditHours());
@@ -269,6 +381,15 @@ public class Report implements Serializable
       {
         mActiveCount++;
       }
+      if (hours > 0.0)
+      {
+        mReactivated = mCount == 1 ? true : false;
+      }
+    }
+
+    public boolean isReactivated()
+    {
+      return mReactivated;
     }
 
     public int getActiveCount()
@@ -364,6 +485,26 @@ public class Report implements Serializable
     public double gCreditHoursAvg(int inCount)
     {
       return mCreditHours / inCount;
+    }
+
+    public boolean isInactive()
+    {
+      return mHours == 0.0;
+    }
+
+    public boolean isIrregular()
+    {
+      return mActiveCount < 6;
+    }
+
+    public boolean isBelowThreshold(double inThreshold)
+    {
+      return gHoursAvg(mCount) < inThreshold;
+    }
+
+    public boolean isBelowThreshold(Report inReport, double inThreshold)
+    {
+      return ensure(inReport) < inThreshold;
     }
   }
 

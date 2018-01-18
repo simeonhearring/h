@@ -55,6 +55,11 @@ public class Client extends h.model.shared.Client
     return mPersons.gPerson(inId);
   }
 
+  public String gName(Long inId)
+  {
+    return mPersons.gPerson(inId).gName();
+  }
+
   public void setPersons(Persons inPersons)
   {
     mPersons = inPersons;

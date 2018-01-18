@@ -70,6 +70,7 @@ public class MinistryMonthPresenter extends AbstractPresenter<MinistryMonthPrese
     mDisplay.getPioneer().setValue(inReport.getType());
     mDisplay.getSend().setValue(checkPubId(inReport.getPubId(), inReport.gSendDate()));
     mDisplay.getMonth().setText(mDisplay.format("MMM yy", inReport.gDate()));
+    mDisplay.getName().setText(mClient.gName(inReport.getPubId()));
     mDirty = false;
   }
 
@@ -118,13 +119,14 @@ public class MinistryMonthPresenter extends AbstractPresenter<MinistryMonthPrese
     void setYearMonth(int... inYearMonth);
 
     void setDirty(boolean inDirty);
+
+    HasText getName();
   }
 
   public void changePub(Long inPubId, int[] inYearMonth)
   {
     mPubId = inPubId;
     mYearMonth = inYearMonth;
-
     display(gReport());
   }
 

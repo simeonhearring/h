@@ -2,6 +2,8 @@ package h.model.shared.khall;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,7 +12,7 @@ import h.model.shared.Person.Gender;
 import h.model.shared.Tag;
 
 @SuppressWarnings("serial")
-public class Persons implements Serializable
+public class Persons implements Serializable, Comparator<Person>
 {
   private List<Person> mPersons;
   private Map<Long, Person> mOrganize;
@@ -170,5 +172,24 @@ public class Persons implements Serializable
       }
     }
     return ret;
+  }
+
+  public List<Person> gPersons(List<Long> inIds)
+  {
+    List<Person> ret = new ArrayList<>();
+    for (Long value : inIds)
+    {
+      ret.add(gPerson(value));
+    }
+    Collections.sort(ret, this);
+    return ret;
+  }
+
+  @Override
+  public int compare(Person inO1, Person inO2)
+  {
+    String n1 = inO1.gName();
+    String n2 = inO2.gName();
+    return n1.compareTo(n2);
   }
 }

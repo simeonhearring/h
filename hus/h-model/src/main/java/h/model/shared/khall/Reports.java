@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import h.model.shared.khall.Person.Status;
+import h.model.shared.khall.Report.Stat;
 import h.model.shared.khall.Report.Total;
 import h.model.shared.util.NumberUtil;
 
@@ -28,7 +29,7 @@ public class Reports implements Serializable
     }
   }
 
-  public Total gTotal(List<Report> inReports)
+  public static Total gTotal(List<Report> inReports)
   {
     Total ret = new Total();
     for (Report value : inReports)
@@ -49,6 +50,7 @@ public class Reports implements Serializable
     return find(inCongId, inPubId, inYear, inMonth);
   }
 
+  // for service year
   public List<Report> gReports(int inCongId, Long inPubId, int inYear, int inMonth)
   {
     List<Report> ret = new ArrayList<>();
@@ -71,7 +73,7 @@ public class Reports implements Serializable
     return ret;
   }
 
-  private Report find(int inCongId, Long inPubId, int inYear, int inMonth)
+  private Report find(Integer inCongId, Long inPubId, int inYear, int inMonth)
   {
     Report ret = null;
 
@@ -192,5 +194,58 @@ public class Reports implements Serializable
     }
 
     return ret;
+  }
+
+  public List<Report> find(Long inPubId, List<YrMo> inPast)
+  {
+    List<Report> ret = new ArrayList<>();
+    for (YrMo value : inPast)
+    {
+      ret.add(find(null, inPubId, value.getYear(), value.getMonth()));
+    }
+    return ret;
+  }
+
+  public Stat gStat(List<YrMo> inYms, List<Person> inPublishers, int inLength, double inThreshold)
+  {
+    Stat stat = new Stat();
+    stat.setSize(inLength);
+
+    for (Person value : inPublishers)
+    {
+      List<Report> list = find(value.getIdLong(), inYms);
+
+      for (int i = 0; i < inLength; i++)
+      {
+        YrMo ym = inYms.get(i);
+
+        int fromIndex = i;
+        int toIndex = i + 6;
+
+        Total total = gTotal(list.subList(fromIndex, toIndex));
+
+        if (total.isInactive())
+        {
+          stat.inactive(ym, i, value.getIdLong());
+        }
+        else
+        {
+          if (total.isIrregular())
+          {
+            stat.irregular(ym, i, value.getIdLong());
+          }
+          if (total.isBelowThreshold(list.get(i), inThreshold))
+          {
+            stat.belowThreshold(ym, i, value.getIdLong());
+          }
+          if (total.isReactivated())
+          {
+            stat.reactivated(ym, i, value.getIdLong());
+          }
+        }
+      }
+    }
+
+    return stat;
   }
 }
