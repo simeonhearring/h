@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.google.gwt.user.client.ui.HasText;
+
 import h.khall.shared.command.ReportSaveCommand;
 import h.model.shared.khall.Charts;
 import h.model.shared.khall.Report;
@@ -50,6 +52,7 @@ public class MinistryYearPresenter extends AbstractPresenter<MinistryYearPresent
 
   public interface Display extends h.style.g.client.model.Display
   {
+    HasText getName();
   }
 
   public void changePub(Long inPubId, int[] inYearMonth)
@@ -119,7 +122,9 @@ public class MinistryYearPresenter extends AbstractPresenter<MinistryYearPresent
     int yr = mProfile.gCurrentServiceYear();
     int mo = mProfile.gCurrentServiceMonth();
 
-    String name = mClient.getPersons().gName(mPubId);
+    String name = mClient.gName(mPubId);
+
+    mDisplay.getName().setText(name);
 
     List<YrMo> yml = YrMo.past(yr, mo, 24);
     String[] yma = YrMo.toText(yml, 18);
@@ -144,7 +149,7 @@ public class MinistryYearPresenter extends AbstractPresenter<MinistryYearPresent
     Chart ret = new Chart(Chart.Type.LINE);
 
     Stat stat = new Stat();
-    stat.setHead("Publisher Summary");
+    stat.setHead("Publisher");
     stat.setSubHead("");
     stat.setTopRight(null);
     // stat.setFooter(Part.labels(true, " ", Part.student()));

@@ -10,6 +10,9 @@
 	</ui:style>
 	<b.gwt:HTMLPanel addStyleNames="ibox-content marginB25">
 		<b:Heading size="H2" text="Service Year Report" alignment="CENTER" />
+		<b.html:Hr />
+		<b:Label ui:field="mName" />
+		<b.html:Hr />
 		<h:TableView ui:field="mTable" />
 		<b.html:Hr />
 		<b:Button ui:field="mSave" text="Save" type="PRIMARY" size="SMALL" />

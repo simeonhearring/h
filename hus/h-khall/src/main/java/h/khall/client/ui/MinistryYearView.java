@@ -14,6 +14,7 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -31,6 +32,8 @@ public class MinistryYearView extends AbstractView<MinistryYearPresenter>
   {
   }
 
+  @UiField
+  Label mName;
 
   @UiField
   TableView mTable;
@@ -75,6 +78,12 @@ public class MinistryYearView extends AbstractView<MinistryYearPresenter>
       mTable.setWidget(row, 6, mm.getComment());
       mTable.setWidget(row, 7, more(mm));
     }
+  }
+
+  @Override
+  public HasText getName()
+  {
+    return mName;
   }
 
   private MinistryMonthView monthView(int inYear, String inMoName, String inMoNum, String inYearMod)

@@ -183,7 +183,7 @@ public class MinistryPresenter extends AbstractPresenter<MinistryPresenter.Displ
     Chart ret = new Chart(Chart.Type.LINE);
 
     Stat stat = new Stat();
-    stat.setHead("Ministry Summary");
+    stat.setHead("Congregation");
     stat.setSubHead("");
     stat.setTopRight(null);
     // stat.setFooter(Part.labels(true, " ", Part.student()));
