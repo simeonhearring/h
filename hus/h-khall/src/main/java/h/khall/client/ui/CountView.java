@@ -16,7 +16,6 @@ import h.model.shared.khall.Profile;
 import h.style.g.client.ui.AbstractView;
 import h.style.g.client.ui.common.Global;
 
-
 public class CountView extends AbstractView
 {
   private static final Binder BINDER = GWT.create(Binder.class);
