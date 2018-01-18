@@ -17,7 +17,7 @@
 			</div>
 			<div class="col-sm-4">
 				<div class="ibox ">
-					<k:PersonInfoView />
+					<k:PersonDetailView />
 				</div>
 			</div>
 		</div>

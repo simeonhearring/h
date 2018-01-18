@@ -8,15 +8,15 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Widget;
 
-import h.khall.client.model.PersonInfoPresenter;
+import h.khall.client.model.PersonDetailPresenter;
 import h.model.shared.khall.Person;
 
-public class PersonInfoView extends AbstractView<PersonInfoPresenter>
-  implements PersonInfoPresenter.Display
+public class PersonDetailView extends AbstractView<PersonDetailPresenter>
+  implements PersonDetailPresenter.Display
 {
   private static final Binder BINDER = GWT.create(Binder.class);
 
-  interface Binder extends UiBinder<Widget, PersonInfoView>
+  interface Binder extends UiBinder<Widget, PersonDetailView>
   {
   }
 
@@ -26,10 +26,10 @@ public class PersonInfoView extends AbstractView<PersonInfoPresenter>
   @UiField
   Span mRole, mAddressLine, mCityLine, mHome, mMobile, mEmail;
 
-  public PersonInfoView()
+  public PersonDetailView()
   {
     initWidget(BINDER.createAndBindUi(this));
-    mPresenter = new PersonInfoPresenter(this).handlers();
+    mPresenter = new PersonDetailPresenter(this).handlers();
   }
 
   @Override
