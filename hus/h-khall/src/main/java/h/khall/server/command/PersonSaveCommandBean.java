@@ -11,7 +11,7 @@ public class PersonSaveCommandBean extends AbstractDaoCommandBean<Dao, PersonSav
   @Override
   public RpcResponse execute(PersonSaveCommand inCommand)
   {
-    String key = ((Profile) inCommand.getProfile()).getEncrypt();
+    String key = ((Profile) inCommand.getProfile()).gEncrypt();
     mDao.update(key, inCommand.getPerson());
     return inCommand;
   }

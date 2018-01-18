@@ -5,6 +5,13 @@ import java.io.Serializable;
 @SuppressWarnings("serial")
 public class Profile implements Serializable
 {
+  public enum Type
+  {
+    USER;
+  }
+
+  private Type mType;
+
   private String mUserName;
   private String mUserId;
   private String mUserTitle;
@@ -12,7 +19,7 @@ public class Profile implements Serializable
 
   private String mFirst, mLast;
 
-  public String getUserName()
+  public String gUserName()
   {
     return mUserName;
   }
@@ -42,7 +49,7 @@ public class Profile implements Serializable
     mUserTitle = inUserTitle;
   }
 
-  public String getPassword()
+  public String gPassword()
   {
     return mPassword;
   }
@@ -70,5 +77,20 @@ public class Profile implements Serializable
   public void setFirst(String inFirst)
   {
     mFirst = inFirst;
+  }
+
+  public Type getType()
+  {
+    return mType;
+  }
+
+  public void setType(Type inType)
+  {
+    mType = inType;
+  }
+
+  public String gLocator()
+  {
+    return mUserId;
   }
 }

@@ -79,5 +79,6 @@
 
 			</div>
 		</div>
+		<k:StatsView ui:field="mPubStats" dataType="PUB_MINISTRY" />
 	</b.gwt:HTMLPanel>
 </ui:UiBinder>

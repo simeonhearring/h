@@ -258,42 +258,42 @@ public class Report implements Serializable
 
   public static class Stat implements Serializable
   {
-    private StatValue mInactive;
-    private StatValue mIrregular;
-    private StatValue mBelowThreshold;
-    private StatValue mReactivated;
+    private StatsIds mInactive;
+    private StatsIds mIrregular;
+    private StatsIds mBelowThreshold;
+    private StatsIds mReactivated;
 
     public void setSize(int inSize)
     {
-      mInactive = new StatValue();
+      mInactive = new StatsIds();
       mInactive.setSize(inSize);
 
-      mIrregular = new StatValue();
+      mIrregular = new StatsIds();
       mIrregular.setSize(inSize);
 
-      mBelowThreshold = new StatValue();
+      mBelowThreshold = new StatsIds();
       mBelowThreshold.setSize(inSize);
 
-      mReactivated = new StatValue();
+      mReactivated = new StatsIds();
       mReactivated.setSize(inSize);
     }
 
-    public StatValue getInactive()
+    public StatsIds getInactive()
     {
       return mInactive;
     }
 
-    public StatValue getIrregular()
+    public StatsIds getIrregular()
     {
       return mIrregular;
     }
 
-    public StatValue getBelowThreshold()
+    public StatsIds getBelowThreshold()
     {
       return mBelowThreshold;
     }
 
-    public StatValue getReactivated()
+    public StatsIds getReactivated()
     {
       return mReactivated;
     }
@@ -319,7 +319,79 @@ public class Report implements Serializable
     }
   }
 
-  public static class StatValue implements Serializable
+  public static class PubRange implements Serializable
+  {
+    private DoubleRange mHours;
+    private DoubleRange mBibleStudies;
+    private DoubleRange mReturnVisits;
+    private DoubleRange mPlacements;
+    private DoubleRange mVideoShowings;
+
+    public void setSize(int inSize)
+    {
+      mHours = new DoubleRange();
+      mHours.setSize(inSize);
+      mBibleStudies = new DoubleRange();
+      mBibleStudies.setSize(inSize);
+      mReturnVisits = new DoubleRange();
+      mReturnVisits.setSize(inSize);
+      mPlacements = new DoubleRange();
+      mPlacements.setSize(inSize);
+      mVideoShowings = new DoubleRange();
+      mVideoShowings.setSize(inSize);
+    }
+
+    public void report(int inPos, Report inReport)
+    {
+      mHours.setValue(inPos, inReport.gHours());
+      mBibleStudies.setValue(inPos, inReport.getBibleStudies());
+      mReturnVisits.setValue(inPos, inReport.getReturnVisits());
+      mPlacements.setValue(inPos, inReport.getPlacements());
+      mVideoShowings.setValue(inPos, inReport.getVideoShowings());
+    }
+
+    public Double[] getHours()
+    {
+      return mHours.mRange;
+    }
+
+    public Double[] getBibleStudies()
+    {
+      return mBibleStudies.mRange;
+    }
+
+    public Double[] getReturnVisits()
+    {
+      return mReturnVisits.mRange;
+    }
+
+    public Double[] getPlacements()
+    {
+      return mPlacements.mRange;
+    }
+
+    public Double[] getVideoShowings()
+    {
+      return mVideoShowings.mRange;
+    }
+  }
+
+  public static class DoubleRange implements Serializable
+  {
+    private Double[] mRange;
+
+    public void setSize(int inSize)
+    {
+      mRange = new Double[inSize];
+    }
+
+    public void setValue(int inPos, Number inValue)
+    {
+      mRange[inPos] = inValue == null ? 0.0 : inValue.doubleValue();
+    }
+  }
+
+  public static class StatsIds implements Serializable
   {
     private Double[] mValues;
     private Map<String, List<Long>> mIds;
@@ -522,5 +594,10 @@ public class Report implements Serializable
   public String getKey()
   {
     return mYear + "-" + mMonth;
+  }
+
+  public Double gHours()
+  {
+    return ensure(this);
   }
 }

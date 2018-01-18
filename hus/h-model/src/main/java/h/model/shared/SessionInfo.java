@@ -23,7 +23,7 @@ public abstract class SessionInfo implements Serializable
     String ret = null;
     if (mProfile != null)
     {
-      ret = mProfile.getUserId() + "-" + mProfile.getUserName();
+      ret = mProfile.getUserId() + "-" + mProfile.gUserName();
     }
     return ret;
   }

@@ -10,7 +10,6 @@ import h.model.shared.util.TextUtil;
 import h.style.g.client.ui.event.ChartEvent;
 import h.style.g.client.ui.event.RefreshEvent;
 import h.style.g.shared.chart.Chart;
-import h.style.g.shared.chart.Chart.Dataset;
 import h.style.g.shared.chart.Chart.Stat;
 
 public class MidweekPresenter extends AbstractPresenter<MidweekPresenter.Display>
@@ -173,15 +172,5 @@ public class MidweekPresenter extends AbstractPresenter<MidweekPresenter.Display
     format(ret.createDataset(V.Assigned.name(), 0.0, 0.0, 0.0), 352);
 
     return ret;
-  }
-
-  private static void format(Dataset inSet, int inColor)
-  {
-    // http://standardista.com/webkit/ch7/hsla.html
-    String c1 = "hsla(" + inColor + ",67%,51%,";
-    inSet.setBorderColor(c1 + "0." + 9 + ")");
-    // inSet.setBackgroundColor(c1 + "0." + RandomUtil.randomInt(9) + ")");
-    // inSet.setPointBackgroundColor(c1 + "0." + RandomUtil.randomInt(9) + ")");
-    inSet.setPointBorderColor("#fff");
   }
 }

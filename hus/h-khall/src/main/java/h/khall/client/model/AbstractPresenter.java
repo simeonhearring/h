@@ -5,6 +5,7 @@ import h.khall.client.ui.event.ProfileEvent;
 import h.khall.shared.model.Client;
 import h.model.shared.khall.Profile;
 import h.style.g.client.model.Display;
+import h.style.g.shared.chart.Chart.Dataset;
 
 public class AbstractPresenter<D extends Display> extends
   h.style.g.client.model.AbstractPresenter<D> implements ProfileEvent.Handler, ClientEvent.Handler
@@ -30,5 +31,15 @@ public class AbstractPresenter<D extends Display> extends
   public void dispatch(ClientEvent inEvent)
   {
     mClient = (Client) inEvent.getClient();
+  }
+
+  public static void format(Dataset inSet, int inColor)
+  {
+    // http://standardista.com/webkit/ch7/hsla.html
+    String c1 = "hsla(" + inColor + ",67%,51%,";
+    inSet.setBorderColor(c1 + "0." + 9 + ")");
+    // inSet.setBackgroundColor(c1 + "0." + RandomUtil.randomInt(9) + ")");
+    // inSet.setPointBackgroundColor(c1 + "0." + RandomUtil.randomInt(9) + ")");
+    inSet.setPointBorderColor("#fff");
   }
 }

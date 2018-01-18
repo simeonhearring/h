@@ -1,7 +1,6 @@
 package h.khall.server.dao.bean;
 
 import h.khall.server.dao.Dao;
-import h.model.shared.khall.Assignments.Count;
 import h.model.shared.khall.Charts;
 import h.model.shared.khall.Profile;
 import h.model.shared.util.RandomUtil;
@@ -10,26 +9,6 @@ import h.style.g.shared.chart.Chart.Stat;
 
 public abstract class JavaBeanDaoImpl implements Dao
 {
-  @Override
-  public Profile selectProfile(Profile inProfile)
-  {
-    Profile ret = new Profile();
-    ret.setUserId(inProfile.getUserId());
-    ret.setCongNum(inProfile.getCongNum());
-    ret.setEncrypt(inProfile.getEncrypt());
-    ret.setYear(2018);
-
-    // TODO authenticate password
-    inProfile.getPassword();
-
-    ret.setUserTitle("Owner");
-    ret.setUserName("Simeon L Hearring");
-    ret.setCongId("58966".equals(inProfile.getCongNum()) ? 59 : 60);
-    ret.setCount(Count.STUDENT);
-
-    return ret;
-  }
-
   @Override
   public Chart selectChart(Profile inProfile)
   {

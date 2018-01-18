@@ -57,8 +57,16 @@ public class LoginPresenter extends AbstractPresenter<LoginPresenter.Display>
     public void onRpcSuccess(LoginCommand inCommand)
     {
       Login login = inCommand.getData();
-      fire(new AttachEvent(TypeA.MIDWEEK), new ProfileEvent(login.getProfile()),
-          new ClientEvent(login.getClient()), new RefreshEvent());
+      if (login.isAuthenticated())
+      {
+        fire(new AttachEvent(TypeA.MIDWEEK), new ProfileEvent(login.getProfile()),
+            new ClientEvent(login.getClient()), new RefreshEvent());
+      }
+      else
+      {
+        mDisplay.alert(
+            "That didn't work! Did you type your password correctly? Is the encryption key correct?");
+      }
     }
   }
 }

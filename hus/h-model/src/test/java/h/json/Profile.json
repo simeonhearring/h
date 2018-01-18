@@ -1,0 +1,13 @@
+{
+	"threshold": 5.0,
+	"count": "NON_STUDENT",
+	"congNum": "123456",
+	"congId": 1,
+	"first": "First",
+	"type": "USER",
+	"userId": "User Id",
+	"userTitle": "User title",
+	"last": "Last",
+	"password": "password",
+	"userName": "User name"
+}

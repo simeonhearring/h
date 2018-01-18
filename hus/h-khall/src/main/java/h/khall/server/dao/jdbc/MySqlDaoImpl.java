@@ -6,6 +6,7 @@ import javax.sql.DataSource;
 
 import h.dao.jdbc.statement.CongSql;
 import h.dao.jdbc.statement.PersonEncryptSql;
+import h.dao.jdbc.statement.ProfileEncryptSql;
 import h.dao.jdbc.statement.ReportSql;
 import h.dao.jdbc.statement.ScheduleSql;
 import h.khall.server.dao.Dao;
@@ -21,6 +22,7 @@ import h.model.shared.khall.Reports;
 
 public class MySqlDaoImpl extends JavaBeanDaoImpl implements Dao
 {
+  private ProfileEncryptSql mProfileSql;
   private PersonEncryptSql mPersonSql;
   private ScheduleSql mScheduleSql;
   private ReportSql mReportSql;
@@ -28,6 +30,7 @@ public class MySqlDaoImpl extends JavaBeanDaoImpl implements Dao
 
   public void setDataSource(DataSource inDataSource)
   {
+    mProfileSql = new ProfileEncryptSql(inDataSource);
     mPersonSql = new PersonEncryptSql(inDataSource);
     mScheduleSql = new ScheduleSql(inDataSource);
     mCongSql = new CongSql(inDataSource);
@@ -39,6 +42,12 @@ public class MySqlDaoImpl extends JavaBeanDaoImpl implements Dao
   }
 
   @Override
+  public Profile selectProfile(Profile inProfile)
+  {
+    return mProfileSql.select(inProfile.gEncrypt(), inProfile.gLocator());
+  }
+
+  @Override
   public Person selectPerson(String inEncrypt, long inId)
   {
     return mPersonSql.selectById(inEncrypt, inId);
@@ -47,7 +56,7 @@ public class MySqlDaoImpl extends JavaBeanDaoImpl implements Dao
   @Override
   public Persons selectPersons(Profile inProfile)
   {
-    return selectPersons(inProfile.getEncrypt(), inProfile.getCongId());
+    return selectPersons(inProfile.gEncrypt(), inProfile.getCongId());
   }
 
   @Override
@@ -120,26 +129,5 @@ public class MySqlDaoImpl extends JavaBeanDaoImpl implements Dao
   public void update(Report inReport)
   {
     mReportSql.upsert(inReport);
-  }
-
-  @Override
-  public Reports selectReports(Integer inCongId)
-  {
-    // TODO Auto-generated method stub
-    return null;
-  }
-
-  @Override
-  public Reports selectReports(Integer inCongId, Date inGreaterThan)
-  {
-    // TODO Auto-generated method stub
-    return null;
-  }
-
-  @Override
-  public Reports selectReports(Long inPubId)
-  {
-    // TODO Auto-generated method stub
-    return null;
   }
 }

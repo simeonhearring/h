@@ -14,22 +14,38 @@ public class Login implements Serializable
   {
     return mProfile;
   }
+
   public void setProfile(Profile inProfile)
   {
     mProfile = inProfile;
   }
+
   public Client getClient()
   {
     return mClient;
   }
+
   public void setClient(Client inClient)
   {
     mClient = inClient;
   }
 
-  public boolean isAuthenticated(Profile inProfile)
+  public static boolean isAuthenticated(Profile inServer, Profile inClient)
   {
-    // TODO
-    return true;
+    boolean ret = false;
+    if (inServer != null)
+    {
+      ret = inClient.gPassword().equals(inServer.gPassword());
+      inServer.setEncrypt(inClient.gEncrypt());
+      inServer.setPassword(null);
+      inServer.setUserName(inServer.getFirst() + " " + inServer.getLast());
+    }
+    inClient.setPassword(null);
+    return ret;
+  }
+
+  public boolean isAuthenticated()
+  {
+    return mProfile != null;
   }
 }

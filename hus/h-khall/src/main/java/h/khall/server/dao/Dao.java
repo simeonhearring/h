@@ -38,13 +38,7 @@ public interface Dao
 
   Reports selectReports(Profile inProfile);
 
-  Reports selectReports(Integer inCongId);
-
   Reports selectReports(Integer inCongId, Date inStart, Date inEnd);
 
   Reports selectReports(Integer inCongId, int inPastMonths);
-
-  Reports selectReports(Integer inCongId, Date inGreaterThan);
-
-  Reports selectReports(Long inPubId);
 }

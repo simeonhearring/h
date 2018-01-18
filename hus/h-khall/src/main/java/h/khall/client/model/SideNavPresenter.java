@@ -14,7 +14,7 @@ public class SideNavPresenter extends AbstractPresenter<SideNavPresenter.Display
   @Override
   public void dispatch(RefreshEvent inEvent)
   {
-    mDisplay.setUserName(mProfile.getUserName());
+    mDisplay.setUserName(mProfile.gUserName());
     mDisplay.setUserTitle(mProfile.getUserTitle());
   }
 

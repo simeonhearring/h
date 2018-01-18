@@ -40,7 +40,7 @@ public class MinistryView extends AbstractView<MinistryPresenter>
   }
 
   @UiField
-  StatsView mStats;
+  StatsView mStats, mPubStats;
 
   @UiField
   MultiValueTagsInput<Tag> mName;

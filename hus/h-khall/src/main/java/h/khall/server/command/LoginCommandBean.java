@@ -18,16 +18,16 @@ public class LoginCommandBean extends AbstractDaoCommandBean<Dao, LoginCommand>
 
     Profile profile = mDao.selectProfile(inCommand.getProfile());
 
-    data.setProfile(profile);
-
-    if (data.isAuthenticated(inCommand.getProfile()))
+    if (Login.isAuthenticated(profile, inCommand.getProfile()))
     {
+      data.setProfile(profile);
+
       Client client = new Client();
       data.setClient(client);
 
-      client.setCong(mDao.selectCong(profile));
+      client.setChart(mDao.selectChart(profile)); // TODO remove
 
-      client.setChart(mDao.selectChart(profile));
+      client.setCong(mDao.selectCong(profile));
 
       client.setMeeting(mDao.selectMeeting(profile));
 

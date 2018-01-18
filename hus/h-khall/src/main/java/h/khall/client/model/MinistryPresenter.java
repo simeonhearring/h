@@ -17,7 +17,6 @@ import h.model.shared.util.StringUtil;
 import h.style.g.client.ui.event.ChartEvent;
 import h.style.g.client.ui.event.RefreshEvent;
 import h.style.g.shared.chart.Chart;
-import h.style.g.shared.chart.Chart.Dataset;
 import h.style.g.shared.chart.Chart.Stat;
 
 public class MinistryPresenter extends AbstractPresenter<MinistryPresenter.Display>
@@ -74,8 +73,8 @@ public class MinistryPresenter extends AbstractPresenter<MinistryPresenter.Displ
 
   private void updateChart()
   {
-    int yr = 2017;// TimeUtil.currentYear();
-    int mo = 12; // TimeUtil.currentServiceMonth();
+    int yr = mProfile.gCurrentServiceYear();
+    int mo = mProfile.gCurrentServiceMonth();
     double th = mProfile.gThreshold();
 
     List<Person> persons = mClient.getPersons().getPublishers();
@@ -111,8 +110,7 @@ public class MinistryPresenter extends AbstractPresenter<MinistryPresenter.Displ
       mNames.put(value + V.Inactive.name(), ensure(inStats.getInactive().getIds(), value));
       mNames.put(value + V.Reactivated.name(), ensure(inStats.getReactivated().getIds(), value));
       mNames.put(value + V.Irregular.name(), ensure(inStats.getIrregular().getIds(), value));
-      mNames.put(value + V.Below_Threshold.name(),
-          ensure(inStats.getBelowThreshold().getIds(), value));
+      mNames.put(value + V.Below_Threshold.name(), ensure(inStats.getBelowThreshold().getIds(), value));
     }
   }
 
@@ -201,15 +199,5 @@ public class MinistryPresenter extends AbstractPresenter<MinistryPresenter.Displ
     format(ret.createDataset(V.Reactivated.gLabel(), 0.0, 0.0, 0.0), 402);
 
     return ret;
-  }
-
-  private static void format(Dataset inSet, int inColor)
-  {
-    // http://standardista.com/webkit/ch7/hsla.html
-    String c1 = "hsla(" + inColor + ",67%,51%,";
-    inSet.setBorderColor(c1 + "0." + 9 + ")");
-    // inSet.setBackgroundColor(c1 + "0." + RandomUtil.randomInt(9) + ")");
-    // inSet.setPointBackgroundColor(c1 + "0." + RandomUtil.randomInt(9) + ")");
-    inSet.setPointBorderColor("#fff");
   }
 }

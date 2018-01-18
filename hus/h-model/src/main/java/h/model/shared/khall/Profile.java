@@ -5,13 +5,23 @@ import h.model.shared.util.TimeUtil;
 @SuppressWarnings("serial")
 public class Profile extends h.model.shared.Profile
 {
+  private String mEncrypt;
+
   private Integer mCongId;
   private String mCongNum;
-  private String mEncrypt;
   private Integer mYear = TimeUtil.currentYear();
-  // private Integer mMonth = TimeUtil.getCurrentMonth();
   private Assignments.Count mCount;
   private Double mThreshold;
+
+  public String gEncrypt()
+  {
+    return mEncrypt;
+  }
+
+  public void setEncrypt(String inEncrypt)
+  {
+    mEncrypt = inEncrypt;
+  }
 
   public String getCongNum()
   {
@@ -21,16 +31,6 @@ public class Profile extends h.model.shared.Profile
   public void setCongNum(String inCongNum)
   {
     mCongNum = inCongNum;
-  }
-
-  public String getEncrypt()
-  {
-    return mEncrypt;
-  }
-
-  public void setEncrypt(String inEncrypt)
-  {
-    mEncrypt = inEncrypt;
   }
 
   public Integer getCongId()
@@ -56,11 +56,6 @@ public class Profile extends h.model.shared.Profile
     mYear = inYear;
   }
 
-  // public Integer getMonth()
-  // {
-  // return mMonth;
-  // }
-
   public Assignments.Count getCount()
   {
     return mCount;
@@ -76,8 +71,23 @@ public class Profile extends h.model.shared.Profile
     mThreshold = inThreshold;
   }
 
+  public Double getThreshold()
+  {
+    return mThreshold;
+  }
+
   public double gThreshold()
   {
     return mThreshold == null ? 5.0 : mThreshold;
+  }
+
+  public int gCurrentServiceYear()
+  {
+    return 2017;
+  }
+
+  public int gCurrentServiceMonth()
+  {
+    return 12;
   }
 }

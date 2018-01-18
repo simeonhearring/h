@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import h.model.shared.khall.Person.Status;
+import h.model.shared.khall.Report.PubRange;
 import h.model.shared.khall.Report.Stat;
 import h.model.shared.khall.Report.Total;
 import h.model.shared.util.NumberUtil;
@@ -206,10 +207,25 @@ public class Reports implements Serializable
     return ret;
   }
 
+  public PubRange gPubRange(Long inPubId, List<YrMo> inPast)
+  {
+    PubRange ret = new PubRange();
+    ret.setSize(inPast.size());
+
+    for (int i = 0; i < inPast.size(); i++)
+    {
+      YrMo value = inPast.get(i);
+      Report report = find(null, inPubId, value.getYear(), value.getMonth());
+      ret.report(i, report);
+    }
+
+    return ret;
+  }
+
   public Stat gStat(List<YrMo> inYms, List<Person> inPublishers, int inLength, double inThreshold)
   {
-    Stat stat = new Stat();
-    stat.setSize(inLength);
+    Stat ret = new Stat();
+    ret.setSize(inLength);
 
     for (Person value : inPublishers)
     {
@@ -226,26 +242,26 @@ public class Reports implements Serializable
 
         if (total.isInactive())
         {
-          stat.inactive(ym, i, value.getIdLong());
+          ret.inactive(ym, i, value.getIdLong());
         }
         else
         {
           if (total.isIrregular())
           {
-            stat.irregular(ym, i, value.getIdLong());
+            ret.irregular(ym, i, value.getIdLong());
           }
           if (total.isBelowThreshold(list.get(i), inThreshold))
           {
-            stat.belowThreshold(ym, i, value.getIdLong());
+            ret.belowThreshold(ym, i, value.getIdLong());
           }
           if (total.isReactivated())
           {
-            stat.reactivated(ym, i, value.getIdLong());
+            ret.reactivated(ym, i, value.getIdLong());
           }
         }
       }
     }
 
-    return stat;
+    return ret;
   }
 }
