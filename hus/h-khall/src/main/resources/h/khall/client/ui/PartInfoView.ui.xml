@@ -26,6 +26,6 @@
 				</div>
 			</div>
 		</b.gwt:HTMLPanel>
-		<k:ParticipantInfoView />
+		<k:PersonInfoView categoryVisible="false" roleVisible="false" />
 	</b.gwt:HTMLPanel>
 </ui:UiBinder>

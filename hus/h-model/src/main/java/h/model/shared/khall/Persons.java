@@ -28,6 +28,11 @@ public class Persons implements Serializable, Comparator<Person>
     organize();
   }
 
+  public void sort()
+  {
+    Collections.sort(mPersons, this);
+  }
+
   private void organize()
   {
     mOrganize = new HashMap<>();
@@ -43,6 +48,19 @@ public class Persons implements Serializable, Comparator<Person>
     for (Person value : mPersons)
     {
       if (value.isElder())
+      {
+        ret.add(value);
+      }
+    }
+    return ret;
+  }
+
+  public List<Person> getServants()
+  {
+    List<Person> ret = new ArrayList<>();
+    for (Person value : mPersons)
+    {
+      if (value.isServant())
       {
         ret.add(value);
       }

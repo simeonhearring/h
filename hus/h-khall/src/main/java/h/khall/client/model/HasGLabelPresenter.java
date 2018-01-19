@@ -6,7 +6,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.HasText;
 
-import h.khall.client.ui.event.ParticipantInfoEvent;
+import h.khall.client.ui.event.PersonInfoEvent;
 import h.khall.shared.command.PersonSaveCommand;
 import h.model.shared.khall.HasGLabel;
 import h.model.shared.khall.Person;
@@ -14,7 +14,7 @@ import h.model.shared.util.EnumUtil;
 
 public abstract class HasGLabelPresenter<E extends Enum<?> & HasGLabel>
   extends AbstractPresenter<HasGLabelPresenter.Display>
-  implements ParticipantInfoEvent.Handler, ClickHandler
+  implements PersonInfoEvent.Handler, ClickHandler
 {
   private Long mId;
 
@@ -36,7 +36,7 @@ public abstract class HasGLabelPresenter<E extends Enum<?> & HasGLabel>
 
   public HasGLabelPresenter<E> handlers()
   {
-    register(addHandler(ParticipantInfoEvent.TYPE, this));
+    register(addHandler(PersonInfoEvent.TYPE, this));
     return this;
   }
 
@@ -58,9 +58,9 @@ public abstract class HasGLabelPresenter<E extends Enum<?> & HasGLabel>
   }
 
   @Override
-  public void dispatch(ParticipantInfoEvent inEvent)
+  public void dispatch(PersonInfoEvent inEvent)
   {
-    mId = inEvent.getParticipantId();
+    mId = inEvent.getId();
     mDisplay.setOptions(values(mClient.gPerson(mId)));
   }
 

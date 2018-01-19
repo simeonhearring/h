@@ -13,10 +13,7 @@
 			<i class="fa fa-clock-o"></i>
 			2:10 pm - 12.06.2014
 		</span>
-		<h2>Clients</h2>
-		<p>
-			All clients need to be verified before you can send email and set a project.
-		</p>
+		<h2>Congregation</h2>
 		<div class="input-group">
 			<b:Input ui:field="mSearch" type="TEXT" placeholder="Search criteria " addStyleNames="input form-control" />
 			<span class="input-group-btn">
@@ -25,23 +22,32 @@
 		</div>
 		<div class="clients-list">
 			<ul class="nav nav-tabs">
-				<b.html:Span ui:field="mCount" addStyleNames="pull-right small text-muted" />
 				<li class="active">
 					<a data-toggle="tab" href="#tab-1">
 						<i class="fa fa-user"></i>
 						Members
+						<b.html:Span ui:field="mCt1" addStyleNames="pull-right small text-muted" paddingLeft="5.0" />
 					</a>
 				</li>
 				<li class="">
 					<a data-toggle="tab" href="#tab-2">
 						<i class="fa fa-briefcase"></i>
 						Elders
+						<b.html:Span ui:field="mCt2" addStyleNames="pull-right small text-muted" paddingLeft="5.0" />
 					</a>
 				</li>
 				<li class="">
 					<a data-toggle="tab" href="#tab-3">
 						<i class="fa fa-briefcase"></i>
+						Servants
+						<b.html:Span ui:field="mCt3" addStyleNames="pull-right small text-muted" paddingLeft="5.0" />
+					</a>
+				</li>
+				<li class="">
+					<a data-toggle="tab" href="#tab-4">
+						<i class="fa fa-briefcase"></i>
 						Regular Pioneers
+						<b.html:Span ui:field="mCt4" addStyleNames="pull-right small text-muted" paddingLeft="5.0" />
 					</a>
 				</li>
 			</ul>
@@ -61,6 +67,13 @@
 					</div>
 				</div>
 				<div id="tab-3" class="tab-pane">
+					<div class="full-height-scroll">
+						<div class="table-responsive">
+							<k:PersonTableView ui:field="mServants" />
+						</div>
+					</div>
+				</div>
+				<div id="tab-4" class="tab-pane">
 					<div class="full-height-scroll">
 						<div class="table-responsive">
 							<k:PersonTableView ui:field="mRegular" />

@@ -7,14 +7,14 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Widget;
 
-import h.khall.client.model.ParticipantInfoPresenter;
+import h.khall.client.model.PersonInfoPresenter;
 
-public class ParticipantInfoView extends AbstractView<ParticipantInfoPresenter>
-  implements ParticipantInfoPresenter.Display
+public class PersonInfoView extends AbstractView<PersonInfoPresenter>
+  implements PersonInfoPresenter.Display
 {
   private static final Binder BINDER = GWT.create(Binder.class);
 
-  interface Binder extends UiBinder<Widget, ParticipantInfoView>
+  interface Binder extends UiBinder<Widget, PersonInfoView>
   {
   }
 
@@ -31,12 +31,12 @@ public class ParticipantInfoView extends AbstractView<ParticipantInfoPresenter>
   PartView mPart;
 
   @UiField
-  PartView mHall;
+  HallView mHall;
 
-  public ParticipantInfoView()
+  public PersonInfoView()
   {
     initWidget(BINDER.createAndBindUi(this));
-    mPresenter = new ParticipantInfoPresenter(this).handlers();
+    mPresenter = new PersonInfoPresenter(this).handlers();
   }
 
   @Override
@@ -46,25 +46,25 @@ public class ParticipantInfoView extends AbstractView<ParticipantInfoPresenter>
   }
 
   @Override
-  public void showRole(boolean inVisible)
+  public void setRoleVisible(boolean inVisible)
   {
     mRole.setVisible(inVisible);
   }
 
   @Override
-  public void showCategory(boolean inVisible)
+  public void setCategoryVisible(boolean inVisible)
   {
     mCategory.setVisible(inVisible);
   }
 
   @Override
-  public void showPart(boolean inVisible)
+  public void setPartVisible(boolean inVisible)
   {
     mPart.setVisible(inVisible);
   }
 
   @Override
-  public void showHall(boolean inVisible)
+  public void setHallVisible(boolean inVisible)
   {
     mHall.setVisible(inVisible);
   }

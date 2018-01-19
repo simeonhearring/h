@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import h.model.shared.khall.Categories.Category;
 import h.model.shared.khall.Roles.Role;
 import h.model.shared.util.EnumUtil;
 import h.model.shared.util.TimeUtil;
@@ -133,6 +134,26 @@ public class Person extends h.model.shared.Person
   public Role getRole()
   {
     return mRoles.gPrimary();
+  }
+
+  public String gRoles()
+  {
+    StringBuilder ret = new StringBuilder();
+    for (Role value : mRoles.getRoles())
+    {
+      ret.append(value.gLabel()).append(" ");
+    }
+    return ret.toString();
+  }
+
+  public String gCategories()
+  {
+    StringBuilder ret = new StringBuilder();
+    for (Category value : mCategories.getCategories())
+    {
+      ret.append(value.gLabel()).append(" ");
+    }
+    return ret.toString();
   }
 
   public Roles getRoles()
@@ -281,7 +302,11 @@ public class Person extends h.model.shared.Person
     StringBuilder builder = new StringBuilder();
     builder.append(super.toQuery());
     builder.append(" ");
-    builder.append(getRole()); // expand and include category
+    builder.append(getGender());
+    builder.append(" ");
+    builder.append(gRoles());
+    builder.append(" ");
+    builder.append(gCategories());
     return builder.toString();
   }
 

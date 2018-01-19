@@ -25,7 +25,7 @@ import com.google.gwt.user.client.ui.Widget;
 
 import h.khall.client.model.PartInfoPresenter;
 import h.khall.client.ui.event.PartInfoEvent;
-import h.khall.client.ui.event.ParticipantInfoEvent;
+import h.khall.client.ui.event.PersonInfoEvent;
 import h.model.shared.Person.Gender;
 import h.model.shared.khall.PartInfo.Info;
 
@@ -104,7 +104,7 @@ public class PartInfoView extends AbstractView<PartInfoPresenter>
       @Override
       public void onClick(ClickEvent inEvent)
       {
-        fire(new ParticipantInfoEvent(id));
+        fire(new PersonInfoEvent(id));
       }
     });
 

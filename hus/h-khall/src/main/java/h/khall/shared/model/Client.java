@@ -63,6 +63,7 @@ public class Client extends h.model.shared.Client
   public void setPersons(Persons inPersons)
   {
     mPersons = inPersons;
+    mPersons.sort();
   }
 
   public List<Tag> getTags(Assignment inAssignment)

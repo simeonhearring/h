@@ -12,19 +12,20 @@ public class Roles implements Serializable
   public enum Role implements HasGLabel
   {
     ANOITED,
+    MEMBER,
     STUDENT,
     PUBLISHER,
     AUXILIARY_PIONEER_30,
     AUXILIARY_PIONEER,
     REGULAR_PIONEER,
     SPECIAL_PIONEER,
+    AUXILIARY_COUNSELOR,
+    LIFE_AND_MINISTRY_OVERSEER,
     MINISTERIAL_SERVANT,
     ELDER,
     GROUP_ASSISTANT,
     GROUP_SERVANT,
     GROUP_OVERSEER,
-    LIFE_AND_MINISTRY_OVERSEER,
-    AUXILIARY_COUNSELOR,
     WATCHTOWER_CONDUCTOR,
     SERVICE_OVERSEER,
     SECRETARY,
@@ -69,7 +70,7 @@ public class Roles implements Serializable
 
   public Role gPrimary()
   {
-    Role ret = Role.STUDENT;
+    Role ret = Role.MEMBER;
 
     for (Role value : mRoles)
     {

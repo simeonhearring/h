@@ -20,7 +20,7 @@ public class PersonDetailPresenter extends AbstractPresenter<PersonDetailPresent
   @Override
   public void dispatch(PersonInfoEvent inEvent)
   {
-    mDisplay.setPerson(inEvent.getPerson());
+    mDisplay.setPerson(mClient.gPerson(inEvent.getId()));
   }
 
   public interface Display extends h.style.g.client.model.Display

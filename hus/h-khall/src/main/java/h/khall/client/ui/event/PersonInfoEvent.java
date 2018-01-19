@@ -1,6 +1,5 @@
 package h.khall.client.ui.event;
 
-import h.model.shared.khall.Person;
 import h.style.g.client.ui.event.Event;
 import h.style.g.client.ui.event.EventHandler;
 import h.style.g.client.ui.event.TypeH;
@@ -14,16 +13,16 @@ public class PersonInfoEvent extends Event<PersonInfoEvent.Handler>
     void dispatch(PersonInfoEvent inEvent);
   }
 
-  private Person mPerson;
+  private Long mId;
 
-  public PersonInfoEvent(Person inPerson)
+  public PersonInfoEvent(Long inId)
   {
-    mPerson = inPerson;
+    mId = inId;
   }
 
-  public Person getPerson()
+  public Long getId()
   {
-    return mPerson;
+    return mId;
   }
 
   @Override

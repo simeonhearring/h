@@ -31,10 +31,10 @@ public class PersonsView extends AbstractView<PersonsPresenter> implements Perso
   Button mGo;
 
   @UiField
-  Span mCount;
+  Span mCt1, mCt2, mCt3, mCt4;
 
   @UiField
-  PersonTableView mAll, mElders, mRegular;
+  PersonTableView mAll, mElders, mRegular, mServants;
 
   public PersonsView()
   {
@@ -58,7 +58,7 @@ public class PersonsView extends AbstractView<PersonsPresenter> implements Perso
   @Override
   public void setAll(List<Person> inList)
   {
-    mCount.setText(inList.size() + " shown");
+    mCt1.setText("(" + inList.size() + ")");
     mAll.clear();
     mAll.setValues(inList);
   }
@@ -66,15 +66,23 @@ public class PersonsView extends AbstractView<PersonsPresenter> implements Perso
   @Override
   public void setElders(List<Person> inList)
   {
-    mCount.setText(inList.size() + " shown");
+    mCt2.setText("(" + inList.size() + ")");
     mElders.clear();
     mElders.setValues(inList);
   }
 
   @Override
+  public void setServants(List<Person> inList)
+  {
+    mCt3.setText("(" + inList.size() + ")");
+    mServants.clear();
+    mServants.setValues(inList);
+  }
+
+  @Override
   public void setRegular(List<Person> inList)
   {
-    mCount.setText(inList.size() + " shown");
+    mCt4.setText("(" + inList.size() + ")");
     mRegular.clear();
     mRegular.setValues(inList);
   }

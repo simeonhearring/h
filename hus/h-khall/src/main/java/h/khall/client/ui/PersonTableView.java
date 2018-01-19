@@ -96,21 +96,22 @@ public class PersonTableView extends AbstractView
     mTable.setWidget(row, ++column, status);
   }
 
-  private Anchor name(final Person inPerson)
+  private Anchor name(Person inPerson)
   {
     Anchor ret = new Anchor();
     ret.addStyleName("client-link");
-    ret.setText(inPerson.getName() + " " + inPerson.getId());
+    ret.setText(inPerson.getName());
 
     ret.setIcon(inPerson.isMale() ? IconType.MALE : IconType.FEMALE);
     ret.setIconPosition(IconPosition.RIGHT);
 
+    final long id = inPerson.getIdLong();
     register(ret.addClickHandler(new ClickHandler()
     {
       @Override
       public void onClick(ClickEvent inEvent)
       {
-        fire(new PersonInfoEvent(inPerson));
+        fire(new PersonInfoEvent(id));
       }
     }));
     return ret;
