@@ -9,7 +9,7 @@ import h.model.shared.util.StringUtil;
 @SuppressWarnings("serial")
 public class Roles implements Serializable
 {
-  public enum Role
+  public enum Role implements HasGLabel
   {
     ANOITED,
     STUDENT,
@@ -30,7 +30,8 @@ public class Roles implements Serializable
     SECRETARY,
     COORDINATOR;
 
-    public String getLabel()
+    @Override
+    public String gLabel()
     {
       return StringUtil.toTitle(name().replaceAll("_", " "));
     }

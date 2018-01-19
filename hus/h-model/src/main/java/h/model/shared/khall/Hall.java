@@ -2,7 +2,7 @@ package h.model.shared.khall;
 
 import h.model.shared.util.StringUtil;
 
-public enum Hall
+public enum Hall implements HasGLabel
 {
   MAIN,
   SECOND;
@@ -12,7 +12,8 @@ public enum Hall
     return ordinal() + 1 + ",";
   }
 
-  public String getLabel()
+  @Override
+  public String gLabel()
   {
     return StringUtil.toTitle(name());
   }

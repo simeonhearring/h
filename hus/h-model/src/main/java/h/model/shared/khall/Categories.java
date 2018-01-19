@@ -9,7 +9,7 @@ import h.model.shared.util.StringUtil;
 @SuppressWarnings("serial")
 public class Categories implements Serializable
 {
-  public enum Category
+  public enum Category implements HasGLabel
   {
     RESTRICTIONS,
     SHUT_IN,
@@ -20,7 +20,8 @@ public class Categories implements Serializable
     FIFTEEN_MINUTE_INCREMENT,
     INFIRM_REGULAR_PIONEER;
 
-    public String getLabel()
+    @Override
+    public String gLabel()
     {
       return StringUtil.toTitle(name().replaceAll("_", " "));
     }

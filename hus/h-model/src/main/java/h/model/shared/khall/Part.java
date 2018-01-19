@@ -5,7 +5,7 @@ import java.util.List;
 
 import h.model.shared.util.StringUtil;
 
-public enum Part
+public enum Part implements HasGLabel
 {
   CO_TALK,
   EVENT,
@@ -128,6 +128,12 @@ public enum Part
         TALK,
         BIBLE_STUDY
     };
+  }
+
+  @Override
+  public String gLabel()
+  {
+    return getLabel(true);
   }
 
   public static Part[] nonstudent()

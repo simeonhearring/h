@@ -6,10 +6,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.gwtbootstrap3.client.ui.CheckBox;
 import org.gwtbootstrap3.client.ui.Icon;
 import org.gwtbootstrap3.client.ui.Tooltip;
 import org.gwtbootstrap3.client.ui.constants.IconSize;
 import org.gwtbootstrap3.client.ui.constants.IconType;
+import org.gwtbootstrap3.client.ui.gwt.HTMLPanel;
 import org.gwtbootstrap3.extras.animate.client.ui.Animate;
 import org.gwtbootstrap3.extras.animate.client.ui.constants.Animation;
 import org.gwtbootstrap3.extras.bootbox.client.Bootbox;
@@ -761,5 +763,24 @@ public abstract class AbstractView extends Composite
       }
     }
     return canStore;
+  }
+
+  public static <T extends Enum<?>> List<String> keys(List<T> inEnums)
+  {
+    List<String> ret = new ArrayList<>();
+    for (Enum<?> value : inEnums)
+    {
+      ret.add(value.name());
+    }
+    return ret;
+  }
+
+  public static void check(List<String> inKeys, HTMLPanel inPanel)
+  {
+    for (int i = 0; i < inPanel.getWidgetCount(); i++)
+    {
+      CheckBox check = (CheckBox) inPanel.getWidget(i);
+      check.setValue(inKeys.contains(check.getId()));
+    }
   }
 }

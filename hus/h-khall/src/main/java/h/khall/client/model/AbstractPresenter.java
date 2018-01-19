@@ -1,5 +1,7 @@
 package h.khall.client.model;
 
+import java.util.List;
+
 import h.khall.client.ui.event.ClientEvent;
 import h.khall.client.ui.event.ProfileEvent;
 import h.khall.shared.model.Client;
@@ -41,5 +43,20 @@ public class AbstractPresenter<D extends Display> extends
     // inSet.setBackgroundColor(c1 + "0." + RandomUtil.randomInt(9) + ")");
     // inSet.setPointBackgroundColor(c1 + "0." + RandomUtil.randomInt(9) + ")");
     inSet.setPointBorderColor("#fff");
+  }
+
+  public static <T extends Enum<?>> void update(Boolean inChecked, List<T> inList, T inValue)
+  {
+    if (inChecked)
+    {
+      if (!inList.contains(inValue))
+      {
+        inList.add(inValue);
+      }
+    }
+    else
+    {
+      inList.remove(inValue);
+    }
   }
 }
