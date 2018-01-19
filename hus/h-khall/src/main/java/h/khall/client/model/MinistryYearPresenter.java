@@ -131,6 +131,10 @@ public class MinistryYearPresenter extends AbstractPresenter<MinistryYearPresent
 
     PubRange range = mClient.getReports().gPubRange(mPubId, yml);
 
+    long avg3mo = Math.round(range.gAverage(3, range.getHours()));
+    long avg6mo = Math.round(range.gAverage(6, range.getHours()));
+    long avg12mo = Math.round(range.gAverage(12, range.getHours()));
+
     // mChart.getStat().setSubHead(TextUtil.toText(mProfile.getCount()) + "
     // Parts");
     mChart.update(yma);
@@ -140,6 +144,7 @@ public class MinistryYearPresenter extends AbstractPresenter<MinistryYearPresent
     mChart.update(V.Bible_Studies.gLabel(), range.getBibleStudies());
     mChart.update(V.Video_Showings.gLabel(), range.getVideoShowings());
     mChart.getStat().setTopRight(name);
+    mChart.getStat().setFooter("HOUR AVG: 3 mo=" + avg3mo + " ... 6 mo=" + avg6mo + " ... 12 mo=" + avg12mo);
 
     fire(new ChartEvent(mChart));
   }

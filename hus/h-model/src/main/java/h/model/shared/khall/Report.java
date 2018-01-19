@@ -341,6 +341,16 @@ public class Report implements Serializable
       mVideoShowings.setSize(inSize);
     }
 
+    public double gAverage(int inCount, Double[] inRange)
+    {
+      double sum = 0;
+      for (int i = 0; i < inCount; i++)
+      {
+        sum += inRange[i];
+      }
+      return sum / inCount;
+    }
+
     public void report(int inPos, Report inReport)
     {
       mHours.setValue(inPos, inReport.gHours());

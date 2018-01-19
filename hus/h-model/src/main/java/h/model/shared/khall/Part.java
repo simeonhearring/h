@@ -48,7 +48,7 @@ public enum Part implements HasGLabel
         TREASURES,
         DIGGING,
         SONG_1,
-        SONG_3,
+        SONG_3, // TODO replace with PRAYER
 
         BIBLE_READING,
         INITIAL_CALL,
