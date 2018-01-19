@@ -10,13 +10,13 @@
 	<b.gwt:HTMLPanel addStyleNames="ibox-content marginB25">
 		<div class="row m-b-lg text-center">
 			<div class="col-lg-12 text-center">
-				<b:Heading size="H2" text="Participant Info" />
+				<b:Heading size="H2" text="Person Options" />
 				<b:Label ui:field="mName" />
 			</div>
 		</div>
-		<k:RoleView />
-		<k:CategoryView />
-		<k:PartView />
-		<k:HallView />
+		<k:RoleView ui:field="mRole" />
+		<k:CategoryView ui:field="mCategory" />
+		<k:PartView ui:field="mPart" />
+		<k:HallView ui:field="mHall" />
 	</b.gwt:HTMLPanel>
 </ui:UiBinder>

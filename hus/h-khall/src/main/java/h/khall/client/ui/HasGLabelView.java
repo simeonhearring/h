@@ -46,6 +46,7 @@ public class HasGLabelView<P extends AbstractPresenter<?>> extends AbstractView<
     CheckBox check = new CheckBox(inLabel);
     check.setId(inId);
     check.addClickHandler(inHandler);
+    check.addStyleName("kh_check");
     mOptions.add(check);
   }
 

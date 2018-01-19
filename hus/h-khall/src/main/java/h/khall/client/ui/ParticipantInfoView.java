@@ -21,6 +21,18 @@ public class ParticipantInfoView extends AbstractView<ParticipantInfoPresenter>
   @UiField
   Label mName;
 
+  @UiField
+  RoleView mRole;
+
+  @UiField
+  CategoryView mCategory;
+
+  @UiField
+  PartView mPart;
+
+  @UiField
+  PartView mHall;
+
   public ParticipantInfoView()
   {
     initWidget(BINDER.createAndBindUi(this));
@@ -31,5 +43,29 @@ public class ParticipantInfoView extends AbstractView<ParticipantInfoPresenter>
   public void setName(String inName)
   {
     mName.setText(inName);
+  }
+
+  @Override
+  public void showRole(boolean inVisible)
+  {
+    mRole.setVisible(inVisible);
+  }
+
+  @Override
+  public void showCategory(boolean inVisible)
+  {
+    mCategory.setVisible(inVisible);
+  }
+
+  @Override
+  public void showPart(boolean inVisible)
+  {
+    mPart.setVisible(inVisible);
+  }
+
+  @Override
+  public void showHall(boolean inVisible)
+  {
+    mHall.setVisible(inVisible);
   }
 }

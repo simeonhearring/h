@@ -7,7 +7,7 @@
 	<ui:style>
 	
 	</ui:style>
-	<b.gwt:HTMLPanel addStyleNames="client-detail">
+	<b.gwt:HTMLPanel>
 		<b:Heading ui:field="mLabel" size="H4" />
 		<div class="full-height-scroll">
 			<b.gwt:HTMLPanel ui:field="mOptions" />

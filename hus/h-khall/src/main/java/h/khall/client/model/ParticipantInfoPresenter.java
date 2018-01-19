@@ -1,12 +1,11 @@
 package h.khall.client.model;
 
 import h.khall.client.ui.event.ParticipantInfoEvent;
-import h.model.shared.khall.Person;
 
 public class ParticipantInfoPresenter extends AbstractPresenter<ParticipantInfoPresenter.Display>
   implements ParticipantInfoEvent.Handler
 {
-  private Long mParticipantId;
+  private Long mId;
 
   public ParticipantInfoPresenter(Display inDisplay)
   {
@@ -22,13 +21,20 @@ public class ParticipantInfoPresenter extends AbstractPresenter<ParticipantInfoP
   @Override
   public void dispatch(ParticipantInfoEvent inEvent)
   {
-    mParticipantId = inEvent.getParticipantId();
-    Person p = mClient.getPersons().gPerson(mParticipantId);
-    mDisplay.setName(p.getName());
+    mId = inEvent.getParticipantId();
+    mDisplay.setName(mClient.gPerson(mId).getName());
   }
 
   public interface Display extends h.style.g.client.model.Display
   {
     void setName(String inName);
+
+    void showRole(boolean inVisible);
+
+    void showCategory(boolean inVisible);
+
+    void showPart(boolean inVisible);
+
+    void showHall(boolean inVisible);
   }
 }

@@ -15,7 +15,7 @@ public class HallPresenter extends HasGLabelPresenter<Hall>
   @Override
   String name()
   {
-    return "Halls";
+    return "Assignable Halls";
   }
 
   @Override
