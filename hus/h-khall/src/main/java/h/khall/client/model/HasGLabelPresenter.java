@@ -47,14 +47,26 @@ public abstract class HasGLabelPresenter<E extends Enum<?> & HasGLabel>
     {
       String[] option = mDisplay.gOption(inEvent);
       Person person = mClient.gPerson(mId);
-      update(Boolean.valueOf(option[1]), values(person), EnumUtil.valueOf(option[0], values()));
-      fire(new PersonSaveCommand(person), new PersonInfoEvent(person.getIdLong()));
+      if (validate(person))
+      {
+        update(Boolean.valueOf(option[1]), values(person), EnumUtil.valueOf(option[0], values()));
+        fire(new PersonSaveCommand(person), new PersonInfoEvent(person.getIdLong()));
+      }
+      else
+      {
+        mDisplay.undo(inEvent);
+      }
     }
     else
     {
       mDisplay.undo(inEvent);
       mDisplay.notify("Select someone first.");
     }
+  }
+
+  protected boolean validate(Person inPerson)
+  {
+    return true;
   }
 
   @Override

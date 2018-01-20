@@ -6,27 +6,19 @@ import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @SuppressWarnings("serial")
 public class FieldServiceGroup implements Comparator<FieldServiceGroup>, Serializable
 {
   private static final FieldServiceGroup MOVEOUT = initMoveout();
 
   private Integer mId;
-  private Integer mCongregationId;
   private String mTitle;
   private String mLocation;
   private int mCount;
 
-  public Integer getCongregationId()
-  {
-    return mCongregationId;
-  }
-
-  public void setCongregationId(Integer inCongregationId)
-  {
-    mCongregationId = inCongregationId;
-  }
-
+  @JsonIgnore
   public Integer getId()
   {
     return mId;
@@ -62,31 +54,37 @@ public class FieldServiceGroup implements Comparator<FieldServiceGroup>, Seriali
     mCount = inCount;
   }
 
+  @JsonIgnore
   public int getCount()
   {
     return mCount;
   }
 
+  @JsonIgnore
   public String getInfo()
   {
     return mTitle;
   }
 
+  @JsonIgnore
   public boolean isMoveout()
   {
     return getId() == 0;
   }
 
+  @JsonIgnore
   public boolean isPioneers()
   {
     return isPioneers(getId());
   }
 
+  @JsonIgnore
   public boolean isElderOrServant()
   {
     return isElderOrServant(getId());
   }
 
+  @JsonIgnore
   public boolean isCongregation()
   {
     return isCongregation(getId());
@@ -188,7 +186,6 @@ public class FieldServiceGroup implements Comparator<FieldServiceGroup>, Seriali
     FieldServiceGroup ret = new FieldServiceGroup();
     ret.setId(-1);
     ret.setTitle("-PIONEERS-");
-    ret.setCongregationId(inCongregation);
     return ret;
   }
 
@@ -197,7 +194,6 @@ public class FieldServiceGroup implements Comparator<FieldServiceGroup>, Seriali
     FieldServiceGroup ret = new FieldServiceGroup();
     ret.setId(-2);
     ret.setTitle("-ELDERS & SERVANTS-");
-    ret.setCongregationId(inCongregation);
     return ret;
   }
 
@@ -209,6 +205,7 @@ public class FieldServiceGroup implements Comparator<FieldServiceGroup>, Seriali
     return ret;
   }
 
+  @JsonIgnore
   public boolean isDefault()
   {
     return mId != null && mId.intValue() < 1;

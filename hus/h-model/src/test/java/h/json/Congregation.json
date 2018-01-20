@@ -2,33 +2,57 @@
 	"name": "Triple Creek - Gallatin, TN",
 	"id": 60,
 	"number": "952267",
+	"fsgs": {
+		"85": {
+			"location": "1441 Long Hollow Pike, Gallatin TN 37066 @ 9:30 AM",
+			"title": "Hearring"
+		},
+		"86": {
+			"location": "214 Drakewood Dr. Portland, TN 37148 @ 9:00 AM",
+			"title": "Humphrey"
+		},
+		"87": {
+			"location": "1620 Airport Rd, Gallatin TN 37066 @ 9:00 AM",
+			"title": "Tunstill"
+		},
+		"88": {
+			"location": "249 Santa Monica Blvd, Gallatin TN 37066 @ 9:00 AM",
+			"title": "Kerstner"
+		}
+	},
 	"halls": [
 		"MAIN"
 	],
 	"events": {
 		"2016-01-06T01:00:00.000+0000": {
 			"type": "WEEKMID",
-			"theme": null
+			"theme": null,
+			"display": "Midweek Meeting"
 		},
 		"2018-07-31T05:00:00.000+0000": {
 			"type": "CO_VISIT",
-			"theme": "We Must Run With Endurance!"
+			"theme": "We Must Run With Endurance!",
+			"display": "Circuit Overseer Visit: We Must Run With Endurance!"
 		},
 		"2018-02-19T06:00:00.000+0000": {
 			"type": "CO_VISIT",
-			"theme": "Let Endurance Complete Its Work"
+			"theme": "Let Endurance Complete Its Work",
+			"display": "Circuit Overseer Visit: Let Endurance Complete Its Work"
 		},
 		"2018-06-11T05:00:00.000+0000": {
 			"type": "REGIONAL",
-			"theme": "'Be Courageous'!"
+			"theme": "'Be Courageous'!",
+			"display": "Regional Convention: 'Be Courageous'!"
 		},
 		"2018-04-07T05:00:00.000+0000": {
 			"type": "CACO",
-			"theme": "Don't Give Up In Doing What Is Fine!"
+			"theme": "Don't Give Up In Doing What Is Fine!",
+			"display": "Circuit Assembly - CO: Don't Give Up In Doing What Is Fine!"
 		},
 		"2018-01-06T06:00:00.000+0000": {
 			"type": "WEEKEND",
-			"theme": null
+			"theme": null,
+			"display": "Weekend Meeting"
 		}
 	}
 }

@@ -14,6 +14,7 @@ public class Congregation implements Serializable
   private String mNumber;
   private String mName;
   private Hall[] mHalls;
+  private Map<Integer, FieldServiceGroup> mFsgs;
   private Map<Date, Event> mEvents;
 
   public Integer getId()
@@ -101,5 +102,15 @@ public class Congregation implements Serializable
       ret.add(e);
     }
     return ret;
+  }
+
+  public Map<Integer, FieldServiceGroup> getFsgs()
+  {
+    return mFsgs;
+  }
+
+  public void setFsgs(Map<Integer, FieldServiceGroup> inFsgs)
+  {
+    mFsgs = inFsgs;
   }
 }

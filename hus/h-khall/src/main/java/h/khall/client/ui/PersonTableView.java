@@ -51,9 +51,11 @@ public class PersonTableView extends AbstractView<PersonTablePresenter>
 
     mTable.setWidget(row, ++column, cv.getAddress());
 
-    mTable.getCellFormatter().getElement(row, column).addClassName("client-status");
+    // mTable.getCellFormatter().getElement(row,
+    // column).addClassName("client-status");
 
-    mTable.setWidget(row, ++column, cv.getStatus());
+    mTable.setWidget(row, ++column, cv.getStudent());
+    mTable.setWidget(row, ++column, cv.getPublisher());
   }
 
   @Override

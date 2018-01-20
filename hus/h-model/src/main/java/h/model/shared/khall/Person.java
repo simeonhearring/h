@@ -329,4 +329,10 @@ public class Person extends h.model.shared.Person
   {
     return mFsgId.equals(inId);
   }
+
+  public void moveout()
+  {
+    mRoles.getRoles().clear();
+    mRoles.getRoles().add(Role.FAMILY);
+  }
 }

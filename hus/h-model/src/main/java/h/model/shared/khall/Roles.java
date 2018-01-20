@@ -12,7 +12,7 @@ public class Roles implements Serializable
   public enum Role implements HasGLabel
   {
     ANOITED,
-    MEMBER,
+    FAMILY,
     STUDENT,
     PUBLISHER,
     AUXILIARY_PIONEER_30,
@@ -70,7 +70,7 @@ public class Roles implements Serializable
 
   public Role gPrimary()
   {
-    Role ret = Role.MEMBER;
+    Role ret = Role.FAMILY;
 
     for (Role value : mRoles)
     {

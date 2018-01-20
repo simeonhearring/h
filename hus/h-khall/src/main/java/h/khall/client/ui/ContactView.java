@@ -4,11 +4,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.gwtbootstrap3.client.ui.Anchor;
+import org.gwtbootstrap3.client.ui.Icon;
 import org.gwtbootstrap3.client.ui.Tooltip;
 import org.gwtbootstrap3.client.ui.constants.IconPosition;
 import org.gwtbootstrap3.client.ui.constants.IconType;
+import org.gwtbootstrap3.client.ui.constants.Placement;
 import org.gwtbootstrap3.client.ui.html.Span;
 
+import com.google.gwt.dom.client.Style.TextDecoration;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 
@@ -29,16 +32,24 @@ public class ContactView extends SpanIconView implements ClickHandler
 
   private Anchor mName;
   private Span mAddress;
-  private Span mStatus;
-  private Tooltip mAddressTip;
+  private Tooltip mAddressTip, mStudentTip, mPublisherTip;
+
+  private Icon mStudent;
+  private Icon mPublisher;
 
   public ContactView(long inId)
   {
     mId = inId;
     mName = name();
     mAddress = new Span();
-    mStatus = new Span();
     mAddressTip = new Tooltip(mAddress, "");
+    mAddressTip.setPlacement(Placement.BOTTOM);
+    mStudent = new Icon(IconType.GRADUATION_CAP);
+    mPublisher = new Icon(IconType.BRIEFCASE);
+    mStudentTip = new Tooltip(mStudent, "");
+    mPublisherTip = new Tooltip(mPublisher, "");
+    mStudentTip.setPlacement(Placement.BOTTOM);
+    mPublisherTip.setPlacement(Placement.BOTTOM);
 
     setMarginRight(5.0);
     setIcon(IconType.MOBILE_PHONE);
@@ -58,13 +69,26 @@ public class ContactView extends SpanIconView implements ClickHandler
 
     mName.setText(inPerson.getName());
     mName.setIcon(inPerson.isMale() ? IconType.MALE : IconType.FEMALE);
+    if (!inPerson.isMember())
+    {
+      mName.getElement().getStyle().setTextDecoration(TextDecoration.LINE_THROUGH);
+    }
+    else
+    {
+      mName.getElement().getStyle().clearTextDecoration();
+    }
 
     mAddress.setText(inPerson.gAddress1());
     mAddressTip.setTitle(inPerson.gAddress());
 
-    boolean student = inPerson.isStudent();
-    mStatus.setStyleName("label label-" + (student ? "primary" : "warning"));
-    mStatus.setText(student ? "Enrolled" : "Not Enrolled");
+    setColor(mStudent, mStudentTip, inPerson.isStudent(), "student");
+    setColor(mPublisher, mPublisherTip, inPerson.isPublisher(), "publisher");
+  }
+
+  private void setColor(Icon inIcon, Tooltip inTip, boolean inB, String inText)
+  {
+    inIcon.setColor(inB ? "#1ab394" : "#f8ac59");
+    inTip.setTitle((inB ? "Is " : "Is not ") + inText);
   }
 
   @Override
@@ -89,6 +113,16 @@ public class ContactView extends SpanIconView implements ClickHandler
     return this;
   }
 
+  public Icon getStudent()
+  {
+    return mStudent;
+  }
+
+  public Icon getPublisher()
+  {
+    return mPublisher;
+  }
+
   public Anchor getName()
   {
     return mName;
@@ -97,11 +131,6 @@ public class ContactView extends SpanIconView implements ClickHandler
   public Span getAddress()
   {
     return mAddress;
-  }
-
-  public Span getStatus()
-  {
-    return mStatus;
   }
 
   private int next()

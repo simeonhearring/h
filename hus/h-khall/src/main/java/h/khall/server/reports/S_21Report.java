@@ -69,7 +69,7 @@ public class S_21Report extends AbstractReportDefault<PublisherRecordCard>
 
     Date d = TimeUtil.getFirstOfMonth(y, 9);
 
-    List<Person> publishers = getPublishers(p, serviceGroup, e, dao);
+    List<Person> publishers = getPublishers(p, serviceGroup, e, dao, c);
 
     Comparator<Report> reportComparator = reportComparator();
 
@@ -147,12 +147,11 @@ public class S_21Report extends AbstractReportDefault<PublisherRecordCard>
   {
     FieldServiceGroup serviceGroup = new FieldServiceGroup();
     serviceGroup.setId(inFsgId);
-    serviceGroup.setCongregationId(inCongId);
     return serviceGroup;
   }
 
   private List<Person> getPublishers(Long inPubId, FieldServiceGroup inFsg, String inEncrypt,
-      Dao inDao)
+      Dao inDao, int inCongId)
   {
     List<Person> ret;
 
@@ -163,7 +162,7 @@ public class S_21Report extends AbstractReportDefault<PublisherRecordCard>
     }
     else
     {
-      Persons persons = inDao.selectPersons(inEncrypt, inFsg.getCongregationId());
+      Persons persons = inDao.selectPersons(inEncrypt, inCongId);
 
       if (inFsg.isElderOrServant())
       {
