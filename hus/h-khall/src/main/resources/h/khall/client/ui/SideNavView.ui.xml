@@ -50,7 +50,7 @@
 					<li>
 						<a>
 							<i class="fa fa-users"></i>
-							<span class="nav-label">Publishers</span>
+							<span class="nav-label">Congregation</span>
 							<span class="fa arrow"></span>
 						</a>
 						<k:PublisherNavView />

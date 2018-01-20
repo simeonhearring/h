@@ -8,15 +8,15 @@
 	</ui:style>
 	<b.html:UnorderedList addStyleNames="nav nav-second-level">
 		<b:ListItem>
-			<b:Anchor ui:field="mA1" text="Report 1" />
+			<b:Anchor ui:field="mA1" text="Members" />
 		</b:ListItem>
 		<b:ListItem>
-			<b:Anchor ui:field="mA2" text="Report 2" />
+			<b:Anchor ui:field="mA2" text="Add" />
 		</b:ListItem>
-		<b:ListItem>
+		<b:ListItem visible="false">
 			<b:Anchor ui:field="mA3" text="Report 3" />
 		</b:ListItem>
-		<b:ListItem>
+		<b:ListItem visible="false">
 			<b:Anchor ui:field="mA4" text="Report 4" />
 		</b:ListItem>
 	</b.html:UnorderedList>

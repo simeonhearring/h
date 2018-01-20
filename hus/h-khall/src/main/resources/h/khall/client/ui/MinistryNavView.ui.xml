@@ -8,16 +8,16 @@
 	</ui:style>
 	<b.html:UnorderedList addStyleNames="nav nav-second-level">
 		<b:ListItem>
-			<b:Anchor ui:field="mA1" text="Monthly" />
+			<b:Anchor ui:field="mA1" text="Activity" />
 		</b:ListItem>
-		<b:ListItem>
-			<b:Anchor ui:field="mA2" text="Curriculum" />
+		<b:ListItem visible="false">
+			<b:Anchor ui:field="mA2" text="Nothing" />
 		</b:ListItem>
-		<b:ListItem>
-			<b:Anchor ui:field="mA3" text="Schedule" />
+		<b:ListItem visible="false">
+			<b:Anchor ui:field="mA3" text="Nothing" />
 		</b:ListItem>
-		<b:ListItem>
-			<b:Anchor ui:field="mA4" text="Enrollment" />
+		<b:ListItem visible="false">
+			<b:Anchor ui:field="mA4" text="Nothing" />
 		</b:ListItem>
 	</b.html:UnorderedList>
 </ui:UiBinder>
