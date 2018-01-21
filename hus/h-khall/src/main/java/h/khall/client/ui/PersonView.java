@@ -3,6 +3,7 @@ package h.khall.client.ui;
 import java.util.Date;
 
 import org.gwtbootstrap3.client.ui.Anchor;
+import org.gwtbootstrap3.client.ui.Input;
 import org.gwtbootstrap3.client.ui.ListItem;
 import org.gwtbootstrap3.client.ui.gwt.HTMLPanel;
 
@@ -34,22 +35,22 @@ public class PersonView extends AbstractView implements PersonPresenter.Display
   Anchor mStep1a, mStep2a, mStep3a;
 
   @UiField
-  HTMLPanel mStep1c, mStep2c, mStep3c, mDate;
+  HTMLPanel mStep1c, mStep2c, mStep3c;
 
   @UiField
   InputView mFirst, mMiddle, mLast, mSuffix, mEmail, mMobile, mHome;
 
   @UiField
-  InputView mGender, mBirth;
+  InputView mGender;
+
+  @UiField
+  Input mBirth, mBaptized, mPublishing;
 
   @UiField
   InputView mAddress1, mAddress2, mCity, mState, mZip;
 
   @UiField
-  InputView mFsg, mFaith;
-
-  @UiField
-  InputView mBaptized, mPublishing;
+  InputView mFsg;
 
   @UiField
   InputView mEmergency, mChildren;
@@ -66,7 +67,6 @@ public class PersonView extends AbstractView implements PersonPresenter.Display
   {
     initWidget(BINDER.createAndBindUi(this));
     mPresenter = new PersonPresenter(this);
-    setElementId(mDate.getElement());
   }
 
   @UiHandler(
@@ -110,7 +110,6 @@ public class PersonView extends AbstractView implements PersonPresenter.Display
         "mLast",
         "mSuffix",
         "mGender",
-        "mBirth",
         "mEmail",
         "mMobile",
         "mHome",
@@ -120,7 +119,6 @@ public class PersonView extends AbstractView implements PersonPresenter.Display
         "mState",
         "mZip",
         "mFsg",
-        "mFaith",
         "mBaptized",
         "mPublishing",
         "mRoles",
@@ -192,10 +190,6 @@ public class PersonView extends AbstractView implements PersonPresenter.Display
     else if (mFsg.equals(source))
     {
       mPresenter.chgFsg(mFsg.getValue());
-    }
-    else if (mFaith.equals(source))
-    {
-      mPresenter.chgFaith(mFaith.getValue());
     }
     // else if (mBaptized.equals(source))
     // {
@@ -331,12 +325,6 @@ public class PersonView extends AbstractView implements PersonPresenter.Display
   }
 
   @Override
-  public void setFaith(String inValue)
-  {
-    mFaith.setValue(inValue);
-  }
-
-  @Override
   public void setBaptized(Date inValue)
   {
     // mBaptized.setValue(inValue);
@@ -399,7 +387,6 @@ public class PersonView extends AbstractView implements PersonPresenter.Display
     setCity(null);
     setState(null);
     setFsg(null);
-    setFaith(null);
     setBaptized(null);
     setPublishing(null);
     setRoles(null);

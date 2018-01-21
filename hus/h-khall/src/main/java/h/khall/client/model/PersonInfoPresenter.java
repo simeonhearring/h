@@ -36,5 +36,7 @@ public class PersonInfoPresenter extends AbstractPresenter<PersonInfoPresenter.D
     void setPartVisible(boolean inVisible);
 
     void setHallVisible(boolean inVisible);
+
+    void setFsgVisible(boolean inVisible);
   }
 }

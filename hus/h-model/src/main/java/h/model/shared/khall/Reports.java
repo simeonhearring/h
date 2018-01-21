@@ -216,7 +216,25 @@ public class Reports implements Serializable
     {
       YrMo value = inPast.get(i);
       Report report = find(null, inPubId, value.getYear(), value.getMonth());
-      ret.report(i, report);
+      ret.setValue(i, report);
+    }
+
+    return ret;
+  }
+
+  public PubRange gPubRange(List<Long> inPubId, List<YrMo> inPast)
+  {
+    PubRange ret = new PubRange();
+    ret.setSize(inPast.size());
+
+    for (int i = 0; i < inPast.size(); i++)
+    {
+      YrMo value = inPast.get(i);
+      for (Long id : inPubId)
+      {
+        Report report = find(null, id, value.getYear(), value.getMonth());
+        ret.addValue(i, report);
+      }
     }
 
     return ret;

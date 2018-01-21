@@ -55,6 +55,19 @@ public class Persons implements Serializable, Comparator<Person>
     return ret;
   }
 
+  public List<Person> getEldersOrServants()
+  {
+    List<Person> ret = new ArrayList<>();
+    for (Person value : mPersons)
+    {
+      if (value.isElder() || value.isServant())
+      {
+        ret.add(value);
+      }
+    }
+    return ret;
+  }
+
   public List<Person> getServants()
   {
     List<Person> ret = new ArrayList<>();
@@ -81,6 +94,45 @@ public class Persons implements Serializable, Comparator<Person>
     return ret;
   }
 
+  public List<Long> getElderServantIds()
+  {
+    List<Long> ret = new ArrayList<>();
+    for (Person value : mPersons)
+    {
+      if (value.isElder() || value.isServant())
+      {
+        ret.add(value.getIdLong());
+      }
+    }
+    return ret;
+  }
+
+  public List<Long> getRegularIds()
+  {
+    List<Long> ret = new ArrayList<>();
+    for (Person value : mPersons)
+    {
+      if (value.isRegular())
+      {
+        ret.add(value.getIdLong());
+      }
+    }
+    return ret;
+  }
+
+  public List<Long> getPubIds()
+  {
+    List<Long> ret = new ArrayList<>();
+    for (Person value : mPersons)
+    {
+      if (value.isPublisher())
+      {
+        ret.add(value.getIdLong());
+      }
+    }
+    return ret;
+  }
+
   public List<Person> getRegular()
   {
     List<Person> ret = new ArrayList<>();
@@ -100,6 +152,32 @@ public class Persons implements Serializable, Comparator<Person>
     for (Person value : mPersons)
     {
       if (value.isFsg(inId))
+      {
+        ret.add(value);
+      }
+    }
+    return ret;
+  }
+
+  public List<Long> getPubFsgIds(Integer inId)
+  {
+    List<Long> ret = new ArrayList<>();
+    for (Person value : mPersons)
+    {
+      if (value.isPublisher() && value.isFsg(inId))
+      {
+        ret.add(value.getIdLong());
+      }
+    }
+    return ret;
+  }
+
+  public List<Person> getPubFsg(Integer inId)
+  {
+    List<Person> ret = new ArrayList<>();
+    for (Person value : mPersons)
+    {
+      if (value.isPublisher() && value.isFsg(inId))
       {
         ret.add(value);
       }

@@ -11,6 +11,7 @@ public class Categories implements Serializable
 {
   public enum Category implements HasGLabel
   {
+    ANOITED,
     RESTRICTIONS,
     SHUT_IN,
     SPECIAL_NEED,

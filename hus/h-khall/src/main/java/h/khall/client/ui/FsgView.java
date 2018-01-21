@@ -6,11 +6,12 @@ import java.util.Map;
 import org.gwtbootstrap3.client.ui.ListBox;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.dom.client.ChangeEvent;
+import com.google.gwt.event.dom.client.ChangeHandler;
+import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Widget;
+import com.google.web.bindery.event.shared.Event;
 
 import h.khall.client.model.FsgPresenter;
 
@@ -34,13 +35,28 @@ public class FsgView extends AbstractView<FsgPresenter> implements FsgPresenter.
     mPresenter = new FsgPresenter(this).handlers();
   }
 
-  @UiHandler(
+  @Override
+  public boolean isSource(Event<?> inEvent)
   {
-      "mBox"
-  })
-  public void onChange(ChangeEvent inEvent)
+    return mBox.equals(inEvent.getSource());
+  }
+
+  @Override
+  public void setExtra(boolean inExtra)
   {
-    mPresenter.change(mBox.getSelectedValue());
+    mPresenter.setExtra(inExtra);
+  }
+
+  @Override
+  public HandlerRegistration addChangeHandler(ChangeHandler inHandler)
+  {
+    return mBox.addChangeHandler(inHandler);
+  }
+
+  @Override
+  public Integer getSelectedValue()
+  {
+    return Integer.valueOf(mBox.getSelectedValue());
   }
 
   @Override

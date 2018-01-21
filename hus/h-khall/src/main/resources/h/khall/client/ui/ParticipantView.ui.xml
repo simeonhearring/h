@@ -13,6 +13,9 @@
 				<div class="ibox">
 					<k:PersonsView />
 				</div>
+        <k:CloseableView heading="New Publisher">
+            <k:PersonView />
+        </k:CloseableView>
 			</div>
 			<div class="col-sm-4">
 				<div class="ibox ">

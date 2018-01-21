@@ -9,15 +9,18 @@ import com.google.gwt.user.client.ui.HasText;
 
 import h.khall.shared.command.ReportSaveCommand;
 import h.model.shared.khall.Charts;
+import h.model.shared.khall.FieldServiceGroup;
 import h.model.shared.khall.Report;
 import h.model.shared.khall.Report.PubRange;
 import h.model.shared.khall.YrMo;
 import h.model.shared.util.StringUtil;
 import h.style.g.client.ui.event.ChartEvent;
+import h.style.g.client.ui.event.RefreshEvent;
 import h.style.g.shared.chart.Chart;
 import h.style.g.shared.chart.Chart.Stat;
 
 public class MinistryYearPresenter extends AbstractPresenter<MinistryYearPresenter.Display>
+  implements RefreshEvent.Handler
 {
   private enum V
   {
@@ -47,7 +50,16 @@ public class MinistryYearPresenter extends AbstractPresenter<MinistryYearPresent
 
   public MinistryYearPresenter handlers()
   {
+    register(addHandler(RefreshEvent.TYPE, this));
     return this;
+  }
+
+  @Override
+  public void dispatch(RefreshEvent inEvent)
+  {
+    List<Long> pubIds = mClient.getPersons().getPubIds();
+    String name = "Congregation";
+    updateChart(pubIds, name);
   }
 
   public interface Display extends h.style.g.client.model.Display
@@ -60,7 +72,7 @@ public class MinistryYearPresenter extends AbstractPresenter<MinistryYearPresent
     mPubId = inPubId;
     mYearMonth = inYearMonth;
     addReports();
-    updateChart();
+    updateChartPub();
   }
 
   public void changeMonth(int[] inYearMonth)
@@ -117,33 +129,83 @@ public class MinistryYearPresenter extends AbstractPresenter<MinistryYearPresent
     return mClient.getReports().gReports(mProfile.getCongId(), mPubId, mYearMonth[0], mYearMonth[1]);
   }
 
-  private void updateChart()
+  public void chartFsg(Integer inFsgId)
+  {
+    if (inFsgId.intValue() <= 0)
+    {
+      if (FieldServiceGroup.isElderOrServant(inFsgId))
+      {
+        List<Long> pubIds = mClient.getPersons().getElderServantIds();
+        String name = "Elders and Servants";
+        updateChart(pubIds, name);
+      }
+      else if (FieldServiceGroup.isPioneers(inFsgId))
+      {
+        List<Long> pubIds = mClient.getPersons().getRegularIds();
+        String name = "Regular Pioneers";
+        updateChart(pubIds, name);
+      }
+      else
+      {
+        List<Long> pubIds = mClient.getPersons().getPubIds();
+        String name = "Congregation";
+        updateChart(pubIds, name);
+      }
+    }
+    else
+    {
+      List<Long> pubIds = mClient.getPersons().getPubFsgIds(inFsgId);
+      String name = mClient.getCong().getFsgs().get(inFsgId).getTitle();
+      updateChart(pubIds, name);
+    }
+  }
+
+  private void updateChartPub()
   {
     int yr = mProfile.gCurrentServiceYear();
     int mo = mProfile.gCurrentServiceMonth();
-
-    String name = mClient.gName(mPubId);
-
-    mDisplay.getName().setText(name);
 
     List<YrMo> yml = YrMo.past(yr, mo, 24);
     String[] yma = YrMo.toText(yml, 18);
 
     PubRange range = mClient.getReports().gPubRange(mPubId, yml);
 
-    long avg3mo = Math.round(range.gAverage(3, range.getHours()));
-    long avg6mo = Math.round(range.gAverage(6, range.getHours()));
-    long avg12mo = Math.round(range.gAverage(12, range.getHours()));
+    String name = mClient.gName(mPubId);
+    mDisplay.getName().setText(name);
+
+    updateChart(name, yma, range);
+  }
+
+  private void updateChart(List<Long> inPubIds, String inName)
+  {
+    int yr = mProfile.gCurrentServiceYear();
+    int mo = mProfile.gCurrentServiceMonth();
+
+    List<YrMo> yml = YrMo.past(yr, mo, 24);
+    String[] yma = YrMo.toText(yml, 18);
+
+    PubRange range = mClient.getReports().gPubRange(inPubIds, yml);
+
+    mDisplay.getName().setText(inName);
+
+    updateChart(inName, yma, range);
+  }
+
+  private void updateChart(String inName, String[] inYms, PubRange inRange)
+  {
+    long avg3mo = Math.round(inRange.gAverage(3, inRange.getHours()));
+    long avg6mo = Math.round(inRange.gAverage(6, inRange.getHours()));
+    long avg12mo = Math.round(inRange.gAverage(12, inRange.getHours()));
 
     // mChart.getStat().setSubHead(TextUtil.toText(mProfile.getCount()) + "
     // Parts");
-    mChart.update(yma);
-    mChart.update(V.Hours.gLabel(), range.getHours());
-    mChart.update(V.Return_Visits.gLabel(), range.getReturnVisits());
-    mChart.update(V.Placements.gLabel(), range.getPlacements());
-    mChart.update(V.Bible_Studies.gLabel(), range.getBibleStudies());
-    mChart.update(V.Video_Showings.gLabel(), range.getVideoShowings());
-    mChart.getStat().setTopRight(name);
+    mChart.update(inYms);
+    mChart.update(V.Hours.gLabel(), inRange.getHours());
+    mChart.update(V.Return_Visits.gLabel(), inRange.getReturnVisits());
+    mChart.update(V.Placements.gLabel(), inRange.getPlacements());
+    mChart.update(V.Bible_Studies.gLabel(), inRange.getBibleStudies());
+    mChart.update(V.Video_Showings.gLabel(), inRange.getVideoShowings());
+    mChart.getStat().setTopRight(inName);
     mChart.getStat().setFooter("HOUR AVG: 3 mo=" + avg3mo + " ... 6 mo=" + avg6mo + " ... 12 mo=" + avg12mo);
 
     fire(new ChartEvent(mChart));

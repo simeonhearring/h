@@ -11,6 +11,16 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @SuppressWarnings("serial")
 public class FieldServiceGroup implements Comparator<FieldServiceGroup>, Serializable
 {
+  public static final int[] ID =
+  {
+      0, -1, -2, -3
+  };
+
+  public static final String[] NAMES =
+  {
+      "-MOVEOUT-", "-PIONEERS-", "-ELDERS & SERVANTS-", "-CONGREGATION-"
+  };
+
   private static final FieldServiceGroup MOVEOUT = initMoveout();
 
   private Integer mId;
@@ -69,7 +79,7 @@ public class FieldServiceGroup implements Comparator<FieldServiceGroup>, Seriali
   @JsonIgnore
   public boolean isMoveout()
   {
-    return getId() == 0;
+    return isMoveout(getId());
   }
 
   @JsonIgnore
@@ -90,19 +100,24 @@ public class FieldServiceGroup implements Comparator<FieldServiceGroup>, Seriali
     return isCongregation(getId());
   }
 
+  public static boolean isMoveout(Integer inId)
+  {
+    return inId.intValue() == 0;
+  }
+
   public static boolean isPioneers(Integer inId)
   {
-    return inId.intValue() == -1;
+    return inId.intValue() == ID[1];
   }
 
   public static boolean isElderOrServant(Integer inId)
   {
-    return inId.intValue() == -2;
+    return inId.intValue() == ID[2];
   }
 
   public static boolean isCongregation(Integer inId)
   {
-    return inId.intValue() == -3;
+    return inId.intValue() == ID[3];
   }
 
   private boolean isGroup(Person inValue)
@@ -133,7 +148,7 @@ public class FieldServiceGroup implements Comparator<FieldServiceGroup>, Seriali
       {
         if (inPublisherId != null)
         {
-          if (inPublisherId.equals(value.getId()))
+          if (inPublisherId.equals(value.getIdLong()))
           {
             ret.add(value);
             break;
@@ -176,32 +191,32 @@ public class FieldServiceGroup implements Comparator<FieldServiceGroup>, Seriali
   private static FieldServiceGroup initMoveout()
   {
     FieldServiceGroup ret = new FieldServiceGroup();
-    ret.setId(0);
-    ret.setTitle("-MOVEOUT-");
+    ret.setId(ID[0]);
+    ret.setTitle(NAMES[0]);
     return ret;
   }
 
   public static FieldServiceGroup pioneers(Integer inCongregation)
   {
     FieldServiceGroup ret = new FieldServiceGroup();
-    ret.setId(-1);
-    ret.setTitle("-PIONEERS-");
+    ret.setId(ID[1]);
+    ret.setTitle(NAMES[1]);
     return ret;
   }
 
   public static FieldServiceGroup eldersAndservants(Integer inCongregation)
   {
     FieldServiceGroup ret = new FieldServiceGroup();
-    ret.setId(-2);
-    ret.setTitle("-ELDERS & SERVANTS-");
+    ret.setId(ID[2]);
+    ret.setTitle(NAMES[2]);
     return ret;
   }
 
   public static FieldServiceGroup congregation(Integer inCongregation)
   {
     FieldServiceGroup ret = new FieldServiceGroup();
-    ret.setId(-3);
-    ret.setTitle("-CONGREGATION-");
+    ret.setId(ID[3]);
+    ret.setTitle(NAMES[3]);
     return ret;
   }
 

@@ -351,13 +351,22 @@ public class Report implements Serializable
       return sum / inCount;
     }
 
-    public void report(int inPos, Report inReport)
+    public void setValue(int inPos, Report inReport)
     {
       mHours.setValue(inPos, inReport.gHours());
       mBibleStudies.setValue(inPos, inReport.getBibleStudies());
       mReturnVisits.setValue(inPos, inReport.getReturnVisits());
       mPlacements.setValue(inPos, inReport.getPlacements());
       mVideoShowings.setValue(inPos, inReport.getVideoShowings());
+    }
+
+    public void addValue(int inPos, Report inReport)
+    {
+      mHours.addValue(inPos, inReport.gHours());
+      mBibleStudies.addValue(inPos, inReport.getBibleStudies());
+      mReturnVisits.addValue(inPos, inReport.getReturnVisits());
+      mPlacements.addValue(inPos, inReport.getPlacements());
+      mVideoShowings.addValue(inPos, inReport.getVideoShowings());
     }
 
     public Double[] getHours()
@@ -393,11 +402,20 @@ public class Report implements Serializable
     public void setSize(int inSize)
     {
       mRange = new Double[inSize];
+      for (int i = 0; i < mRange.length; i++)
+      {
+        mRange[i] = 0.0;
+      }
     }
 
     public void setValue(int inPos, Number inValue)
     {
       mRange[inPos] = inValue == null ? 0.0 : inValue.doubleValue();
+    }
+
+    public void addValue(int inPos, Number inValue)
+    {
+      mRange[inPos] += inValue == null ? 0.0 : inValue.doubleValue();
     }
   }
 

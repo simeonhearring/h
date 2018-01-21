@@ -33,6 +33,9 @@ public class PersonInfoView extends AbstractView<PersonInfoPresenter>
   @UiField
   HallView mHall;
 
+  @UiField
+  FsgView mFsg;
+
   public PersonInfoView()
   {
     initWidget(BINDER.createAndBindUi(this));
@@ -67,5 +70,11 @@ public class PersonInfoView extends AbstractView<PersonInfoPresenter>
   public void setHallVisible(boolean inVisible)
   {
     mHall.setVisible(inVisible);
+  }
+
+  @Override
+  public void setFsgVisible(boolean inVisible)
+  {
+    mFsg.setVisible(inVisible);
   }
 }

@@ -1,7 +1,6 @@
 package h.khall.client.model;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +9,7 @@ import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 
 import h.model.shared.khall.Charts;
+import h.model.shared.khall.FieldServiceGroup;
 import h.model.shared.khall.Person;
 import h.model.shared.khall.Report;
 import h.model.shared.khall.YrMo;
@@ -134,14 +134,45 @@ public class MinistryPresenter extends AbstractPresenter<MinistryPresenter.Displ
 
   private void addPubList()
   {
-    List<Person> persons = mClient.getPersons().getPublishers();
-
-    Collections.sort(persons, mClient.getPersons());
-
     mDisplay.clearPublisher();
-    for (Person value : persons)
+    for (Person value : mClient.getPersons().getPublishers())
     {
       mDisplay.addPublishers(value.gName(), value.getId());
+    }
+  }
+
+  public void filterFsg(Integer inFsgId)
+  {
+    if (inFsgId.intValue() <= 0)
+    {
+      if (FieldServiceGroup.isElderOrServant(inFsgId))
+      {
+        mDisplay.clearPublisher();
+        for (Person value : mClient.getPersons().getEldersOrServants())
+        {
+          mDisplay.addPublishers(value.gName(), value.getId());
+        }
+      }
+      else if (FieldServiceGroup.isPioneers(inFsgId))
+      {
+        mDisplay.clearPublisher();
+        for (Person value : mClient.getPersons().getRegular())
+        {
+          mDisplay.addPublishers(value.gName(), value.getId());
+        }
+      }
+      else
+      {
+        addPubList();
+      }
+    }
+    else
+    {
+      mDisplay.clearPublisher();
+      for (Person value : mClient.getPersons().getPubFsg(inFsgId))
+      {
+        mDisplay.addPublishers(value.gName(), value.getId());
+      }
     }
   }
 

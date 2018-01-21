@@ -11,7 +11,6 @@ public class Roles implements Serializable
 {
   public enum Role implements HasGLabel
   {
-    ANOITED,
     FAMILY,
     STUDENT,
     PUBLISHER,

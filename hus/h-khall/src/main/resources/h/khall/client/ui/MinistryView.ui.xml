@@ -30,8 +30,8 @@
 						</div>
 					</b.gwt:HTMLPanel>
 
-					<k:MinistryMonthView ui:field="mMMonth" />
-					<k:MinistryYearView ui:field="mMYear" />
+					<k:MinistryMonthView ui:field="mMonthM" />
+					<k:MinistryYearView ui:field="mYearM" />
 
 				</div>
 			</div>
@@ -68,6 +68,7 @@
 
 				<b.gwt:HTMLPanel addStyleNames="ibox">
 					<b.gwt:HTMLPanel addStyleNames="ibox-content marginB25">
+						<k:FsgView ui:field="mFsg" />
 						<b:Heading size="H2" text="Publishers" />
 						<div class="client-detail">
 							<div class="full-height-scroll">

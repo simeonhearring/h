@@ -149,11 +149,6 @@ public class PersonPresenter extends AbstractPresenter<PersonPresenter.Display>
     // mPerson.setHead(inValue);
   }
 
-  public void chgFaith(String inValue)
-  {
-    // mPerson.setFaith(inValue);
-  }
-
   public void chgPublishing(Date inValue)
   {
     mPerson.setPublishing(inValue);
@@ -207,8 +202,6 @@ public class PersonPresenter extends AbstractPresenter<PersonPresenter.Display>
     void setZip(String inValue);
 
     void setFsg(String inValue);
-
-    void setFaith(String inValue);
 
     void setBaptized(Date inValue);
 

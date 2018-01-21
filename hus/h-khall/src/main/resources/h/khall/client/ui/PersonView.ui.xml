@@ -68,23 +68,8 @@
 								</div>
 								<div class="form-group">
 									<label>Birth</label>
-									<h:InputView ui:field="mBirth" placeholder="Birth date" class="form-control" tabindex="6" />
-
-									<b.gwt:HTMLPanel ui:field="mDate" addStyleNames="input-group date">
-										<span class="input-group-addon">
-											<i class="fa fa-calendar"></i>
-										</span>
-										<input type="text" class="form-control" value="03/04/2014" />
-									</b.gwt:HTMLPanel>
-<!-- 									<div class="form-group" id="data_1">
-										<div class="input-group date">
-											<span class="input-group-addon">
-												<i class="fa fa-calendar"></i>
-											</span>
-											<input type="text" class="form-control" value="03/04/2014" />
-										</div>
-									</div>
- -->								</div>
+									<b:Input type="DATE" ui:field="mBirth" styleName="form-control" tabIndex="6" />
+								</div>
 								<div class="form-group">
 									<label>Home</label>
 									<h:InputView ui:field="mHome" placeholder="Home phone" class="form-control" tabindex="9" />
@@ -137,7 +122,7 @@
 								</div>
 								<div class="form-group">
 									<label>Baptized</label>
-									<h:InputView ui:field="mBaptized" placeholder="Baptized" class="form-control" tabindex="3" />
+									<b:Input type="DATE" ui:field="mBaptized" styleName="form-control" tabIndex="3" />
 								</div>
 								<div class="form-group">
 									<label>Roles</label>
@@ -154,12 +139,8 @@
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<label>Faith</label>
-									<h:InputView ui:field="mFaith" placeholder="Faith" class="form-control" tabindex="1" />
-								</div>
-								<div class="form-group">
 									<label>Started Publishing</label>
-									<h:InputView ui:field="mPublishing" placeholder="Started publishing" class="form-control" tabindex="3" />
+									<b:Input type="DATE" ui:field="mPublishing" styleName="form-control" tabIndex="3" />
 								</div>
 								<div class="form-group">
 									<label>Categories</label>

@@ -253,7 +253,7 @@ public class Person extends h.model.shared.Person
   @JsonIgnore
   public boolean isAnoited()
   {
-    return mRoles.contains(Roles.Role.ANOITED);
+    return mCategories.contains(Categories.Category.ANOITED);
   }
 
   @JsonIgnore

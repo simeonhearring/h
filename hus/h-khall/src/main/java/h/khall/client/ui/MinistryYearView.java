@@ -155,4 +155,9 @@ public class MinistryYearView extends AbstractView<MinistryYearPresenter>
   {
     mPresenter.changeMonth(inYearMonth);
   }
+
+  public void chartFsg(Integer inFsgId)
+  {
+    mPresenter.chartFsg(inFsgId);
+  }
 }

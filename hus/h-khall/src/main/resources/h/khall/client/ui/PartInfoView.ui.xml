@@ -26,6 +26,6 @@
 				</div>
 			</div>
 		</b.gwt:HTMLPanel>
-		<k:PersonInfoView categoryVisible="false" roleVisible="false" />
+		<k:PersonInfoView categoryVisible="false" roleVisible="false" fsgVisible="false" />
 	</b.gwt:HTMLPanel>
 </ui:UiBinder>

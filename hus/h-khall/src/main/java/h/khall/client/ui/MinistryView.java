@@ -49,16 +49,19 @@ public class MinistryView extends AbstractView<MinistryPresenter>
   Input mMonth;
 
   @UiField
-  MinistryMonthView mMMonth;
+  MinistryMonthView mMonthM;
 
   @UiField
-  MinistryYearView mMYear;
+  MinistryYearView mYearM;
 
   @UiField
   ListBox mYm, mType;
 
   @UiField
   OrderedList mNames, mPublishers;
+
+  @UiField
+  FsgView mFsg;
 
   private PersonSet mDataset;
   private TakesDate mMonthV;
@@ -86,16 +89,26 @@ public class MinistryView extends AbstractView<MinistryPresenter>
 
     mYm.addChangeHandler(mPresenter);
     mType.addChangeHandler(mPresenter);
+
+    mFsg.setExtra(true);
   }
 
   @UiHandler(
   {
-      "mMonth"
+      "mMonth", "mFsg"
   })
   public void onChange(ChangeEvent inEvent)
   {
-    mMMonth.changeMonth(ym());
-    mMYear.changeMonth(ym());
+    if (mFsg.isSource(inEvent))
+    {
+      mPresenter.filterFsg(mFsg.getSelectedValue());
+      mYearM.chartFsg(mFsg.getSelectedValue());
+    }
+    else
+    {
+      mMonthM.changeMonth(ym());
+      mYearM.changeMonth(ym());
+    }
   }
 
   @Override
@@ -176,8 +189,8 @@ public class MinistryView extends AbstractView<MinistryPresenter>
   {
     Long pubId = Long.valueOf(inPubId);
     int[] ym = ym();
-    mMMonth.changePub(pubId, ym);
-    mMYear.changePub(pubId, ym);
+    mMonthM.changePub(pubId, ym);
+    mYearM.changePub(pubId, ym);
   }
 
   @Override
@@ -198,8 +211,8 @@ public class MinistryView extends AbstractView<MinistryPresenter>
   {
     Long pubId = null;
     int[] ym = ym();
-    mMMonth.changePub(pubId, ym);
-    mMYear.changePub(pubId, ym);
+    mMonthM.changePub(pubId, ym);
+    mYearM.changePub(pubId, ym);
   }
 
   @Override
