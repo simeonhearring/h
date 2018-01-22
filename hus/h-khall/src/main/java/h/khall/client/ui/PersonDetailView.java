@@ -24,7 +24,7 @@ public class PersonDetailView extends AbstractView<PersonDetailPresenter>
   Heading mName;
 
   @UiField
-  Span mRole, mAddressLine, mCityLine, mHome, mMobile, mEmail;
+  Span mRole;
 
   public PersonDetailView()
   {
@@ -37,10 +37,5 @@ public class PersonDetailView extends AbstractView<PersonDetailPresenter>
   {
     mName.setText(inPerson.getName());
     mRole.setText(text(inPerson.getRole()));
-    mAddressLine.setText(inPerson.gAddressLine());
-    mCityLine.setText(inPerson.gCityLine());
-    mHome.setText(inPerson.getHome());
-    mMobile.setText(inPerson.getMobile());
-    mEmail.setText(inPerson.getEmail());
   }
 }

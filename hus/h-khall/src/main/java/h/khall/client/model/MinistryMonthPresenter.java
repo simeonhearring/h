@@ -8,6 +8,7 @@ import com.google.gwt.user.client.TakesValue;
 import com.google.gwt.user.client.ui.HasText;
 
 import h.khall.shared.command.ReportSaveCommand;
+import h.model.shared.khall.Profile.Security;
 import h.model.shared.khall.Report;
 import h.model.shared.khall.Roles.Role;
 import h.style.g.client.model.InputDisplay;
@@ -22,6 +23,7 @@ public class MinistryMonthPresenter extends AbstractPresenter<MinistryMonthPrese
   public MinistryMonthPresenter(Display inDisplay)
   {
     initDisplay(inDisplay);
+    mDisplay.editReport(isEdit(Security.REPORT));
   }
 
   public MinistryMonthPresenter handlers()
@@ -77,6 +79,8 @@ public class MinistryMonthPresenter extends AbstractPresenter<MinistryMonthPrese
   public interface Display extends h.style.g.client.model.Display
   {
     InputDisplay<Integer> getPlacement();
+
+    void editReport(boolean inEdit);
 
     InputDisplay<Integer> getVideo();
 

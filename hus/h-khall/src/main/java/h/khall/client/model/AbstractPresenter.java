@@ -6,7 +6,9 @@ import h.khall.client.ui.event.ClientEvent;
 import h.khall.client.ui.event.ProfileEvent;
 import h.khall.shared.model.Client;
 import h.model.shared.khall.Profile;
+import h.model.shared.khall.Profile.Security;
 import h.style.g.client.model.Display;
+import h.style.g.client.ui.common.Global;
 import h.style.g.shared.chart.Chart.Dataset;
 
 public class AbstractPresenter<D extends Display> extends
@@ -33,6 +35,11 @@ public class AbstractPresenter<D extends Display> extends
   public void dispatch(ClientEvent inEvent)
   {
     mClient = (Client) inEvent.getClient();
+  }
+
+  boolean isEdit(Security inSecurity)
+  {
+    return ((Profile) Global.profile()).isEdit(inSecurity);
   }
 
   public static void format(Dataset inSet, int inColor)

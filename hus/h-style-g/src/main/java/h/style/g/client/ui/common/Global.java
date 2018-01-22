@@ -298,7 +298,7 @@ public class Global implements HasFire
     return ret;
   }
 
-  private static Profile profile()
+  public static Profile profile()
   {
     Profile ret = null;
     if (info() != null)

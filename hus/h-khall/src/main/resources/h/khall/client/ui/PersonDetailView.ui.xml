@@ -13,33 +13,12 @@
 				<div class="row m-b-lg">
 					<div class="col-lg-4 text-center">
 						<b:Heading ui:field="mName" size="H3" />
+						<strong>
+							<b.html:Span ui:field="mRole" />
+						</strong>
 					</div>
 					<div class="col-lg-8">
-						<strong>
-							About me
-						</strong>
-						<address>
-							<strong>
-								<b.html:Span ui:field="mRole" />
-							</strong>
-							<br />
-							<b.html:Span ui:field="mAddressLine" />
-							<br />
-							<b.html:Span ui:field="mCityLine" />
-							<br />
-							<abbr title="Phone">P:</abbr>
-							<b.html:Span ui:field="mHome" />
-							<br />
-							<abbr title="Mobile">M:</abbr>
-							<b.html:Span ui:field="mMobile" />
-							<br />
-							<abbr title="Email">E:</abbr>
-							<b.html:Span ui:field="mEmail" />
-						</address>
-						<button type="button" class="btn btn-primary btn-sm btn-block">
-							<i class="fa fa-envelope"></i>
-							Send Message
-						</button>
+						<k:AddressView />
 					</div>
 				</div>
 

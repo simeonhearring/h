@@ -18,9 +18,12 @@ import h.style.g.client.model.CallBack;
 public class WeekPresenter extends AbstractPresenter<WeekPresenter.Display>
   implements CallBack<WeekPresenter.AssignDisplay>
 {
+  // private boolean mEnabled = true;
+
   public WeekPresenter(Display inDisplay)
   {
     initDisplay(inDisplay);
+//    mEnabled = isEdit(Security.OCLM);
   }
 
   public void reset()
@@ -71,6 +74,19 @@ public class WeekPresenter extends AbstractPresenter<WeekPresenter.Display>
 
   @Override
   public void onCallBack(AssignDisplay inDisplay)
+  {
+    // if (mEnabled)
+    // {
+      save(inDisplay);
+    // }
+    // else
+    // {
+    // Assignment assignment = inDisplay.getAssignment();
+    // inDisplay.setValue(mClient.getTags(assignment));
+    // }
+  }
+
+  private void save(AssignDisplay inDisplay)
   {
     Assignment assignment = inDisplay.getAssignment();
 

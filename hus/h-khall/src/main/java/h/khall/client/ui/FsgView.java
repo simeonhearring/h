@@ -66,6 +66,12 @@ public class FsgView extends AbstractView<FsgPresenter> implements FsgPresenter.
   }
 
   @Override
+  public void editFsg(boolean inEnable)
+  {
+    mBox.setEnabled(inEnable);
+  }
+
+  @Override
   public void add(String inItem, Integer inValue)
   {
     int pos = mBox.getItemCount();

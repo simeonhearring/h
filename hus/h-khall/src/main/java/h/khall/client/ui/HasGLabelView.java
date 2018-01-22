@@ -41,6 +41,16 @@ public class HasGLabelView<P extends AbstractPresenter<?>> extends AbstractView<
     check.setValue(!check.getValue());
   }
 
+  public void editOption(boolean inEnable)
+  {
+    int i = mOptions.getWidgetCount();
+    for (int j = 0; j < i; j++)
+    {
+      CheckBox check = (CheckBox) mOptions.getWidget(j);
+      check.setEnabled(inEnable);
+    }
+  }
+
   public void addOption(String inLabel, String inId, ClickHandler inHandler)
   {
     CheckBox check = new CheckBox(inLabel);

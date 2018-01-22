@@ -1,13 +1,17 @@
 {
 	"threshold": 5.0,
-	"count": "NON_STUDENT",
-	"congNum": "123456",
-	"congId": 1,
-	"first": "First",
+	"congNum": "952267",
+	"congId": 60,
+	"count": "STUDENT",
+	"security": {
+		"PERSON_DETAIL": true,
+		"PERSON_OPTIONS": true,
+		"PERSON_CONTACT_INFO": true,
+		"REPORT": true
+	},
+	"first": "Simeon",
 	"type": "USER",
-	"userId": "User Id",
-	"userTitle": "User title",
-	"last": "Last",
-	"password": "password",
-	"userName": "User name"
+	"userId": "simeonlhearring@gmail.com",
+	"userTitle": "Owner",
+	"last": "Hearring"
 }

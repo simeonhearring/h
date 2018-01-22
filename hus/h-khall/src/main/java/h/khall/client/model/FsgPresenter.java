@@ -13,6 +13,7 @@ import h.khall.client.ui.event.PersonInfoEvent;
 import h.khall.shared.command.PersonSaveCommand;
 import h.model.shared.khall.FieldServiceGroup;
 import h.model.shared.khall.Person;
+import h.model.shared.khall.Profile.Security;
 import h.style.g.client.ui.event.RefreshEvent;
 
 public class FsgPresenter extends AbstractPresenter<FsgPresenter.Display>
@@ -30,7 +31,7 @@ public class FsgPresenter extends AbstractPresenter<FsgPresenter.Display>
   {
     register(addHandler(PersonInfoEvent.TYPE, this));
     register(addHandler(RefreshEvent.TYPE, this));
-    register(mDisplay.addChangeHandler(this)); // TODO should be set in all
+    register(mDisplay.addChangeHandler(this)); // TODO should not be set in all
                                                // instances. ie from
                                                // MinistryView
     return this;
@@ -39,6 +40,7 @@ public class FsgPresenter extends AbstractPresenter<FsgPresenter.Display>
   @Override
   public void dispatch(RefreshEvent inEvent)
   {
+    mDisplay.editFsg(isEdit(Security.PERSON_FSG));
     mDisplay.clear();
     mDisplay.add("-Select One-", 0);
     for (Entry<Integer, FieldServiceGroup> value : mClient.getCong().getFsgs().entrySet())
@@ -119,5 +121,7 @@ public class FsgPresenter extends AbstractPresenter<FsgPresenter.Display>
     HandlerRegistration addChangeHandler(ChangeHandler inHandler);
 
     void setExtra(boolean inExtra);
+
+    void editFsg(boolean inEnable);
   }
 }

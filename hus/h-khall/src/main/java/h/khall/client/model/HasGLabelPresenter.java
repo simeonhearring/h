@@ -10,6 +10,7 @@ import h.khall.client.ui.event.PersonInfoEvent;
 import h.khall.shared.command.PersonSaveCommand;
 import h.model.shared.khall.HasGLabel;
 import h.model.shared.khall.Person;
+import h.model.shared.khall.Profile.Security;
 import h.model.shared.util.EnumUtil;
 
 public abstract class HasGLabelPresenter<E extends Enum<?> & HasGLabel>
@@ -26,6 +27,7 @@ public abstract class HasGLabelPresenter<E extends Enum<?> & HasGLabel>
     {
       mDisplay.addOption(value.gLabel(), value.name(), this);
     }
+    mDisplay.editOption(isEdit(Security.PERSON_OPTIONS));
   }
 
   abstract String name();
@@ -87,5 +89,7 @@ public abstract class HasGLabelPresenter<E extends Enum<?> & HasGLabel>
     void addOption(String inLabel, String inId, ClickHandler inHandler);
 
     HasText getLabel();
+
+    void editOption(boolean inEnable);
   }
 }

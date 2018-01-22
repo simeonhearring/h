@@ -234,4 +234,10 @@ public class MinistryMonthView extends AbstractView<MinistryMonthPresenter>
   {
     mPresenter.setYearMonth(inYearMonth);
   }
+
+  @Override
+  public void editReport(boolean inEnable)
+  {
+    mSave.setEnabled(inEnable);
+  }
 }

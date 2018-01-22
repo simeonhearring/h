@@ -1,10 +1,22 @@
 package h.model.shared.khall;
 
+import java.util.Map;
+
 import h.model.shared.util.TimeUtil;
 
 @SuppressWarnings("serial")
 public class Profile extends h.model.shared.Profile
 {
+  public enum Security
+  {
+    PERSON_DETAIL,
+    PERSON_CONTACT_INFO,
+    PERSON_OPTIONS,
+    PERSON_FSG,
+    REPORT,
+    OCLM;
+  }
+
   private String mEncrypt;
 
   private Integer mCongId;
@@ -12,6 +24,8 @@ public class Profile extends h.model.shared.Profile
   private Integer mYear = TimeUtil.currentYear();
   private Assignments.Count mCount;
   private Double mThreshold;
+
+  private Map<Security, Boolean> mSecurity;
 
   public String gEncrypt()
   {
@@ -89,5 +103,20 @@ public class Profile extends h.model.shared.Profile
   public int gCurrentServiceMonth()
   {
     return 12;
+  }
+
+  public void setSecurity(Map<Security, Boolean> inSecurity)
+  {
+    mSecurity = inSecurity;
+  }
+
+  public Map<Security, Boolean> getSecurity()
+  {
+    return mSecurity;
+  }
+
+  public boolean isEdit(Security inSecurity)
+  {
+    return mSecurity.containsKey(inSecurity) && mSecurity.get(inSecurity);
   }
 }

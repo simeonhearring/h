@@ -10,6 +10,7 @@ import com.google.gwt.user.client.ui.HasText;
 import h.khall.shared.command.ReportSaveCommand;
 import h.model.shared.khall.Charts;
 import h.model.shared.khall.FieldServiceGroup;
+import h.model.shared.khall.Profile.Security;
 import h.model.shared.khall.Report;
 import h.model.shared.khall.Report.PubRange;
 import h.model.shared.khall.YrMo;
@@ -46,6 +47,7 @@ public class MinistryYearPresenter extends AbstractPresenter<MinistryYearPresent
   {
     initDisplay(inDisplay);
     mMap = new HashMap<>();
+    mDisplay.editReport(isEdit(Security.REPORT));
   }
 
   public MinistryYearPresenter handlers()
@@ -60,11 +62,6 @@ public class MinistryYearPresenter extends AbstractPresenter<MinistryYearPresent
     List<Long> pubIds = mClient.getPersons().getPubIds();
     String name = "Congregation";
     updateChart(pubIds, name);
-  }
-
-  public interface Display extends h.style.g.client.model.Display
-  {
-    HasText getName();
   }
 
   public void changePub(Long inPubId, int[] inYearMonth)
@@ -233,5 +230,12 @@ public class MinistryYearPresenter extends AbstractPresenter<MinistryYearPresent
     format(ret.createDataset(V.Video_Showings.gLabel(), 0.0, 0.0, 0.0), 552);
 
     return ret;
+  }
+
+  public interface Display extends h.style.g.client.model.Display
+  {
+    HasText getName();
+
+    void editReport(boolean inEnable);
   }
 }

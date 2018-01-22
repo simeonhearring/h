@@ -160,4 +160,10 @@ public class MinistryYearView extends AbstractView<MinistryYearPresenter>
   {
     mPresenter.chartFsg(inFsgId);
   }
+
+  @Override
+  public void editReport(boolean inEnable)
+  {
+    mSave.setEnabled(inEnable);
+  }
 }
