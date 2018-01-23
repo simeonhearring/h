@@ -32,7 +32,6 @@ public class Schedule implements Serializable
     mCurriculum = inCurriculum;
   }
 
-
   public Hall getSchool()
   {
     return mSchool;

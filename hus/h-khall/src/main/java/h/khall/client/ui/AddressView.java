@@ -135,19 +135,19 @@ public class AddressView extends AbstractView<AddressPresenter> implements Addre
     }
     else if (mFirst.equals(source))
     {
-      mPresenter.chgFirst(mId, mEmail.getText());
+      mPresenter.chgFirst(mId, mFirst.getText());
     }
     else if (mLast.equals(source))
     {
-      mPresenter.chgLast(mId, mEmail.getText());
+      mPresenter.chgLast(mId, mLast.getText());
     }
     else if (mMiddle.equals(source))
     {
-      mPresenter.chgMiddle(mId, mEmail.getText());
+      mPresenter.chgMiddle(mId, mMiddle.getText());
     }
     else if (mSuffix.equals(source))
     {
-      mPresenter.chgSuffix(mId, mEmail.getText());
+      mPresenter.chgSuffix(mId, mSuffix.getText());
     }
   }
 }

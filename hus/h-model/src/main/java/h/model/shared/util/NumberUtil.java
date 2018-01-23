@@ -231,4 +231,9 @@ public final class NumberUtil
     Integer value = toInteger(inValue);
     return value != null ? value : inDefault;
   }
+
+  public static Long notZero(Long inValue)
+  {
+    return inValue.longValue() == 0 ? null : inValue;
+  }
 }

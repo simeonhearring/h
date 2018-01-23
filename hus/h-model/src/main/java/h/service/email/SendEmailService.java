@@ -150,8 +150,8 @@ public class SendEmailService implements EmailService
         for (Attachment value : attach)
         {
           MimeBodyPart attachmentPart = new MimeBodyPart();
-          attachmentPart.setDataHandler(new DataHandler(new ByteArrayDataSource(value.getBytes(),
-              "application/" + value.getType())));
+          attachmentPart.setDataHandler(new DataHandler(
+              new ByteArrayDataSource(value.getBytes(), "application/" + value.getType())));
           attachmentPart.setFileName(value.getName() + "." + value.getType());
           mimeMultipart.addBodyPart(attachmentPart);
         }
@@ -187,9 +187,8 @@ public class SendEmailService implements EmailService
     }
     catch (Exception e)
     {
-      String msg =
-          "Address: [" + inEmailMessage.getAddress() + "] Subject: [" + inEmailMessage.getSubject()
-              + "] Body: [" + inEmailMessage.getBody() + "]";
+      String msg = "Address: [" + inEmailMessage.getAddress() + "] Subject: ["
+          + inEmailMessage.getSubject() + "] Body: [" + inEmailMessage.getBody() + "]";
 
       throw new EmailException("Error sending email. " + msg, e);
     }

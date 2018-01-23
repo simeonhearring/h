@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import h.khall.client.ui.event.AssignmentSavedEvent;
+import h.khall.shared.command.AssignEmailCommand;
 import h.khall.shared.command.AssignmentSaveCommand;
 import h.model.shared.Tag;
 import h.model.shared.khall.Assignment;
@@ -33,9 +34,17 @@ public class WeekPresenter extends AbstractPresenter<WeekPresenter.Display>
     {
       value.setCallback(null);
       value.setVisible(false);
+      value.setIconVisible(false);
+      value.setEmailTip(null);
       value.removeAll();
     }
     mDisplay.clearEvents();
+  }
+
+  public void email(Assignment... inAssignment)
+  {
+    mDisplay.notify(mProfile.getUserId() + " " + mClient.getCong().gMidweekOn());
+    fire(new AssignEmailCommand(mProfile.getUserId(), mClient.getCong().gMidweekOn(), inAssignment));
   }
 
   public void setWeek(Week inWeek)
@@ -63,6 +72,7 @@ public class WeekPresenter extends AbstractPresenter<WeekPresenter.Display>
           value.setAssignment(assignment);
           value.setValue(mClient.getTags(assignment));
           value.setPart(assignment.getPart());
+          value.setIconVisible(isIconVisible(assignment, value));
 
           value.setVisible(true);
           value.setCallback(this);
@@ -70,6 +80,26 @@ public class WeekPresenter extends AbstractPresenter<WeekPresenter.Display>
       }
     }
     mDisplay.setVisible(validWeek);
+  }
+
+  private boolean isIconVisible(Assignment inAssignment, AssignDisplay inDisplay)
+  {
+    boolean ret = false;
+    if (inAssignment.isAssigned())
+    {
+      Person person = gPersonEmail(inAssignment);
+      ret = person.isEmail();
+      if (ret)
+      {
+        inDisplay.setEmailTip("mailto:" + person.getEmail());
+      }
+    }
+    return ret;
+  }
+
+  private Person gPersonEmail(Assignment inAssignment)
+  {
+    return mClient.gPerson(inAssignment.getParticipantId());
   }
 
   @Override
@@ -187,6 +217,10 @@ public class WeekPresenter extends AbstractPresenter<WeekPresenter.Display>
     void setColor(String inColor);
 
     void setPart(Part inPart);
+
+    void setIconVisible(boolean inVisible);
+
+    void setEmailTip(String inText);
   }
 
   public interface Display extends h.style.g.client.model.Display

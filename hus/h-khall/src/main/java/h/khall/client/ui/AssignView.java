@@ -2,7 +2,9 @@ package h.khall.client.ui;
 
 import java.util.List;
 
+import org.gwtbootstrap3.client.ui.Icon;
 import org.gwtbootstrap3.client.ui.Label;
+import org.gwtbootstrap3.client.ui.Tooltip;
 import org.gwtbootstrap3.extras.tagsinput.client.callback.ItemTextCallback;
 import org.gwtbootstrap3.extras.tagsinput.client.callback.ItemValueCallback;
 import org.gwtbootstrap3.extras.tagsinput.client.callback.OnTagExistsCallback;
@@ -43,6 +45,12 @@ public class AssignView extends h.style.g.client.ui.AbstractView
   Label mLabel;
 
   @UiField
+  Icon mEmail;
+
+  @UiField
+  Tooltip mEmailTip;
+
+  @UiField
   MultiValueTagsInput<Tag> mTag;
 
   private Hall mHall = Hall.MAIN;
@@ -57,6 +65,7 @@ public class AssignView extends h.style.g.client.ui.AbstractView
     initWidget(BINDER.createAndBindUi(this));
 
     mLabel.getElement().getStyle().setCursor(Cursor.POINTER);
+    mEmail.getElement().getStyle().setCursor(Cursor.POINTER);
 
     mDataset = new AssignSet();
     mDataset.setPart(mPart);
@@ -73,11 +82,34 @@ public class AssignView extends h.style.g.client.ui.AbstractView
 
   @UiHandler(
   {
-      "mLabel"
+      "mLabel", "mEmail"
   })
   public void onClick(ClickEvent inEvent)
   {
-    fire(new PartInfoEvent(mPart, mAssignment.getParticipantId()));
+    Object source = inEvent.getSource();
+    if (mLabel.equals(source))
+    {
+      fire(new PartInfoEvent(mPart, mAssignment.getParticipantId()));
+    }
+    else if (mEmail.equals(source))
+    {
+      if (mCallBack != null)
+      {
+        ((WeekPresenter) mCallBack).email(mAssignment);
+      }
+    }
+  }
+
+  @Override
+  public void setEmailTip(String inText)
+  {
+    mEmailTip.setTitle(inText);
+  }
+
+  @Override
+  public void setIconVisible(boolean inVisible)
+  {
+    mEmail.setVisible(inVisible);
   }
 
   @Override

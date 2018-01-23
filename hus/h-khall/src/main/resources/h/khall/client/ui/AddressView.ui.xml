@@ -7,12 +7,11 @@
 	<ui:style>
 	
 	</ui:style>
-	<b.gwt:HTMLPanel addStyleNames="row">
-		<b.html:Span ui:field="mAddressLine" />
+	<b.gwt:HTMLPanel>
 		<b:Input type="TEXT" ui:field="mFirst" placeholder="First" addStyleNames="kh_box" />
 		<b:Input type="TEXT" ui:field="mMiddle" placeholder="Middle" addStyleNames="kh_box" />
 		<b:Input type="TEXT" ui:field="mLast" placeholder="Last" addStyleNames="kh_box" />
-		<b:Input type="TEXT" ui:field="mSuffix" placeholder="Last" addStyleNames="kh_box" />
+		<b:Input type="TEXT" ui:field="mSuffix" placeholder="Suffix" addStyleNames="kh_box" />
 		<hr />
 		<b:Input type="TEXT" ui:field="mAddress1" placeholder="Address #1" addStyleNames="kh_box" />
 		<b:Input type="TEXT" ui:field="mAddress2" placeholder="Address #2" addStyleNames="kh_box" />
@@ -24,5 +23,7 @@
 		<b:Input type="TEXT" ui:field="mMobile" placeholder="Mobile phone" addStyleNames="kh_box" />
 		<hr />
 		<b:Input type="TEXT" ui:field="mEmail" placeholder="Email" addStyleNames="kh_box" />
+
+		<k:BirthView />
 	</b.gwt:HTMLPanel>
 </ui:UiBinder>

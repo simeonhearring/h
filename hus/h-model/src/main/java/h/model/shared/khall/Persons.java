@@ -120,6 +120,19 @@ public class Persons implements Serializable, Comparator<Person>
     return ret;
   }
 
+  public List<Person> getFamily(Long inId)
+  {
+    List<Person> ret = new ArrayList<>();
+    for (Person value : mPersons)
+    {
+      if (value.getHead() != null && value.getHead().equals(inId))
+      {
+        ret.add(value);
+      }
+    }
+    return ret;
+  }
+
   public List<Long> getPubIds()
   {
     List<Long> ret = new ArrayList<>();
@@ -191,7 +204,8 @@ public class Persons implements Serializable, Comparator<Person>
     inQuery = inQuery.toLowerCase();
     for (Person value : inList)
     {
-      if (memberCheck(inMember, value.isMember()) && value.toQuery().toLowerCase().contains(inQuery))
+      if (memberCheck(inMember, value.isMember())
+          && value.toQuery().toLowerCase().contains(inQuery))
       {
         ret.add(value);
       }
@@ -287,5 +301,18 @@ public class Persons implements Serializable, Comparator<Person>
     String n1 = inO1.gName();
     String n2 = inO2.gName();
     return n1.compareTo(n2);
+  }
+
+  public List<Person> gPersons(Long... inId)
+  {
+    List<Person> ret = new ArrayList<>();
+    for (Long value : inId)
+    {
+      if (value != null)
+      {
+        ret.add(gPerson(value));
+      }
+    }
+    return ret;
   }
 }

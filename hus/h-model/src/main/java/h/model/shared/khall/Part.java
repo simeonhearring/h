@@ -199,6 +199,11 @@ public enum Part implements HasGLabel
     return ret;
   }
 
+  public boolean isStudent()
+  {
+    return isStudyPoint();
+  }
+
   public boolean isCoTalk()
   {
     return CO_TALK.equals(this);
@@ -499,5 +504,47 @@ public enum Part implements HasGLabel
         break;
     }
     return ret;
+  }
+
+  public String getMeetingTitle()
+  {
+    String ret = null;
+    switch (this)
+    {
+      case CHAIRMAN:
+      case TREASURES:
+      case DIGGING:
+      case SONG_1:
+      case SONG_3:
+        ret = "TREASURES FROM GOD'S WORD";
+        break;
+
+      case BIBLE_READING:
+      case INITIAL_CALL:
+      case F_RETURN_VISIT:
+      case S_RETURN_VISIT:
+      case T_RETURN_VISIT:
+      case BIBLE_STUDY:
+      case ASSISTANT:
+      case TALK:
+        ret = "APPLY YOURSELF TO THE FIELD MINISTRY";
+        break;
+
+      case LIVING_1:
+      case LIVING_2:
+      case C_BIBLE_STUDY:
+      case READER:
+        ret = "LIVING AS CHRISTIANS";
+        break;
+
+      default:
+        break;
+    }
+    return ret;
+  }
+
+  public boolean isCbs()
+  {
+    return C_BIBLE_STUDY.equals(this);
   }
 }

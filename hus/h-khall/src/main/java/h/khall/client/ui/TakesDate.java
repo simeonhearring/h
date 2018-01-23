@@ -21,6 +21,11 @@ class TakesDate implements TakesValue<Date>, IsWidget
     mInput = inInput;
   }
 
+  public void setPattern(String inPattern)
+  {
+    mPattern = inPattern;
+  }
+
   @Override
   public void setValue(Date inValue)
   {
@@ -30,7 +35,7 @@ class TakesDate implements TakesValue<Date>, IsWidget
   @Override
   public Date getValue()
   {
-    return AbstractView.parseDate(mPattern, mInput.getValue());
+    return AbstractView.parseDate("yyyy-MM-dd", mInput.getValue()); // TODO
   }
 
   @Override

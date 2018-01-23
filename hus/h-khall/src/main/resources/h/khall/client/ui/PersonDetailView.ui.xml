@@ -10,14 +10,24 @@
 	<b.gwt:HTMLPanel addStyleNames="ibox-content">
 		<div class="tab-content">
 			<div id="contact-1" class="tab-pane active">
+				<b:Heading ui:field="mName" size="H3" />
+
 				<div class="row m-b-lg">
-					<div class="col-lg-4 text-center">
-						<b:Heading ui:field="mName" size="H3" />
-						<strong>
-							<b.html:Span ui:field="mRole" />
-						</strong>
+					<div class="col-lg-5">
+						<b:Label ui:field="mHeadLabel" text="Head of House:" visible="false" />
+						<b.html:UnorderedList ui:field="mHead" />
+						<b:Label ui:field="mFamilyLabel" text="Family:" visible="false" />
+						<b.html:UnorderedList ui:field="mFamily" />
+						<small>
+							<b:Label ui:field="mAddressLabel" text="Address:" visible="false" />
+							<b.html:Span ui:field="mAddress" />
+							<b:Label ui:field="mFsgLabel" text="FSG:" visible="false" />
+							<b.html:Span ui:field="mFsg" />
+							<b:Label ui:field="mAgeLabel" text="Age:" visible="false" />
+							<b.html:Span ui:field="mAge" />
+						</small>
 					</div>
-					<div class="col-lg-8">
+					<div class="col-lg-7">
 						<k:AddressView />
 					</div>
 				</div>

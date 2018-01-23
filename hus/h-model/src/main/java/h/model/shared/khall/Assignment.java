@@ -15,12 +15,6 @@ public class Assignment extends Schedule implements Serializable
   private Long mAssistantId;
   private StudyPoint mStudyPoint;
 
-  @Override
-  public Part getPart()
-  {
-    return getCurriculum().getPart();
-  }
-
   public Hall getHall()
   {
     return getSchool();
@@ -157,5 +151,10 @@ public class Assignment extends Schedule implements Serializable
     }
 
     return min + " min." + (getPart().isOrless() ? " or less" : "");
+  }
+
+  public String gPartTimeLabel()
+  {
+    return getPart().getLabel(false) + StringUtil.ensure(gTiming(), " ");
   }
 }

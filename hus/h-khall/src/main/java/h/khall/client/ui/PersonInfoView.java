@@ -36,6 +36,9 @@ public class PersonInfoView extends AbstractView<PersonInfoPresenter>
   @UiField
   FsgView mFsg;
 
+  @UiField
+  HeadOfHouseView mHead;
+
   public PersonInfoView()
   {
     initWidget(BINDER.createAndBindUi(this));
@@ -76,5 +79,11 @@ public class PersonInfoView extends AbstractView<PersonInfoPresenter>
   public void setFsgVisible(boolean inVisible)
   {
     mFsg.setVisible(inVisible);
+  }
+
+  @Override
+  public void setHohVisible(boolean inVisible)
+  {
+    mHead.setVisible(inVisible);
   }
 }

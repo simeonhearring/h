@@ -24,6 +24,8 @@
 
 	<!-- SERVICES -->
 
+	<bean id="EmailService" class="h.service.email.SendEmailService" />
+
 	<bean id="ReportService" class="h.service.report.ReportService">
 		<property name="ReportRunner" ref="ReportRunner" />
 	</bean>
@@ -72,5 +74,10 @@
 
 	<bean id="ProfileSaveCommand" class="h.khall.server.command.ProfileSaveCommandBean">
 		<property name="dao" ref="Dao" />
+	</bean>
+
+	<bean id="AssignEmailCommand" class="h.khall.server.command.AssignEmailCommandBean">
+		<property name="dao" ref="Dao" />
+		<property name="EmailService" ref="EmailService" />
 	</bean>
 </beans>

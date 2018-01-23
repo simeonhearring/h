@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.gwtbootstrap3.client.ui.AnchorListItem;
 import org.gwtbootstrap3.client.ui.CheckBox;
 import org.gwtbootstrap3.client.ui.Icon;
 import org.gwtbootstrap3.client.ui.Tooltip;
@@ -782,5 +783,13 @@ public abstract class AbstractView extends Composite
       CheckBox check = (CheckBox) inPanel.getWidget(i);
       check.setValue(inKeys.contains(check.getId()));
     }
+  }
+
+  public AnchorListItem newAnchorListItem(String inItem, String inValue, ClickHandler inHandler)
+  {
+    AnchorListItem ret = new AnchorListItem(inItem);
+    ret.setId(inValue);
+    ret.addClickHandler(inHandler);
+    return ret;
   }
 }

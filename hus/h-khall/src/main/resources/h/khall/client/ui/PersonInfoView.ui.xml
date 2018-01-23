@@ -19,5 +19,6 @@
 		<k:PartView ui:field="mPart" />
 		<k:HallView ui:field="mHall" />
 		<k:FsgView ui:field="mFsg" />
+		<k:HeadOfHouseView ui:field="mHead" />
 	</b.gwt:HTMLPanel>
 </ui:UiBinder>

@@ -41,6 +41,11 @@ public class Person implements Serializable, Tag
     mFirst = inFirst;
   }
 
+  public boolean isEmail()
+  {
+    return StringUtil.isEmail(mEmail);
+  }
+
   public void setAddress(String[] inAddress)
   {
     mAddress = inAddress;
@@ -255,8 +260,13 @@ public class Person implements Serializable, Tag
 
   public String gNameAge()
   {
-    int age = TimeUtil.getAge(mBirth);
+    int age = gAge();
     return getName() + (age == 0 ? "" : " " + age);
+  }
+
+  public int gAge()
+  {
+    return TimeUtil.getAge(mBirth);
   }
 
   @Override

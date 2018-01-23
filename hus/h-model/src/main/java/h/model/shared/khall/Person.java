@@ -335,4 +335,20 @@ public class Person extends h.model.shared.Person
     mRoles.getRoles().clear();
     mRoles.getRoles().add(Role.FAMILY);
   }
+
+  public String gAges()
+  {
+    String ret = null;
+
+    if (getBirth() != null)
+    {
+      ret = String.valueOf(gAge());
+    }
+    if (getBaptized() != null)
+    {
+      ret += "/" + TimeUtil.getAge(getBaptized());
+    }
+
+    return ret;
+  }
 }

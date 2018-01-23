@@ -2,7 +2,6 @@ package h.khall.server.reports;
 
 import static h.model.shared.util.StringUtil.ensure;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
@@ -230,7 +229,7 @@ public class OclmReport extends AbstractReportDefault<Report>
     return ret;
   }
 
-  protected static Date meetingDate(Date inMeetingDay, Date inValue)
+  public static Date meetingDate(Date inMeetingDay, Date inValue)
   {
     Calendar meetingDay = Calendar.getInstance();
     meetingDay.setTime(inMeetingDay);
@@ -245,13 +244,14 @@ public class OclmReport extends AbstractReportDefault<Report>
     return weekOf.getTime();
   }
 
-  private static String format(String inPattern, Date inValue)
+  public static String meetingDate(String inPattern, Date inMeetingDay, Date inValue)
   {
-    if (inValue == null)
-    {
-      return "";
-    }
-    return new SimpleDateFormat(inPattern).format(inValue);
+    return format(inPattern, meetingDate(inMeetingDay, inValue));
+  }
+
+  public static String format(String inPattern, Date inValue)
+  {
+    return TimeUtil.format(inPattern, inValue);
   }
 
   private static class TimeKeeper

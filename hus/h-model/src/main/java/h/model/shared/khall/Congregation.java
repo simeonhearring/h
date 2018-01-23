@@ -113,4 +113,14 @@ public class Congregation implements Serializable
   {
     mFsgs = inFsgs;
   }
+
+  public String gFsgTitle(Integer inFsgId)
+  {
+    String ret = "-unassigned-";
+    if (mFsgs.containsKey(inFsgId))
+    {
+      ret = mFsgs.get(inFsgId).getTitle();
+    }
+    return ret;
+  }
 }
