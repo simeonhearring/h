@@ -43,7 +43,6 @@ public class WeekPresenter extends AbstractPresenter<WeekPresenter.Display>
 
   public void email(Assignment... inAssignment)
   {
-    mDisplay.notify(mProfile.getUserId() + " " + mClient.getCong().gMidweekOn());
     fire(new AssignEmailCommand(mProfile.getUserId(), mClient.getCong().gMidweekOn(), inAssignment));
   }
 
@@ -72,7 +71,7 @@ public class WeekPresenter extends AbstractPresenter<WeekPresenter.Display>
           value.setAssignment(assignment);
           value.setValue(mClient.getTags(assignment));
           value.setPart(assignment.getPart());
-          value.setIconVisible(isIconVisible(assignment, value));
+          emailIcon(assignment, value);
 
           value.setVisible(true);
           value.setCallback(this);
@@ -82,19 +81,18 @@ public class WeekPresenter extends AbstractPresenter<WeekPresenter.Display>
     mDisplay.setVisible(validWeek);
   }
 
-  private boolean isIconVisible(Assignment inAssignment, AssignDisplay inDisplay)
+  private void emailIcon(Assignment inAssignment, AssignDisplay inDisplay)
   {
-    boolean ret = false;
+    boolean show = false;
+    String tip = null;
     if (inAssignment.isAssigned())
     {
       Person person = gPersonEmail(inAssignment);
-      ret = person.isEmail();
-      if (ret)
-      {
-        inDisplay.setEmailTip("mailto:" + person.getEmail());
-      }
+      show = person.isEmail();
+      tip = "mailto:" + person.getEmail();
     }
-    return ret;
+    inDisplay.setEmailTip(tip);
+    inDisplay.setIconVisible(show);
   }
 
   private Person gPersonEmail(Assignment inAssignment)
@@ -169,6 +167,8 @@ public class WeekPresenter extends AbstractPresenter<WeekPresenter.Display>
     assignment.setParticipantId(par);
     assignment.setAssistantId(ass);
     assignment.setStudyPoint(st);
+
+    emailIcon(assignment, inDisplay);
 
     fire(new AssignmentSaveCommand(assignment), new AssignmentSavedEvent());
   }
