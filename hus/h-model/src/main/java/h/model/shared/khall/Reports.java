@@ -272,6 +272,10 @@ public class Reports implements Serializable
           {
             ret.belowThreshold(ym, i, value.getIdLong());
           }
+          if (total.isAboveThreshold(list.get(i), inThreshold))
+          {
+            ret.aboveThreshold(ym, i, value.getIdLong());
+          }
           if (total.isReactivated())
           {
             ret.reactivated(ym, i, value.getIdLong());

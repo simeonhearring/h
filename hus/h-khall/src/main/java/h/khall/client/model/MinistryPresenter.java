@@ -24,10 +24,11 @@ public class MinistryPresenter extends AbstractPresenter<MinistryPresenter.Displ
 {
   private enum V
   {
+    Below_Threshold,
+    Above_Threshold,
     Inactive,
     Reactivated,
-    Irregular,
-    Below_Threshold;
+    Irregular;
 
     public String gLabel()
     {
@@ -93,9 +94,10 @@ public class MinistryPresenter extends AbstractPresenter<MinistryPresenter.Displ
     // mChart.getStat().setSubHead(TextUtil.toText(mProfile.getCount()) + "
     // Parts");
     mChart.update(yma);
+    mChart.update(V.Below_Threshold.gLabel(), stat.getBelowThreshold().getValues());
+    mChart.update(V.Above_Threshold.gLabel(), stat.getAboveThreshold().getValues());
     mChart.update(V.Inactive.gLabel(), stat.getInactive().getValues());
     mChart.update(V.Irregular.gLabel(), stat.getIrregular().getValues());
-    mChart.update(V.Below_Threshold.gLabel(), stat.getBelowThreshold().getValues());
     mChart.update(V.Reactivated.gLabel(), stat.getReactivated().getValues());
     mChart.getStat().setTopRight("Current publisher count: " + persons.size());
 
@@ -107,10 +109,11 @@ public class MinistryPresenter extends AbstractPresenter<MinistryPresenter.Displ
     mNames.clear();
     for (String value : inMonths)
     {
+      mNames.put(value + V.Below_Threshold.name(), ensure(inStats.getBelowThreshold().getIds(), value));
+      mNames.put(value + V.Above_Threshold.name(), ensure(inStats.getAboveThreshold().getIds(), value));
       mNames.put(value + V.Inactive.name(), ensure(inStats.getInactive().getIds(), value));
       mNames.put(value + V.Reactivated.name(), ensure(inStats.getReactivated().getIds(), value));
       mNames.put(value + V.Irregular.name(), ensure(inStats.getIrregular().getIds(), value));
-      mNames.put(value + V.Below_Threshold.name(), ensure(inStats.getBelowThreshold().getIds(), value));
     }
   }
 
@@ -224,9 +227,10 @@ public class MinistryPresenter extends AbstractPresenter<MinistryPresenter.Displ
 
     ret.setResponsive(true);
 
+    format(ret.createDataset(V.Below_Threshold.gLabel(), 0.0, 0.0, 0.0), 152);
+    format(ret.createDataset(V.Above_Threshold.gLabel(), 0.0, 0.0, 0.0), 632);
     format(ret.createDataset(V.Inactive.gLabel(), 0.0, 0.0, 0.0), 254);
     format(ret.createDataset(V.Irregular.gLabel(), 0.0, 0.0, 0.0), 352);
-    format(ret.createDataset(V.Below_Threshold.gLabel(), 0.0, 0.0, 0.0), 152);
     format(ret.createDataset(V.Reactivated.gLabel(), 0.0, 0.0, 0.0), 402);
 
     return ret;

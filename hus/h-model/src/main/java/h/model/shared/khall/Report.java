@@ -262,6 +262,7 @@ public class Report implements Serializable
     private StatsIds mIrregular;
     private StatsIds mBelowThreshold;
     private StatsIds mReactivated;
+    private StatsIds mAboveThreshold;
 
     public void setSize(int inSize)
     {
@@ -273,6 +274,9 @@ public class Report implements Serializable
 
       mBelowThreshold = new StatsIds();
       mBelowThreshold.setSize(inSize);
+
+      mAboveThreshold = new StatsIds();
+      mAboveThreshold.setSize(inSize);
 
       mReactivated = new StatsIds();
       mReactivated.setSize(inSize);
@@ -293,6 +297,11 @@ public class Report implements Serializable
       return mBelowThreshold;
     }
 
+    public StatsIds getAboveThreshold()
+    {
+      return mAboveThreshold;
+    }
+
     public StatsIds getReactivated()
     {
       return mReactivated;
@@ -311,6 +320,11 @@ public class Report implements Serializable
     public void belowThreshold(YrMo inYm, int inPos, Long inPersonId)
     {
       mBelowThreshold.add(inPos, inYm, inPersonId);
+    }
+
+    public void aboveThreshold(YrMo inYm, int inPos, Long inPersonId)
+    {
+      mAboveThreshold.add(inPos, inYm, inPersonId);
     }
 
     public void reactivated(YrMo inYm, int inPos, Long inPersonId)
@@ -604,7 +618,12 @@ public class Report implements Serializable
 
     public boolean isBelowThreshold(Report inReport, double inThreshold)
     {
-      return ensure(inReport) < inThreshold;
+      return ensure(inReport) <= inThreshold;
+    }
+
+    public boolean isAboveThreshold(Report inReport, double inThreshold)
+    {
+      return ensure(inReport) > inThreshold;
     }
   }
 
