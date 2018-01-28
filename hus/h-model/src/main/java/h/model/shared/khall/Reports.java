@@ -207,25 +207,32 @@ public class Reports implements Serializable
     return ret;
   }
 
+  @Deprecated
   public PubRange gPubRange(Long inPubId, List<YrMo> inPast)
   {
-    PubRange ret = new PubRange();
-    ret.setSize(inPast.size());
+    // PubRange ret = new PubRange();
+    // ret.setSize(inPast.size());
+    // ret.setPubCount(1);
+    //
+    // for (int i = 0; i < inPast.size(); i++)
+    // {
+    // YrMo value = inPast.get(i);
+    // Report report = find(null, inPubId, value.getYear(), value.getMonth());
+    // ret.setValue(i, report);
+    // }
+    // return ret;
 
-    for (int i = 0; i < inPast.size(); i++)
-    {
-      YrMo value = inPast.get(i);
-      Report report = find(null, inPubId, value.getYear(), value.getMonth());
-      ret.setValue(i, report);
-    }
+    List<Long> pubId = new ArrayList<>();
+    pubId.add(inPubId);
 
-    return ret;
+    return gPubRange(pubId, inPast);
   }
 
   public PubRange gPubRange(List<Long> inPubId, List<YrMo> inPast)
   {
     PubRange ret = new PubRange();
     ret.setSize(inPast.size());
+    ret.setPubCount(inPubId.size());
 
     for (int i = 0; i < inPast.size(); i++)
     {

@@ -7,5 +7,5 @@
 	<ui:style>
 	
 	</ui:style>
-	<k:DateView ui:field="mDate" pattern="yyyy-MM-dd" />
+	<k:DateView ui:field="mDate" pattern="yyyy-MM-dd" label="Dob:" />
 </ui:UiBinder>

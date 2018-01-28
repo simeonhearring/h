@@ -111,6 +111,20 @@ public class AddressPresenter extends AbstractPresenter<AddressPresenter.Display
     save(p);
   }
 
+  public void chgEmergency(long inId, String inText)
+  {
+    Person p = mClient.gPerson(inId);
+    p.setEmergency(inText);
+    save(p);
+  }
+
+  public void chgChildren(long inId, String inText)
+  {
+    Person p = mClient.gPerson(inId);
+    p.setChildren(inText);
+    save(p);
+  }
+
   private void save(Person inPerson)
   {
     fire(new PersonSaveCommand(inPerson), new PersonInfoEvent(inPerson.getIdLong()));

@@ -13,10 +13,10 @@
 		<b:ListItem>
 			<b:Anchor ui:field="mA2" text="Curriculum" />
 		</b:ListItem>
-        <b:ListItem visible="false">
+		<b:ListItem visible="false">
 			<b:Anchor ui:field="mA3" text="Nothing" />
 		</b:ListItem>
-        <b:ListItem visible="false">
+		<b:ListItem visible="false">
 			<b:Anchor ui:field="mA4" text="Nothing" />
 		</b:ListItem>
 	</b.html:UnorderedList>

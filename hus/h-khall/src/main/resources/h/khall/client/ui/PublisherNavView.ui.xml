@@ -11,13 +11,16 @@
 			<b:Anchor ui:field="mA1" text="Family" />
 		</b:ListItem>
 		<b:ListItem>
-			<b:Anchor ui:field="mA2" text="Add" />
+			<b:Anchor ui:field="mA2" text="Import" />
 		</b:ListItem>
-		<b:ListItem visible="false">
-			<b:Anchor ui:field="mA3" text="Report 3" />
+		<b:ListItem>
+			<b:Anchor ui:field="mA3" text="Attendance" />
 		</b:ListItem>
-		<b:ListItem visible="false">
-			<b:Anchor ui:field="mA4" text="Report 4" />
+		<b:ListItem>
+			<b:Anchor ui:field="mA4" text="Profile" />
+		</b:ListItem>
+		<b:ListItem>
+			<b:Anchor ui:field="mA5" text="Access" />
 		</b:ListItem>
 	</b.html:UnorderedList>
 </ui:UiBinder>

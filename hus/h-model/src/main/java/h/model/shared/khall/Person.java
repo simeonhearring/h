@@ -29,13 +29,13 @@ public class Person extends h.model.shared.Person
   private String mEmergency;
   private String mChildren;
   private Long mHead;
-  private String mFamily;
+  private String mFamily; //
 
   private Date mPublishing;
 
   private List<Part> mParts;
   private List<Hall> mHalls;
-  private List<Comment> mComments;
+  private List<Comment> mComments; //
 
   public String gLocater()
   {
@@ -307,6 +307,8 @@ public class Person extends h.model.shared.Person
     builder.append(gRoles());
     builder.append(" ");
     builder.append(gCategories());
+    builder.append(" ");
+    builder.append(mHead == null ? "Head" : "");
     return builder.toString();
   }
 

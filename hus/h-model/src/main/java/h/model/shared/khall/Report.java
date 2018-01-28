@@ -335,6 +335,7 @@ public class Report implements Serializable
 
   public static class PubRange implements Serializable
   {
+    private int mPubCount;
     private DoubleRange mHours;
     private DoubleRange mBibleStudies;
     private DoubleRange mReturnVisits;
@@ -355,14 +356,19 @@ public class Report implements Serializable
       mVideoShowings.setSize(inSize);
     }
 
-    public double gAverage(int inCount, Double[] inRange)
+    public void setPubCount(int inPubCount)
+    {
+      mPubCount = inPubCount;
+    }
+
+    public double gAverage(int inRange, Double[] inValues)
     {
       double sum = 0;
-      for (int i = 0; i < inCount; i++)
+      for (int i = 0; i < inRange; i++)
       {
-        sum += inRange[i];
+        sum += inValues[i];
       }
-      return sum / inCount;
+      return (sum / inRange) / mPubCount;
     }
 
     public void setValue(int inPos, Report inReport)

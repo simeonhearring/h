@@ -10,11 +10,11 @@
 		<b:ListItem>
 			<b:Anchor ui:field="mA1" text="Activity" />
 		</b:ListItem>
-		<b:ListItem visible="false">
-			<b:Anchor ui:field="mA2" text="Nothing" />
+		<b:ListItem>
+			<b:Anchor ui:field="mA2" text="Analysis" />
 		</b:ListItem>
-		<b:ListItem visible="false">
-			<b:Anchor ui:field="mA3" text="Nothing" />
+		<b:ListItem>
+			<b:Anchor ui:field="mA3" text="Import" />
 		</b:ListItem>
 		<b:ListItem visible="false">
 			<b:Anchor ui:field="mA4" text="Nothing" />

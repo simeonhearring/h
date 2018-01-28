@@ -29,6 +29,9 @@ public class AddressView extends AbstractView<AddressPresenter> implements Addre
   @UiField
   Input mHome, mMobile, mEmail;
 
+  @UiField
+  Input mEmergency, mChildren;
+
   private long mId;
 
   public AddressView()
@@ -57,6 +60,9 @@ public class AddressView extends AbstractView<AddressPresenter> implements Addre
     mMobile.setText(inPerson.getMobile());
 
     mEmail.setText(inPerson.getEmail());
+
+    mEmergency.setText(inPerson.getEmergency());
+    mChildren.setText(inPerson.getChildren());
  }
 
   @Override
@@ -73,6 +79,8 @@ public class AddressView extends AbstractView<AddressPresenter> implements Addre
     mState.setEnabled(inEnable);
     mZip.setEnabled(inEnable);
 
+    mEmergency.setEnabled(inEnable);
+    mChildren.setEnabled(inEnable);
   }
 
   @Override
@@ -96,7 +104,9 @@ public class AddressView extends AbstractView<AddressPresenter> implements Addre
       "mZip",
       "mHome",
       "mMobile",
-      "mEmail"
+      "mEmail",
+      "mEmergency",
+      "mChildren"
   })
   public void onValueChange(ValueChangeEvent<String> inEvent)
   {
@@ -148,6 +158,14 @@ public class AddressView extends AbstractView<AddressPresenter> implements Addre
     else if (mSuffix.equals(source))
     {
       mPresenter.chgSuffix(mId, mSuffix.getText());
+    }
+    else if (mEmergency.equals(source))
+    {
+      mPresenter.chgEmergency(mId, mEmergency.getText());
+    }
+    else if (mChildren.equals(source))
+    {
+      mPresenter.chgChildren(mId, mChildren.getText());
     }
   }
 }

@@ -9,23 +9,24 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.web.bindery.event.shared.HandlerRegistration;
 
-import h.khall.client.model.BirthPresenter;
+import h.khall.client.model.BaptizedPresenter;
 
-public class BirthView extends AbstractView<BirthPresenter> implements BirthPresenter.Display
+public class BaptizedView extends AbstractView<BaptizedPresenter>
+  implements BaptizedPresenter.Display
 {
   private static final Binder BINDER = GWT.create(Binder.class);
 
-  interface Binder extends UiBinder<Widget, BirthView>
+  interface Binder extends UiBinder<Widget, BaptizedView>
   {
   }
 
   @UiField
   DateView mDate;
 
-  public BirthView()
+  public BaptizedView()
   {
     initWidget(BINDER.createAndBindUi(this));
-    mPresenter = new BirthPresenter(this).handlers();
+    mPresenter = new BaptizedPresenter(this).handlers();
   }
 
   @Override

@@ -10,7 +10,7 @@
 	<b.gwt:HTMLPanel>
 		<b:Heading ui:field="mLabel" size="H4" text="Date" />
 		<div class="full-height-scroll">
-			<b:Input type="DATE" ui:field="mDate" styleName="form-control" />
+			<b:Input type="DATE" ui:field="mDate" styleName="form-control kh_box" />
 		</div>
 	</b.gwt:HTMLPanel>
 </ui:UiBinder>

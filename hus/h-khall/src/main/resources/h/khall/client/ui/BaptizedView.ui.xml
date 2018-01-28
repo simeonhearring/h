@@ -7,19 +7,5 @@
 	<ui:style>
 	
 	</ui:style>
-	<b.gwt:HTMLPanel addStyleNames="ibox-content marginB25">
-		<div class="row m-b-lg text-center">
-			<div class="col-lg-12 text-center">
-				<b:Heading size="H2" text="Options" />
-				<b:Label ui:field="mName" />
-			</div>
-		</div>
-		<k:RoleView ui:field="mRole" />
-		<k:CategoryView ui:field="mCategory" />
-		<k:PartView ui:field="mPart" />
-		<k:HallView ui:field="mHall" />
-		<k:FsgView ui:field="mFsg" />
-		<k:HeadOfHouseView ui:field="mHead" />
-		<k:GenderView ui:field="mGender" />
-	</b.gwt:HTMLPanel>
+	<k:DateView ui:field="mDate" pattern="yyyy-MM-dd" label="Baptized:" />
 </ui:UiBinder>

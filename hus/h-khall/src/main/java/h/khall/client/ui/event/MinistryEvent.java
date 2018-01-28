@@ -1,10 +1,11 @@
 package h.khall.client.ui.event;
 
+import h.khall.shared.model.Page;
 import h.style.g.client.ui.event.Event;
 import h.style.g.client.ui.event.EventHandler;
 import h.style.g.client.ui.event.TypeH;
 
-public class MinistryEvent extends Event<MinistryEvent.Handler>
+public class MinistryEvent extends Event<MinistryEvent.Handler> implements Page
 {
   public static final TypeH<Handler> TYPE = new TypeH<>(MinistryEvent.class);
 

@@ -25,7 +25,7 @@
 				<li class="active">
 					<a data-toggle="tab" href="#tab-1">
 						<i class="fa fa-user"></i>
-						Members
+						Family
 						<b.html:Span ui:field="mCt1" addStyleNames="pull-right small text-muted" paddingLeft="5.0" />
 					</a>
 				</li>

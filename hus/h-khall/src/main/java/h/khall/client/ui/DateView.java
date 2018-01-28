@@ -2,6 +2,7 @@ package h.khall.client.ui;
 
 import java.util.Date;
 
+import org.gwtbootstrap3.client.ui.Heading;
 import org.gwtbootstrap3.client.ui.Input;
 import org.gwtbootstrap3.client.ui.constants.InputType;
 
@@ -10,6 +11,7 @@ import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.TakesValue;
+import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.web.bindery.event.shared.HandlerRegistration;
 
@@ -20,6 +22,9 @@ public class DateView extends h.style.g.client.ui.AbstractView implements TakesV
   interface Binder extends UiBinder<Widget, DateView>
   {
   }
+
+  @UiField
+  Heading mLabel;
 
   @UiField
   Input mDate;
@@ -63,5 +68,20 @@ public class DateView extends h.style.g.client.ui.AbstractView implements TakesV
   public Date getValue()
   {
     return mDateV.getValue();
+  }
+
+  public void setLabelVisible(boolean inShow)
+  {
+    mLabel.setVisible(inShow);
+  }
+
+  public HasText getLabel()
+  {
+    return mLabel;
+  }
+
+  public void setLabel(String inText)
+  {
+    mLabel.setText(inText);
   }
 }

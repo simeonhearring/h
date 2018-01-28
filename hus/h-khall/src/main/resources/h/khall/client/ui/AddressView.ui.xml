@@ -23,7 +23,11 @@
 		<b:Input type="TEXT" ui:field="mMobile" placeholder="Mobile phone" addStyleNames="kh_box" />
 		<hr />
 		<b:Input type="TEXT" ui:field="mEmail" placeholder="Email" addStyleNames="kh_box" />
+		<hr />
+		<b:Input type="TEXT" ui:field="mEmergency" placeholder="Emergency" addStyleNames="kh_box" />
+		<b:Input type="TEXT" ui:field="mChildren" placeholder="Children" addStyleNames="kh_box" />
 
 		<k:BirthView />
+		<k:BaptizedView />
 	</b.gwt:HTMLPanel>
 </ui:UiBinder>

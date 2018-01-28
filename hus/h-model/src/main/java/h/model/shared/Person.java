@@ -5,16 +5,23 @@ import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import h.model.shared.khall.HasGLabel;
 import h.model.shared.util.StringUtil;
 import h.model.shared.util.TimeUtil;
 
 @SuppressWarnings("serial")
 public class Person implements Serializable, Tag
 {
-  public enum Gender
+  public enum Gender implements HasGLabel
   {
     Male,
     Female;
+
+    @Override
+    public String gLabel()
+    {
+      return name();
+    }
   }
 
   private Long mId;
@@ -23,7 +30,7 @@ public class Person implements Serializable, Tag
   private String mMiddle;
   private String mLast;
   private String mSuffix;
-  private Gender mGender;
+  private Gender mGender; //
   private Date mBirth;
   private String mEmail;
   private String mMobile;
