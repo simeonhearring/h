@@ -6,9 +6,9 @@ import h.model.shared.util.StringUtil;
 import h.style.g.client.model.Attach;
 import h.style.g.shared.command.ForgotCommand;
 
-public class ForgotPresenter extends AbstractPresenter<ForgotPresenter.Display>
+public class PageForgotPresenter extends AbstractPresenter<PageForgotPresenter.Display>
 {
-  public ForgotPresenter(Display inDisplay)
+  public PageForgotPresenter(Display inDisplay)
   {
     initDisplay(inDisplay);
   }

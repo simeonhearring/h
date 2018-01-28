@@ -3,12 +3,12 @@ package h.khall.client.ui;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.RootPanel;
 
-import h.khall.client.model.ForgotPresenter;
-import h.khall.client.model.LoginPresenter;
+import h.khall.client.model.PageForgotPresenter;
+import h.khall.client.model.PageLoginPresenter;
 import h.khall.client.model.MainPresenter;
 import h.khall.client.model.PageFullPresenter;
 import h.khall.client.model.PagePresenter;
-import h.khall.client.model.RegisterPresenter;
+import h.khall.client.model.PageRegisterPresenter;
 import h.style.g.client.ui.AbstractView;
 
 public class MainView extends AbstractView implements MainPresenter.Display
@@ -25,27 +25,27 @@ public class MainView extends AbstractView implements MainPresenter.Display
   }
 
   @Override
-  public LoginPresenter.Display login()
+  public PageLoginPresenter.Display login()
   {
-    return new LoginView();
+    return new PageLoginView();
   }
 
   @Override
-  public ForgotPresenter.Display forgot()
+  public PageForgotPresenter.Display forgot()
   {
-    return new ForgotView();
+    return new PageForgotView();
   }
 
   @Override
-  public RegisterPresenter.Display register()
+  public PageRegisterPresenter.Display register()
   {
-    return new RegisterView();
+    return new PageRegisterView();
   }
 
   @Override
-  public PagePresenter.Display page()
+  public PagePresenter.Display khall()
   {
-    return new PageView();
+    return new PageKhallView();
   }
 
   @Override

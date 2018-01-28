@@ -1,8 +1,8 @@
 package h.khall.client.model;
 
-public class SamplePresenter extends AbstractPresenter<SamplePresenter.Display>
+public class PageSamplePresenter extends AbstractPresenter<PageSamplePresenter.Display>
 {
-  public SamplePresenter(Display inDisplay)
+  public PageSamplePresenter(Display inDisplay)
   {
     initDisplay(inDisplay);
   }

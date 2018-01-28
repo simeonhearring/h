@@ -8,9 +8,9 @@ import h.style.g.client.model.Attach;
 import h.style.g.client.ui.common.RpcCallback;
 import h.style.g.shared.command.RegisterCommand;
 
-public class RegisterPresenter extends AbstractPresenter<RegisterPresenter.Display>
+public class PageRegisterPresenter extends AbstractPresenter<PageRegisterPresenter.Display>
 {
-  public RegisterPresenter(Display inDisplay)
+  public PageRegisterPresenter(Display inDisplay)
   {
     initDisplay(inDisplay);
   }

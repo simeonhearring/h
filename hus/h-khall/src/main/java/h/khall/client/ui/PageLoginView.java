@@ -14,14 +14,14 @@ import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.UIObject;
 import com.google.gwt.user.client.ui.Widget;
 
-import h.khall.client.model.LoginPresenter;
+import h.khall.client.model.PageLoginPresenter;
 import h.style.g.client.ui.util.StorageUtil;
 
-public class LoginView extends AbstractView<LoginPresenter> implements LoginPresenter.Display
+public class PageLoginView extends AbstractView<PageLoginPresenter> implements PageLoginPresenter.Display
 {
   private static final Binder BINDER = GWT.create(Binder.class);
 
-  interface Binder extends UiBinder<Widget, LoginView>
+  interface Binder extends UiBinder<Widget, PageLoginView>
   {
   }
 
@@ -34,10 +34,10 @@ public class LoginView extends AbstractView<LoginPresenter> implements LoginPres
   @UiField
   Anchor mForgot, mCreate;
 
-  public LoginView()
+  public PageLoginView()
   {
     initWidget(BINDER.createAndBindUi(this));
-    mPresenter = new LoginPresenter(this);
+    mPresenter = new PageLoginPresenter(this);
 
     if (StorageUtil.hasEncrypt())
     {

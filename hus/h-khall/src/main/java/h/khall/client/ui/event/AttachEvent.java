@@ -20,7 +20,7 @@ public class AttachEvent extends Event<AttachEvent.Handler>
     REGISTER,
     MAILBOX,
     FORGOT,
-    MIDWEEK,
+    KHALL,
   }
 
   private TypeA mType;

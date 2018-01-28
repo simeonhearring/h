@@ -1,14 +1,14 @@
 package h.khall.client.model;
 
-import h.khall.client.ui.event.MidweekEvent;
-import h.khall.client.ui.event.MinistryEvent;
-import h.khall.client.ui.event.ParticipantEvent;
-import h.khall.client.ui.event.SampleEvent;
+import h.khall.client.ui.event.PageMidweekEvent;
+import h.khall.client.ui.event.PageMinistryEvent;
+import h.khall.client.ui.event.PageParticipantEvent;
+import h.khall.client.ui.event.PageSampleEvent;
 import h.style.g.client.model.Attach;
 
 public class PagePresenter extends AbstractPresenter<PagePresenter.Display>
-  implements SampleEvent.Handler, MidweekEvent.Handler, ParticipantEvent.Handler,
-  MinistryEvent.Handler
+  implements PageSampleEvent.Handler, PageMidweekEvent.Handler, PageParticipantEvent.Handler,
+  PageMinistryEvent.Handler
 {
   public PagePresenter(Display inDisplay)
   {
@@ -17,33 +17,33 @@ public class PagePresenter extends AbstractPresenter<PagePresenter.Display>
 
   public PagePresenter handlers()
   {
-    addHandler(SampleEvent.TYPE, this);
-    addHandler(MidweekEvent.TYPE, this);
-    addHandler(ParticipantEvent.TYPE, this);
-    addHandler(MinistryEvent.TYPE, this);
+    addHandler(PageSampleEvent.TYPE, this);
+    addHandler(PageMidweekEvent.TYPE, this);
+    addHandler(PageParticipantEvent.TYPE, this);
+    addHandler(PageMinistryEvent.TYPE, this);
     return this;
   }
 
   @Override
-  public void dispatch(SampleEvent inEvent)
+  public void dispatch(PageSampleEvent inEvent)
   {
     mDisplay.sample();
   }
 
   @Override
-  public void dispatch(MidweekEvent inEvent)
+  public void dispatch(PageMidweekEvent inEvent)
   {
     mDisplay.midweek();
   }
 
   @Override
-  public void dispatch(MinistryEvent inEvent)
+  public void dispatch(PageMinistryEvent inEvent)
   {
     mDisplay.ministry();
   }
 
   @Override
-  public void dispatch(ParticipantEvent inEvent)
+  public void dispatch(PageParticipantEvent inEvent)
   {
     mDisplay.participants();
   }

@@ -207,7 +207,6 @@ public class Reports implements Serializable
     return ret;
   }
 
-  @Deprecated
   public PubRange gPubRange(Long inPubId, List<YrMo> inPast)
   {
     // PubRange ret = new PubRange();

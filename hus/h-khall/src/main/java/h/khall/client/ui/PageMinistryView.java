@@ -25,17 +25,17 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Widget;
 
-import h.khall.client.model.MinistryPresenter;
+import h.khall.client.model.PageMinistryPresenter;
 import h.model.shared.Tag;
 import h.model.shared.util.TimeUtil;
 
-public class MinistryView extends AbstractView<MinistryPresenter>
+public class PageMinistryView extends AbstractView<PageMinistryPresenter>
   implements ItemTextCallback<Tag>, ItemValueCallback<Tag>, ItemAddedHandler<Tag>,
-  ItemRemovedHandler<Tag>, OnTagExistsCallback<Tag>, MinistryPresenter.Display, ClickHandler
+  ItemRemovedHandler<Tag>, OnTagExistsCallback<Tag>, PageMinistryPresenter.Display, ClickHandler
 {
   private static final Binder BINDER = GWT.create(Binder.class);
 
-  interface Binder extends UiBinder<Widget, MinistryView>
+  interface Binder extends UiBinder<Widget, PageMinistryView>
   {
   }
 
@@ -66,10 +66,10 @@ public class MinistryView extends AbstractView<MinistryPresenter>
   private PersonSet mDataset;
   private TakesDate mMonthV;
 
-  public MinistryView()
+  public PageMinistryView()
   {
     initWidget(BINDER.createAndBindUi(this));
-    mPresenter = new MinistryPresenter(this).handlers();
+    mPresenter = new PageMinistryPresenter(this).handlers();
 
     mStats.mDiv.add(new ThresholdView());
 

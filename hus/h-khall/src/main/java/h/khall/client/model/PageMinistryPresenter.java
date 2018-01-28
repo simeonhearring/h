@@ -19,7 +19,7 @@ import h.style.g.client.ui.event.RefreshEvent;
 import h.style.g.shared.chart.Chart;
 import h.style.g.shared.chart.Chart.Stat;
 
-public class MinistryPresenter extends AbstractPresenter<MinistryPresenter.Display>
+public class PageMinistryPresenter extends AbstractPresenter<PageMinistryPresenter.Display>
   implements RefreshEvent.Handler, ChangeHandler
 {
   private enum V
@@ -39,14 +39,14 @@ public class MinistryPresenter extends AbstractPresenter<MinistryPresenter.Displ
   private Chart mChart = chart();
   private Map<String, List<Long>> mNames;
 
-  public MinistryPresenter(Display inDisplay)
+  public PageMinistryPresenter(Display inDisplay)
   {
     initDisplay(inDisplay);
     mNames = new HashMap<>();
     addTypeList();
   }
 
-  public MinistryPresenter handlers()
+  public PageMinistryPresenter handlers()
   {
     register(addHandler(RefreshEvent.TYPE, this));
     return this;

@@ -5,13 +5,13 @@ import h.style.g.client.ui.event.Event;
 import h.style.g.client.ui.event.EventHandler;
 import h.style.g.client.ui.event.TypeH;
 
-public class MinistryEvent extends Event<MinistryEvent.Handler> implements Page
+public class PageParticipantEvent extends Event<PageParticipantEvent.Handler> implements Page
 {
-  public static final TypeH<Handler> TYPE = new TypeH<>(MinistryEvent.class);
+  public static final TypeH<Handler> TYPE = new TypeH<>(PageParticipantEvent.class);
 
   public interface Handler extends EventHandler
   {
-    void dispatch(MinistryEvent inEvent);
+    void dispatch(PageParticipantEvent inEvent);
   }
 
   @Override

@@ -13,9 +13,9 @@ import h.style.g.client.ui.common.RpcCallback;
 import h.style.g.client.ui.event.RefreshEvent;
 import h.style.g.client.ui.util.StorageUtil;
 
-public class LoginPresenter extends AbstractPresenter<LoginPresenter.Display>
+public class PageLoginPresenter extends AbstractPresenter<PageLoginPresenter.Display>
 {
-  public LoginPresenter(Display inDisplay)
+  public PageLoginPresenter(Display inDisplay)
   {
     initDisplay(inDisplay);
   }
@@ -59,7 +59,7 @@ public class LoginPresenter extends AbstractPresenter<LoginPresenter.Display>
       Login login = inCommand.getData();
       if (login.isAuthenticated())
       {
-        fire(new AttachEvent(TypeA.MIDWEEK), new ProfileEvent(login.getProfile()),
+        fire(new AttachEvent(TypeA.KHALL), new ProfileEvent(login.getProfile()),
             new ClientEvent(login.getClient()), new RefreshEvent());
       }
       else

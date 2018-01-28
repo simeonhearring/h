@@ -43,8 +43,8 @@ public class MainPresenter extends AbstractPresenter<MainPresenter.Display>
       case REGISTER:
         attach(mDisplay.register());
         break;
-      case MIDWEEK:
-        attach(mDisplay.page());
+      case KHALL:
+        attach(mDisplay.khall());
         break;
       default:
         break;
@@ -66,14 +66,14 @@ public class MainPresenter extends AbstractPresenter<MainPresenter.Display>
   {
     HasWidgets root();
 
-    LoginPresenter.Display login();
+    PageLoginPresenter.Display login();
 
-    RegisterPresenter.Display register();
+    PageRegisterPresenter.Display register();
 
-    PagePresenter.Display page();
+    PagePresenter.Display khall();
 
     PageFullPresenter.Display pagefull();
 
-    ForgotPresenter.Display forgot();
+    PageForgotPresenter.Display forgot();
   }
 }

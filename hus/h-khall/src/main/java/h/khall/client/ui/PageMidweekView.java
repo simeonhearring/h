@@ -9,14 +9,14 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Widget;
 
-import h.khall.client.model.MidweekPresenter;
+import h.khall.client.model.PageMidweekPresenter;
 import h.khall.client.model.MonthPresenter;
 
-public class MidweekView extends AbstractView<MidweekPresenter> implements MidweekPresenter.Display
+public class PageMidweekView extends AbstractView<PageMidweekPresenter> implements PageMidweekPresenter.Display
 {
   private static final Binder BINDER = GWT.create(Binder.class);
 
-  interface Binder extends UiBinder<Widget, MidweekView>
+  interface Binder extends UiBinder<Widget, PageMidweekView>
   {
   }
 
@@ -29,10 +29,10 @@ public class MidweekView extends AbstractView<MidweekPresenter> implements Midwe
   @UiField
   StatsView mStats;
 
-  public MidweekView()
+  public PageMidweekView()
   {
     initWidget(BINDER.createAndBindUi(this));
-    mPresenter = new MidweekPresenter(this).handlers();
+    mPresenter = new PageMidweekPresenter(this).handlers();
 
     mStats.mDiv.add(new CountView());
 

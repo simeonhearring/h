@@ -4,19 +4,19 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.user.client.ui.Widget;
 
-import h.khall.client.model.SamplePresenter;
+import h.khall.client.model.PageSamplePresenter;
 
-public class SampleView extends AbstractView<SamplePresenter> implements SamplePresenter.Display
+public class PageSampleView extends AbstractView<PageSamplePresenter> implements PageSamplePresenter.Display
 {
   private static final Binder BINDER = GWT.create(Binder.class);
 
-  interface Binder extends UiBinder<Widget, SampleView>
+  interface Binder extends UiBinder<Widget, PageSampleView>
   {
   }
 
-  public SampleView()
+  public PageSampleView()
   {
     initWidget(BINDER.createAndBindUi(this));
-    mPresenter = new SamplePresenter(this);
+    mPresenter = new PageSamplePresenter(this);
   }
 }

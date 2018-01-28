@@ -12,7 +12,7 @@ import h.style.g.client.ui.event.RefreshEvent;
 import h.style.g.shared.chart.Chart;
 import h.style.g.shared.chart.Chart.Stat;
 
-public class MidweekPresenter extends AbstractPresenter<MidweekPresenter.Display>
+public class PageMidweekPresenter extends AbstractPresenter<PageMidweekPresenter.Display>
   implements RefreshEvent.Handler, AssignmentSavedEvent.Handler
 {
   private enum V
@@ -27,13 +27,13 @@ public class MidweekPresenter extends AbstractPresenter<MidweekPresenter.Display
   private int mMonthIndex = 0;
   private Chart mChart = chart();
 
-  public MidweekPresenter(Display inDisplay)
+  public PageMidweekPresenter(Display inDisplay)
   {
     initDisplay(inDisplay);
     mMonthIndex = currentIndex();
   }
 
-  public MidweekPresenter handlers()
+  public PageMidweekPresenter handlers()
   {
     register(addHandler(RefreshEvent.TYPE, this));
     register(addHandler(AssignmentSavedEvent.TYPE, this));

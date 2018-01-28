@@ -13,14 +13,14 @@ import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.UIObject;
 import com.google.gwt.user.client.ui.Widget;
 
-import h.khall.client.model.RegisterPresenter;
+import h.khall.client.model.PageRegisterPresenter;
 
-public class RegisterView extends AbstractView<RegisterPresenter>
-  implements RegisterPresenter.Display
+public class PageRegisterView extends AbstractView<PageRegisterPresenter>
+  implements PageRegisterPresenter.Display
 {
   private static final Binder BINDER = GWT.create(Binder.class);
 
-  interface Binder extends UiBinder<Widget, RegisterView>
+  interface Binder extends UiBinder<Widget, PageRegisterView>
   {
   }
 
@@ -33,10 +33,10 @@ public class RegisterView extends AbstractView<RegisterPresenter>
   @UiField
   Anchor mLogin;
 
-  public RegisterView()
+  public PageRegisterView()
   {
     initWidget(BINDER.createAndBindUi(this));
-    mPresenter = new RegisterPresenter(this);
+    mPresenter = new PageRegisterPresenter(this);
   }
 
   @Override

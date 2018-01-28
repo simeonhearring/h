@@ -11,11 +11,11 @@ import com.google.gwt.user.client.ui.Widget;
 
 import h.khall.client.model.PagePresenter;
 
-public class PageView extends AbstractView<PagePresenter> implements PagePresenter.Display
+public class PageKhallView extends AbstractView<PagePresenter> implements PagePresenter.Display
 {
   private static final Binder BINDER = GWT.create(Binder.class);
 
-  interface Binder extends UiBinder<Widget, PageView>
+  interface Binder extends UiBinder<Widget, PageKhallView>
   {
   }
 
@@ -25,7 +25,7 @@ public class PageView extends AbstractView<PagePresenter> implements PagePresent
   @UiField
   SideBarView mSideBar;
 
-  public PageView()
+  public PageKhallView()
   {
     initWidget(BINDER.createAndBindUi(this));
     mTop.getElement().setAttribute("id", "wrapper");
@@ -37,7 +37,7 @@ public class PageView extends AbstractView<PagePresenter> implements PagePresent
   public void sample()
   {
     clear();
-    mBody.add(new SampleView());
+    mBody.add(new PageSampleView());
   }
 
   @Override
@@ -46,7 +46,7 @@ public class PageView extends AbstractView<PagePresenter> implements PagePresent
     clear();
     mWrapper.setStyleName("gray-bg");
     mSideBar.setVisible(false);
-    mBody.add(new MinistryView());
+    mBody.add(new PageMinistryView());
   }
 
   @Override
@@ -55,7 +55,7 @@ public class PageView extends AbstractView<PagePresenter> implements PagePresent
     clear();
     mWrapper.setStyleName("gray-bg");
     mSideBar.setVisible(false);
-    mBody.add(new MidweekView());
+    mBody.add(new PageMidweekView());
   }
 
   @Override
@@ -64,7 +64,7 @@ public class PageView extends AbstractView<PagePresenter> implements PagePresent
     clear();
     mWrapper.setStyleName("gray-bg");
     mSideBar.setVisible(false);
-    mBody.add(new ParticipantView());
+    mBody.add(new PageParticipantView());
   }
 
   private void clear()

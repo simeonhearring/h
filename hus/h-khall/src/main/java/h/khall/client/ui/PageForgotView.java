@@ -12,20 +12,20 @@ import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.UIObject;
 import com.google.gwt.user.client.ui.Widget;
 
-import h.khall.client.model.ForgotPresenter;
+import h.khall.client.model.PageForgotPresenter;
 
-public class ForgotView extends AbstractView<ForgotPresenter> implements ForgotPresenter.Display
+public class PageForgotView extends AbstractView<PageForgotPresenter> implements PageForgotPresenter.Display
 {
   private static final Binder BINDER = GWT.create(Binder.class);
 
-  interface Binder extends UiBinder<Widget, ForgotView>
+  interface Binder extends UiBinder<Widget, PageForgotView>
   {
   }
 
-  public ForgotView()
+  public PageForgotView()
   {
     initWidget(BINDER.createAndBindUi(this));
-    mPresenter = new ForgotPresenter(this);
+    mPresenter = new PageForgotPresenter(this);
   }
 
   @UiField

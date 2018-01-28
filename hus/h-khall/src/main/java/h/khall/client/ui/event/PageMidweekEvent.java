@@ -5,13 +5,13 @@ import h.style.g.client.ui.event.Event;
 import h.style.g.client.ui.event.EventHandler;
 import h.style.g.client.ui.event.TypeH;
 
-public class MidweekEvent extends Event<MidweekEvent.Handler> implements Page
+public class PageMidweekEvent extends Event<PageMidweekEvent.Handler> implements Page
 {
-  public static final TypeH<Handler> TYPE = new TypeH<>(MidweekEvent.class);
+  public static final TypeH<Handler> TYPE = new TypeH<>(PageMidweekEvent.class);
 
   public interface Handler extends EventHandler
   {
-    void dispatch(MidweekEvent inEvent);
+    void dispatch(PageMidweekEvent inEvent);
   }
 
   @Override

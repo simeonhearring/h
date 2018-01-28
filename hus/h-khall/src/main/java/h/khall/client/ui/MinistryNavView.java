@@ -9,7 +9,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Widget;
 
-import h.khall.client.ui.event.MinistryEvent;
+import h.khall.client.ui.event.PageMinistryEvent;
 import h.khall.client.ui.event.ResendEvent;
 import h.style.g.client.ui.AbstractView;
 import h.style.g.client.ui.event.RefreshEvent;
@@ -39,7 +39,7 @@ public class MinistryNavView extends AbstractView
     Object source = inEvent.getSource();
     if (mA1.equals(source))
     {
-      fire(new MinistryEvent());
+      fire(new PageMinistryEvent());
       fire(new ResendEvent(), new RefreshEvent());
     }
     else if (mA2.equals(source))
