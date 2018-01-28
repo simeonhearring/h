@@ -35,7 +35,7 @@ public class ProfileEncryptSqlTest extends MySqlBaseDaoTest
     model.setUserId("simeonlhearring@gmail.com");
     model.setUserTitle("Owner");
     model.setLast("Hearring");
-    model.setPassword("abc");
+    model.setPassword("password:abc");
     model.setThreshold(5.0);
 
     model.setSecurity(security());

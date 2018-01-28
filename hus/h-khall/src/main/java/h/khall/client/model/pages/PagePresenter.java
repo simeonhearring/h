@@ -1,5 +1,6 @@
-package h.khall.client.model;
+package h.khall.client.model.pages;
 
+import h.khall.client.model.AbstractPresenter;
 import h.khall.client.ui.event.PageMidweekEvent;
 import h.khall.client.ui.event.PageMinistryEvent;
 import h.khall.client.ui.event.PageParticipantEvent;

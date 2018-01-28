@@ -1,5 +1,6 @@
-package h.khall.client.model;
+package h.khall.client.model.pages;
 
+import h.khall.client.model.AbstractPresenter;
 import h.khall.client.ui.event.AttachEvent;
 import h.khall.client.ui.event.AttachEvent.TypeA;
 import h.khall.client.ui.event.ClientEvent;
@@ -20,12 +21,12 @@ public class PageLoginPresenter extends AbstractPresenter<PageLoginPresenter.Dis
     initDisplay(inDisplay);
   }
 
-  public void login(String inUserName, String inPassword, String inCongNum, String inEncrypt)
+  public void login(String inEmail, String inPassword, String inCongNum, String inEncrypt)
   {
-    if (StringUtil.isEmail(inUserName) && !StringUtil.isInValid(inPassword, inCongNum, inEncrypt))
+    if (StringUtil.isEmail(inEmail) && !StringUtil.isInValid(inPassword, inCongNum, inEncrypt))
     {
       Profile profile = new Profile();
-      profile.setUserId(mDisplay.encrypt(inUserName));
+      profile.setUserId(mDisplay.encrypt(inEmail));
       profile.setPassword(mDisplay.encrypt(inPassword));
       profile.setCongNum(mDisplay.encrypt(inCongNum));
       profile.setEncrypt(mDisplay.encrypt(inEncrypt));

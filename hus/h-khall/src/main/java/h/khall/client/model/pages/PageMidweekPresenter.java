@@ -1,5 +1,7 @@
-package h.khall.client.model;
+package h.khall.client.model.pages;
 
+import h.khall.client.model.AbstractPresenter;
+import h.khall.client.model.MonthPresenter;
 import h.khall.client.ui.event.AssignmentSavedEvent;
 import h.model.shared.khall.Charts;
 import h.model.shared.khall.Meeting;

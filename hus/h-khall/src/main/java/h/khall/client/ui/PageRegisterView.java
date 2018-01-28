@@ -13,7 +13,7 @@ import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.UIObject;
 import com.google.gwt.user.client.ui.Widget;
 
-import h.khall.client.model.PageRegisterPresenter;
+import h.khall.client.model.pages.PageRegisterPresenter;
 
 public class PageRegisterView extends AbstractView<PageRegisterPresenter>
   implements PageRegisterPresenter.Display

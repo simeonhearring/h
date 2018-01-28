@@ -14,7 +14,7 @@ import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.UIObject;
 import com.google.gwt.user.client.ui.Widget;
 
-import h.khall.client.model.PageLoginPresenter;
+import h.khall.client.model.pages.PageLoginPresenter;
 import h.style.g.client.ui.util.StorageUtil;
 
 public class PageLoginView extends AbstractView<PageLoginPresenter> implements PageLoginPresenter.Display
@@ -64,8 +64,7 @@ public class PageLoginView extends AbstractView<PageLoginPresenter> implements P
     Object source = inEvent.getSource();
     if (mLogin.equals(source))
     {
-      mPresenter.login(mEmail.getText(), mPassword.getText(), mCongNum.getText(),
-          mEncrypt.getText());
+      mPresenter.login(mEmail.getText(), mPassword.getText(), mCongNum.getText(), mEncrypt.getText());
     }
     else if (mForgot.equals(source))
     {

@@ -1,5 +1,6 @@
-package h.khall.client.model;
+package h.khall.client.model.pages;
 
+import h.khall.client.model.AbstractPresenter;
 import h.khall.client.ui.event.AttachEvent;
 import h.khall.client.ui.event.AttachEvent.TypeA;
 import h.model.shared.khall.Profile;

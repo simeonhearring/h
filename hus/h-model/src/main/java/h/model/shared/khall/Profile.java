@@ -119,4 +119,16 @@ public class Profile extends h.model.shared.Profile
   {
     return mSecurity.containsKey(inSecurity) && mSecurity.get(inSecurity);
   }
+
+  public boolean canReset()
+  {
+    String password = gPassword();
+    return password != null && password.startsWith("password:");
+  }
+
+  public String gPass()
+  {
+    String password = gPassword();
+    return password != null ? password.substring("password:".length(), password.length()) : password;
+  }
 }

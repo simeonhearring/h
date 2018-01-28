@@ -1,4 +1,6 @@
-package h.khall.client.model;
+package h.khall.client.model.pages;
+
+import h.khall.client.model.AbstractPresenter;
 
 public class PageParticipantPresenter extends AbstractPresenter<PageParticipantPresenter.Display>
 {

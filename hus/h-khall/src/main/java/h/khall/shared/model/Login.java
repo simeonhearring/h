@@ -35,7 +35,7 @@ public class Login implements Serializable
     boolean ret = false;
     if (inServer != null)
     {
-      ret = inClient.gPassword().equals(inServer.gPassword());
+      ret = inClient.gPassword().equals(inServer.gPass());
       inServer.setEncrypt(inClient.gEncrypt());
       inServer.setPassword(null);
       inServer.setUserName(inServer.getFirst() + " " + inServer.getLast());

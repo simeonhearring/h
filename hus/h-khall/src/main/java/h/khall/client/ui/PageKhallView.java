@@ -9,7 +9,7 @@ import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.UIObject;
 import com.google.gwt.user.client.ui.Widget;
 
-import h.khall.client.model.PagePresenter;
+import h.khall.client.model.pages.PagePresenter;
 
 public class PageKhallView extends AbstractView<PagePresenter> implements PagePresenter.Display
 {

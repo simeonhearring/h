@@ -1,24 +1,26 @@
 package h.style.g.shared.command;
 
+import h.model.shared.khall.Profile;
 import h.style.g.shared.rpc.CommandName;
 
 @SuppressWarnings("serial")
 @CommandName("ForgotCommand")
 public class ForgotCommand extends AbstractCommand
 {
-  private String mEmail;
+  private Profile mProfile;
 
   ForgotCommand()
   {
   }
 
-  public ForgotCommand(String inEmail)
+  public ForgotCommand(Profile inProfile)
   {
-    mEmail = inEmail;
+    mProfile = inProfile;
   }
 
-  public String getEmail()
+  @Override
+  public Profile getProfile()
   {
-    return mEmail;
+    return mProfile;
   }
 }

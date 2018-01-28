@@ -4,7 +4,7 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.user.client.ui.Widget;
 
-import h.khall.client.model.PageParticipantPresenter;
+import h.khall.client.model.pages.PageParticipantPresenter;
 
 public class PageParticipantView extends AbstractView<PageParticipantPresenter> implements PageParticipantPresenter.Display
 {

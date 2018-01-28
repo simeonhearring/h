@@ -1,7 +1,13 @@
-package h.khall.client.model;
+package h.khall.client.model.main;
 
 import com.google.gwt.user.client.ui.HasWidgets;
 
+import h.khall.client.model.AbstractPresenter;
+import h.khall.client.model.pages.PageForgotPresenter;
+import h.khall.client.model.pages.PageFullPresenter;
+import h.khall.client.model.pages.PageLoginPresenter;
+import h.khall.client.model.pages.PagePresenter;
+import h.khall.client.model.pages.PageRegisterPresenter;
 import h.khall.client.ui.event.AttachEvent;
 import h.khall.client.ui.event.ClientEvent;
 import h.khall.client.ui.event.ProfileEvent;

@@ -85,7 +85,7 @@ public class RandomAssignments
   {
     Part mPart;
     int mSort;
-    int mDuration;
+    // int mDuration;
 
     public PartSort(Part inPart, int inSort)
     {
@@ -93,12 +93,12 @@ public class RandomAssignments
       mSort = inSort;
     }
 
-    public PartSort(Part inPart, int inSort, int inDuration)
-    {
-      mPart = inPart;
-      mSort = inSort;
-      mDuration = inDuration;
-    }
+    // public PartSort(Part inPart, int inSort, int inDuration)
+    // {
+    // mPart = inPart;
+    // mSort = inSort;
+    // mDuration = inDuration;
+    // }
   }
 
   public static List<Assignment> assignments(List<Person> inPersons, boolean inForceAssign)

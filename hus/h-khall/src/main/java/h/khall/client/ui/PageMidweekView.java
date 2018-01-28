@@ -9,8 +9,8 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Widget;
 
-import h.khall.client.model.PageMidweekPresenter;
 import h.khall.client.model.MonthPresenter;
+import h.khall.client.model.pages.PageMidweekPresenter;
 
 public class PageMidweekView extends AbstractView<PageMidweekPresenter> implements PageMidweekPresenter.Display
 {

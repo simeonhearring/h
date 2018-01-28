@@ -46,6 +46,7 @@
 
 	<bean id="ForgotCommand" class="h.khall.server.command.ForgotCommandBean">
 		<property name="dao" ref="Dao" />
+		<property name="EmailService" ref="EmailService" />
 	</bean>
 
 	<bean id="PersonLookupCommand" class="h.khall.server.command.PersonLookupCommandBean">

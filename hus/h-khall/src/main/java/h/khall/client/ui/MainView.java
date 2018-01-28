@@ -3,12 +3,12 @@ package h.khall.client.ui;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.RootPanel;
 
-import h.khall.client.model.PageForgotPresenter;
-import h.khall.client.model.PageLoginPresenter;
-import h.khall.client.model.MainPresenter;
-import h.khall.client.model.PageFullPresenter;
-import h.khall.client.model.PagePresenter;
-import h.khall.client.model.PageRegisterPresenter;
+import h.khall.client.model.main.MainPresenter;
+import h.khall.client.model.pages.PageForgotPresenter;
+import h.khall.client.model.pages.PageFullPresenter;
+import h.khall.client.model.pages.PageLoginPresenter;
+import h.khall.client.model.pages.PagePresenter;
+import h.khall.client.model.pages.PageRegisterPresenter;
 import h.style.g.client.ui.AbstractView;
 
 public class MainView extends AbstractView implements MainPresenter.Display

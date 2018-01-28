@@ -1,4 +1,4 @@
-package h.khall.client.model;
+package h.khall.client.model.pages;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,6 +8,7 @@ import java.util.Map;
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 
+import h.khall.client.model.AbstractPresenter;
 import h.model.shared.khall.Charts;
 import h.model.shared.khall.FieldServiceGroup;
 import h.model.shared.khall.Person;

@@ -10,10 +10,9 @@ import com.google.gwt.core.shared.GwtIncompatible;
 
 import h.model.shared.Person.Gender;
 import h.model.shared.khall.Person;
+import h.model.shared.khall.Person.Status;
 import h.model.shared.khall.Report;
 import h.model.shared.khall.Roles;
-import h.model.shared.khall.Person.Status;
-import h.model.shared.khall.Roles.Role;
 import h.model.shared.util.NumberUtil;
 import h.model.shared.util.StringUtil;
 
