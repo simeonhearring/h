@@ -39,4 +39,9 @@
 		<Types>NUMERIC,NUMERIC,DATE,DATE</Types>
 		<Sql>SELECT * FROM REPORT where mCongregation=? and mPublisher=? and mDate >= ?</Sql>
 	</Statement>
+	<Statement>
+		<Key>SELECT_CPYM</Key>
+		<Types>NUMERIC,NUMERIC,NUMERIC,NUMERIC</Types>
+		<Sql>SELECT * from REPORT where mCongregation=? and mPublisher=? and mYear=? and mMonth=?</Sql>
+	</Statement>
 </Statements> 

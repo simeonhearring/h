@@ -17,7 +17,8 @@
 	</bean>
 
 	<bean id="Domain" class="java.lang.String">
-		<constructor-arg value="https://uat.husoftware.net" />
+		<!-- <constructor-arg value="https://husoftware.net/khall/" /> -->
+		<constructor-arg value="http://127.0.0.1:8890/" />
 	</bean>
 
 	<bean id="Environment" class="java.lang.String">

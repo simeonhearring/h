@@ -81,4 +81,10 @@
 		<property name="dao" ref="Dao" />
 		<property name="EmailService" ref="EmailService" />
 	</bean>
+
+	<bean id="ReportEmailCommand" class="h.khall.server.command.ReportEmailCommandBean">
+		<property name="dao" ref="Dao" />
+		<property name="EmailService" ref="EmailService" />
+		<property name="domain" ref="Domain" />
+	</bean>
 </beans>

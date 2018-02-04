@@ -21,6 +21,7 @@ public class ReportSql extends AbstractSql
   private final MapReport mSelect1;
   private final MapReport mSelect2;
   private final MapReport mSelect3;
+  private final MapReport mSelect4;
 
   public ReportSql(DataSource inDataSource)
   {
@@ -32,6 +33,7 @@ public class ReportSql extends AbstractSql
     mSelect1 = new MapReport(inDataSource, mStmts.getStatement("SELECT_CP"));
     mSelect2 = new MapReport(inDataSource, mStmts.getStatement("SELECT_CR"));
     mSelect3 = new MapReport(inDataSource, mStmts.getStatement("SELECT_CPR"));
+    mSelect4 = new MapReport(inDataSource, mStmts.getStatement("SELECT_CPYM"));
   }
 
   public int upsert(Report inReport)
@@ -71,9 +73,14 @@ public class ReportSql extends AbstractSql
     return select(inCongId, start.getTime(), end.getTime());
   }
 
-  public List<Report> select(int inCongId, long inPubId, Date inBegin, Date inEnd)
+  public List<Report> select(int inCongId, Long inPubId, Date inBegin, Date inEnd)
   {
     return mSelect3.execute(params(inCongId, inPubId, inBegin, inEnd));
+  }
+
+  public Report select(int inCongId, long inPubId, int inYear, int inMonth)
+  {
+    return only(mSelect4.execute(params(inCongId, inPubId, inYear, inMonth)));
   }
 
   private class MapReport extends MappingSqlEncrypt<Report>

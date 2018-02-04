@@ -75,7 +75,7 @@ public class CongSqlTest extends MySqlBaseDaoTest
 
     e.put(new Date(1533013200000L), new Event(Event.Type.CO_VISIT, "We Must Run With Endurance!"));
 
-    e.put(new Date(1523077200000L),
+    e.put(new Date(1524373200000L),
         new Event(Event.Type.CACO, "Don't Give Up In Doing What Is Fine!"));
 
     e.put(new Date(1528693200000L), new Event(Event.Type.REGIONAL, "'Be Courageous'!"));

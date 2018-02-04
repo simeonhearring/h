@@ -190,6 +190,7 @@ public class Assignments implements Serializable
     private String mWeek;
     private String mMeeting;
     private String mChairman;
+    private String mEvent;
 
     private String mTime;
     private String mTheme;
@@ -365,7 +366,7 @@ public class Assignments implements Serializable
       ret.mChairman = mChairman;
       ret.mWeek = mWeek;
       ret.mMeeting = mMeeting;
-      ret.mChairman = mChairman;
+      ret.mEvent = mEvent;
 
       ret.mDate = mDate;
       ret.mPart = mPart;
@@ -391,6 +392,16 @@ public class Assignments implements Serializable
     public void setHistory(String inHistory)
     {
       mHistory = inHistory;
+    }
+
+    public String getEvent()
+    {
+      return mEvent;
+    }
+
+    public void setEvent(String inEvent)
+    {
+      mEvent = inEvent;
     }
   }
 }

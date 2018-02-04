@@ -63,27 +63,25 @@ public class Event implements Serializable
     return gTypeLabel() + StringUtil.ensure(mTheme, ": ");
   }
 
-  private String gTypeLabel()
+  public String gTypeLabel()
   {
     String ret = "";
     switch (mType)
     {
       case CABR:
-        ret = "Circuit Assembly - BR";
+        ret = "Circuit Assembly - CABR";
         break;
       case CACO:
-        ret = "Circuit Assembly - CO";
+        ret = "Circuit Assembly - CACO";
         break;
       case CO_VISIT:
         ret = "Circuit Overseer Visit";
-
         break;
       case REGIONAL:
         ret = "Regional Convention";
         break;
       case WEEKEND:
         ret = "Weekend Meeting";
-
         break;
       case WEEKMID:
         ret = "Midweek Meeting";

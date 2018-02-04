@@ -36,10 +36,13 @@
 	<field name="participantsA" class="java.lang.String">
 		<fieldDescription><![CDATA[participantsA]]></fieldDescription>
 	</field>
+	<field name="event" class="java.lang.String">
+		<fieldDescription><![CDATA[event]]></fieldDescription>
+	</field>
 	<group name="Week" keepTogether="true">
 		<groupExpression><![CDATA[$F{week}]]></groupExpression>
 		<groupHeader>
-			<band height="18">
+			<band height="20">
 				<textField>
 					<reportElement x="0" y="0" width="380" height="15" uuid="cb4966cf-46c0-49e0-9724-439e5d4c6bc7">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -75,6 +78,21 @@
 						<pen lineWidth="2.0" lineStyle="Double"/>
 					</graphicElement>
 				</line>
+				<textField isBlankWhenNull="true">
+					<reportElement x="216" y="0" width="220" height="15" uuid="d095994f-0451-4d7e-bc09-09a49c392174">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<box topPadding="3">
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement>
+						<font size="9" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{event}]]></textFieldExpression>
+				</textField>
 			</band>
 		</groupHeader>
 	</group>

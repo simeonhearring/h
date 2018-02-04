@@ -74,3 +74,11 @@
 	font-size: 11px;
 	margin: 0px;
 }
+
+.kh_small_table tr > td {
+	padding: 3px !important;
+}
+
+.kh_table_right {
+	text-align: right;
+}

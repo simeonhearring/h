@@ -10,7 +10,7 @@ public class CongSaveCommandBean extends AbstractDaoCommandBean<Dao, CongSaveCom
   @Override
   public RpcResponse execute(CongSaveCommand inCommand)
   {
-    mDao.update(inCommand.getCong());
+    mDao.upsert(inCommand.getCong());
     return inCommand;
   }
 }

@@ -8,12 +8,34 @@ import java.util.List;
 import java.util.Map;
 
 import h.model.shared.khall.Roles.Role;
+import h.model.shared.util.NumberUtil;
 import h.model.shared.util.StringUtil;
 import h.model.shared.util.TimeUtil;
 
 @SuppressWarnings("serial")
 public class Report implements Serializable
 {
+  public enum Partial
+  {
+    I_15("15 min.", 0.25),
+    I_30("30 min.", 0.50),
+    I_45("45 min.", 0.75);
+
+    private String mDisplay;
+    private double mValue;
+
+    private Partial(String inDisplay, double inValue)
+    {
+      mDisplay = inDisplay;
+      mValue = inValue;
+    }
+
+    public double getValue()
+    {
+      return mValue;
+    }
+  }
+
   private Integer mCongId;
   private Long mPubId;
   private Integer mYear;
@@ -368,7 +390,32 @@ public class Report implements Serializable
       {
         sum += inValues[i];
       }
-      return (sum / inRange) / mPubCount;
+      return sum / inRange / mPubCount;
+    }
+
+    public double gPlacementsAvg(int inMonths)
+    {
+      return gAverage(inMonths, getPlacements());
+    }
+
+    public double gVideoShowingsAvg(int inMonths)
+    {
+      return gAverage(inMonths, getVideoShowings());
+    }
+
+    public double gHoursAvg(int inMonths)
+    {
+      return gAverage(inMonths, getHours());
+    }
+
+    public double gReturnVisitsAvg(int inMonths)
+    {
+      return gAverage(inMonths, getReturnVisits());
+    }
+
+    public double gBibleStudiesAvg(int inMonths)
+    {
+      return gAverage(inMonths, getBibleStudies());
     }
 
     public void setValue(int inPos, Report inReport)
@@ -486,6 +533,7 @@ public class Report implements Serializable
     private int mBibleStudies;
     private int mCreditHours;
     private boolean mReactivated;
+    private double mHoursNeeded;
 
     public void add(Report inReport)
     {
@@ -631,6 +679,16 @@ public class Report implements Serializable
     {
       return ensure(inReport) > inThreshold;
     }
+
+    public void setTotalHoursNeeded(double inHoursNeeded)
+    {
+      mHoursNeeded = inHoursNeeded;
+    }
+
+    public double getHoursNeeded()
+    {
+      return mHoursNeeded;
+    }
   }
 
   public boolean cleanRemarks()
@@ -652,5 +710,89 @@ public class Report implements Serializable
   public Double gHours()
   {
     return ensure(this);
+  }
+
+  public boolean gWebUpdateable()
+  {
+    return (getHours() != null || getHours().equals(0)) && getPartialHours() == null
+        && !Boolean.TRUE.equals(getNoActivity());
+  }
+
+  public void update(Report inReport)
+  {
+    setHours(inReport.getHours());
+    setPlacements(inReport.getPlacements());
+    setVideoShowings(inReport.getVideoShowings());
+    setReturnVisits(inReport.getReturnVisits());
+    setBibleStudies(inReport.getBibleStudies());
+    setRemarks(inReport.getRemarks());
+    setSendDate(inReport.gSendDate());
+    setPartialHours(inReport.getPartialHours());
+    setNoActivity(inReport.getNoActivity());
+    setIncludeAllHours(inReport.getIncludeAllHours());
+  }
+
+  public String getMonthText()
+  {
+    return YrMo.toReportText(mMonth - 1);
+  }
+
+  public Integer getHoursWithRBC()
+  {
+    int ret = NumberUtil.intValue(mHours);
+
+    if (getIncludeAllHours() != null && getIncludeAllHours())
+    {
+      ret = ret + NumberUtil.intValue(mCreditHours);
+    }
+    else
+    {
+      boolean isShort = NumberUtil.isBetweenEqual(ret, 0, 69) && NumberUtil.isGreater(mCreditHours, 0);
+      if (isShort)
+      {
+        int t = ret + NumberUtil.intValue(mCreditHours);
+        ret = t < 70 ? t : 70;
+      }
+    }
+
+    return ret;
+  }
+
+  public boolean isHours(boolean inExcludeNoActivity)
+  {
+    boolean b = NumberUtil.toInt(mHours) + NumberUtil.toDouble(mPartialHours) > 0.0;
+    if (!b && inExcludeNoActivity)
+    {
+      b = mNoActivity;
+    }
+    return b;
+  }
+
+  public String getHoursPartial()
+  {
+    return (mHours != null ? mHours : Boolean.TRUE.equals(mNoActivity) ? "0" : "") + " "
+        + getPartialDisplay();
+  }
+
+  // TODO simplify
+  private String getPartialDisplay()
+  {
+    Partial p = get(mPartialHours);
+    return p != null ? p.mDisplay : "";
+  }
+  private static Partial get(Double inValue)
+  {
+    Partial ret = null;
+    if (inValue != null)
+    {
+      for (Partial value : Partial.values())
+      {
+        if (value.mValue == inValue.doubleValue())
+        {
+          ret = value;
+        }
+      }
+    }
+    return ret;
   }
 }

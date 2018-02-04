@@ -1,5 +1,6 @@
 package h.khall.shared.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -105,5 +106,54 @@ public class Client extends h.model.shared.Client
   public List<Event> gEvents(Date inOf)
   {
     return mCong.gEvents(inOf);
+  }
+
+  public List<Long> convert(List<Person> inList)
+  {
+    List<Long> ret = new ArrayList<>();
+    for (Person value : inList)
+    {
+      ret.add(value.getIdLong());
+    }
+    return ret;
+  }
+
+  public List<Long> convertRegular(List<Person> inList)
+  {
+    List<Long> ret = new ArrayList<>();
+    for (Person value : inList)
+    {
+      if (value.isRegular())
+      {
+        ret.add(value.getIdLong());
+      }
+    }
+    return ret;
+  }
+
+  public List<Long> convertAuxiliary(List<Person> inList)
+  {
+    List<Long> ret = new ArrayList<>();
+    for (Person value : inList)
+    {
+      if (value.isAuxiliary())
+      {
+        ret.add(value.getIdLong());
+      }
+    }
+    return ret;
+  }
+
+  public List<Long> convertNonPioneer(List<Person> inList)
+  {
+    List<Long> ret = new ArrayList<>();
+    for (Person value : inList)
+    {
+      if (value.isNotPioneer())
+      {
+        ret.add(value.getIdLong());
+      }
+    }
+    return ret;
   }
 }

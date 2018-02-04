@@ -50,6 +50,15 @@ public class PageKhallView extends AbstractView<PagePresenter> implements PagePr
   }
 
   @Override
+  public void analysis()
+  {
+    clear();
+    mWrapper.setStyleName("gray-bg");
+    mSideBar.setVisible(false);
+    mBody.add(new PageAnalysisView());
+  }
+
+  @Override
   public void midweek()
   {
     clear();

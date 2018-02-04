@@ -15,7 +15,7 @@
 			<sup>
 				<g:InlineHTML HTML="{msg.monogram}" />
 			</sup>
-			HU SOFTWARE &copy; 2010-2017
+			HU SOFTWARE &copy; 2010-2018
 		</div>
 	</b.gwt:HTMLPanel>
 </ui:UiBinder>

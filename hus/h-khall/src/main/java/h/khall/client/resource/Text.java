@@ -11,4 +11,8 @@ public interface Text
   String rptS89(int inCongId, int inYear, int inMonth);
 
   String rptOclmWork(int inCongId, int inYear, int inMonth);
+
+  String emailMissingReports();
+
+  String emailReportTemplate();
 }

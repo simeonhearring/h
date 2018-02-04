@@ -13,7 +13,7 @@ public class ReportSaveCommandBean extends AbstractDaoCommandBean<Dao, ReportSav
   {
     for (Report value : inCommand.getReports())
     {
-      mDao.update(value);
+      mDao.upsert(value);
     }
     return inCommand;
   }

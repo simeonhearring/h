@@ -1,13 +1,15 @@
 package h.khall.client.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.user.client.TakesValue;
 import com.google.gwt.user.client.ui.HasText;
 
-import h.khall.shared.command.ReportSaveCommand;
+import h.khall.shared.command.ReportEmailCommand;
 import h.model.shared.khall.Profile.Security;
 import h.model.shared.khall.Report;
 import h.model.shared.khall.Roles.Role;
@@ -44,7 +46,17 @@ public class MinistryMonthPresenter extends AbstractPresenter<MinistryMonthPrese
     inReport.setNoActivity(mDisplay.getNoActivity().getValue());
     inReport.setIncludeAllHours(mDisplay.getInclude().getValue());
     inReport.setType(mDisplay.getPioneer().getValue());
-    inReport.setSendDate(mDisplay.getSend().getValue());
+    inReport.setSendDate(firstOfMonth(mDisplay.getSend().getValue()));
+  }
+
+  private Date firstOfMonth(Date inValue)
+  {
+    if (inValue == null)
+    {
+      return null;
+    }
+    Date ret = mDisplay.parse("yyyy-MM-dd", mDisplay.format("yyyy-MM", inValue) + "-01");
+    return ret;
   }
 
   private static Integer noZero(Integer inValue)

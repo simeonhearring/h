@@ -1,8 +1,12 @@
 package h.dao.jdbc.statement;
 
+import java.util.List;
+
 import org.junit.Before;
+import org.junit.Test;
 
 import h.dao.jdbc.MySqlBaseDaoTest;
+import h.model.shared.khall.Person;
 
 public class PersonEncryptSqlTest extends MySqlBaseDaoTest
 {
@@ -14,17 +18,18 @@ public class PersonEncryptSqlTest extends MySqlBaseDaoTest
     mNewSql = new PersonEncryptSql(mDataSource);
   }
 
-  // @Test
-  // public void updatePerson()
-  // {
-  // Person p = mNewSql.selectById("NBgh(epoT(MSkV77kFaCE~cC_SSf7c7o", 863L);
-  // System.out.println(p.gName());
-  // p.setFsgId(0);
-  // p.getRoles().getRoles().remove(Role.PUBLISHER);
-  //
-  // mNewSql.update("NBgh(epoT(MSkV77kFaCE~cC_SSf7c7o", p);
-  // }
-  //
+  @Test
+  public void updatePersonLocater()
+  {
+    List<Person> p = mNewSql.selectByCongId("NBgh(epoT(MSkV77kFaCE~cC_SSf7c7o", 60);
+    int i = 1;
+    for (Person value : p)
+    {
+      System.out.println(i++ + ")" + value.gName());
+      mNewSql.update("NBgh(epoT(MSkV77kFaCE~cC_SSf7c7o", value);
+    }
+  }
+
   // @Test
   // public void addPersons()
   // {

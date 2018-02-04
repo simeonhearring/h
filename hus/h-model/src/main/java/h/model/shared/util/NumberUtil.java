@@ -8,6 +8,26 @@ public final class NumberUtil
   {
   }
 
+  public static boolean isGreater(Integer inValue, int inI)
+  {
+    return inValue != null && inValue.intValue() > inI;
+  }
+
+  public static boolean isLess(Integer inValue, int inI)
+  {
+    return inValue != null && inValue.intValue() < inI;
+  }
+
+  public static boolean isBetweenEqual(long inValue, long inStart, long inEnd)
+  {
+    return inValue >= inStart && inValue <= inEnd;
+  }
+
+  public static boolean isBetweenEqual(int inValue, int inStart, int inEnd)
+  {
+    return inValue >= inStart && inValue <= inEnd;
+  }
+
   public static int intValue(Integer inValue)
   {
     return inValue != null ? inValue.intValue() : 0;
@@ -235,5 +255,20 @@ public final class NumberUtil
   public static Long notZero(Long inValue)
   {
     return inValue.longValue() == 0 ? null : inValue;
+  }
+
+  public static int toInt(Integer inValue)
+  {
+    return toInt(inValue, 0);
+  }
+
+  public static int toInt(Integer inValue, int inDefault)
+  {
+    return inValue == null ? inDefault : inValue;
+  }
+
+  public static double toDouble(Double inValue)
+  {
+    return inValue == null ? 0.0 : inValue.doubleValue();
   }
 }

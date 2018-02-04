@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import h.model.shared.util.NumberUtil;
+
 @SuppressWarnings("serial")
 public class YrMo implements Serializable
 {
@@ -88,5 +90,17 @@ public class YrMo implements Serializable
       ret[i] = inYm.get(i).getDisplay();
     }
     return ret;
+  }
+
+  public static String toReportText(Integer inMonth)
+  {
+    return sMonthNames[inMonth];
+  }
+
+  public static String convert(String inValue)
+  {
+    String[] text = inValue.split("-");
+    int mo = NumberUtil.toInt(text[1], 0) - 1;
+    return sMonthNames[mo] + " " + text[0];
   }
 }

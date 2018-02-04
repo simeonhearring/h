@@ -30,13 +30,15 @@ public interface Dao
 
   Person selectPerson(String inEncrypt, long inId);
 
+  Person.Locater selectPersonLocater(long inId);
+
   void update(String inKey, Person inPerson);
 
   void update(Assignment inAssignment);
 
-  void update(Report inReport);
+  void upsert(Report inReport);
 
-  void update(Congregation inCong);
+  void upsert(Congregation inCong);
 
   Congregation selectCong(Profile inProfile);
 
@@ -45,4 +47,10 @@ public interface Dao
   Reports selectReports(Integer inCongId, Date inStart, Date inEnd);
 
   Reports selectReports(Integer inCongId, int inPastMonths);
+
+  Report selectReport(Integer inCongId, Long inPubId, int inYear, int inMonth);
+
+  Reports selectReports(Integer inCongId, Long inPubId, Date inStart, Date inEnd);
+
+  Reports selectReports(Integer inCongId);
 }

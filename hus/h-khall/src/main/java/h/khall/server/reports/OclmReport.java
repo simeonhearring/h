@@ -107,7 +107,7 @@ public class OclmReport extends AbstractReportDefault<Report>
       {
         Map<Hall, Assignment> assignment = week.gAssignments(value, inCong.getHalls());
         eventAssignment(value, assignment, event);
-        Report r = newReport(keeper, chairman[0], chairman[1], assignment.get(Hall.MAIN), week.getOf());
+        Report r = newReport(keeper, chairman[0], chairman[1], assignment.get(Hall.MAIN), week.getOf(), event);
         addReports(ret, inPersons, inMonth, assignment, r.copy(), chairman);
       }
     }
@@ -195,7 +195,7 @@ public class OclmReport extends AbstractReportDefault<Report>
   }
 
   private Report newReport(TimeKeeper inT, String inReading, String inChairman, Assignment inA,
-      Date inWeekOf)
+      Date inWeekOf, Event inEvent)
   {
     Report ret = new Report();
 
@@ -205,11 +205,23 @@ public class OclmReport extends AbstractReportDefault<Report>
 
     ret.setWeek(date(date, inWeekOf), inReading, inChairman);
 
+    ret.setEvent(event(inEvent));
+
     ret.setMeeting(Part.meeting(inA.getPart()));
     ret.setPart(inA.getPart().name());
 
     ret.setTheme(inA.getPart(), inA.getTheme(), inA.getSource(), inA.gTiming());
 
+    return ret;
+  }
+
+  private String event(Event inEvent)
+  {
+    String ret = "";
+    if (inEvent != null)
+    {
+      ret = inEvent.gTypeLabel();
+    }
     return ret;
   }
 

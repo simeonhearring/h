@@ -16,6 +16,7 @@ public class PersonEncryptSql extends AbstractSql
   private final AbstractEncryptSqlUpdate<Person> mUpdate0;
   private final MapPersonEncrypt mSelect0;
   private final MapPersonEncrypt mSelect1;
+  private final MappingSql<Person.Locater> mSelect2;
 
   public PersonEncryptSql(DataSource inDataSource)
   {
@@ -25,6 +26,7 @@ public class PersonEncryptSql extends AbstractSql
     mUpdate0 = update(inDataSource, mStmts.getStatement("UPDATE_PE"));
     mSelect0 = new MapPersonEncrypt(inDataSource, mStmts.getStatement("SELECT_PE_ID"));
     mSelect1 = new MapPersonEncrypt(inDataSource, mStmts.getStatement("SELECT_PE_LOC"));
+    mSelect2 = new MapCong(inDataSource, mStmts.getStatement("SELECT_LOC"));
   }
 
   public int insert(String inKey, Person inValue)
@@ -37,6 +39,11 @@ public class PersonEncryptSql extends AbstractSql
   public int update(String inKey, Person inValue)
   {
     return mUpdate0.execute(inKey, inValue);
+  }
+
+  public Person.Locater selectLocaterById(Long inId)
+  {
+    return only(mSelect2.execute(params(inId)));
   }
 
   public Person selectById(String inKey, Long inId)
@@ -94,6 +101,22 @@ public class PersonEncryptSql extends AbstractSql
     {
       Person ret = readValue(inRs.getString("mProfile"), Person.class);
       ret.setId(inRs.getLong("mId"));
+      return ret;
+    }
+  }
+
+  private class MapCong extends MappingSql<Person.Locater>
+  {
+    public MapCong(DataSource inDataSource, Statement inStmt)
+    {
+      super(inDataSource, inStmt.getSql(), inStmt.types());
+    }
+
+    @Override
+    public Person.Locater mapRow(ResultSet inRs, int inRowNum) throws SQLException
+    {
+      Person.Locater ret = new Person.Locater();
+      ret.setText(inRs.getString("mLocater"));
       return ret;
     }
   }

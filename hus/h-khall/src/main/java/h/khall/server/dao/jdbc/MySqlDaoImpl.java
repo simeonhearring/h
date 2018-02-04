@@ -42,6 +42,12 @@ public class MySqlDaoImpl extends JavaBeanDaoImpl implements Dao
   }
 
   @Override
+  public Report selectReport(Integer inCongId, Long inPubId, int inYear, int inMonth)
+  {
+    return mReportSql.select(inCongId, inPubId, inYear, inMonth);
+  }
+
+  @Override
   public Profile selectProfile(Profile inProfile)
   {
     return mProfileSql.select(inProfile.gEncrypt(), inProfile.gLocator());
@@ -80,10 +86,22 @@ public class MySqlDaoImpl extends JavaBeanDaoImpl implements Dao
   }
 
   @Override
+  public Person.Locater selectPersonLocater(long inId)
+  {
+    return mPersonSql.selectLocaterById(inId);
+  }
+
+  @Override
   public Reports selectReports(Profile inProfile)
   {
+    return selectReports(inProfile.getCongId());
+  }
+
+  @Override
+  public Reports selectReports(Integer inCongId)
+  {
     Reports ret = new Reports();
-    ret.addReports(mReportSql.select(inProfile.getCongId()));
+    ret.addReports(mReportSql.select(inCongId));
     return ret;
   }
 
@@ -100,6 +118,14 @@ public class MySqlDaoImpl extends JavaBeanDaoImpl implements Dao
   {
     Reports ret = new Reports();
     ret.addReports(mReportSql.select(inCongId, inStart, inEnd));
+    return ret;
+  }
+
+  @Override
+  public Reports selectReports(Integer inCongId, Long inPubId, Date inStart, Date inEnd)
+  {
+    Reports ret = new Reports();
+    ret.addReports(mReportSql.select(inCongId, inPubId, inStart, inEnd));
     return ret;
   }
 
@@ -132,13 +158,13 @@ public class MySqlDaoImpl extends JavaBeanDaoImpl implements Dao
   }
 
   @Override
-  public void update(Congregation inCong)
+  public void upsert(Congregation inCong)
   {
     mCongSql.upsert(inCong);
   }
 
   @Override
-  public void update(Report inReport)
+  public void upsert(Report inReport)
   {
     mReportSql.upsert(inReport);
   }

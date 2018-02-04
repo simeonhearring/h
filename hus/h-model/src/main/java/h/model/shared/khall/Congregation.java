@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import h.model.shared.util.NumberUtil;
+
 @SuppressWarnings("serial")
 public class Congregation implements Serializable
 {
@@ -88,6 +90,21 @@ public class Congregation implements Serializable
     if (mEvents.containsKey(inOf))
     {
       ret = mEvents.get(inOf);
+    }
+    else
+    {
+      long s = inOf.getTime();
+      long e = s + 604800000L;
+// TODO
+      for (Date value : mEvents.keySet())
+      {
+        long d = value.getTime();
+        if (NumberUtil.isBetweenEqual(d, s, e))
+        {
+          ret = mEvents.get(value);
+          break;
+        }
+      }
     }
 
     return ret;

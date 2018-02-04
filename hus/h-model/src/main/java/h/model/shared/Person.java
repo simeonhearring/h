@@ -265,6 +265,12 @@ public class Person implements Serializable, Tag
         + StringUtil.ensure(mSuffix, " ");
   }
 
+  public String gFullName()
+  {
+    return StringUtil.ensure(mFirst, "", " ") + StringUtil.ensure(mLast)
+        + StringUtil.ensure(mSuffix, " ");
+  }
+
   public String gNameAge()
   {
     int age = gAge();

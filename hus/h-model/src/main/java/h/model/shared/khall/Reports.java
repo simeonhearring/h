@@ -2,6 +2,7 @@ package h.model.shared.khall;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +12,7 @@ import h.model.shared.khall.Report.PubRange;
 import h.model.shared.khall.Report.Stat;
 import h.model.shared.khall.Report.Total;
 import h.model.shared.util.NumberUtil;
+import h.model.shared.util.TimeUtil;
 
 @SuppressWarnings("serial")
 public class Reports implements Serializable
@@ -126,6 +128,7 @@ public class Reports implements Serializable
     return ret;
   }
 
+  @Deprecated
   public Status getStatus(long inPubId, int inFromYear, int inFromMonth, int inToYear,
       int inToMonth)
   {
@@ -154,6 +157,22 @@ public class Reports implements Serializable
     }
 
     return ret;
+  }
+
+  public List<Report> gServiceYear(int inYear, long inPubId)
+  {
+    List<Report> ret = new ArrayList<>();
+    Map<String, Report> month = gReportByMonth(inPubId);
+    for (String value : gServiceYear(inYear))
+    {
+      ret.add(month.get(value));
+    }
+    return ret;
+  }
+
+  public static List<String> gServiceYear(int inYear)
+  {
+    return getRange(inYear, 9, inYear + 1, 8);
   }
 
   public static List<String> getRange(int inFromYear, int inFromMonth, int inToYear, int inToMonth)
@@ -227,6 +246,16 @@ public class Reports implements Serializable
     return gPubRange(pubId, inPast);
   }
 
+  public Map<Long, PubRange> gPubRanges(List<Long> inPubId, List<YrMo> inPast)
+  {
+    Map<Long, PubRange> ret = new HashMap<>();
+    for (Long id : inPubId)
+    {
+      ret.put(id, gPubRange(id, inPast));
+    }
+    return ret;
+  }
+
   public PubRange gPubRange(List<Long> inPubId, List<YrMo> inPast)
   {
     PubRange ret = new PubRange();
@@ -291,5 +320,123 @@ public class Reports implements Serializable
     }
 
     return ret;
+  }
+
+  private boolean isFutureMonth(Report inReport)
+  {
+    return (inReport.getHours() == null || inReport.getHours() == 0)
+        && !Boolean.TRUE.equals(inReport.getNoActivity());
+  }
+
+  public List<String> getMissing(int inFromYear, int inFromMonth, int inToYear, int inToMonth,
+      boolean inExcludeNoActivity, long inPubId, Date inStart)
+  {
+    List<String> ret = new ArrayList<>();
+
+    Map<String, Report> month = gReportByMonth(inPubId);
+    for (String value : getRange(inFromYear, inFromMonth, inToYear, inToMonth))
+    {
+      if (isAfterStart(inStart, value))
+      {
+        Report report = month.get(value);
+        if (report == null || !report.isHours(inExcludeNoActivity))
+        {
+          boolean noActivity = report != null && report.getNoActivity();
+          ret.add(noActivity ? "{" + value + "}" : value);
+        }
+      }
+    }
+    return ret;
+  }
+
+  private boolean isAfterStart(Date inStart, String inValue)
+  {
+    if (inStart == null)
+    {
+      return true;
+    }
+    Date d = TimeUtil.parse("yyyy-MM", inValue);
+    return d.compareTo(inStart) >= 0;
+  }
+
+  public Report.Total getServiceYearTotal(int inYear, int inMonthlyGoal, long inPubId)
+  {
+    Report.Total ret = getTotals(inYear, 9, inYear + 1, 8, inPubId);
+    ret.setTotalHoursNeeded(getTotalHoursNeeded(inYear, inMonthlyGoal, inPubId));
+    return ret;
+  }
+
+  public Report.Total getTotals(int inFromYear, int inFromMonth, int inToYear, int inToMonth,
+      long inPubId)
+  {
+    Report.Total ret = new Report.Total();
+
+    for (Report value : getReports(inFromYear, inFromMonth, inToYear, inToMonth, inPubId))
+    {
+      ret.add(value);
+    }
+
+    return ret;
+  }
+
+  public List<Report> getReports(int inFromYear, int inFromMonth, int inToYear, int inToMonth,
+      long inPubId)
+  {
+    List<Report> ret = new ArrayList<>();
+
+    Map<String, Report> month = gReportByMonth(inPubId);
+    for (String value : getRange(inFromYear, inFromMonth, inToYear, inToMonth))
+    {
+      Report report = month.get(value);
+      if (report != null)
+      {
+        ret.add(report);
+      }
+    }
+    return ret;
+  }
+
+  public double getTotalHoursNeeded(int inServiceYear, int inMonthlyGoal, long inPubId)
+  {
+    double ret = 0.0;
+
+    List<String> range = getRange(inServiceYear, 9, inServiceYear + 1, 8);
+
+    Map<String, Report> month = gReportByMonth(inPubId);
+    int months = 0, hours = 0, remainMonths = 0;
+    for (String value : range)
+    {
+      Report r = month.get(value);
+
+      if (r != null && Roles.Role.REGULAR_PIONEER.equals(r.getType()))
+      {
+        months++;
+        hours += r.getHoursWithRBC();
+
+        if (isFutureMonth(r))
+        {
+          remainMonths++;
+        }
+      }
+    }
+
+    int remainHours = months * inMonthlyGoal - hours;
+    if (remainMonths == 0 && remainHours > 0)
+    {
+      double amountShort = remainHours * -1.0;
+      ret = amountShort;
+    }
+    else
+    {
+      ret = remainHours / (remainMonths * 1.0);
+    }
+
+    return ret;
+  }
+
+  public List<String> getMissingList(YearMonthRange inRange, long inPubId)
+  {
+    return getMissing(inRange.getYearFrom(), inRange.getMonthFrom(), inRange.getYearTo(),
+        inRange.getMonthTo(), true, inPubId, null);
   }
 }

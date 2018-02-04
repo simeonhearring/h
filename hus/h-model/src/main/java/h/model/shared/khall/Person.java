@@ -1,5 +1,6 @@
 package h.model.shared.khall;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -9,6 +10,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import h.model.shared.khall.Categories.Category;
 import h.model.shared.khall.Roles.Role;
 import h.model.shared.util.EnumUtil;
+import h.model.shared.util.NumberUtil;
+import h.model.shared.util.StringUtil;
 import h.model.shared.util.TimeUtil;
 
 @SuppressWarnings("serial")
@@ -42,7 +45,49 @@ public class Person extends h.model.shared.Person
     StringBuilder sb = new StringBuilder();
     sb.append("c").append(mCongId).append(",");
     sb.append("f").append(mFsgId).append(",");
+    sb.append(StringUtil.ensure(gPioneerType(), "p", ","));
+    sb.append(StringUtil.ensure(gCategory(), "cat", ","));
     return sb.toString();
+  }
+
+  private String gCategory()
+  {
+    String ret = "";
+    if (mCategories != null)
+    {
+      mCategories.normalize();
+      if (mCategories.contains(Category.FIFTEEN_MINUTE_INCREMENT))
+      {
+        ret += "15-";
+      }
+      if (mCategories.contains(Category.INFIRM_REGULAR_PIONEER))
+      {
+        ret += "IP-";
+      }
+    }
+    return ret;
+  }
+
+  private String gPioneerType()
+  {
+    String ret = "";
+    if (mRoles != null)
+    {
+      mRoles.normalize();
+      if (isSpecial())
+      {
+        ret = "s";
+      }
+      else if (isRegular())
+      {
+        ret = "r";
+      }
+      else if (isAuxiliary())
+      {
+        ret = "a";
+      }
+    }
+    return ret;
   }
 
   public void normalize()
@@ -247,7 +292,26 @@ public class Person extends h.model.shared.Person
   @JsonIgnore
   public boolean isRegular()
   {
-    return mRoles.contains(Roles.Role.REGULAR_PIONEER);
+    return mRoles.contains(Roles.Role.REGULAR_PIONEER)
+        || mRoles.contains(Roles.Role.SPECIAL_PIONEER);
+  }
+
+  @JsonIgnore
+  public boolean isSpecial()
+  {
+    return mRoles.contains(Roles.Role.SPECIAL_PIONEER);
+  }
+
+  @JsonIgnore
+  public boolean isAuxiliary()
+  {
+    return mRoles.contains(Roles.Role.AUXILIARY_PIONEER);
+  }
+
+  @JsonIgnore
+  public boolean isNotPioneer()
+  {
+    return !isRegular() && !isAuxiliary();
   }
 
   @JsonIgnore
@@ -352,5 +416,60 @@ public class Person extends h.model.shared.Person
     }
 
     return ret;
+  }
+
+  public static class Locater implements Serializable
+  {
+    private String mText;
+
+    public void setText(String inText)
+    {
+      mText = inText;
+    }
+
+    public boolean isMember()
+    {
+      return !mText.contains(",f0,");
+    }
+
+    public boolean isRegular()
+    {
+      return mText.contains(",pr,");
+    }
+
+    public boolean isSpecial()
+    {
+      return mText.contains(",ps,");
+    }
+
+    public boolean is15min()
+    {
+      return mText.contains("15-");
+    }
+
+    public int gGoal()
+    {
+      return 70;
+    }
+  }
+
+  private long getPublishingMills()
+  {
+    return getPublishing() != null ? getPublishing().getTime() : 0;
+  }
+
+  public static Date getPublishing(String inText)
+  {
+    if (inText == null || "0".equals(inText))
+    {
+      return null;
+    }
+    return new Date(NumberUtil.toLong(inText));
+  }
+
+  public String gAuthLine()
+  {
+    return getId() + "|" + gFullName() + "|" + getEmail() + "|" + mCongId + "|"
+        + getPublishingMills() + "|" + System.currentTimeMillis();
   }
 }

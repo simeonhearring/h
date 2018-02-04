@@ -65,7 +65,7 @@ public class ReportSqlTest extends MySqlBaseDaoTest
   {
     Date d1 = TimeUtil.getFirstOfMonth(2000, 1);
     Date d2 = TimeUtil.getFirstOfMonth(2000, 2);
-    List<Report> report = mSql.select(-1, 1, d1, d2);
+    List<Report> report = mSql.select(-1, 1L, d1, d2);
     Assert.assertEquals(true, report.size() > 0);
   }
 

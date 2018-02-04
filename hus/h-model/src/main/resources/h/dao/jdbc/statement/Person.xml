@@ -12,6 +12,12 @@
 		</Sql>
 	</Statement>
 	<Statement>
+		<Key>SELECT_LOC</Key>
+		<Types>NUMERIC</Types>
+		<Sql>select mLocater from PERSON where mId=?
+		</Sql>
+	</Statement>
+	<Statement>
 		<Key>UPDATE_PE</Key>
 		<Types>VARCHAR,VARCHAR,NUMERIC</Types>
 		<Sql>update PERSON set mProfile=AES_ENCRYPT(?,@key),mLocater=? where mId=?</Sql>
