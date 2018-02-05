@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import h.khall.client.model.AbstractPresenter;
-import h.model.shared.khall.FieldServiceGroup;
 import h.model.shared.khall.Person;
 import h.model.shared.khall.Report.PubRange;
 import h.model.shared.khall.YrMo;
@@ -27,32 +26,53 @@ public class PageAnalysisPresenter extends AbstractPresenter<PageAnalysisPresent
   @Override
   public void dispatch(RefreshEvent inEvent)
   {
-    addPubList();
-    addAnalysisBreakdown("Congregation", mClient.getPersons().getPublishers());
+    Data data = new Data();
+    data.mList = mClient.getPersons().getPublishers();
+    data.mHeading = "Congregation";
+    data.mBreakdown = true;
+    add(data);
   }
 
-  private void addAnalysis(String inSubHeading, List<Long> inPubIds)
+  @Override
+  protected void add(Data inData)
   {
-    mDisplay.setSubHeading(inSubHeading);
-    addAnalysis(true, inPubIds);
+    mDisplay.clearPublisher();
+    for (Person value : inData.mList)
+    {
+      mDisplay.addPublishers(value.gName(), value.getId());
+    }
+
+    mDisplay.setSubHeading(inData.mHeading);
+
+    mDisplay.clear();
+    if (inData.mBreakdown)
+    {
+      mDisplay.addRow("<b><i>PUBLISHERS</i></b>");
+      addAnalysis(mClient.convertNonPioneer(inData.mList));
+
+      mDisplay.addRow("<b><i>REGULAR AUXILIARY</i></b>");
+      addAnalysis(mClient.convertAuxiliary(inData.mList));
+
+      mDisplay.addRow("<b><i>REGULAR PIONEERS</i></b>");
+      addAnalysis(mClient.convertRegular(inData.mList));
+    }
+    else
+    {
+      addAnalysis(mClient.convert(inData.mList));
+    }
   }
 
-  private void addAnalysis(boolean inClear, List<Long> inPubIds)
+  private void addAnalysis(List<Long> inPubIds)
   {
     if (inPubIds.size() > 0)
     {
-      int yr = mProfile.gCurrentServiceYear();
+      int yr = mProfile.gCurrentServiceYear(); // TODO
       int mo = mProfile.gCurrentServiceMonth();
       List<YrMo> yml = YrMo.past(yr, mo, 24);
 
       mDisplay.setEnding("Ending: " + yml.get(0).getDisplay());
 
-      if (inClear)
-      {
-        mDisplay.clear();
-      }
-
-      int row = 1;
+      int index = 1;
       Map<Long, PubRange> ranges = mClient.getReports().gPubRanges(inPubIds, yml);
       for (Long id : inPubIds)
       {
@@ -63,7 +83,8 @@ public class PageAnalysisPresenter extends AbstractPresenter<PageAnalysisPresent
         String video = format(range.gVideoShowingsAvg(3), range.gVideoShowingsAvg(6));
         String place = format(range.gPlacementsAvg(3), range.gPlacementsAvg(6));
         String name = mClient.gName(id);
-        mDisplay.addRow(row++ + ")", name, place, video, hours, rv, studies);
+        String row = index++ + ")";
+        mDisplay.addRow(row, name, place, video, hours, rv, studies);
       }
 
       PubRange range = mClient.getReports().gPubRange(inPubIds, yml);
@@ -80,70 +101,6 @@ public class PageAnalysisPresenter extends AbstractPresenter<PageAnalysisPresent
   private String format(double inValueA, double inValueB)
   {
     return mDisplay.format("#.#", inValueA) + "/" + mDisplay.format("#.#", inValueB);
-  }
-
-  private void addPubList()
-  {
-    mDisplay.clearPublisher();
-    for (Person value : mClient.getPersons().getPublishers())
-    {
-      mDisplay.addPublishers(value.gName(), value.getId());
-    }
-  }
-
-  public void filterFsg(Integer inFsgId)
-  {
-    if (inFsgId.intValue() <= 0)
-    {
-      if (FieldServiceGroup.isElderOrServant(inFsgId))
-      {
-        mDisplay.clearPublisher();
-        List<Person> list = mClient.getPersons().getEldersOrServants();
-        for (Person value : list)
-        {
-          mDisplay.addPublishers(value.gName(), value.getId());
-        }
-        addAnalysis("Elders and Servants", mClient.convert(list));
-      }
-      else if (FieldServiceGroup.isPioneers(inFsgId))
-      {
-        mDisplay.clearPublisher();
-        List<Person> list = mClient.getPersons().getRegular();
-        for (Person value : list)
-        {
-          mDisplay.addPublishers(value.gName(), value.getId());
-        }
-        addAnalysis("Pioneers", mClient.convert(list));
-      }
-      else
-      {
-        addPubList();
-        addAnalysisBreakdown("Congregation", mClient.getPersons().getPublishers());
-      }
-    }
-    else
-    {
-      mDisplay.clearPublisher();
-      String fsgName = mClient.getCong().gFsgTitle(inFsgId);
-      List<Person> list = mClient.getPersons().getPubFsg(inFsgId);
-      for (Person value : list)
-      {
-        mDisplay.addPublishers(value.gName(), value.getId());
-      }
-      addAnalysisBreakdown(fsgName, list);
-    }
-  }
-
-  private void addAnalysisBreakdown(String inSubHeading, List<Person> inList)
-  {
-    mDisplay.setSubHeading(inSubHeading);
-    mDisplay.clear();
-    mDisplay.addRow("<b><i>PUBLISHERS</i></b>");
-    addAnalysis(false, mClient.convertNonPioneer(inList));
-    mDisplay.addRow("<b><i>REGULAR AUXILIARY</i></b>");
-    addAnalysis(false, mClient.convertAuxiliary(inList));
-    mDisplay.addRow("<b><i>REGULAR PIONEERS</i></b>");
-    addAnalysis(false, mClient.convertRegular(inList));
   }
 
   public interface Display extends h.style.g.client.model.Display

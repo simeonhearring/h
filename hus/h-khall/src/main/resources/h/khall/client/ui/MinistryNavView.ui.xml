@@ -14,10 +14,13 @@
 			<b:Anchor ui:field="mA2" text="Analysis" />
 		</b:ListItem>
 		<b:ListItem>
-			<b:Anchor ui:field="mA3" text="Import" />
+			<b:Anchor ui:field="mA3" text="Missing" />
+		</b:ListItem>
+		<b:ListItem>
+			<b:Anchor ui:field="mA4" text="Import" />
 		</b:ListItem>
 		<b:ListItem visible="false">
-			<b:Anchor ui:field="mA4" text="Nothing" />
+			<b:Anchor ui:field="mA5" text="Nothing" />
 		</b:ListItem>
 	</b.html:UnorderedList>
 </ui:UiBinder>

@@ -2,6 +2,7 @@ package h.model.shared.khall;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import h.model.shared.util.NumberUtil;
@@ -99,8 +100,39 @@ public class YrMo implements Serializable
 
   public static String convert(String inValue)
   {
+    boolean paren = inValue.indexOf("{") != -1;
+
+    if (paren)
+    {
+      inValue = inValue.replaceAll("{", "").replaceAll("}", "");
+    }
+
     String[] text = inValue.split("-");
     int mo = NumberUtil.toInt(text[1], 0) - 1;
-    return sMonthNames[mo] + " " + text[0];
+    String ret = sMonthNames[mo] + " " + text[0];
+
+    if (paren)
+    {
+      ret = "{" + ret + "}";
+    }
+
+    return ret;
+  }
+
+  @SuppressWarnings("deprecation")
+  public static int[] range7mo()
+  {
+    Date d = new Date();
+    int yT = d.getYear() + 1900;
+    int mT = d.getMonth();
+
+    d = new Date(d.getTime() - 18408222000L); // 7 mo
+    int yF = d.getYear() + 1900;
+    int mF = d.getMonth() + 1;
+
+    return new int[]
+    {
+        yF, mF, yT, mT
+    };
   }
 }

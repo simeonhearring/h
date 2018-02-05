@@ -59,6 +59,15 @@ public class PageKhallView extends AbstractView<PagePresenter> implements PagePr
   }
 
   @Override
+  public void missing()
+  {
+    clear();
+    mWrapper.setStyleName("gray-bg");
+    mSideBar.setVisible(false);
+    mBody.add(new PageMissingView());
+  }
+
+  @Override
   public void midweek()
   {
     clear();

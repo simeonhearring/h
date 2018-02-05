@@ -1,5 +1,7 @@
 package h.khall.client.model.pages;
 
+import static h.model.shared.khall.YrMo.sMonthNames;
+
 import h.khall.client.model.AbstractPresenter;
 import h.khall.client.model.MonthPresenter;
 import h.khall.client.ui.event.AssignmentSavedEvent;

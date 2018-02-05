@@ -29,5 +29,6 @@
 
 		<k:BirthView />
 		<k:BaptizedView />
+		<k:PublishingView />
 	</b.gwt:HTMLPanel>
 </ui:UiBinder>

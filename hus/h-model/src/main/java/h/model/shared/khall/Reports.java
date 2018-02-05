@@ -349,6 +349,21 @@ public class Reports implements Serializable
     return ret;
   }
 
+  public String gMissing(int[] inRange, Person inPerson)
+  {
+    int yF = inRange[0];
+    int mF = inRange[1];
+    int yT = inRange[2];
+    int mT = inRange[3];
+
+    StringBuilder sb = new StringBuilder();
+    for (String value : getMissing(yF, mF, yT, mT, false, inPerson.getIdLong(), inPerson.getPublishing()))
+    {
+      sb.append(YrMo.convert(value)).append(" ");
+    }
+    return sb.toString().trim();
+  }
+
   private boolean isAfterStart(Date inStart, String inValue)
   {
     if (inStart == null)
@@ -432,11 +447,5 @@ public class Reports implements Serializable
     }
 
     return ret;
-  }
-
-  public List<String> getMissingList(YearMonthRange inRange, long inPubId)
-  {
-    return getMissing(inRange.getYearFrom(), inRange.getMonthFrom(), inRange.getYearTo(),
-        inRange.getMonthTo(), true, inPubId, null);
   }
 }

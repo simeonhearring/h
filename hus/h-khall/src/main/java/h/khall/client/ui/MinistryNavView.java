@@ -11,6 +11,7 @@ import com.google.gwt.user.client.ui.Widget;
 
 import h.khall.client.ui.event.PageAnalysisEvent;
 import h.khall.client.ui.event.PageMinistryEvent;
+import h.khall.client.ui.event.PageMissingEvent;
 import h.khall.client.ui.event.ResendEvent;
 import h.style.g.client.ui.AbstractView;
 import h.style.g.client.ui.event.RefreshEvent;
@@ -24,7 +25,7 @@ public class MinistryNavView extends AbstractView
   }
 
   @UiField
-  Anchor mA1, mA2, mA3, mA4;
+  Anchor mA1, mA2, mA3, mA4, mA5;
 
   public MinistryNavView()
   {
@@ -33,7 +34,7 @@ public class MinistryNavView extends AbstractView
 
   @UiHandler(
   {
-      "mA1", "mA2", "mA3", "mA4"
+      "mA1", "mA2", "mA3", "mA4", "mA5"
   })
   public void onClick(ClickEvent inEvent)
   {
@@ -50,8 +51,13 @@ public class MinistryNavView extends AbstractView
     }
     else if (mA3.equals(source))
     {
+      fire(new PageMissingEvent());
+      fire(new ResendEvent(), new RefreshEvent());
     }
     else if (mA4.equals(source))
+    {
+    }
+    else if (mA5.equals(source))
     {
     }
   }

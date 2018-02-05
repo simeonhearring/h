@@ -4,13 +4,14 @@ import h.khall.client.model.AbstractPresenter;
 import h.khall.client.ui.event.PageAnalysisEvent;
 import h.khall.client.ui.event.PageMidweekEvent;
 import h.khall.client.ui.event.PageMinistryEvent;
+import h.khall.client.ui.event.PageMissingEvent;
 import h.khall.client.ui.event.PageParticipantEvent;
 import h.khall.client.ui.event.PageSampleEvent;
 import h.style.g.client.model.Attach;
 
 public class PagePresenter extends AbstractPresenter<PagePresenter.Display>
   implements PageSampleEvent.Handler, PageMidweekEvent.Handler, PageParticipantEvent.Handler,
-  PageMinistryEvent.Handler, PageAnalysisEvent.Handler
+  PageMinistryEvent.Handler, PageAnalysisEvent.Handler, PageMissingEvent.Handler
 {
   public PagePresenter(Display inDisplay)
   {
@@ -20,10 +21,15 @@ public class PagePresenter extends AbstractPresenter<PagePresenter.Display>
   public PagePresenter handlers()
   {
     addHandler(PageSampleEvent.TYPE, this);
+
     addHandler(PageMidweekEvent.TYPE, this);
+
     addHandler(PageParticipantEvent.TYPE, this);
+
     addHandler(PageMinistryEvent.TYPE, this);
     addHandler(PageAnalysisEvent.TYPE, this);
+    addHandler(PageMissingEvent.TYPE, this);
+
     return this;
   }
 
@@ -57,6 +63,12 @@ public class PagePresenter extends AbstractPresenter<PagePresenter.Display>
     mDisplay.analysis();
   }
 
+  @Override
+  public void dispatch(PageMissingEvent inEvent)
+  {
+    mDisplay.missing();
+  }
+
   public interface Display extends Attach
   {
     void ministry();
@@ -68,5 +80,7 @@ public class PagePresenter extends AbstractPresenter<PagePresenter.Display>
     void participants();
 
     void analysis();
+
+    void missing();
   }
 }

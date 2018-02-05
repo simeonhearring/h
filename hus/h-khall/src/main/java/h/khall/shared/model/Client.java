@@ -156,4 +156,9 @@ public class Client extends h.model.shared.Client
     }
     return ret;
   }
+
+  public String gFsgTitle(Integer inFsgId)
+  {
+    return mCong.gFsgTitle(inFsgId);
+  }
 }

@@ -94,12 +94,11 @@ public class Congregation implements Serializable
     else
     {
       long s = inOf.getTime();
-      long e = s + 604800000L;
-// TODO
+      long e = s + 518400000L; // 6 days
+
       for (Date value : mEvents.keySet())
       {
-        long d = value.getTime();
-        if (NumberUtil.isBetweenEqual(d, s, e))
+        if (NumberUtil.isBetweenEqual(value.getTime(), s, e))
         {
           ret = mEvents.get(value);
           break;

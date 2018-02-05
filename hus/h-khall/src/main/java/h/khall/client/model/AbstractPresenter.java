@@ -5,6 +5,8 @@ import java.util.List;
 import h.khall.client.ui.event.ClientEvent;
 import h.khall.client.ui.event.ProfileEvent;
 import h.khall.shared.model.Client;
+import h.model.shared.khall.FieldServiceGroup;
+import h.model.shared.khall.Person;
 import h.model.shared.khall.Profile;
 import h.model.shared.khall.Profile.Security;
 import h.style.g.client.model.Display;
@@ -14,8 +16,6 @@ import h.style.g.shared.chart.Chart.Dataset;
 public class AbstractPresenter<D extends Display> extends
   h.style.g.client.model.AbstractPresenter<D> implements ProfileEvent.Handler, ClientEvent.Handler
 {
-  protected static String[] sMonthNames = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
-
   protected Profile mProfile;
   protected Client mClient;
 
@@ -65,5 +65,48 @@ public class AbstractPresenter<D extends Display> extends
     {
       inList.remove(inValue);
     }
+  }
+
+  public static class Data
+  {
+    public List<Person> mList = null;
+    public String mHeading = null;
+    public boolean mBreakdown = false;
+  }
+
+  public final void filterFsg(Integer inFsgId)
+  {
+    Data data = new Data();
+
+    if (mClient.getCong().getFsgs().containsKey(inFsgId))
+    {
+      data.mBreakdown = true;
+      data.mHeading = mClient.getCong().gFsgTitle(inFsgId);
+      data.mList = mClient.getPersons().getPubFsg(inFsgId);
+    }
+    else if (FieldServiceGroup.isElderOrServant(inFsgId))
+    {
+      data.mBreakdown = false;
+      data.mHeading = "Elders and Servants";
+      data.mList = mClient.getPersons().getEldersOrServants();
+    }
+    else if (FieldServiceGroup.isPioneers(inFsgId))
+    {
+      data.mBreakdown = false;
+      data.mHeading = "Pioneers";
+      data.mList = mClient.getPersons().getRegular();
+    }
+    else
+    {
+      data.mBreakdown = true;
+      data.mHeading = "Congregation";
+      data.mList = mClient.getPersons().getPublishers();
+    }
+
+    add(data);
+  }
+
+  protected void add(Data inData)
+  {
   }
 }

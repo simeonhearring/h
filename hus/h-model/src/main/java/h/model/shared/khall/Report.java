@@ -77,7 +77,7 @@ public class Report implements Serializable
 
   public Boolean getNoActivity()
   {
-    return mNoActivity;
+    return mNoActivity != null && mNoActivity;
   }
 
   public void setNoActivity(Boolean inNoActivity)

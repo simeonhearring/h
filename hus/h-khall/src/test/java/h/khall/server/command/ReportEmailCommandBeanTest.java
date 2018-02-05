@@ -17,7 +17,7 @@ public class ReportEmailCommandBeanTest
     int yT = d.getYear() + 1900;
     int mT = d.getMonth();
 
-    d = new Date(d.getTime() - 18408222000L);
+    d = new Date(d.getTime() - 18408222000L); // 7 mo
     int yF = d.getYear() + 1900;
     int mF = d.getMonth() + 1;
 

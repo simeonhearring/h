@@ -63,22 +63,24 @@ public class CongSqlTest extends MySqlBaseDaoTest
     return ret;
   }
 
-  private Map<Date, Event> events()
+  public static Map<Date, Event> events()
   {
     Map<Date, Event> e = new HashMap<>();
 
     e.put(new Date(1452042000000L), new Event(Event.Type.WEEKMID, null));
     e.put(new Date(1515218400000L), new Event(Event.Type.WEEKEND, null));
 
-    e.put(new Date(1519020000000L),
+    e.put(new Date(1519020000000L), // Mon Feb 19 2018
         new Event(Event.Type.CO_VISIT, "Let Endurance Complete Its Work"));
 
-    e.put(new Date(1533013200000L), new Event(Event.Type.CO_VISIT, "We Must Run With Endurance!"));
+    e.put(new Date(1533013200000L), // Tue Jul 31 2018
+        new Event(Event.Type.CO_VISIT, "We Must Run With Endurance!"));
 
-    e.put(new Date(1524373200000L),
+    e.put(new Date(1524373200000L), // Sun Apr 22 2018
         new Event(Event.Type.CACO, "Don't Give Up In Doing What Is Fine!"));
 
-    e.put(new Date(1528693200000L), new Event(Event.Type.REGIONAL, "'Be Courageous'!"));
+    e.put(new Date(1528693200000L), // Mon Jun 11 2018
+        new Event(Event.Type.REGIONAL, "'Be Courageous'!"));
     return e;
   }
 

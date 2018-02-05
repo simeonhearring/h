@@ -1,15 +1,13 @@
 package h.khall.client.model;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.user.client.TakesValue;
 import com.google.gwt.user.client.ui.HasText;
 
-import h.khall.shared.command.ReportEmailCommand;
+import h.khall.shared.command.ReportSaveCommand;
 import h.model.shared.khall.Profile.Security;
 import h.model.shared.khall.Report;
 import h.model.shared.khall.Roles.Role;

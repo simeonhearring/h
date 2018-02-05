@@ -10,7 +10,6 @@ import com.google.gwt.event.dom.client.ChangeHandler;
 
 import h.khall.client.model.AbstractPresenter;
 import h.model.shared.khall.Charts;
-import h.model.shared.khall.FieldServiceGroup;
 import h.model.shared.khall.Person;
 import h.model.shared.khall.Report;
 import h.model.shared.khall.YrMo;
@@ -57,7 +56,9 @@ public class PageMinistryPresenter extends AbstractPresenter<PageMinistryPresent
   public void dispatch(RefreshEvent inEvent)
   {
     updateChart();
-    addPubList();
+    Data data = new Data();
+    data.mList = mClient.getPersons().getPublishers();
+    add(data);
   }
 
   @Override
@@ -92,8 +93,6 @@ public class PageMinistryPresenter extends AbstractPresenter<PageMinistryPresent
 
     onChange(null);
 
-    // mChart.getStat().setSubHead(TextUtil.toText(mProfile.getCount()) + "
-    // Parts");
     mChart.update(yma);
     mChart.update(V.Below_Threshold.gLabel(), stat.getBelowThreshold().getValues());
     mChart.update(V.Above_Threshold.gLabel(), stat.getAboveThreshold().getValues());
@@ -136,44 +135,13 @@ public class PageMinistryPresenter extends AbstractPresenter<PageMinistryPresent
     }
   }
 
-  private void addPubList()
+  @Override
+  protected void add(Data inData)
   {
     mDisplay.clearPublisher();
-    for (Person value : mClient.getPersons().getPublishers())
+    if (inData.mList.size() > 0)
     {
-      mDisplay.addPublishers(value.gName(), value.getId());
-    }
-  }
-
-  public void filterFsg(Integer inFsgId)
-  {
-    if (inFsgId.intValue() <= 0)
-    {
-      if (FieldServiceGroup.isElderOrServant(inFsgId))
-      {
-        mDisplay.clearPublisher();
-        for (Person value : mClient.getPersons().getEldersOrServants())
-        {
-          mDisplay.addPublishers(value.gName(), value.getId());
-        }
-      }
-      else if (FieldServiceGroup.isPioneers(inFsgId))
-      {
-        mDisplay.clearPublisher();
-        for (Person value : mClient.getPersons().getRegular())
-        {
-          mDisplay.addPublishers(value.gName(), value.getId());
-        }
-      }
-      else
-      {
-        addPubList();
-      }
-    }
-    else
-    {
-      mDisplay.clearPublisher();
-      for (Person value : mClient.getPersons().getPubFsg(inFsgId))
+      for (Person value : inData.mList)
       {
         mDisplay.addPublishers(value.gName(), value.getId());
       }
@@ -221,7 +189,6 @@ public class PageMinistryPresenter extends AbstractPresenter<PageMinistryPresent
     stat.setHead("Congregation");
     stat.setSubHead("");
     stat.setTopRight(null);
-    // stat.setFooter(Part.labels(true, " ", Part.student()));
     ret.setStat(stat);
 
     ret.setDataType(Charts.MINISTRY);
