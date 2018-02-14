@@ -1,7 +1,7 @@
+<%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@page import="h.model.shared.khall.Person"%>
 <%@page import="h.model.shared.khall.Reports"%>
 <%@page import="h.model.shared.khall.YearMonthRange"%>
-<%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@page import="h.model.shared.khall.Report"%>
 <%@page import="h.khall.server.dao.Dao"%>
 <%@page import="h.model.shared.util.NumberUtil"%>

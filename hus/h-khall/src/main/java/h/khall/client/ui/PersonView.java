@@ -3,6 +3,7 @@ package h.khall.client.ui;
 import java.util.Date;
 
 import org.gwtbootstrap3.client.ui.Anchor;
+import org.gwtbootstrap3.client.ui.CheckBox;
 import org.gwtbootstrap3.client.ui.Input;
 import org.gwtbootstrap3.client.ui.ListItem;
 import org.gwtbootstrap3.client.ui.gwt.HTMLPanel;
@@ -41,7 +42,7 @@ public class PersonView extends AbstractView implements PersonPresenter.Display
   InputView mFirst, mMiddle, mLast, mSuffix, mEmail, mMobile, mHome;
 
   @UiField
-  InputView mGender;
+  CheckBox mGender;
 
   @UiField
   Input mBirth, mBaptized, mPublishing;
@@ -109,7 +110,6 @@ public class PersonView extends AbstractView implements PersonPresenter.Display
         "mMiddle",
         "mLast",
         "mSuffix",
-        "mGender",
         "mEmail",
         "mMobile",
         "mHome",
@@ -130,96 +130,95 @@ public class PersonView extends AbstractView implements PersonPresenter.Display
       })
   public void onChange(ValueChangeEvent<String> inEvent)
   {
-    Object source = inEvent.getSource();
-    if (mFirst.equals(source))
+    if (mFirst.isSource(inEvent))
     {
       mPresenter.chgFirst(mFirst.getValue());
     }
-    else if (mMiddle.equals(source))
+    else if (mMiddle.isSource(inEvent))
     {
       mPresenter.chgMiddle(mMiddle.getValue());
     }
-    else if (mLast.equals(source))
+    else if (mLast.isSource(inEvent))
     {
       mPresenter.chgLast(mLast.getValue());
     }
-    else if (mSuffix.equals(source))
+    else if (mSuffix.isSource(inEvent))
     {
       mPresenter.chgSuffix(mSuffix.getValue());
     }
-    // else if (mGender.equals(source))
+    // else if (mGender.isSource(inEvent))
     // {
     // mPresenter.chgGender(mGender.getValue());
     // }
-    // else if (mBirth.equals(source))
+    // else if (mBirth.isSource(inEvent))
     // {
     // mPresenter.chgBirth(mBirth.getValue());
     // }
-    else if (mEmail.equals(source))
+    else if (mEmail.isSource(inEvent))
     {
       mPresenter.chgEmail(mEmail.getValue());
     }
-    else if (mMobile.equals(source))
+    else if (mMobile.isSource(inEvent))
     {
       mPresenter.chgMobile(mMobile.getValue());
     }
-    else if (mHome.equals(source))
+    else if (mHome.isSource(inEvent))
     {
       mPresenter.chgHome(mHome.getValue());
     }
-    else if (mAddress1.equals(source))
+    else if (mAddress1.isSource(inEvent))
     {
       mPresenter.chgAddress1(mAddress1.getValue());
     }
-    else if (mAddress2.equals(source))
+    else if (mAddress2.isSource(inEvent))
     {
       mPresenter.chgAddress2(mAddress2.getValue());
     }
-    else if (mCity.equals(source))
+    else if (mCity.isSource(inEvent))
     {
       mPresenter.chgCity(mCity.getValue());
     }
-    else if (mState.equals(source))
+    else if (mState.isSource(inEvent))
     {
       mPresenter.chgState(mState.getValue());
     }
-    else if (mZip.equals(source))
+    else if (mZip.isSource(inEvent))
     {
       mPresenter.chgZip(mZip.getValue());
     }
-    else if (mFsg.equals(source))
+    else if (mFsg.isSource(inEvent))
     {
       mPresenter.chgFsg(mFsg.getValue());
     }
-    // else if (mBaptized.equals(source))
+    // else if (mBaptized.isSource(inEvent))
     // {
     // mPresenter.chgBaptized(mBaptized.getValue());
     // }
-    // else if (mPublishing.equals(source))
+    // else if (mPublishing.isSource(inEvent))
     // {
     // mPresenter.chgPublishing(mPublishing.getValue());
     // }
-    else if (mRoles.equals(source))
+    else if (mRoles.isSource(inEvent))
     {
       mPresenter.chgTypes(mRoles.getValue());
     }
-    else if (mCategories.equals(source))
+    else if (mCategories.isSource(inEvent))
     {
       mPresenter.chgCategories(mCategories.getValue());
     }
-    else if (mEmergency.equals(source))
+    else if (mEmergency.isSource(inEvent))
     {
       mPresenter.chgEmergency(mEmergency.getValue());
     }
-    else if (mChildren.equals(source))
+    else if (mChildren.isSource(inEvent))
     {
       mPresenter.chgChildren(mChildren.getValue());
     }
-    else if (mHead.equals(source))
+    else if (mHead.isSource(inEvent))
     {
       mPresenter.chgHead(mHead.getValue());
     }
-    else if (mFamily.equals(source))
+    else if (mFamily.isSource(inEvent))
     {
       mPresenter.chgFamily(mFamily.getValue());
     }
@@ -230,8 +229,6 @@ public class PersonView extends AbstractView implements PersonPresenter.Display
   {
     icheck();
     steps();
-    // datepicker();
-    // datepicker(mDate.getId());
   }
 
   @Override

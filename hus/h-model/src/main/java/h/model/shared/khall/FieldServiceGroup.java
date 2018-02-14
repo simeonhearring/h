@@ -27,6 +27,7 @@ public class FieldServiceGroup implements Comparator<FieldServiceGroup>, Seriali
   private String mTitle;
   private String mLocation;
   private int mCount;
+  private String[] mContactEmails;
 
   @JsonIgnore
   public Integer getId()
@@ -224,5 +225,15 @@ public class FieldServiceGroup implements Comparator<FieldServiceGroup>, Seriali
   public boolean isDefault()
   {
     return mId != null && mId.intValue() < 1;
+  }
+
+  public String[] getContactEmails()
+  {
+    return mContactEmails;
+  }
+
+  public void setContactEmails(String[] inContactEmails)
+  {
+    mContactEmails = inContactEmails;
   }
 }

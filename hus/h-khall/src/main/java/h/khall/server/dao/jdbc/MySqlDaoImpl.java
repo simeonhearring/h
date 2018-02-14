@@ -140,6 +140,12 @@ public class MySqlDaoImpl extends JavaBeanDaoImpl implements Dao
   }
 
   @Override
+  public void insert(String inKey, Person inPerson)
+  {
+    mPersonSql.insert(inKey, inPerson);
+  }
+
+  @Override
   public void update(String inKey, Person inPerson)
   {
     mPersonSql.update(inKey, inPerson);

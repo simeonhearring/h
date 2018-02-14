@@ -373,6 +373,10 @@ public class Person extends h.model.shared.Person
     builder.append(gCategories());
     builder.append(" ");
     builder.append(mHead == null ? "Head" : "");
+    builder.append(" ");
+    builder.append(!isStudent() ? "Non-Student" : "");
+    builder.append(" ");
+    builder.append(!isPublisher() ? "Non-Publisher" : "");
     return builder.toString();
   }
 
@@ -471,5 +475,20 @@ public class Person extends h.model.shared.Person
   {
     return getId() + "|" + gFullName() + "|" + getEmail() + "|" + mCongId + "|"
         + getPublishingMills() + "|" + System.currentTimeMillis();
+  }
+
+  public boolean isNew()
+  {
+    return getIdLong() == null;
+  }
+
+  public static Person newPerson()
+  {
+    Person ret = new Person();
+    ret.normalize();
+    ret.getRoles().add(Role.FAMILY);
+    ret.setGender(Gender.Male);
+    ret.setFsgId(0);
+    return ret;
   }
 }

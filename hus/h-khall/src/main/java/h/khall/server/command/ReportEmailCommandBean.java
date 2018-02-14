@@ -8,6 +8,8 @@ import org.apache.log4j.Logger;
 
 import h.khall.server.dao.Dao;
 import h.khall.shared.command.ReportEmailCommand;
+import h.model.shared.khall.Congregation;
+import h.model.shared.khall.FieldServiceGroup;
 import h.model.shared.khall.Person;
 import h.model.shared.khall.Persons;
 import h.model.shared.khall.Profile;
@@ -32,22 +34,30 @@ public class ReportEmailCommandBean
   @Override
   public RpcResponse execute(ReportEmailCommand inCommand)
   {
+    Profile profile = (Profile) inCommand.getProfile();
+    int congId = inCommand.getCongId();
+
+    sendPerson(profile, congId, inCommand.getIds());
+
+    return inCommand;
+  }
+
+  private void sendPerson(Profile inProfile, int inCongId, List<Long> inIds)
+  {
+    String cong = mDao.selectCong(inProfile).getName();
+    Persons persons = mDao.selectPersons(inProfile);
+    Reports reports = mDao.selectReports(inCongId);
+
+    String mtemplate = getValue("emailMissingReports");
+    String rtemplate = getValue("emailReportTemplate");
+
     int[] ym = range();
     int yF = ym[0];
     int mF = ym[1];
     int yT = ym[2];
     int mT = ym[3];
 
-    String mtemplate = getValue("emailMissingReports");
-    String rtemplate = getValue("emailReportTemplate");
-
-    Profile profile = (Profile) inCommand.getProfile();
-
-    String cong = mDao.selectCong(profile).getName();
-    Persons persons = mDao.selectPersons(profile);
-    Reports reports = mDao.selectReports(inCommand.getCongId());
-
-    for (Long id : inCommand.getIds())
+    for (Long id : inIds)
     {
       Person person = persons.gPerson(id);
       if (person.isEmail())
@@ -58,13 +68,32 @@ public class ReportEmailCommandBean
           String missing = missing(list, rtemplate);
           String message = message(person.getFirst(), mtemplate, missing, person.gAuthLine(), mDomain);
 
-          email(cong, message, profile.getUserId(), person.getEmail());
+          email(cong, message, inProfile.getUserId(), person.getEmail());
           LOGGER.info(person.getEmail() + " " + message);
         }
       }
     }
+  }
 
-    return inCommand;
+  private void sendFsgo(Profile inProfile, int inCongId)
+  {
+    Congregation cong = mDao.selectCong(inProfile);
+    Persons persons = mDao.selectPersons(inProfile);
+
+    String rtemplate = getValue("emailReportTemplate");
+
+    for (FieldServiceGroup value : cong.getFsgs().values())
+    {
+      StringBuilder sb = new StringBuilder();
+      for (Person person : persons.getFsg(value.getId()))
+      {
+        if (person.isPublisher())
+        {
+          message(sb, person.gName(), person.gAuthLine(), mDomain);
+        }
+      }
+      String message = rtemplate.replaceAll("<0>", sb.toString());
+    }
   }
 
   private static String message(String inFirst, String inMsg, String inMissing, String inAuth, String inDomain)
@@ -79,6 +108,13 @@ public class ReportEmailCommandBean
     sb.append("'>Click here to submit online!</a>");
 
     return sb.toString();
+  }
+
+  private static void message(StringBuilder inSb, String inName, String inAuth, String inDomain)
+  {
+    inSb.append("<a href='").append(inDomain).append("secreportsubmit.jsp?");
+    inSb.append("auth=").append(EncryptUtil.encrypt(inAuth));
+    inSb.append("'>Click here to submit report for ").append(inName).append("</a><br/>");
   }
 
   private static String missing(List<String> inValue, String inTemplate)

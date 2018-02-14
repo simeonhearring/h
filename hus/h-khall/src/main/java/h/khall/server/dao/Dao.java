@@ -32,6 +32,8 @@ public interface Dao
 
   Person.Locater selectPersonLocater(long inId);
 
+  void insert(String inKey, Person inPerson);
+
   void update(String inKey, Person inPerson);
 
   void update(Assignment inAssignment);

@@ -57,7 +57,7 @@ public class ReportSqlTest extends MySqlBaseDaoTest
   public void can()
   {
     List<Report> report = mSql.select(-1, 1);
-    Assert.assertEquals(true, report.size() > 0);
+    Assert.assertNotNull(report);
   }
 
   @Test

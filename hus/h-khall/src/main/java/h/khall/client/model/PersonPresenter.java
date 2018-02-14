@@ -14,7 +14,7 @@ public class PersonPresenter extends AbstractPresenter<PersonPresenter.Display>
   public PersonPresenter(Display inDisplay)
   {
     initDisplay(inDisplay);
-    mDisplay.reset();
+    newPerson();
   }
 
   public void setPerson(Person inPerson)
@@ -37,7 +37,8 @@ public class PersonPresenter extends AbstractPresenter<PersonPresenter.Display>
     mDisplay.setState(mPerson.gState());
     mDisplay.setZip(mPerson.gZip());
 
-    // mDisplay.setFsg(mPerson.getFsgId());
+    // TODO mDisplay.setFsg(mPerson.getFsgId());
+
     // mDisplay.setFaith(mPerson.getFaith());
     mDisplay.setBaptized(mPerson.getBaptized());
     mDisplay.setPublishing(mPerson.getPublishing());
@@ -49,9 +50,16 @@ public class PersonPresenter extends AbstractPresenter<PersonPresenter.Display>
     mDisplay.setFamily(mPerson.getFamily());
   }
 
+  public void newPerson()
+  {
+    setPerson(Person.newPerson());
+  }
+
   public void save()
   {
     fire(new PersonSaveCommand(mPerson));
+    mDisplay.reset();
+    newPerson();
   }
 
   public void chgFirst(String inValue)
