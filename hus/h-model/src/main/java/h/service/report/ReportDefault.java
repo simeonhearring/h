@@ -6,18 +6,14 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.springframework.beans.BeansException;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
+import h.spring.SpringBean;
 
-public class ReportDefault<B> implements Report<B>, ApplicationContextAware
+public class ReportDefault<B> extends SpringBean implements Report<B>
 {
-  private ApplicationContext mApplicationContext;
-
   @Override
   public Map<String, Object> getParameters(Map<String, String> inParameters)
   {
-    Map<String, Object> ret = new HashMap<String, Object>();
+    Map<String, Object> ret = new HashMap<>();
 
     for (Entry<String, String> value : inParameters.entrySet())
     {
@@ -48,18 +44,6 @@ public class ReportDefault<B> implements Report<B>, ApplicationContextAware
 
   public String getLocation(String inPath, String inReportName) throws IOException
   {
-    return mApplicationContext.getResource(inPath + inReportName).getURL().getPath();
-  }
-
-  @Override
-  public final void setApplicationContext(ApplicationContext inApplicationContext)
-      throws BeansException
-  {
-    mApplicationContext = inApplicationContext;
-  }
-
-  public ApplicationContext getApplicationContext()
-  {
-    return mApplicationContext;
+    return getApplicationContext().getResource(inPath + inReportName).getURL().getPath();
   }
 }

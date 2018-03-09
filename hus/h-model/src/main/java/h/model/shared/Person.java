@@ -48,6 +48,7 @@ public class Person implements Serializable, Tag
     mFirst = inFirst;
   }
 
+  @JsonIgnore
   public boolean isEmail()
   {
     return StringUtil.isEmail(mEmail);

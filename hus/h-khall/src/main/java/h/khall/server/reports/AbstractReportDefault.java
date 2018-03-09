@@ -11,7 +11,7 @@ public abstract class AbstractReportDefault<B> extends ReportDefault<B>
 {
   public Dao getDao()
   {
-    return getApplicationContext().getBean("Dao", Dao.class);
+    return getBean("Dao", Dao.class);
   }
 
   protected Map<String, Object> objectMap(Map<String, String> inMap)

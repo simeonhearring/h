@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="Khall" class="org.springframework.jndi.JndiObjectFactoryBean" lazy-init="true">
+		<property name="jndiName" value="java:comp/env/jdbc/khall" />
+	</bean>
+
+	<bean id="Secretary" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close" lazy-init="true">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://cpanel.husoftware.net:3306/simeon_secretary?autoReconnect=true" />
+		<property name="username" value="simeon_130327sec" />
+		<property name="password" value="P!NsI)xx3Wy_IW9mw2" />
+	</bean>
+
+	<bean id="Domain" class="java.lang.String">
+		<constructor-arg value="https://husoftware.net/khall/" />
+	</bean>
+
+	<bean id="Environment" class="java.lang.String">
+		<constructor-arg value="U" />
+	</bean>
+</beans>

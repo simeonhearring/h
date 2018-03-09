@@ -46,24 +46,17 @@ public class Person extends h.model.shared.Person
     sb.append("c").append(mCongId).append(",");
     sb.append("f").append(mFsgId).append(",");
     sb.append(StringUtil.ensure(gPioneerType(), "p", ","));
-    sb.append(StringUtil.ensure(gCategory(), "cat", ","));
+    sb.append(StringUtil.ensure(gLocaterCat(), "cat", ","));
     return sb.toString();
   }
 
-  private String gCategory()
+  private String gLocaterCat()
   {
     String ret = "";
     if (mCategories != null)
     {
       mCategories.normalize();
-      if (mCategories.contains(Category.FIFTEEN_MINUTE_INCREMENT))
-      {
-        ret += "15-";
-      }
-      if (mCategories.contains(Category.INFIRM_REGULAR_PIONEER))
-      {
-        ret += "IP-";
-      }
+      ret = mCategories.gLocater();
     }
     return ret;
   }
@@ -380,11 +373,13 @@ public class Person extends h.model.shared.Person
     return builder.toString();
   }
 
+  @JsonIgnore
   public boolean isMember()
   {
     return mFsgId != null && !mFsgId.equals(0);
   }
 
+  @JsonIgnore
   public boolean isBaptized()
   {
     return mBaptized != null;

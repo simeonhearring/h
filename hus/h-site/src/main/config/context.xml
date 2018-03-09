@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+	<Resource name="jdbc/khall" auth="Container" type="javax.sql.DataSource"
+		driverClassName="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/hearring_khall?autoReconnect=true" username="hearring_khall_p"
+		password="lxbXwvbSjcacJfXVo3" initialSize="1" maxActive="50" maxIdle="30"
+		maxWait="15000" removeAbandoned="true" removeAbandonedTimeout="300"
+		logAbandoned="true" validationQuery="select now();" />
+</Context>

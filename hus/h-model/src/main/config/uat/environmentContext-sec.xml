@@ -7,6 +7,7 @@
 		<property name="username" value="simeon_201612uat" />
 		<property name="password" value="A-B-iQ9cZt;n" />
 		<!-- <property name="username" value="simeon_130327sec" /> <property name="password" value="P!NsI)xx3Wy_IW9mw2" /> -->
+		<!-- <property name="username" value="hearring_khall_p" /> <property name="password" value="lxbXwvbSjcacJfXVo3" /> -->
 	</bean>
 
 	<bean id="Secretary" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">

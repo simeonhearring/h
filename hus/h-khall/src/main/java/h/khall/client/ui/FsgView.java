@@ -83,6 +83,10 @@ public class FsgView extends AbstractView<FsgPresenter> implements FsgPresenter.
   public void set(Integer inValue)
   {
     Integer index = mOptions.get(inValue);
+    if (index == null)
+    {
+      index = 0;
+    }
     mBox.setSelectedIndex(index);
   }
 }

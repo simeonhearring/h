@@ -52,4 +52,18 @@ public class Categories implements Serializable
   {
     return mCategories.contains(inCategory);
   }
+
+  public String gLocater()
+  {
+    String ret = "";
+    if (mCategories.contains(Category.FIFTEEN_MINUTE_INCREMENT))
+    {
+      ret += "15-";
+    }
+    if (mCategories.contains(Category.INFIRM_REGULAR_PIONEER))
+    {
+      ret += "IP-";
+    }
+    return ret;
+  }
 }

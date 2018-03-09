@@ -8,6 +8,7 @@ import javax.sql.DataSource;
 
 import h.dao.jdbc.AbstractEncryptSqlUpdate;
 import h.dao.jdbc.AbstractSql;
+import h.model.shared.Person.Gender;
 import h.model.shared.khall.Person;
 
 public class PersonEncryptSql extends AbstractSql
@@ -71,6 +72,10 @@ public class PersonEncryptSql extends AbstractSql
       public Object[] params(Person inModel)
       {
         String value = writeValue(inModel);
+        if (value == null)
+        {
+          throw new RuntimeException("Can not save null Person.");
+        }
         return PersonEncryptSql.params(value, inModel.gLocater(), inModel.getIdLong());
       }
     };
@@ -99,8 +104,23 @@ public class PersonEncryptSql extends AbstractSql
     @Override
     public Person mapRow(ResultSet inRs, int inRowNum) throws SQLException
     {
-      Person ret = readValue(inRs.getString("mProfile"), Person.class);
-      ret.setId(inRs.getLong("mId"));
+      return toPerson(inRs.getString("mProfile"), inRs.getLong("mId"));
+    }
+
+    private Person toPerson(String inText, Long inId)
+    {
+      Person ret = inText == null ? newPerson(inId) : readValue(inText, Person.class);
+      ret.setId(inId);
+      return ret;
+    }
+
+    private Person newPerson(Long inId)
+    {
+      Person ret = new Person();
+      ret.normalize();
+      ret.setGender(Gender.Male);
+      ret.setFirst("ID:" + inId);
+      ret.setLast("Last");
       return ret;
     }
   }

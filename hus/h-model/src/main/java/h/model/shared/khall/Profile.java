@@ -27,6 +27,8 @@ public class Profile extends h.model.shared.Profile
 
   private Map<Security, Boolean> mSecurity;
 
+  private int[] mCsym;
+
   public String gEncrypt()
   {
     return mEncrypt;
@@ -95,14 +97,19 @@ public class Profile extends h.model.shared.Profile
     return mThreshold == null ? 5.0 : mThreshold;
   }
 
+  public void setCsym(int... inCsym)
+  {
+    mCsym = inCsym;
+  }
+
   public int gCurrentServiceYear()
   {
-    return 2017;
+    return mCsym[0];
   }
 
   public int gCurrentServiceMonth()
   {
-    return 12;
+    return mCsym[1];
   }
 
   public void setSecurity(Map<Security, Boolean> inSecurity)

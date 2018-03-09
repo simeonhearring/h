@@ -5,6 +5,7 @@ import h.khall.shared.command.LoginCommand;
 import h.khall.shared.model.Client;
 import h.khall.shared.model.Login;
 import h.model.shared.khall.Profile;
+import h.model.shared.khall.YearMonthRange;
 import h.style.g.server.command.AbstractDaoCommandBean;
 import h.style.g.shared.rpc.common.RpcResponse;
 
@@ -21,6 +22,9 @@ public class LoginCommandBean extends AbstractDaoCommandBean<Dao, LoginCommand>
     if (Login.isAuthenticated(profile, inCommand.getProfile()))
     {
       data.setProfile(profile);
+
+      YearMonthRange r = new YearMonthRange();
+      profile.setCsym(r.getYearTo(), r.getMonthTo());
 
       Client client = new Client();
       data.setClient(client);

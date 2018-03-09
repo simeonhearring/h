@@ -10,6 +10,8 @@
 		<property name="ReportDataSource" ref="Secretary" />
 	</bean>
 
+	<bean id="DaoT" class="h.khall.dao.Dao" lazy-init="true" />
+
 	<!-- REPORTS -->
 
 	<bean id="ReportRunner" class="h.service.report.JasperReportRunner">

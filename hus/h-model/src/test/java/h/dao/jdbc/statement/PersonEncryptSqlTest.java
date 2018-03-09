@@ -25,6 +25,11 @@ public class PersonEncryptSqlTest extends MySqlBaseDaoTest
     int i = 1;
     for (Person value : p)
     {
+      value.setCongId(60);
+      if (value.getFsgId() == null)
+      {
+        value.setFsgId(0);
+      }
       System.out.println(i++ + ")" + value.gName());
       mNewSql.update("NBgh(epoT(MSkV77kFaCE~cC_SSf7c7o", value);
     }

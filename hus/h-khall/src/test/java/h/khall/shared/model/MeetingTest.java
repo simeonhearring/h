@@ -26,7 +26,7 @@ public class MeetingTest
     Meeting model = new Meeting();
     model.addAssignments(
         RandomAssignments.assigns(new Date(), RandomPersons.persons().getPersons(), false));
-    Assert.assertEquals(1, model.gMonth(2017, new Date().getMonth()).size());
+    Assert.assertEquals(1, model.gMonth(2018, new Date().getMonth()).size());
   }
 
   @Test

@@ -58,6 +58,10 @@ public class Client extends h.model.shared.Client
 
   public String gName(Long inId)
   {
+    if (inId == null)
+    {
+      return null;
+    }
     return mPersons.gPerson(inId).gName();
   }
 
