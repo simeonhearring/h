@@ -88,7 +88,7 @@ public class WeekPresenter extends AbstractPresenter<WeekPresenter.Display>
     if (inAssignment.isAssigned())
     {
       Person person = gPersonEmail(inAssignment);
-      show = person.isEmail();
+      show = person.hasEmail();
       tip = "mailto:" + person.getEmail();
     }
     inDisplay.setEmailTip(tip);

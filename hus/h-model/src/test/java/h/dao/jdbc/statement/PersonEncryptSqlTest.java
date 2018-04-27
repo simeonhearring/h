@@ -10,28 +10,30 @@ import h.model.shared.khall.Person;
 
 public class PersonEncryptSqlTest extends MySqlBaseDaoTest
 {
-  private PersonEncryptSql mNewSql;
+  private PersonEncryptSql mSql;
 
   @Before
   public void before()
   {
-    mNewSql = new PersonEncryptSql(mDataSource);
+    mSql = new PersonEncryptSql(mDataSource);
   }
 
   @Test
+  public void updatePersonIdLocater()
+  {
+    Person p = mSql.selectById("NBgh(epoT(MSkV77kFaCE~cC_SSf7c7o", 894L);
+
+    System.out.println(p.getId() + " " + p.gName() + " " + p.getEmail());
+  }
+
+  // @Test
   public void updatePersonLocater()
   {
-    List<Person> p = mNewSql.selectByCongId("NBgh(epoT(MSkV77kFaCE~cC_SSf7c7o", 60);
+    List<Person> p = mSql.selectByCongId("NBgh(epoT(MSkV77kFaCE~cC_SSf7c7o", 60);
     int i = 1;
     for (Person value : p)
     {
-      value.setCongId(60);
-      if (value.getFsgId() == null)
-      {
-        value.setFsgId(0);
-      }
-      System.out.println(i++ + ")" + value.gName());
-      mNewSql.update("NBgh(epoT(MSkV77kFaCE~cC_SSf7c7o", value);
+      System.out.println(i++ + ") " + value.getId() + " " + value.gName() + " " + value.getEmail());
     }
   }
 

@@ -42,18 +42,28 @@ public class PersonSet extends Dataset<Tag>
   public void findMatches(String inQuery, final SuggestionCallback<Tag> inCallback)
   {
     final String queryLower = inQuery.toLowerCase();
-    Global.fireS(new PersonLookupCommand(queryLower), new RpcCallback<PersonLookupCommand>()
+
+    if (go(queryLower))
     {
-      @Override
-      public void onRpcSuccess(PersonLookupCommand inCommand)
+      Global.fireS(new PersonLookupCommand(queryLower), new RpcCallback<PersonLookupCommand>()
       {
-        List<Suggestion<Tag>> suggestions = new ArrayList<>();
-        for (Tag value : inCommand.getData())
+        @Override
+        public void onRpcSuccess(PersonLookupCommand inCommand)
         {
-          suggestions.add(Suggestion.create(value.getName(), value, PersonSet.this));
+          List<Suggestion<Tag>> suggestions = new ArrayList<>();
+          for (Tag value : inCommand.getData())
+          {
+            suggestions.add(Suggestion.create(value.getName(), value, PersonSet.this));
+          }
+          inCallback.execute(suggestions);
         }
-        inCallback.execute(suggestions);
-      }
-    });
+      });
+    }
+  }
+
+  private boolean go(String inQueryLower)
+  {
+    return inQueryLower.trim().length() > 4
+        && (inQueryLower.contains(" ") || inQueryLower.contains("#") || inQueryLower.contains(","));
   }
 }

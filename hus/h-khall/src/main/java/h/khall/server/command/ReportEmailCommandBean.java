@@ -60,7 +60,7 @@ public class ReportEmailCommandBean
     for (Long id : inIds)
     {
       Person person = persons.gPerson(id);
-      if (person.isEmail())
+      if (person.hasEmail())
       {
         List<String> list = reports.getMissing(yF, mF, yT, mT, true, id, person.getPublishing());
         if (list.size() != 0)

@@ -1,0 +1,65 @@
+{
+	"member": true,
+	"family": null,
+	"children": "Nadia, Jathen, Aidan, Alania",
+	"parts": [
+		"INITIAL_CALL",
+		"F_RETURN_VISIT",
+		"S_RETURN_VISIT",
+		"T_RETURN_VISIT",
+		"BIBLE_STUDY",
+		"ASSISTANT",
+		"BIBLE_READING",
+		"TALK",
+		"TREASURES",
+		"DIGGING",
+		"LIVING_1",
+		"LIVING_2",
+		"READER",
+		"CHAIRMAN",
+		"C_BIBLE_STUDY"
+	],
+	"roles": {
+		"roles": [
+			"REGULAR_PIONEER",
+			"ELDER",
+			"PUBLISHER",
+			"SECRETARY",
+			"LIFE_AND_MINISTRY_OVERSEER",
+			"AUXILIARY_COUNSELOR",
+			"GROUP_OVERSEER",
+			"PUBLISHER",
+			"STUDENT"
+		]
+	},
+	"halls": [
+		"MAIN"
+	],
+	"fsgId": 83,
+	"head": null,
+	"publishing": null,
+	"baptized": 658821600000,
+	"categories": {
+		"categories": []
+	},
+	"emergency": "",
+	"comments": null,
+	"congId": 60,
+	"address": [
+		"2828 Gaywinds Ct.",
+		null,
+		"Nashville",
+		"TN",
+		"37214"
+	],
+	"first": "Simeon",
+	"id": "809",
+	"last": "Hearring",
+	"suffix": null,
+	"birth": 173422800000,
+	"email": "simeonlhearring@gmail.com",
+	"middle": null,
+	"gender": "Male",
+	"mobile": "615-545-5137",
+	"home": null
+}

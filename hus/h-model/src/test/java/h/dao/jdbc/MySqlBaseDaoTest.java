@@ -38,6 +38,7 @@ public class MySqlBaseDaoTest
   }
 
   protected DataSource mDataSource;
+  protected DataSource mDataSourceBkup;
 
   @Before
   public void createDataSource()
@@ -49,6 +50,7 @@ public class MySqlBaseDaoTest
   protected void initDataSource()
   {
     mDataSource = (DataSource) bean(getDataSourceBeanName());
+    mDataSourceBkup = (DataSource) bean("KhallBkup");
   }
 
   private static Object bean(String inBeanName)

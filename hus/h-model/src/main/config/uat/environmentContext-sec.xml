@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
+<!-- 
+    <bean id="Khall" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close" lazy-init="true">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <property name="url" value="jdbc:mysql://njdz4.dailyrazor.com:2083/hearring_khall?autoReconnect=true" />
+        <property name="username" value="hearring_khall_p" />
+        <property name="password" value="lxbXwvbSjcacJfXVo3" />
+    </bean>
+ -->
 	<bean id="Khall" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://cpanel.husoftware.net:3306/simeon_khall?autoReconnect=true" />
 		<property name="username" value="simeon_201612uat" />
 		<property name="password" value="A-B-iQ9cZt;n" />
-		<!-- <property name="username" value="simeon_130327sec" /> <property name="password" value="P!NsI)xx3Wy_IW9mw2" /> -->
-		<!-- <property name="username" value="hearring_khall_p" /> <property name="password" value="lxbXwvbSjcacJfXVo3" /> -->
 	</bean>
+
+    <bean id="KhallBkup" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <property name="url" value="jdbc:mysql://cpanel.husoftware.net:3306/simeon_khall_empty?autoReconnect=true" />
+        <property name="username" value="simeon_201612uat" />
+        <property name="password" value="A-B-iQ9cZt;n" />
+    </bean>
 
 	<bean id="Secretary" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />

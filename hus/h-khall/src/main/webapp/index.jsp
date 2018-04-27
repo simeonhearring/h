@@ -4,7 +4,7 @@
 <%
   String html = "";
   Dao dao = (Dao) WebApplicationContextUtils.getWebApplicationContext(config.getServletContext()).getBean("DaoT");
-  html = dao.test();
+  html = dao.congregation();
 %>
 <html>
 <head>
