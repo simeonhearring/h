@@ -283,9 +283,14 @@ public class Person implements Serializable, Tag
   }
 
   @Override
-  public String getId()
+  public String gId()
   {
     return String.valueOf(mId);
+  }
+
+  public Long getId()
+  {
+    return mId;
   }
 
   @JsonIgnore

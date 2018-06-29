@@ -468,7 +468,7 @@ public class Person extends h.model.shared.Person
 
   public String gAuthLine()
   {
-    return getId() + "|" + gFullName() + "|" + getEmail() + "|" + mCongId + "|"
+    return gId() + "|" + gFullName() + "|" + getEmail() + "|" + mCongId + "|"
         + getPublishingMills() + "|" + System.currentTimeMillis();
   }
 

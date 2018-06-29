@@ -23,7 +23,7 @@ public class PersonEncryptSqlTest extends MySqlBaseDaoTest
   {
     Person p = mSql.selectById("NBgh(epoT(MSkV77kFaCE~cC_SSf7c7o", 894L);
 
-    System.out.println(p.getId() + " " + p.gName() + " " + p.getEmail());
+    System.out.println(p.gId() + " " + p.gName() + " " + p.getEmail());
   }
 
   // @Test
@@ -33,7 +33,7 @@ public class PersonEncryptSqlTest extends MySqlBaseDaoTest
     int i = 1;
     for (Person value : p)
     {
-      System.out.println(i++ + ") " + value.getId() + " " + value.gName() + " " + value.getEmail());
+      System.out.println(i++ + ") " + value.gId() + " " + value.gName() + " " + value.getEmail());
     }
   }
 

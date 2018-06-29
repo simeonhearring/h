@@ -1,0 +1,38 @@
+{
+	"children": null,
+	"head": null,
+	"family": null,
+	"parts": [],
+	"roles": {
+		"roles": [
+			"FAMILY"
+		]
+	},
+	"categories": {
+		"categories": []
+	},
+	"new": true,
+	"publishing": null,
+	"halls": [],
+	"congId": 60,
+	"fsgId": 0,
+	"emergency": null,
+	"comments": null,
+	"address": [
+		"123 Main Street",
+		null,
+		"Gallatin",
+		"TN",
+		"37066"
+	],
+	"first": "John",
+	"id": null,
+	"last": "Doe",
+	"suffix": null,
+	"email": null,
+	"gender": "Male",
+	"birth": null,
+	"middle": null,
+	"mobile": null,
+	"home": null
+}

@@ -78,7 +78,7 @@ public class PersonDetailView extends AbstractView<PersonDetailPresenter>
     {
       mHeadLabel.setVisible(true);
       AnchorListItem item = new AnchorListItem(inPerson.getFirst());
-      item.setId(inPerson.getId());
+      item.setId(inPerson.gId());
       item.addClickHandler(this);
       mHead.add(item);
     }
@@ -96,7 +96,7 @@ public class PersonDetailView extends AbstractView<PersonDetailPresenter>
   {
     mFamilyLabel.setVisible(true);
     AnchorListItem item = new AnchorListItem(inPerson.getFirst());
-    item.setId(inPerson.getId());
+    item.setId(inPerson.gId());
     item.addClickHandler(this);
     mFamily.add(item);
   }

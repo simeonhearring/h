@@ -74,7 +74,7 @@ public enum StudyPoint implements Tag
   }
 
   @Override
-  public String getId()
+  public String gId()
   {
     return String.valueOf(mId);
   }
@@ -108,7 +108,7 @@ public enum StudyPoint implements Tag
 
   public static String display2(StudyPoint inStudyPoint)
   {
-    return inStudyPoint != null ? "#" + inStudyPoint.getId() : "";
+    return inStudyPoint != null ? "#" + inStudyPoint.gId() : "";
   }
 
   public static String display3(StudyPoint inStudyPoint)
@@ -156,7 +156,7 @@ public enum StudyPoint implements Tag
   @Override
   public String getValue()
   {
-    return getId();
+    return gId();
   }
 
   @Override

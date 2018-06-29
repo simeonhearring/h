@@ -30,7 +30,7 @@ public class ReportSqlTest extends MySqlBaseDaoTest
   @Test
   public void cleanComments()
   {
-    List<Report> reports = mSql.select(60, 12);
+    List<Report> reports = mSql.select(60, 6);
     for (Report value : reports)
     {
       if (value.cleanRemarks())

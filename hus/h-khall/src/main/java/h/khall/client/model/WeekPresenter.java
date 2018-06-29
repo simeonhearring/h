@@ -44,6 +44,7 @@ public class WeekPresenter extends AbstractPresenter<WeekPresenter.Display>
   public void email(Assignment... inAssignment)
   {
     fire(new AssignEmailCommand(mProfile.getUserId(), mClient.getCong().gMidweekOn(), inAssignment));
+    mDisplay.notify("Emailing " + inAssignment.length + " assignment(s).");
   }
 
   public void setWeek(Week inWeek)

@@ -2,7 +2,7 @@ package h.model.shared;
 
 public interface Tag
 {
-  String getId();
+  String gId();
 
   String getType();
 

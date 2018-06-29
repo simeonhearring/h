@@ -25,7 +25,7 @@ public class ScheduleSqlTest extends MySqlBaseDaoTest
     int congId = 60;
     int[] mos =
     {
-        7
+        9
     }; // 1=Jan, 2=Feb
 
     for (int mo : mos)

@@ -72,7 +72,7 @@ public class PersonOldEncryptSql extends AbstractSql
             inValue.getSuffix(), inValue.getGender().name().toUpperCase(), inValue.getEmail(), inValue.getAddress(),
             inValue.getHome(), inValue.getMobile(), getBirthMills(inValue.getBirth()),
             inValue.getChildren(), inValue.getEmergency(), null, inValue.getHead(),
-            inValue.getId());
+            inValue.gId());
       }
     };
   }
@@ -89,7 +89,7 @@ public class PersonOldEncryptSql extends AbstractSql
       @Override
       public Object[] params(Person inValue)
       {
-        return PersonOldEncryptSql.params(inValue.getAddress(), inValue.getHome(), inValue.getId());
+        return PersonOldEncryptSql.params(inValue.getAddress(), inValue.getHome(), inValue.gId());
       }
     };
   }

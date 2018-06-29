@@ -38,7 +38,7 @@ public class PageMissingPresenter extends AbstractPresenter<PageMissingPresenter
     mDisplay.clearPublisher();
     for (Person value : inData.mList)
     {
-      mDisplay.addPublishers(value.gName(), value.getId());
+      mDisplay.addPublishers(value.gName(), value.gId());
     }
 
     mDisplay.setSubHeading(inData.mHeading);

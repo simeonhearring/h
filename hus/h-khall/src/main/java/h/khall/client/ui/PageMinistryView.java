@@ -202,7 +202,7 @@ public class PageMinistryView extends AbstractView<PageMinistryPresenter>
   @Override
   public void onItemAdded(ItemAddedEvent<Tag> inEvent)
   {
-    String id = inEvent.getItem().getId();
+    String id = inEvent.getItem().gId();
     changePub(id);
   }
 

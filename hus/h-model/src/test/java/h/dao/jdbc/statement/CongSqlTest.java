@@ -1,5 +1,7 @@
 package h.dao.jdbc.statement;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -81,7 +83,29 @@ public class CongSqlTest extends MySqlBaseDaoTest
 
     e.put(new Date(1528693200000L), // Mon Jun 11 2018
         new Event(Event.Type.REGIONAL, "'Be Courageous'!"));
+
+    e.put(newDate("2018-10-28"), // Oct 28 2018
+        new Event(Event.Type.CACO, "TBA"));
+
+    e.put(newDate("2018-12-25"), // Tue Dec 25 2018
+        new Event(Event.Type.CO_VISIT, "TBA"));
+
+    e.put(newDate("2019-03-17"), // Mar 17 2019
+        new Event(Event.Type.CABR, "TBA"));
+
     return e;
+  }
+
+  private static Date newDate(String inString)
+  {
+    try
+    {
+      return new SimpleDateFormat("yyyy-MM-dd").parse(inString);
+    }
+    catch (ParseException e)
+    {
+      return null;
+    }
   }
 
   @Test

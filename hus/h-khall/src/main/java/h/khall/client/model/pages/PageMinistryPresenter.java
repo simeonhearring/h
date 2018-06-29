@@ -70,7 +70,7 @@ public class PageMinistryPresenter extends AbstractPresenter<PageMinistryPresent
     mDisplay.clearName();
     for (Person value : mClient.getPersons().gPersons(mNames.get(ym + type)))
     {
-      mDisplay.addName(value.gName(), value.getId());
+      mDisplay.addName(value.gName(), value.gId());
     }
   }
 
@@ -143,7 +143,7 @@ public class PageMinistryPresenter extends AbstractPresenter<PageMinistryPresent
     {
       for (Person value : inData.mList)
       {
-        mDisplay.addPublishers(value.gName(), value.getId());
+        mDisplay.addPublishers(value.gName(), value.gId());
       }
     }
   }
