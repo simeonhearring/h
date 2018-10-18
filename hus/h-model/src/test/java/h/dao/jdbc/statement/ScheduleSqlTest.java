@@ -25,12 +25,12 @@ public class ScheduleSqlTest extends MySqlBaseDaoTest
     int congId = 60;
     int[] mos =
     {
-        9
+        1
     }; // 1=Jan, 2=Feb
 
     for (int mo : mos)
     {
-      mSql.upsert(congId, Hall.MAIN, 2018, mo);
+      mSql.upsert(congId, Hall.MAIN, 2019, mo);
 
       // for (Part value : Part.student())
       // {

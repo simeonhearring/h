@@ -85,13 +85,13 @@ public class CongSqlTest extends MySqlBaseDaoTest
         new Event(Event.Type.REGIONAL, "'Be Courageous'!"));
 
     e.put(newDate("2018-10-28"), // Oct 28 2018
-        new Event(Event.Type.CACO, "TBA"));
+        new Event(Event.Type.CACO, "Be Bold!"));
 
-    e.put(newDate("2018-12-25"), // Tue Dec 25 2018
+    e.put(newDate("2019-01-15"), // Tue Jan 15 2019
         new Event(Event.Type.CO_VISIT, "TBA"));
 
     e.put(newDate("2019-03-17"), // Mar 17 2019
-        new Event(Event.Type.CABR, "TBA"));
+        new Event(Event.Type.CABR, "Be Strong!"));
 
     return e;
   }

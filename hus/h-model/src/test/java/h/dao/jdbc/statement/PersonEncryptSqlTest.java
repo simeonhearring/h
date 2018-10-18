@@ -21,7 +21,11 @@ public class PersonEncryptSqlTest extends MySqlBaseDaoTest
   @Test
   public void updatePersonIdLocater()
   {
-    Person p = mSql.selectById("NBgh(epoT(MSkV77kFaCE~cC_SSf7c7o", 894L);
+    Person p = mSql.selectById("NBgh(epoT(MSkV77kFaCE~cC_SSf7c7o", 911L);
+
+    // p.setCongId(60);
+    //
+    // mSql.update("NBgh(epoT(MSkV77kFaCE~cC_SSf7c7o", p);
 
     System.out.println(p.gId() + " " + p.gName() + " " + p.getEmail());
   }
