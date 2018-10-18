@@ -261,10 +261,12 @@ public class RandomAssignments
         break;
       // PREPARE = 7
       case APPLY1:
-        ret = 8;
+        ret = 7;
       case APPLY2:
-        ret = 9;
+        ret = 8;
       case APPLY3:
+        ret = 9;
+      case APPLY4:
         ret = 10;
       case SONG_2:
         ret = 11;
