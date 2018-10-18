@@ -36,7 +36,7 @@ public class S_89Report extends OclmReport
         Report report = inReport.copy();
         report.setHall(value.name());
 
-        String studyPoint = StudyPoint.display2(assignment.getStudyPoint());
+        String studyPoint = StudyPoint.display2(assignment.gStudyPoint());
         String[] assigns = assign(inPersons, assignment, inChairman);
         report.setParticipantsA(assigns[0], assigns[1], studyPoint);
 

@@ -191,6 +191,23 @@ public enum Part implements HasGLabel
     return ret;
   }
 
+  public boolean isApply()
+  {
+    boolean ret = false;
+    switch (this)
+    {
+      case APPLY1:
+      case APPLY2:
+      case APPLY3:
+      case APPLY4:
+        ret = true;
+        break;
+      default:
+        break;
+    }
+    return ret;
+  }
+
   public boolean isStudent()
   {
     return isStudyPoint();

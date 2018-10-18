@@ -357,6 +357,7 @@ public class Mapping
     ret.setDate(inRs.getDate(inC + ".mDate"));
     ret.setDurationMinutes(toInteger(inRs.getObject(inC + ".mDurationMinutes")));
     ret.setSort(toInteger(inRs.getObject(inC + ".mSort")));
+    ret.setStudyPoint(StudyPoint.get(inRs.getString(inC + ".mStudyPoint")));
     return ret;
   }
 

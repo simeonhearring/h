@@ -60,7 +60,28 @@ public enum StudyPoint implements Tag
   SP_50(50, "Effort to Reach the Heart", Type.DEMO, Type.TALK),
   SP_51(51, "Accurately Timed, Properly Proportioned", Type.DEMO, Type.TALK),
   SP_52(52, "Effective Exhortation", Type.TALK),
-  SP_53(53, "Audience Encouraged and Strengthened", Type.TALK);
+  SP_53(53, "Audience Encouraged and Strengthened", Type.TALK),
+
+  S_1(1, "Effective Introduction", Type.READ, Type.DEMO, Type.TALK),
+  S_2(2, "Conversational Manner", Type.READ, Type.DEMO, Type.TALK),
+  S_3(3, "Use of Questions", Type.READ, Type.DEMO, Type.TALK),
+  S_4(4, "Scriptures Properly Introduced", Type.READ, Type.DEMO, Type.TALK),
+  S_5(5, "Accurate Reading", Type.READ, Type.DEMO, Type.TALK),
+  S_6(6, "Scripture Application Made Clear", Type.READ, Type.DEMO, Type.TALK),
+  S_7(7, "Accurate and Convincing", Type.READ, Type.DEMO, Type.TALK),
+  S_8(8, "Illustrations That Teach", Type.READ, Type.DEMO, Type.TALK),
+  S_9(9, "Appropriate Use of Visual Aids", Type.READ, Type.DEMO, Type.TALK),
+  S_10(10, "Modulation", Type.READ, Type.DEMO, Type.TALK),
+  S_11(11, "Enthusiasm", Type.READ, Type.DEMO, Type.TALK),
+  S_12(12, "Warmth and Empathy", Type.READ, Type.DEMO, Type.TALK),
+  S_13(13, "Practical Value Made Clear", Type.READ, Type.DEMO, Type.TALK),
+  S_14(14, "Main Points Made to Stand Out", Type.READ, Type.DEMO, Type.TALK),
+  S_15(15, "Expressed With Conviction", Type.READ, Type.DEMO, Type.TALK),
+  S_16(16, "Upbuilding and Positive", Type.READ, Type.DEMO, Type.TALK),
+  S_17(17, "Understandable to Others", Type.READ, Type.DEMO, Type.TALK),
+  S_18(18, "Informative to Your Audience", Type.READ, Type.DEMO, Type.TALK),
+  S_19(19, "Effort to Reach the Heart", Type.READ, Type.DEMO, Type.TALK),
+  S_20(20, "Effective Conclusion", Type.READ, Type.DEMO, Type.TALK);
 
   private int mId;
   private String mName;
@@ -116,6 +137,11 @@ public enum StudyPoint implements Tag
     return inStudyPoint != null ? inStudyPoint.item() : "";
   }
 
+  public static String display4(StudyPoint inStudyPoint)
+  {
+    return inStudyPoint != null ? inStudyPoint.itemsmall() : "";
+  }
+
   public boolean isValid(Part inPart)
   {
     boolean ret = false;
@@ -145,6 +171,11 @@ public enum StudyPoint implements Tag
   public String item()
   {
     return "#" + mId + " " + mName;
+  }
+
+  public String itemsmall()
+  {
+    return "#" + mId + " <span style='font-size: smaller;'>" + mName + "</span>";
   }
 
   @Override

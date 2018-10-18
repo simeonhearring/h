@@ -34,7 +34,20 @@
 			<param-value>ReportService</param-value>
 		</init-param>
 	</servlet>
-
+<!--
+	<servlet>
+		<servlet-name>Jersey RESTful Application</servlet-name>
+		<servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+		<init-param>
+			<param-name>jersey.config.server.provider.packages</param-name>
+			<param-value>h.service.sample</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Jersey RESTful Application</servlet-name>
+		<url-pattern>/rest/*</url-pattern>
+	</servlet-mapping>
+-->
 	<!-- mapping -->
 	<servlet-mapping>
 		<servlet-name>rpcServlet</servlet-name>

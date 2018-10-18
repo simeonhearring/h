@@ -118,7 +118,7 @@ public class AssignEmailCommandBean extends AbstractDaoCommandBean<Dao, AssignEm
     map.put("name", getStudentNames(inPersons, inAssignment));
     map.put("assistant", getAssistantNames(inPersons, inAssignment));
     map.put("width", "width: " + (student ? "370px;" : "450px;"));
-    map.put("counsel", StudyPoint.display2(inAssignment.getStudyPoint()));
+    map.put("counsel", StudyPoint.display2(inAssignment.gStudyPoint()));
     map.put("part", inAssignment.gPartTimeLabel());
 
     flagGivenIn(inAssignment.getHall(), map);

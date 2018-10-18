@@ -23,9 +23,9 @@ public class OclmWorksheetReport extends S_89Report implements Comparator<Report
   {
     StringBuilder sb = new StringBuilder();
 
-    if (inAssignment.getStudyPoint() != null)
+    if (inAssignment.gStudyPoint() != null)
     {
-      inReport.setStudyPoint(StudyPoint.display3(inAssignment.getStudyPoint()));
+      inReport.setStudyPoint(StudyPoint.display3(inAssignment.gStudyPoint()));
     }
 
     Long participantId = inAssignment.getParticipantId();

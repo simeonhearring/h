@@ -20,6 +20,11 @@ public class Assignment extends Schedule implements Serializable
     return getSchool();
   }
 
+  public StudyPoint gStudyPoint()
+  {
+    return mStudyPoint == null ? getCurriculum().getStudyPoint() : null;
+  }
+
   public StudyPoint getStudyPoint()
   {
     return mStudyPoint;

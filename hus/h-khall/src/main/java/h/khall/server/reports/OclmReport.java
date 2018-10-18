@@ -105,10 +105,15 @@ public class OclmReport extends AbstractReportDefault<Report>
 
       for (Part value : Part.schedule(coVisit, isStudent(), isLiving2))
       {
-        Map<Hall, Assignment> assignment = week.gAssignments(value, inCong.getHalls());
-        eventAssignment(value, assignment, event);
-        Report r = newReport(keeper, chairman[0], chairman[1], assignment.get(Hall.MAIN), week.getOf(), event);
-        addReports(ret, inPersons, inMonth, assignment, r.copy(), chairman);
+        boolean skip = value.isApply() && week.gAssignment(value, Hall.MAIN) == null;
+
+        if (!skip)
+        {
+          Map<Hall, Assignment> assignment = week.gAssignments(value, inCong.getHalls());
+          eventAssignment(value, assignment, event);
+          Report r = newReport(keeper, chairman[0], chairman[1], assignment.get(Hall.MAIN), week.getOf(), event);
+          addReports(ret, inPersons, inMonth, assignment, r.copy(), chairman);
+        }
       }
     }
 
@@ -174,7 +179,7 @@ public class OclmReport extends AbstractReportDefault<Report>
     {
       participant = ensure(inPersons.gName(inAssignment.getParticipantId()));
       assistant = ensure(inPersons.gName(inAssignment.getAssistantId()));
-      studypoint = StudyPoint.display(inAssignment.getStudyPoint());
+      studypoint = StudyPoint.display(inAssignment.gStudyPoint());
 
       if (inAssignment.getPart().isVideo())
       {

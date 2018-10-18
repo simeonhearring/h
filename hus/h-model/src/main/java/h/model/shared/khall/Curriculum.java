@@ -13,6 +13,7 @@ public class Curriculum implements Serializable
   private String mSource;
   private Integer mDurationMinutes;
   private Integer mSort; // Apply1=7, Apply2=8, Apply3=9, Apply4=10
+  private StudyPoint mStudyPoint;
 
   public Part getPpart()
   {
@@ -148,5 +149,15 @@ public class Curriculum implements Serializable
     }
 
     return ret * 60000;
+  }
+
+  public StudyPoint getStudyPoint()
+  {
+    return mStudyPoint;
+  }
+
+  public void setStudyPoint(StudyPoint inStudyPoint)
+  {
+    mStudyPoint = inStudyPoint;
   }
 }
