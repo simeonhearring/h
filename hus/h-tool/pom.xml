@@ -6,4 +6,5 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>h-tool</artifactId>
+	<packaging>jar</packaging>
 </project>

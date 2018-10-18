@@ -12,13 +12,14 @@ public class Curriculum implements Serializable
   private String mTheme;
   private String mSource;
   private Integer mDurationMinutes;
-  private Integer mSort; // Apply1=8, Apply2=9, Apply3=10
+  private Integer mSort; // Apply1=7, Apply2=8, Apply3=9, Apply4=10
 
   public Part getPpart()
   {
     Part ret = mPart;
     switch (mPart)
     {
+      case APPLY_VIDEO:
       case I_VIDEO:
       case F_RETURN_VISIT_VIDEO:
       case S_RETURN_VISIT_VIDEO:
@@ -44,14 +45,17 @@ public class Curriculum implements Serializable
     Part ret = null;
     switch (mSort)
     {
-      case 8:
+      case 7:
         ret = Part.APPLY1;
         break;
-      case 9:
+      case 8:
         ret = Part.APPLY2;
         break;
-      case 10:
+      case 9:
         ret = Part.APPLY3;
+        break;
+      case 10:
+        ret = Part.APPLY4;
         break;
     }
     return ret;

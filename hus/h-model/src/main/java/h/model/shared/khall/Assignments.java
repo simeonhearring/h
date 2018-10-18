@@ -5,6 +5,9 @@ import static h.model.shared.util.StringUtil.ensure;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 @SuppressWarnings("serial")
@@ -83,7 +86,7 @@ public class Assignments implements Serializable
     return ret;
   }
 
-  public List<Assignment> gAssignedTo(long inPersonId)
+  private List<Assignment> gAssignedTo(long inPersonId)
   {
     List<Assignment> ret = new ArrayList<>();
     for (Assignment value : mAssignments)
@@ -93,6 +96,7 @@ public class Assignments implements Serializable
         ret.add(value);
       }
     }
+    Collections.sort(ret, new SortDate());
     return ret;
   }
 
@@ -183,6 +187,19 @@ public class Assignments implements Serializable
       }
     }
     return ret;
+  }
+
+  public static class SortDate implements Comparator<Assignment>
+  {
+    private boolean mDescending;
+
+    @Override
+    public int compare(Assignment inO1, Assignment inO2)
+    {
+      Date d1 = inO1.getDate();
+      Date d2 = inO2.getDate();
+      return mDescending ? d2.compareTo(d1) : d1.compareTo(d2);
+    }
   }
 
   public static class Report implements Serializable
