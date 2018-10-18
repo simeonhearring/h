@@ -53,6 +53,7 @@
 							<k:AssignView ui:field="mApply1M" part="APPLY1" ppart="APPLY1" />
 							<k:AssignView ui:field="mApply2M" part="APPLY2" ppart="APPLY2" />
 							<k:AssignView ui:field="mApply3M" part="APPLY3" ppart="APPLY3" />
+							<k:AssignView ui:field="mApply4M" part="APPLY4" ppart="APPLY4" />
 						</b.gwt:HTMLPanel>
 						<b.gwt:HTMLPanel>
 							<label>Auxiliary Classroom #1</label>
@@ -60,6 +61,7 @@
 							<k:AssignView ui:field="mApply1A" part="APPLY1" ppart="APPLY1" hall="SECOND" />
 							<k:AssignView ui:field="mApply2A" part="APPLY2" ppart="APPLY2" hall="SECOND" />
 							<k:AssignView ui:field="mApply3A" part="APPLY3" ppart="APPLY3" hall="SECOND" />
+							<k:AssignView ui:field="mApply4A" part="APPLY4" ppart="APPLY4" hall="SECOND" />
 						</b.gwt:HTMLPanel>
 						<b.card:Card>
 							<b.card:Front>

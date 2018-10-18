@@ -37,7 +37,7 @@ public class Assignment extends Schedule implements Serializable
 
   public boolean isAssigned()
   {
-    return isParticipant() && isAssistant() && isStudyPoint();
+    return isParticipant() && isAssistant();// && isStudyPoint();
   }
 
   public boolean isParticipant()

@@ -18,6 +18,8 @@ public enum Part implements HasGLabel
   APPLY1,
   APPLY2,
   APPLY3,
+  APPLY4,
+  APPLY_VIDEO,
   I_VIDEO,
   F_RETURN_VISIT_VIDEO,
   S_RETURN_VISIT_VIDEO,
@@ -86,19 +88,15 @@ public enum Part implements HasGLabel
 
   public boolean isChairmanPart()
   {
-    return CHAIRMAN.equals(this) || OPEN.equals(this) || SONG_2.equals(this) || I_VIDEO.equals(this)
-        || F_RETURN_VISIT_VIDEO.equals(this) || S_RETURN_VISIT_VIDEO.equals(this)
-        || T_RETURN_VISIT_VIDEO.equals(this) || B_VIDEO.equals(this) || REVIEW.equals(this);
+    return CHAIRMAN.equals(this) || OPEN.equals(this) || SONG_2.equals(this) || I_VIDEO.equals(this) || F_RETURN_VISIT_VIDEO.equals(this) || S_RETURN_VISIT_VIDEO.equals(this)
+        || T_RETURN_VISIT_VIDEO.equals(this) || B_VIDEO.equals(this) || REVIEW.equals(this) || APPLY_VIDEO.equals(this);
   }
 
   public boolean isSelfThemed()
   {
-    return DIGGING.equals(this) || BIBLE_READING.equals(this) || INITIAL_CALL.equals(this)
-        || F_RETURN_VISIT.equals(this) || S_RETURN_VISIT.equals(this) || T_RETURN_VISIT.equals(this)
-        || TALK.equals(this) || BIBLE_STUDY.equals(this) || I_VIDEO.equals(this)
-        || F_RETURN_VISIT_VIDEO.equals(this) || S_RETURN_VISIT_VIDEO.equals(this)
-        || T_RETURN_VISIT_VIDEO.equals(this) || B_VIDEO.equals(this) || C_BIBLE_STUDY.equals(this)
-        || REVIEW.equals(this);
+    return DIGGING.equals(this) || BIBLE_READING.equals(this) || INITIAL_CALL.equals(this) || F_RETURN_VISIT.equals(this) || S_RETURN_VISIT.equals(this) || T_RETURN_VISIT.equals(this)
+        || TALK.equals(this) || BIBLE_STUDY.equals(this) || I_VIDEO.equals(this) || F_RETURN_VISIT_VIDEO.equals(this) || S_RETURN_VISIT_VIDEO.equals(this) || T_RETURN_VISIT_VIDEO.equals(this)
+        || B_VIDEO.equals(this) || C_BIBLE_STUDY.equals(this) || REVIEW.equals(this) || APPLY_VIDEO.equals(this);
   }
 
   public boolean isSong()
@@ -120,13 +118,7 @@ public enum Part implements HasGLabel
   {
     return new Part[]
     {
-        BIBLE_READING,
-        INITIAL_CALL,
-        F_RETURN_VISIT,
-        S_RETURN_VISIT,
-        T_RETURN_VISIT,
-        TALK,
-        BIBLE_STUDY
+        BIBLE_READING, INITIAL_CALL, F_RETURN_VISIT, S_RETURN_VISIT, T_RETURN_VISIT, TALK, BIBLE_STUDY
     };
   }
 
@@ -214,6 +206,7 @@ public enum Part implements HasGLabel
     boolean ret = false;
     switch (this)
     {
+      case APPLY_VIDEO:
       case I_VIDEO:
       case F_RETURN_VISIT_VIDEO:
       case S_RETURN_VISIT_VIDEO:
@@ -252,6 +245,9 @@ public enum Part implements HasGLabel
         break;
       case T_RETURN_VISIT:
         ret = "Third Return Visit";
+        break;
+      case APPLY_VIDEO:
+        ret = "Apply Yourself to Reading and Teaching";
         break;
       case I_VIDEO:
         ret = "Initial Call Video";
@@ -401,6 +397,7 @@ public enum Part implements HasGLabel
     ret.add(Part.APPLY1);
     ret.add(Part.APPLY2);
     ret.add(Part.APPLY3);
+    ret.add(Part.APPLY4);
 
     if (!inSlips)
     {
@@ -448,6 +445,7 @@ public enum Part implements HasGLabel
       case APPLY1:
       case APPLY2:
       case APPLY3:
+      case APPLY4:
       case RETURN_VISIT:
       case F_RETURN_VISIT:
       case S_RETURN_VISIT:
@@ -460,6 +458,7 @@ public enum Part implements HasGLabel
       case T_RETURN_VISIT_VIDEO:
       case I_VIDEO:
       case B_VIDEO:
+      case APPLY_VIDEO:
         ret = "APPLY";
         break;
       case C_BIBLE_STUDY:

@@ -28,7 +28,7 @@ public class WeekView extends AbstractView<WeekPresenter> implements WeekPresent
 
   @UiField
   AssignView mChairman, mPrayer1, mPrayer2, mTreasures, mDigging, mLiving1, mLiving2, mCStudy,
-      mReadingM, mApply1M, mApply2M, mApply3M, mReadingA, mApply1A, mApply2A, mApply3A;
+      mReadingM, mApply1M, mApply2M, mApply3M, mApply4M, mReadingA, mApply1A, mApply2A, mApply3A, mApply4A;
 
   public WeekView()
   {
@@ -84,11 +84,13 @@ public class WeekView extends AbstractView<WeekPresenter> implements WeekPresent
         mApply1M,
         mApply2M,
         mApply3M,
+        mApply4M,
 
         mReadingA,
         mApply1A,
         mApply2A,
-        mApply3A
+        mApply3A,
+        mApply4A
     };
   }
 }
